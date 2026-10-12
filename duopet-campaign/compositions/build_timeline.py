@@ -100,15 +100,19 @@ def word_time(scene, pattern, which="start", nth=0):
 # Transição de cada corte. frames a 30 qps. "None" = corte seco, quando a continuidade já está dentro das cenas
 # (caos → revelação: o ponto vira a linha; demo → benefícios/multi-pet: o celular continua na mesma pose e gira).
 CUTS = {
-    ("Hook", "Chaos"): dict(preset="zoomThrough", frames=12, params=dict(x=889, y=470)),  # mergulho no "?" de SEU PET?
-    ("HookMulti", "ChaosShort"): dict(preset="zoomThrough", frames=12, params=dict(x=850, y=490)),  # "?" de PRA TUDO?
-    ("HookDemo", "ChaosContrast"): dict(preset="whip", frames=10, params=dict(dir="left")),
-    ("HookPill", "ChaosShort"): dict(preset="whip", frames=10, params=dict(dir="up")),
-    # o celular e o fundo continuam iguais; só o título troca, então basta uma fusão curta
-    ("Reveal", "Demo"): dict(preset="fade", frames=8),
-    ("Reveal15", "Demo15"): dict(preset="fade", frames=8),
+    # ganchos → caos: todos com o mesmo "mergulho" no ponto terracota do título (o A/B mede o gancho, não a transição).
+    # Pontos medidos nos renders: centro do ponto do "?" / do ponto final.
+    ("Hook", "Chaos"): dict(preset="dive", frames=14, params=dict(x=883, y=528, r0=18)),  # "?" de SEU PET?
+    ("HookDemo", "ChaosContrast"): dict(preset="dive", frames=14, params=dict(x=564, y=463, r0=13)),  # ponto de ASSIM.
+    ("HookMulti", "ChaosShort"): dict(preset="dive", frames=14, params=dict(x=841, y=542, r0=15)),  # "?" de PRA TUDO?
+    ("HookPill", "ChaosShort"): dict(preset="dive", frames=14, params=dict(x=676, y=558, r0=16)),  # "?" de ONTEM?
+    # lista → caos (H1): mesmo plano dos dois lados, só o título sai por máscara (dentro da cena). Corte seco.
+    # caos → revelação: o ponto creme vira a linha (dentro das cenas). Corte seco.
+    # revelação → demo: celular idêntico; o título da revelação sai por máscara nos 6 últimos quadros. Corte seco no tempo forte.
+    # demo → benefícios/multi-pet: mesma pose, a demo limpa o quadro e o giro começa no corte. Corte seco.
     # portal: a tela do celular (Perfil, creme) vira o papel creme da cena emocional. Retângulo da tela do telefone em PH.
-    ("Benefits", "Emotion"): dict(preset="portal", frames=16, params=dict(x=279.0, y=489.0, w=522.0, h=1129.5, r=68.0)),
+    ("Benefits", "Emotion"): dict(preset="portal", frames=14, params=dict(x=279.0, y=489.0, w=522.0, h=1129.5, r=68.0)),
+    # o painel terracota atravessa o corte com velocidade casada (CTA continua a subida)
     ("Emotion", "CTA"): dict(preset="colorWipe", frames=16),
     ("MultiPet", "CTA"): dict(preset="colorWipe", frames=16),
     ("Demo15", "CTA15"): dict(preset="colorWipe", frames=16),
@@ -187,9 +191,10 @@ def add_cues(v):
         elif T in ("CTA", "CTA15"):
             c["logo"] = s["voStart"] if s["words"][0]["w"].lower().startswith("duopet") else s["start"] + 0.2
             c["offer"] = word_time(s, r"^(teste|três)")
+            c["offerVis"] = max(c["offer"], s["start"] + 0.3)  # a varredura terracota cobre a oferta até ~0,27 s
             c["url"] = word_time(s, r"^duopet", nth=1 if s["words"][0]["w"].lower().startswith("duopet") else 0)
             sfx += [dict(n="whoosh_soft", t=s["start"] - 0.22, g=0.55, dur=0.55), dict(n="logo_sting", t=c["logo"], g=0.7), dict(n="typing", t=c["logo"] + 0.15, g=0.25),
-                    dict(n="pop", t=c["offer"], g=0.4), dict(n="click_soft", t=c["url"], g=0.35)]
+                    dict(n="pop", t=c["offerVis"], g=0.4), dict(n="click_soft", t=c["url"], g=0.35)]
         elif T in ("HookList",):
             c["items"] = [word_time(s, p) - 0.04 for p in [r"^ração", r"^remédio", r"^vacina", r"^consulta"]]
             c["where"] = word_time(s, r"^tudo|^tá") - 0.05
@@ -213,7 +218,7 @@ def add_cues(v):
         if not c:
             continue
         cut = b["start"]
-        if c["preset"] == "zoomThrough":
+        if c["preset"] in ("zoomThrough", "dive"):
             sfx += [dict(n="whoosh_soft", t=cut - 0.32, g=0.55, dur=0.45), dict(n="impact", t=cut - 0.02, g=0.35)]
         elif c["preset"] == "whip":
             sfx += [dict(n="swoosh_3d", t=cut - 0.2, g=0.6)]

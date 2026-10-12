@@ -130,7 +130,7 @@ const DOT_R = 35; // raio do ponto no último quadro do caos (40 px × escala ~0
 
 /* ============ REVELAÇÃO (transição-assinatura) ============
  * ponto → linha → pata → batimento → anel com o logo (referência do cliente) → íris → o app sobe no mundo verde */
-export const Reveal: React.FC<{ scene: Scene }> = ({ scene }) => {
+export const Reveal: React.FC<{ scene: Scene; exitTitle?: boolean }> = ({ scene, exitTitle }) => {
   const { t } = useSceneTime(scene);
   const t0 = scene.start;
   const kickerT: number = scene.cues.kicker ?? t0 + 1.8;
@@ -144,6 +144,8 @@ export const Reveal: React.FC<{ scene: Scene }> = ({ scene }) => {
   const rowsIn = [0, 1, 2, 3, 4].map((i) => prog(t, t0 + 1.9 + i * 0.08, 0.45));
   const glint = prog(t, placeT - 0.2, 1.0, EASE.inOut);
   const stretch = prog(t, t0, STRETCH, EASE.inOut);
+  // corte seco para a demonstração: o celular é idêntico dos dois lados; só o título sai antes, por máscara (6 quadros)
+  const titleOut = exitTitle ? prog(t, scene.end - 0.2, 0.2, EASE.inOut) : 0;
   return (
     <AbsoluteFill style={{ overflow: "hidden" }}>
       <NightBG />
@@ -199,6 +201,9 @@ export const Reveal: React.FC<{ scene: Scene }> = ({ scene }) => {
           <Img src={staticFile("img/logo-mark.png")} style={{ height: 170, transform: `rotate(${(1 - badge) * -25}deg)` }} />
         </div>
       )}
+      {iris > 0 && iris < 1 && (
+        <div style={{ position: "absolute", left: CENTER[0] - lerp(150, 2300, iris), top: CENTER[1] - lerp(150, 2300, iris), width: 2 * lerp(150, 2300, iris), height: 2 * lerp(150, 2300, iris), borderRadius: 4600, border: `${lerp(10, 3, iris)}px solid rgba(244,242,238,${0.85 * (1 - iris)})`, boxSizing: "border-box" }} />
+      )}
       {iris > 0 && (
         <AbsoluteFill style={{ clipPath: `circle(${lerp(150, 2300, iris)}px at ${CENTER[0]}px ${CENTER[1]}px)` }}>
           {/* pose final idêntica à do 1º quadro da demonstração (mesma perspectiva e origem): a fusão do corte não "fantasma" */}
@@ -211,7 +216,7 @@ export const Reveal: React.FC<{ scene: Scene }> = ({ scene }) => {
           </div>
         </AbsoluteFill>
       )}
-      <div style={{ position: "absolute", left: 0, right: 0, top: 292, textAlign: "center" }}>
+      <div style={{ position: "absolute", left: 0, right: 0, top: 292, textAlign: "center", clipPath: `inset(-60px -60px ${titleOut * 100}% -60px)`, translate: `0px ${-titleOut * 36}px` }}>
         {t > kickerT - 0.1 && <Kicker text={text[0]} t={t} t0={kickerT} size={50} />}
         {t > placeT - 0.45 && (
           <div style={{ display: "flex", justifyContent: "center", marginTop: 2 }}>
@@ -225,7 +230,7 @@ export const Reveal: React.FC<{ scene: Scene }> = ({ scene }) => {
 };
 
 /* ============ DEMONSTRAÇÃO: 01 — ROTINA · ver → marcar → saber o que falta ============ */
-export const Demo: React.FC<{ scene: Scene; compact?: boolean }> = ({ scene, compact }) => {
+export const Demo: React.FC<{ scene: Scene; compact?: boolean; exitClean?: boolean }> = ({ scene, compact, exitClean }) => {
   const { t } = useSceneTime(scene);
   const t0 = scene.start;
   const see = scene.cues.see;
@@ -235,7 +240,8 @@ export const Demo: React.FC<{ scene: Scene; compact?: boolean }> = ({ scene, com
   const ring = lerp(0.6, 0.8, prog(t, tap + 0.12, 0.7, EASE.out));
   const press = interpolate(t, [tap - 0.12, tap, tap + 0.16], [0, 1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const hlNext = interpolate(t, [tap - 1.2, tap - 0.8, tap - 0.1, tap + 0.1], [0, 1, 1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const hlLeft = prog(t, left, 0.4) * (0.75 + 0.25 * Math.sin((t - left) * 8));
+  const clean = exitClean ? prog(t, scene.end - 0.2, 0.2, EASE.inOut) : 0;
+  const hlLeft = prog(t, left, 0.4) * (0.75 + 0.25 * Math.sin((t - left) * 8)) * (1 - clean);
   const zIn = prog(t, Math.max(t0 + 0.2, tap - 1.3), 0.8, EASE.camera) * (1 - prog(t, left - 0.5, 0.6, EASE.camera));
   const zoomO = { x: PH_CX, y: 650 }; // origem calculada: título, anel e linha tocada visíveis acima das legendas
   const tilt = prog(t, t0, scene.end - t0, EASE.soft);
@@ -267,7 +273,7 @@ export const Demo: React.FC<{ scene: Scene; compact?: boolean }> = ({ scene, com
         </div>
         <Finger t={t} tapT={tap} x={tapPt.x} y={tapPt.y} />
         {t > left && (
-          <div style={{ position: "absolute", left: leftPt.x - 40, top: leftPt.y - 42, transform: `scale(${chip})`, transformOrigin: "0% 50%" }}>
+          <div style={{ position: "absolute", left: leftPt.x - 40, top: leftPt.y - 42, transform: `scale(${chip * (1 - clean)})`, transformOrigin: "0% 50%" }}>
             <div style={{ fontFamily: FONT, fontWeight: 700, fontSize: 34, color: "#fff", background: C.terracotta, padding: "12px 24px", borderRadius: 40, boxShadow: "0 18px 36px -14px rgba(0,0,0,0.6)", whiteSpace: "nowrap" }}>Falta 1 · 21:00</div>
           </div>
         )}
@@ -286,7 +292,7 @@ export const Demo: React.FC<{ scene: Scene; compact?: boolean }> = ({ scene, com
           </div>
         </div>
       )}
-      <div style={{ position: "absolute", left: 80, right: 60, top: 284, opacity: 1 - toastVis }}>
+      <div style={{ position: "absolute", left: 80, right: 60, top: 284, opacity: 1 - toastVis, clipPath: `inset(-60px -60px ${clean * 100}% -60px)`, translate: `0px ${-clean * 36}px` }}>
         <Chapter n="01" label="ROTINA" t={t} t0={t0 + 0.05} />
         {cur && (
           <div style={{ marginTop: 14 }}>
@@ -314,15 +320,17 @@ const WhipFlip: React.FC<{ faces: React.ReactNode[]; switches: number[]; t: numb
     </div>
   );
   return (
-    <div style={{ position: "relative", width: "100%", height: "100%", transformStyle: "preserve-3d", transform: `translateZ(${-half}px) rotateY(${inTrans ? -90 * p : 0}deg)`, filter: blur > 0.5 ? `blur(${blur}px)` : undefined }}>
-      {inTrans ? (
-        <>
-          {render(idx - 1, 0)}
-          {render(idx, 90)}
-        </>
-      ) : (
-        render(idx, 0)
-      )}
+    <div style={{ position: "relative", width: "100%", height: "100%", perspective: 2400, filter: blur > 0.5 ? `blur(${blur}px)` : undefined }}>
+      <div style={{ position: "relative", width: "100%", height: "100%", transformStyle: "preserve-3d", transform: `translateZ(${-half}px) rotateY(${inTrans ? -90 * p : 0}deg)` }}>
+        {inTrans ? (
+          <>
+            {render(idx - 1, 0)}
+            {render(idx, 90)}
+          </>
+        ) : (
+          render(idx, 0)
+        )}
+      </div>
     </div>
   );
 };
@@ -605,10 +613,11 @@ export const CTA: React.FC<{ scene: Scene; short?: boolean }> = ({ scene }) => {
   const word = typeSteps / 6;
   const sys = prog(t, logo + 0.55, 0.5, EASE.out);
   const head = prog(t, logo + 0.7, 0.6, EASE.out);
-  const off = springAt(t * 30, offer, { damping: 13, stiffness: 150 }, 30);
+  const offerVis: number = scene.cues.offerVis ?? offer; // nunca antes de o painel terracota sair da frente
+  const off = springAt(t * 30, offerVis, { damping: 13, stiffness: 150 }, 30);
   const urlP = prog(t, url - 0.1, 0.55, EASE.out);
   const underline = prog(t, url + 0.15, 0.6, EASE.inOut);
-  const fam = springAt(t * 30, offer + 0.25, { damping: 16, stiffness: 90 }, 30);
+  const fam = springAt(t * 30, offerVis + 0.25, { damping: 16, stiffness: 90 }, 30);
   return (
     <AbsoluteFill style={{ overflow: "hidden" }}>
       <PaperBG warm={1} />

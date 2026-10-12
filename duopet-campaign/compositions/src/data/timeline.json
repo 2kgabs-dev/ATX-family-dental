@@ -173,11 +173,12 @@
       "petWord": 3.35
      },
      "cutAfter": {
-      "preset": "zoomThrough",
-      "frames": 12,
+      "preset": "dive",
+      "frames": 14,
       "params": {
-       "x": 889,
-       "y": 470
+       "x": 883,
+       "y": 528,
+       "r0": 18
       }
      }
     },
@@ -569,10 +570,7 @@
        "No lugar certo"
       ]
      },
-     "cutAfter": {
-      "preset": "fade",
-      "frames": 8
-     }
+     "cutAfter": null
     },
     {
      "id": "03-Demo",
@@ -1086,7 +1084,7 @@
      },
      "cutAfter": {
       "preset": "portal",
-      "frames": 16,
+      "frames": 14,
       "params": {
        "x": 279.0,
        "y": 489.0,
@@ -1403,6 +1401,7 @@
      "cues": {
       "logo": 34.45,
       "offer": 35.65,
+      "offerVis": 35.65,
       "url": 38.69
      }
     }
@@ -2792,10 +2791,7 @@
        "No lugar certo"
       ]
      },
-     "cutAfter": {
-      "preset": "fade",
-      "frames": 8
-     }
+     "cutAfter": null
     },
     {
      "id": "03-Demo",
@@ -3377,6 +3373,7 @@
      "cues": {
       "logo": 23.45,
       "offer": 23.4,
+      "offerVis": 23.55,
       "url": 26.44
      }
     }
@@ -4007,14 +4004,14 @@
      "dur": 0.55
     },
     {
-     "n": "pop",
-     "t": 23.4,
-     "g": 0.4
-    },
-    {
      "n": "logo_sting",
      "t": 23.45,
      "g": 0.7
+    },
+    {
+     "n": "pop",
+     "t": 23.55,
+     "g": 0.4
     },
     {
      "n": "typing",
@@ -4206,10 +4203,12 @@
       "pet": 1.48
      },
      "cutAfter": {
-      "preset": "whip",
-      "frames": 10,
+      "preset": "dive",
+      "frames": 14,
       "params": {
-       "dir": "left"
+       "x": 564,
+       "y": 463,
+       "r0": 13
       }
      }
     },
@@ -4568,10 +4567,7 @@
        "No lugar certo"
       ]
      },
-     "cutAfter": {
-      "preset": "fade",
-      "frames": 8
-     }
+     "cutAfter": null
     },
     {
      "id": "03-Demo",
@@ -5153,6 +5149,7 @@
      "cues": {
       "logo": 22.95,
       "offer": 22.9,
+      "offerVis": 23.05,
       "url": 25.94
      }
     }
@@ -5645,9 +5642,15 @@
      "g": 0.4
     },
     {
-     "n": "swoosh_3d",
-     "t": 3.3,
-     "g": 0.6
+     "n": "whoosh_soft",
+     "t": 3.18,
+     "g": 0.55,
+     "dur": 0.45
+    },
+    {
+     "n": "impact",
+     "t": 3.48,
+     "g": 0.35
     },
     {
      "n": "paper",
@@ -5808,14 +5811,14 @@
      "dur": 0.55
     },
     {
-     "n": "pop",
-     "t": 22.9,
-     "g": 0.4
-    },
-    {
      "n": "logo_sting",
      "t": 22.95,
      "g": 0.7
+    },
+    {
+     "n": "pop",
+     "t": 23.05,
+     "g": 0.4
     },
     {
      "n": "typing",
@@ -6039,11 +6042,12 @@
       "head": 3.68
      },
      "cutAfter": {
-      "preset": "zoomThrough",
-      "frames": 12,
+      "preset": "dive",
+      "frames": 14,
       "params": {
-       "x": 850,
-       "y": 490
+       "x": 841,
+       "y": 542,
+       "r0": 15
       }
      }
     },
@@ -6375,10 +6379,7 @@
        "No lugar certo"
       ]
      },
-     "cutAfter": {
-      "preset": "fade",
-      "frames": 8
-     }
+     "cutAfter": null
     },
     {
      "id": "03-Demo",
@@ -6960,6 +6961,7 @@
      "cues": {
       "logo": 23.95,
       "offer": 23.9,
+      "offerVis": 24.05,
       "url": 26.94
      }
     }
@@ -7626,14 +7628,14 @@
      "dur": 0.55
     },
     {
-     "n": "pop",
-     "t": 23.9,
-     "g": 0.4
-    },
-    {
      "n": "logo_sting",
      "t": 23.95,
      "g": 0.7
+    },
+    {
+     "n": "pop",
+     "t": 24.05,
+     "g": 0.4
     },
     {
      "n": "typing",
@@ -7797,10 +7799,12 @@
       "or": 1.83
      },
      "cutAfter": {
-      "preset": "whip",
-      "frames": 10,
+      "preset": "dive",
+      "frames": 14,
       "params": {
-       "dir": "up"
+       "x": 676,
+       "y": 558,
+       "r0": 16
       }
      }
     },
@@ -8132,10 +8136,7 @@
        "No lugar certo"
       ]
      },
-     "cutAfter": {
-      "preset": "fade",
-      "frames": 8
-     }
+     "cutAfter": null
     },
     {
      "id": "03-Demo",
@@ -8717,6 +8718,7 @@
      "cues": {
       "logo": 22.95,
       "offer": 22.9,
+      "offerVis": 23.05,
       "url": 25.94
      }
     }
@@ -9180,9 +9182,15 @@
      "g": 0.55
     },
     {
-     "n": "swoosh_3d",
-     "t": 3.3,
-     "g": 0.6
+     "n": "whoosh_soft",
+     "t": 3.18,
+     "g": 0.55,
+     "dur": 0.45
+    },
+    {
+     "n": "impact",
+     "t": 3.48,
+     "g": 0.35
     },
     {
      "n": "paper",
@@ -9343,14 +9351,14 @@
      "dur": 0.55
     },
     {
-     "n": "pop",
-     "t": 22.9,
-     "g": 0.4
-    },
-    {
      "n": "logo_sting",
      "t": 22.95,
      "g": 0.7
+    },
+    {
+     "n": "pop",
+     "t": 23.05,
+     "g": 0.4
     },
     {
      "n": "typing",
@@ -9623,10 +9631,7 @@
        "Num lugar só"
       ]
      },
-     "cutAfter": {
-      "preset": "fade",
-      "frames": 8
-     }
+     "cutAfter": null
     },
     {
      "id": "02-Demo15",
@@ -9853,6 +9858,7 @@
      "cues": {
       "logo": 9.45,
       "offer": 9.37,
+      "offerVis": 9.55,
       "url": 11.37
      }
     }
@@ -10182,14 +10188,14 @@
      "dur": 0.55
     },
     {
-     "n": "pop",
-     "t": 9.37,
-     "g": 0.4
-    },
-    {
      "n": "logo_sting",
      "t": 9.45,
      "g": 0.7
+    },
+    {
+     "n": "pop",
+     "t": 9.55,
+     "g": 0.4
     },
     {
      "n": "typing",

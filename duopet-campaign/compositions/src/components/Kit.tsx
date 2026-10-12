@@ -25,8 +25,13 @@ export const PaperBG: React.FC<{ style?: React.CSSProperties; warm?: number }> =
 );
 
 /** Granulação de filme animada (bem sutil): 6 texturas pré-geradas alternadas — muito mais leve que feTurbulence. */
-export const Grain: React.FC<{ opacity?: number }> = ({ opacity = 0.07 }) => {
+/** true quando o Ad desenha uma única camada de granulação por cima de tudo (ela não é transformada pelas transições). */
+export const GlobalGrain = React.createContext(false);
+
+export const Grain: React.FC<{ opacity?: number; global?: boolean }> = ({ opacity = 0.07, global }) => {
   const f = Math.round(useAbsTime() * 30);
+  const centralized = React.useContext(GlobalGrain);
+  if (centralized && !global) return null;
   return (
     <AbsoluteFill style={{ pointerEvents: "none", mixBlendMode: "overlay", opacity: opacity * 1.6 }}>
       <Img src={staticFile(`img/grain-${f % 6}.png`)} style={{ width: 1080, height: 1920, imageRendering: "pixelated" }} />

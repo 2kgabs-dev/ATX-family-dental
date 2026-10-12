@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { AbsoluteFill, Audio, continueRender, delayRender, staticFile, useVideoConfig } from "remotion";
+import { AbsoluteFill, Audio, continueRender, delayRender, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { TransitionSeries } from "@remotion/transitions";
 import { sec } from "./lib/anim";
-import { Scene, SceneOrigin, TIMELINE, useSceneTime } from "./lib/timeline";
+import { Scene, SceneOrigin, TIMELINE } from "./lib/timeline";
 import { cutBetween } from "./components/Transitions";
-import { SafeZone } from "./components/Kit";
+import { GlobalGrain, Grain, SafeZone } from "./components/Kit";
 import { CaptionTheme, FontsReady, PageCaptions } from "./components/Captions";
 import { Hook, HookDemo, HookList, HookMulti, HookPill } from "./scenes/Hooks";
 import { Benefits, Chaos, CTA, Demo, Emotion, MultiPet, Reveal } from "./scenes/Story";
@@ -48,13 +48,29 @@ const captionY = (s: Scene) => CAPTION_Y[s.type] ?? 1262;
 // No cartão final a locução repete o texto da tela (oferta e endereço): a legenda sairia duplicada, então não aparece.
 const NO_CAPTIONS = new Set(["CTA", "CTA15"]);
 
-const SceneCaptions: React.FC<{ scene: Scene }> = ({ scene }) => {
-  const { t } = useSceneTime(scene);
-  if (NO_CAPTIONS.has(scene.type)) return null;
-  return <PageCaptions captions={scene.captions} t={t} theme={captionTheme(scene)} y={captionY(scene)} />;
+/**
+ * Faixa de legenda ÚNICA, acima da TransitionSeries: as transições (mergulho, portal, whip) nunca escalam, desfocam
+ * ou duplicam a legenda. As páginas continuam quebradas por cena (pageBreakAfter no fim de cada fala) e a última
+ * página de uma cena fica até a primeira da cena seguinte. Tema e altura seguem a cena ativa no quadro.
+ */
+const CaptionTrack: React.FC<{ scenes: Scene[] }> = ({ scenes }) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const t = frame / fps;
+  const caps = React.useMemo(() => scenes.filter((s) => !NO_CAPTIONS.has(s.type)).flatMap((s) => s.captions), [scenes]);
+  const cur = scenes.find((s) => t >= s.start && t < s.end) ?? scenes[scenes.length - 1];
+  return <PageCaptions captions={caps} t={t} theme={captionTheme(cur)} y={captionY(cur)} />;
 };
 
-const renderScene = (s: Scene, version: string, prev?: Scene) => {
+// granulação por cena (mesmos valores que as cenas usavam), desenhada uma vez só no topo
+const GRAIN: Record<string, number> = { Hook: 0.035, HookDemo: 0.04, Reveal: 0.05, Reveal15: 0.05, Demo: 0.05, Demo15: 0.05, Benefits: 0.05, MultiPet: 0.05, Emotion: 0.05, CTA: 0.035, CTA15: 0.035 };
+const GrainTrack: React.FC<{ scenes: Scene[] }> = ({ scenes }) => {
+  const t = useCurrentFrame() / 30;
+  const cur = scenes.find((s) => t >= s.start && t < s.end) ?? scenes[scenes.length - 1];
+  return <Grain opacity={GRAIN[cur.type] ?? 0.07} global />;
+};
+
+const renderScene = (s: Scene, version: string, prev?: Scene, next?: Scene) => {
   switch (s.type) {
     case "Hook":
       return <Hook scene={s} />;
@@ -76,11 +92,11 @@ const renderScene = (s: Scene, version: string, prev?: Scene) => {
       return <Chaos scene={s} pre="none" />;
     case "Reveal":
     case "Reveal15":
-      return <Reveal scene={s} />;
+      return <Reveal scene={s} exitTitle={!!next} />;
     case "Demo":
-      return <Demo scene={s} />;
+      return <Demo scene={s} exitClean={!!next} />;
     case "Demo15":
-      return <Demo scene={s} compact />;
+      return <Demo scene={s} compact exitClean={!!next} />;
     case "Benefits":
       return <Benefits scene={s} />;
     case "MultiPet":
@@ -117,8 +133,7 @@ export const Ad: React.FC<AdProps> = ({ version, captions, audio, safe }) => {
     items.push(
       <TransitionSeries.Sequence key={s.id} name={s.id} durationInFrames={end - begin} premountFor={fps}>
         <SceneOrigin.Provider value={begin / fps}>
-          {renderScene(s, version, v.scenes[i - 1])}
-          {captions && <SceneCaptions scene={s} />}
+          {renderScene(s, version, v.scenes[i - 1], v.scenes[i + 1])}
         </SceneOrigin.Provider>
       </TransitionSeries.Sequence>,
     );
@@ -136,7 +151,11 @@ export const Ad: React.FC<AdProps> = ({ version, captions, audio, safe }) => {
   return (
     <FontsReady.Provider value={ready}>
       <AbsoluteFill style={{ background: "#0e1311" }}>
-        <TransitionSeries name={`${version} cenas`}>{items}</TransitionSeries>
+        <GlobalGrain.Provider value={true}>
+          <TransitionSeries name={`${version} cenas`}>{items}</TransitionSeries>
+        </GlobalGrain.Provider>
+        <GrainTrack scenes={v.scenes} />
+        {captions && <CaptionTrack scenes={v.scenes} />}
         {audio && <Audio src={staticFile(audio)} />}
         {safe && <SafeZone />}
       </AbsoluteFill>

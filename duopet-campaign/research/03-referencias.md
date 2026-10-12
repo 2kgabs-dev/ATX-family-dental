@@ -48,7 +48,7 @@ Analisado a 4 quadros por segundo (124 quadros) e no áudio. Folhas de análise:
 
 | Regra da skill | O que diz | Como entrou no filme |
 |---|---|---|
-| `remotion-captions` / `display-captions` | Legendas no tipo `Caption` (JSON, espaço antes de cada palavra, `pageBreakAfter`), páginas com `createTikTokStyleCaptions`, legenda dentro da `Sequence` de cada cena | `build_timeline.py` gera `captions` por cena com quebra editorial (pontuação, ≤17 caracteres, sem terminar em artigo ou preposição). `Captions.tsx` usa `createTikTokStyleCaptions` |
+| `remotion-captions` / `display-captions` | Legendas no tipo `Caption` (JSON, espaço antes de cada palavra, `pageBreakAfter`), páginas com `createTikTokStyleCaptions`, legenda dentro da `Sequence` de cada cena | `build_timeline.py` gera `captions` por cena com quebra editorial (pontuação, ≤17 caracteres, sem terminar em artigo ou preposição). `Captions.tsx` usa `createTikTokStyleCaptions`. **Desvio:** a legenda fica numa faixa única acima das transições; dentro da cena, ela era escalada, desfocada ou duplicada no corte |
 | `transitions` | `<TransitionSeries>` com `Transition` (sobrepõe) e `Overlay` (não muda a duração), `premountFor={fps}` | `Ad.tsx` montado em `TransitionSeries`. A cena que sai é estendida por metade da transição e a que entra começa metade antes; um contexto de tempo absoluto mantém a sincronia com a voz |
 | `light-leaks` | `lightLeak()` de `@remotion/effects` sobre `<Solid>`, com `progress` pelo quadro | Luz quente sobre a foto no "mais tempo juntos". Testei também no corte revelação→demo, mas ali virou um véu amarelo-oliva sobre o verde e saiu |
 | `measuring-text` | `measureText()` só com a fonte carregada | Posição da pílula da legenda; o render espera as fontes antes de medir |
@@ -60,13 +60,12 @@ Analisado a 4 quadros por segundo (124 quadros) e no áudio. Folhas de análise:
 
 | Corte | Transição | De onde veio |
 |---|---|---|
-| Gancho → caos (master, H3) | Mergulho no "?" terracota até a cor tomar a tela; o caos abre em círculo a partir do mesmo ponto | Energia: movimento no quadro do corte |
-| Lista → caos (H1) | Corte invisível (mesmos objetos dos dois lados) e o título sai por uma máscara nos 6 últimos quadros | Continuidade |
-| Demo → caos (H2), comprimido → caos (H4) | Whip pan com desfoque direcional (filtro SVG só durante a transição) | Energia |
-| Caos → revelação (todas) | O mesmo ponto creme se estica e vira a linha, com uma onda de choque fina no impacto | Continuidade + energia |
-| Revelação → demo | Fusão de 8 quadros; o celular está na mesma pose dos dois lados, então só o título troca | Continuidade (pose de câmera unificada) |
-| Demo → benefícios / multi-pet | Sem corte visível: o celular começa na pose final da demo e assenta durante o 1º giro | Continuidade |
+| Todos os ganchos → caos (master, H2, H3, H4) | **Mergulho no ponto terracota** do título (o ponto do "?" ou o ponto final): o ponto vira um disco que cobre a tela no corte, e o caos abre em íris do mesmo ponto, com borda creme. É a mesma transição em todos os ganchos, para o A/B medir o gancho e não a transição | Viabilidade/referência (íris a partir de um ponto) + energia |
+| Lista → caos (H1) | Corte invisível (os mesmos objetos dos dois lados); só o título sai por uma máscara nos 6 últimos quadros | Continuidade |
+| Caos → revelação (todas) | O mesmo ponto creme se estica e vira a linha, com uma onda de choque fina no impacto; a íris ganhou a borda creme da referência | Continuidade + energia + referência |
+| Revelação → demo | Corte seco no tempo forte: celular, fundo e partículas idênticos dos dois lados; o título sai por máscara antes do corte. A fusão foi testada e descartada, porque mostrava dois títulos e duas legendas ao mesmo tempo | Continuidade (pose de câmera unificada) |
+| Demo → benefícios / multi-pet | A demo limpa o quadro (título, pílula e destaque saem nos 6 últimos quadros); o celular continua na mesma pose e o 1º giro 3D começa no corte. O giro foi corrigido: o desfoque achatava o cubo e só uma face aparecia | Continuidade + viabilidade |
 | Benefícios → emoção | Portal: a tela do celular (creme) vira o papel creme da cena e cresce até cobrir o quadro | Continuidade (portal de tela) |
-| Emoção / multi-pet / demo 15 s → CTA | O painel terracota da referência atravessa o corte com velocidade casada (acelera, cobre no corte, desacelera) e borda em degradê no lugar de desfoque | Continuidade + energia |
+| Emoção / multi-pet / demo 15 s → CTA | O painel terracota da referência atravessa o corte com velocidade casada (acelera, cobre no corte, desacelera), borda em degradê no lugar de desfoque; a oferta só aparece (com o "pop") depois que o painel sai da frente | Continuidade + energia + viabilidade |
 
-Fundos verdes, órbitas, partículas e granulação passaram a usar o tempo absoluto da versão: não "pulam" mais nos cortes entre cenas verdes.
+A granulação de filme passou a ser uma camada única por cima de tudo (antes, ela aparecia duas vezes nas sobreposições e virava mosaico no zoom). Fundos verdes, órbitas, partículas e granulação passaram a usar o tempo absoluto da versão: não "pulam" mais nos cortes entre cenas verdes.

@@ -41,7 +41,7 @@ Pontos de edição mais comuns:
 
 ## Skill oficial do Remotion (v3)
 As Agent Skills oficiais do Remotion (`remotion-dev/skills`) estão instaladas no projeto, em `../.claude/skills/` (instalação: `npx skills add remotion-dev/skills`). Regras aplicadas nesta versão:
-- **captions**: legendas no tipo `Caption` do `@remotion/captions` (JSON gerado em `build_timeline.py`, com espaço antes de cada palavra e `pageBreakAfter`), páginas com `createTikTokStyleCaptions`, e legenda dentro da `Sequence` de cada cena.
+- **captions**: legendas no tipo `Caption` do `@remotion/captions` (JSON gerado em `build_timeline.py`, com espaço antes de cada palavra e `pageBreakAfter`) e páginas com `createTikTokStyleCaptions`. **Desvio consciente:** a regra sugere a legenda dentro da `Sequence` de cada cena, mas aqui ela fica numa faixa única acima da `TransitionSeries`. Dentro da cena, o mergulho e o portal escalavam a legenda, o whip a desfocava e a fusão mostrava duas placas ao mesmo tempo. As quebras continuam por cena.
 - **transitions + light-leaks**: montagem com `<TransitionSeries>`, `premountFor={fps}` em cada sequência e overlay, apresentações customizadas e `lightLeak()` do `@remotion/effects` sobre `<Solid>`.
 - **measuring-text**: `measureText()` do `@remotion/layout-utils` só depois de as fontes carregarem (posição da pílula da legenda).
 - **voiceover**: a skill recomenda ElevenLabs. Não foi possível usar (conta Higgsfield sem créditos); usei Kokoro local e deixei a troca documentada em `voice/README.md`.

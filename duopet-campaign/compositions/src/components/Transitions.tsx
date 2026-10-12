@@ -42,6 +42,40 @@ const ZoomThrough: React.FC<P<ZoomThroughProps>> = ({ children, presentationDire
 };
 export const zoomThrough = (props: ZoomThroughProps): TransitionPresentation<ZoomThroughProps> => ({ component: ZoomThrough, props });
 
+
+/* ---------- mergulho no ponto terracota (família de todos os ganchos) ----------
+ * O ponto final / o ponto do "?" (assinatura da marca) vira um disco que cresce e cobre a tela exatamente no corte;
+ * a cena seguinte abre em íris a partir do mesmo ponto, com borda creme (como a íris do vídeo de referência).
+ * Mesma transição em todos os ganchos: o teste A/B mede o gancho, não a transição. */
+type DiveProps = { x: number; y: number; r0: number; color: string };
+const Dive: React.FC<P<DiveProps>> = ({ children, presentationDirection, presentationProgress: p, passedProps }) => {
+  const { x, y, r0, color } = passedProps;
+  const R = 2350;
+  if (presentationDirection === "exiting") {
+    const k = Math.min(1, p / 0.5);
+    const push = 1 + 0.3 * k * k;
+    const r = k >= 1 ? R : r0 * push + (R - r0 * push) * Math.pow(k, 3);
+    return (
+      <AbsoluteFill style={{ overflow: "hidden" }}>
+        <AbsoluteFill style={{ scale: String(push), transformOrigin: `${x}px ${y}px` }}>{children}</AbsoluteFill>
+        <div style={{ position: "absolute", left: x - r, top: y - r, width: 2 * r, height: 2 * r, borderRadius: 2 * R, background: color }} />
+      </AbsoluteFill>
+    );
+  }
+  if (p < 0.5) return null;
+  const o = EASE.inOut((p - 0.5) / 0.5); // íris visível: começa devagar, abre no meio
+  const r = r0 + (R - r0) * o;
+  return (
+    <AbsoluteFill>
+      <AbsoluteFill style={{ clipPath: `circle(${r}px at ${x}px ${y}px)` }}>
+        <AbsoluteFill style={{ scale: String(1.12 - 0.12 * o), transformOrigin: `${x}px ${y}px` }}>{children}</AbsoluteFill>
+      </AbsoluteFill>
+      <div style={{ position: "absolute", left: x - r, top: y - r, width: 2 * r, height: 2 * r, borderRadius: 2 * R, border: `${10 - 7 * o}px solid rgba(244,242,238,${0.9 * (1 - o)})`, boxSizing: "border-box" }} />
+    </AbsoluteFill>
+  );
+};
+export const dive = (props: DiveProps): TransitionPresentation<DiveProps> => ({ component: Dive, props });
+
 /* ---------- whip pan com desfoque direcional (filtro SVG só nos quadros da transição) ---------- */
 type WhipProps = { dir: "left" | "right" | "up" | "down" };
 const Whip: React.FC<P<WhipProps>> = ({ children, presentationDirection, presentationProgress: p, passedProps }) => {
@@ -176,6 +210,8 @@ export const cutBetween = (a: Scene & { cutAfter?: CutSpec | null }, _b: Scene, 
   switch (c.preset) {
     case "zoomThrough":
       return { kind: "transition", frames: c.frames, presentation: zoomThrough({ x: q.x, y: q.y, color: q.color ?? C.terracotta }), timing: lin };
+    case "dive":
+      return { kind: "transition", frames: c.frames, presentation: dive({ x: q.x, y: q.y, r0: q.r0 ?? 16, color: q.color ?? C.terracotta }), timing: lin };
     case "whip":
       return { kind: "transition", frames: c.frames, presentation: whip({ dir: q.dir ?? "left" }), timing: lin };
     case "portal":
