@@ -2,7 +2,7 @@ import type { Caption } from "@remotion/captions";
 import { createContext, useContext } from "react";
 import { useCurrentFrame } from "remotion";
 import data from "../data/timeline.json";
-import { FPS } from "./anim";
+import { FPS, sec } from "./anim";
 
 export type Word = { w: string; start: number; end: number };
 export type Scene = {
@@ -43,3 +43,9 @@ export const useAbsTime = () => {
   const origin = useContext(SceneOrigin);
   return (origin ?? 0) + f / FPS;
 };
+
+const clamp01 = (x: number) => Math.min(1, Math.max(0, x));
+/** 0→1 entre os quadros (corte+a) e (corte+b), com corte = sec(s.end). Em quadros: meio quadro (x,25/x,75) não deixa rampa incompleta. */
+export const cutRamp = (t: number, s: Scene, a: number, b: number) => clamp01((Math.round(t * FPS) - (sec(s.end) + a)) / (b - a));
+/** 0→1 nos n primeiros quadros da cena (vale 0 no quadro do corte). */
+export const enterRamp = (t: number, s: Scene, n: number) => clamp01((Math.round(t * FPS) - sec(s.start)) / n);

@@ -2,7 +2,7 @@ import React from "react";
 import { AbsoluteFill, Img, interpolate, staticFile } from "remotion";
 import { C, EASE, FONT } from "../theme";
 import { clamp01, lerp, prog, springAt, wobble } from "../lib/anim";
-import { Scene, useSceneTime } from "../lib/timeline";
+import { cutRamp, Scene, useSceneTime } from "../lib/timeline";
 import { Cutout, Grain, Headline, MotionBlur, NightBG, PaperBG, PaperCard, PillPack, StickyNote, CalendarCard } from "../components/Kit";
 import { Icon } from "../components/Icon";
 import { KText, Kicker } from "../components/Kinetic";
@@ -20,9 +20,12 @@ const MY_DAY: [string, string, string][] = [
   ["20:00", "Jantar em família", "heart"],
 ];
 
-export const Hook: React.FC<{ scene: Scene }> = ({ scene }) => {
+export const Hook: React.FC<{ scene: Scene; curtain?: boolean }> = ({ scene, curtain }) => {
   const { t, local } = useSceneTime(scene);
   const turn = scene.cues.turn;
+  // saída do master: a noite do caos cai de cima com gravidade nos 8 últimos quadros (match on action vertical)
+  const dropK = curtain ? cutRamp(t, scene, -8, 0) : 0;
+  const drop = dropK * dropK;
   const scatter = prog(t, turn - 0.12, 0.5, EASE.snap);
   const scrollY = -local * 60;
   const pets = springAt(t * 30, turn + 0.05, { damping: 15, stiffness: 110 }, 30);
@@ -52,15 +55,21 @@ export const Hook: React.FC<{ scene: Scene }> = ({ scene }) => {
         <KText lines={["Sua rotina", "em dia"]} mode="mask" t={t} t0={scene.start - 0.32} size={158} color={C.forest} out={turn - 0.3} />
       </div>
       {t > turn - 0.05 && (
-        <div style={{ position: "absolute", left: 80, top: 300 }}>
+        <div style={{ position: "absolute", left: 80, top: 300, transform: `translateY(${drop * 1400}px) rotate(${drop * 6}deg)` }}>
           <Kicker text="e a do" t={t} t0={turn} color={C.forest} size={66} />
           <KText lines={["Seu pet"]} mode="track" t={t} t0={turn + 0.08} size={196} color={C.forest} dot="?" style={{ marginTop: 6 }} />
         </div>
       )}
       {/* pets espiando sobem da base (abertura do vídeo de referência) */}
-      <div style={{ position: "absolute", left: 0, top: lerp(1920, 1560, pets), width: 1080, height: 600, overflow: "hidden" }}>
+      <div style={{ position: "absolute", left: 0, top: lerp(lerp(1920, 1560, pets), 1920, drop), width: 1080, height: 600, overflow: "hidden" }}>
         <Img src={staticFile("img/peeking.jpg")} style={{ position: "absolute", width: 1180, left: -50, top: -330, mixBlendMode: "multiply" }} />
       </div>
+      {drop > 0 && (
+        <div style={{ position: "absolute", left: 0, top: 0, width: 1080, height: 1920, transform: `translateY(${(drop - 1) * 1920}px)` }}>
+          <NightBG />
+          <div style={{ position: "absolute", left: 0, right: 0, top: 1920, height: 140, background: "linear-gradient(#0e1311, rgba(14,19,17,0))" }} />
+        </div>
+      )}
       <Grain opacity={0.035} />
     </AbsoluteFill>
   );
@@ -163,7 +172,7 @@ export const HookList: React.FC<{ scene: Scene }> = ({ scene }) => {
         )}
       {t >= where - 0.02 && (
         // sai por uma máscara que sobe nos 6 últimos quadros: o corte para o caos (mesmos objetos) fica invisível
-        <div style={{ position: "absolute", left: 80, top: 300, clipPath: `inset(-40px -40px ${titleOut * 100}% -40px)`, translate: `0px ${-titleOut * 40}px` }}>
+        <div style={{ position: "absolute", left: 80, top: 300, clipPath: `inset(-40px -40px calc(${titleOut * 100}% + ${titleOut * 40}px) -40px)`, translate: `0px ${-titleOut * 40}px` }}>
           <KText lines={["Tá tudo", "onde"]} mode="track" t={t} t0={where} size={176} dot="?" />
         </div>
       )}

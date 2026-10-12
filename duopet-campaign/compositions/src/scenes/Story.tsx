@@ -3,7 +3,7 @@ import { AbsoluteFill, Img, interpolate, Sequence, staticFile } from "remotion";
 import { getLength, getPointAtLength } from "@remotion/paths";
 import { C, EASE, FONT, MONO } from "../theme";
 import { clamp01, lerp, prog, springAt, wobble } from "../lib/anim";
-import { Scene, useSceneTime } from "../lib/timeline";
+import { enterRamp, Scene, useSceneTime } from "../lib/timeline";
 import { CalendarCard, ChatCard, Cutout, Eyebrow, Grain, NightBG, PaperBG, ReceiptCard } from "../components/Kit";
 import { Icon } from "../components/Icon";
 import { GastosScreen, HojeScreen, PerfilScreen, PlayScreen, SaudeScreen } from "../components/AppUI";
@@ -28,12 +28,14 @@ const EXTRA_LAYOUT: Record<string, { x: number; y: number; r: number; from: [num
   recibo: { x: 70, y: 1180, r: -7, from: [-900, 600] },
 };
 
-export const Chaos: React.FC<{ scene: Scene; pre?: "static" | "fly" | "none" }> = ({ scene, pre = "none" }) => {
+export const Chaos: React.FC<{ scene: Scene; pre?: "static" | "fly" | "none" | "curtain" }> = ({ scene, pre = "none" }) => {
   const { t } = useSceneTime(scene);
   const keys: Record<string, number> = scene.cues.keys ?? {};
   const conv = scene.cues.converge;
   const list = ["ração", "remédio", "vacina", "consulta"];
   const listT = (k: string, i: number) => {
+    // depois da cortina, o 1º papel já está em voo no quadro do corte (sem quadros vazios)
+    if (pre === "curtain" && k === "ração" && keys[k] !== undefined) return Math.min(keys[k], scene.start - 0.11);
     if (keys[k] !== undefined) return keys[k];
     if (pre === "static") return scene.start - 2;
     if (pre === "fly" || keys["espalhados"] !== undefined || keys["cuidados"] !== undefined) return scene.start + 0.05 + i * 0.16;
@@ -57,11 +59,15 @@ export const Chaos: React.FC<{ scene: Scene; pre?: "static" | "fly" | "none" }> 
   const curWord = [...wordCues].reverse().find(([, tt]) => t >= tt - 0.06);
   const curWhere = [...where].reverse().find(([, tt]) => t >= tt - 0.06);
   const textOut = conv - 0.1;
+  // tranco de câmera quando a cortina pousa (master) e punch no tempo forte quando os papéis continuam do gancho (H1)
+  const since = t - scene.start;
+  const kick = pre === "curtain" && since >= 0 ? 26 * Math.exp(-since * 14) : 0;
+  const punch = pre === "static" ? 1 + 0.06 * (1 - EASE.out(enterRamp(t, scene, 8))) : 1;
   const dot = prog(t, conv + 0.5, 0.25, EASE.out) * (1 + 0.12 * Math.sin((t - conv) * 18) * prog(t, conv + 0.6, 0.2));
   return (
     <AbsoluteFill style={{ overflow: "hidden" }}>
       <NightBG />
-      <AbsoluteFill style={{ transform: `translate(${wobble(t, 2, shake)}px, ${wobble(t, 4, shake)}px) rotate(${wobble(t, 6, 0.4 + agitation)}deg)` }}>
+      <AbsoluteFill style={{ transform: `scale(${punch}) translate(${wobble(t, 2, shake) + kick * Math.sin(since * 70)}px, ${wobble(t, 4, shake) + kick * Math.cos(since * 55)}px) rotate(${wobble(t, 6, 0.4 + agitation) + kick * 0.04}deg)`, transformOrigin: "540px 860px" }}>
         {list.map((k, i) => {
           const L = ITEM_LAYOUT[k];
           const orbit = agitation * 40;
@@ -216,7 +222,7 @@ export const Reveal: React.FC<{ scene: Scene; exitTitle?: boolean }> = ({ scene,
           </div>
         </AbsoluteFill>
       )}
-      <div style={{ position: "absolute", left: 0, right: 0, top: 292, textAlign: "center", clipPath: `inset(-60px -60px ${titleOut * 100}% -60px)`, translate: `0px ${-titleOut * 36}px` }}>
+      <div style={{ position: "absolute", left: 0, right: 0, top: 292, textAlign: "center", clipPath: `inset(-60px -60px calc(${titleOut * 100}% + ${titleOut * 60}px) -60px)`, translate: `0px ${-titleOut * 36}px` }}>
         {t > kickerT - 0.1 && <Kicker text={text[0]} t={t} t0={kickerT} size={50} />}
         {t > placeT - 0.45 && (
           <div style={{ display: "flex", justifyContent: "center", marginTop: 2 }}>
@@ -230,7 +236,7 @@ export const Reveal: React.FC<{ scene: Scene; exitTitle?: boolean }> = ({ scene,
 };
 
 /* ============ DEMONSTRAÇÃO: 01 — ROTINA · ver → marcar → saber o que falta ============ */
-export const Demo: React.FC<{ scene: Scene; compact?: boolean; exitClean?: boolean }> = ({ scene, compact, exitClean }) => {
+export const Demo: React.FC<{ scene: Scene; compact?: boolean; exitClean?: boolean; punchIn?: boolean }> = ({ scene, compact, exitClean, punchIn }) => {
   const { t } = useSceneTime(scene);
   const t0 = scene.start;
   const see = scene.cues.see;
@@ -262,9 +268,12 @@ export const Demo: React.FC<{ scene: Scene; compact?: boolean; exitClean?: boole
   const toastVis = t > tap + 0.35 ? clamp01(toastIn * 1.5) * (1 - toastOut) : 0;
   const chip = springAt(t * 30, left + 0.1, { damping: 13 }, 30);
   const leftPt = phonePt(PH.left, PH.top, PH.width, 367, 550);
+  // corte seco no tempo forte vindo da revelação: o celular é o mesmo, então um punch curto marca o beat
+  const punch = punchIn ? 1 + 0.035 * (1 - EASE.out(enterRamp(t, scene, 6))) : 1;
   return (
     <AbsoluteFill style={{ overflow: "hidden" }}>
       <ForestBG cy={1100} />
+      <AbsoluteFill style={{ scale: String(punch), transformOrigin: `${PH_CX}px ${PH_CY}px` }}>
       <AbsoluteFill style={{ transform: `scale(${1 + zIn * 0.18})`, transformOrigin: `${zoomO.x}px ${zoomO.y}px` }}>
         <div style={{ position: "absolute", left: PH.left, top: PH.top, transform: `perspective(2600px) rotateY(${-9 * tilt}deg) rotateX(${3 + 3 * tilt}deg)`, transformOrigin: "50% 40%" }}>
           <Phone width={PH.width} shadow={PHONE_SHADOW} glare={0.9 - tilt * 0.4}>
@@ -277,6 +286,7 @@ export const Demo: React.FC<{ scene: Scene; compact?: boolean; exitClean?: boole
             <div style={{ fontFamily: FONT, fontWeight: 700, fontSize: 34, color: "#fff", background: C.terracotta, padding: "12px 24px", borderRadius: 40, boxShadow: "0 18px 36px -14px rgba(0,0,0,0.6)", whiteSpace: "nowrap" }}>Falta 1 · 21:00</div>
           </div>
         )}
+      </AbsoluteFill>
       </AbsoluteFill>
       {/* pílula branca de conclusão (estilo da referência; texto do toast real do app) */}
       {toastVis > 0 && (
@@ -292,7 +302,7 @@ export const Demo: React.FC<{ scene: Scene; compact?: boolean; exitClean?: boole
           </div>
         </div>
       )}
-      <div style={{ position: "absolute", left: 80, right: 60, top: 284, opacity: 1 - toastVis, clipPath: `inset(-60px -60px ${clean * 100}% -60px)`, translate: `0px ${-clean * 36}px` }}>
+      <div style={{ position: "absolute", left: 80, right: 60, top: 284, opacity: 1 - toastVis, clipPath: `inset(-60px -60px calc(${clean * 100}% + ${clean * 60}px) -60px)`, translate: `0px ${-clean * 36}px` }}>
         <Chapter n="01" label="ROTINA" t={t} t0={t0 + 0.05} />
         {cur && (
           <div style={{ marginTop: 14 }}>
@@ -335,8 +345,8 @@ const WhipFlip: React.FC<{ faces: React.ReactNode[]; switches: number[]; t: numb
   );
 };
 
-const PhoneFace: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <Phone width={PH.width} shadow={PHONE_SHADOW}>
+const PhoneFace: React.FC<{ children: React.ReactNode; glare?: number }> = ({ children, glare }) => (
+  <Phone width={PH.width} shadow={PHONE_SHADOW} glare={glare}>
     {children}
   </Phone>
 );
@@ -352,7 +362,7 @@ export const Benefits: React.FC<{ scene: Scene }> = ({ scene }) => {
   const { health, money, play, pets, switch: sw } = scene.cues;
   const phoneH = phoneHeight(PH.width);
   const faces = [
-    <PhoneFace key="h">
+    <PhoneFace key="h" glare={lerp(0.5, 0.3, prog(t, scene.start, 0.5, EASE.inOut))}>
       <HojeScreen doneP={[1, 1, 1, 1, 0]} ring={0.8} next="Próximo: 21:00 · Escovação" />
     </PhoneFace>,
     <PhoneFace key="s">
@@ -492,7 +502,7 @@ export const MultiPet: React.FC<{ scene: Scene }> = ({ scene }) => {
           switches={[scene.start + 0.04, routine - 0.1]}
           width={PH.width}
           faces={[
-            <PhoneFace key="d">
+            <PhoneFace key="d" glare={lerp(0.5, 0.3, settle)}>
               <HojeScreen doneP={[1, 1, 1, 1, 0]} ring={0.8} next="Próximo: 21:00 · Escovação" />
             </PhoneFace>,
             <PhoneFace key="p">

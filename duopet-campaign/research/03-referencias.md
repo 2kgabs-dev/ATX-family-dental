@@ -56,14 +56,15 @@ Analisado a 4 quadros por segundo (124 quadros) e no áudio. Folhas de análise:
 
 **Limitação encontrada.** As transições WebGL do pacote (`zoomBlur`, `crossZoom`, `dreamyZoom`…) dependem de HTML-in-canvas (Chrome 149+). O Chromium de render deste ambiente não tem isso. Todas as transições foram feitas com CSS e SVG, que renderizam em qualquer máquina.
 
-**Painel de transições.** Três propostas independentes (continuidade/match cut no estilo Apple, energia nativa de Reels/TikTok, viabilidade técnica com fidelidade à referência) para cada corte das 6 versões, depois consolidadas. O que entrou:
+**Painel de transições.** Três propostas independentes, feitas por subagentes em paralelo, (continuidade/match cut no estilo Apple, energia nativa de Reels/TikTok, viabilidade técnica com fidelidade à referência) para cada corte das 6 versões, depois consolidadas por um quarto agente ("juiz"), que verificou no código os estados de saída e de entrada de cada corte. O que entrou:
 
 | Corte | Transição | De onde veio |
 |---|---|---|
-| Todos os ganchos → caos (master, H2, H3, H4) | **Mergulho no ponto terracota** do título (o ponto do "?" ou o ponto final): o ponto vira um disco que cobre a tela no corte, e o caos abre em íris do mesmo ponto, com borda creme. É a mesma transição em todos os ganchos, para o A/B medir o gancho e não a transição | Viabilidade/referência (íris a partir de um ponto) + energia |
-| Lista → caos (H1) | Corte invisível (os mesmos objetos dos dois lados); só o título sai por uma máscara nos 6 últimos quadros | Continuidade |
+| Ganchos de performance → caos (H2, H3, H4) | **Mergulho no ponto terracota** do título (o ponto do "?" ou o ponto final): o ponto vira um disco que cobre a tela no corte, e o caos abre em íris do mesmo ponto, com borda creme. É a mesma transição nos ganchos testados, para o A/B medir o gancho e não a transição | Viabilidade/referência (íris a partir de um ponto) + energia |
+| Gancho do master → caos | **Cortina noturna** que cai com gravidade nos 8 últimos quadros; título e pets caem junto, o 1º papel já entra em voo, com tranco de câmera no pouso. Não usei o mergulho aqui porque o master já tem duas íris (revelação e emoção) | Continuidade (match on action) + energia |
+| Lista → caos (H1) | Corte invisível (os mesmos objetos dos dois lados) com um punch no tempo forte; só o título sai por uma máscara nos 6 últimos quadros | Continuidade + energia |
 | Caos → revelação (todas) | O mesmo ponto creme se estica e vira a linha, com uma onda de choque fina no impacto; a íris ganhou a borda creme da referência | Continuidade + energia + referência |
-| Revelação → demo | Corte seco no tempo forte: celular, fundo e partículas idênticos dos dois lados; o título sai por máscara antes do corte. A fusão foi testada e descartada, porque mostrava dois títulos e duas legendas ao mesmo tempo | Continuidade (pose de câmera unificada) |
+| Revelação → demo | Corte seco no tempo forte com um punch curto (1,035→1): celular, fundo e partículas idênticos dos dois lados; o título sai por máscara antes do corte. A fusão foi testada e descartada, porque mostrava dois títulos e duas legendas ao mesmo tempo | Continuidade (pose de câmera unificada) |
 | Demo → benefícios / multi-pet | A demo limpa o quadro (título, pílula e destaque saem nos 6 últimos quadros); o celular continua na mesma pose e o 1º giro 3D começa no corte. O giro foi corrigido: o desfoque achatava o cubo e só uma face aparecia | Continuidade + viabilidade |
 | Benefícios → emoção | Portal: a tela do celular (creme) vira o papel creme da cena e cresce até cobrir o quadro | Continuidade (portal de tela) |
 | Emoção / multi-pet / demo 15 s → CTA | O painel terracota da referência atravessa o corte com velocidade casada (acelera, cobre no corte, desacelera), borda em degradê no lugar de desfoque; a oferta só aparece (com o "pop") depois que o painel sai da frente | Continuidade + energia + viabilidade |

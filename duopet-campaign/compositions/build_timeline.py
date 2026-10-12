@@ -102,7 +102,8 @@ def word_time(scene, pattern, which="start", nth=0):
 CUTS = {
     # ganchos → caos: todos com o mesmo "mergulho" no ponto terracota do título (o A/B mede o gancho, não a transição).
     # Pontos medidos nos renders: centro do ponto do "?" / do ponto final.
-    ("Hook", "Chaos"): dict(preset="dive", frames=14, params=dict(x=883, y=528, r0=18)),  # "?" de SEU PET?
+    # master: cortina noturna que cai (dentro das cenas, sem Transition). O master já tem duas íris (revelação e emoção);
+    # um 3º círculo aqui viraria repetição. O mergulho fica para os ganchos de performance.
     ("HookDemo", "ChaosContrast"): dict(preset="dive", frames=14, params=dict(x=564, y=463, r0=13)),  # ponto de ASSIM.
     ("HookMulti", "ChaosShort"): dict(preset="dive", frames=14, params=dict(x=841, y=542, r0=15)),  # "?" de PRA TUDO?
     ("HookPill", "ChaosShort"): dict(preset="dive", frames=14, params=dict(x=676, y=558, r0=16)),  # "?" de ONTEM?
@@ -143,6 +144,8 @@ def add_cues(v):
                     pass
             c["keys"] = {k: round(tt - 0.04, 3) for k, tt in keys}
             for k, tt in keys:
+                if T == "Chaos" and k == "ração":
+                    continue  # no master o 1º papel pousa com a cortina (som no corte)
                 sfx.append(dict(n="card_slap" if k in ("ração", "remédio", "vacina", "consulta") else "paper", t=tt - 0.04, g=0.55 if k in ("ração", "remédio", "vacina", "consulta") else 0.22))
             c["converge"] = s["end"] - 0.95
             sfx += [dict(n="riser", t=s["end"] - 1.6, g=0.6, dur=1.6), dict(n="suck", t=c["converge"] + 0.1, g=0.55)]
@@ -162,7 +165,7 @@ def add_cues(v):
             c["see"] = s["voStart"]
             c["tap"] = word_time(s, r"^mar[cq]") + 0.1
             c["left"] = word_time(s, r"^falta") - 0.25
-            sfx += [dict(n="whoosh_soft", t=s["start"], g=0.35), dict(n="tap", t=c["tap"], g=0.6), dict(n="check", t=c["tap"] + 0.06, g=0.7),
+            sfx += [dict(n="tap", t=c["tap"], g=0.6), dict(n="check", t=c["tap"] + 0.06, g=0.7),
                     dict(n="ring", t=c["tap"] + 0.2, g=0.4), dict(n="toast", t=c["tap"] + 0.5, g=0.35)]
             for tt in ([c["see"] - 0.2, c["tap"] - 0.45, c["left"] - 0.15] if s["type"] == "Demo" else [c["see"] - 0.25, c["left"] - 0.1]):
                 sfx.append(dict(n="typing", t=tt, g=0.3))
@@ -215,6 +218,14 @@ def add_cues(v):
     for a, b in zip(v["scenes"], v["scenes"][1:]):
         c = cut_spec(a["type"], b["type"])
         a["cutAfter"] = c
+        cut = b["start"]
+        # cortes feitos dentro das cenas
+        if (a["type"], b["type"]) == ("Hook", "Chaos"):
+            sfx += [dict(n="whoosh_soft", t=cut - 0.30, g=0.45, dur=0.30), dict(n="card_slap", t=cut + 0.067, g=0.7)]
+        if (a["type"], b["type"]) == ("HookList", "ChaosShort"):
+            sfx += [dict(n="tick", t=cut, g=0.5)]
+        if a["type"].startswith("Reveal") and b["type"].startswith("Demo"):
+            sfx += [dict(n="whoosh_soft", t=cut - 0.2, g=0.2, dur=0.2), dict(n="tick", t=cut, g=0.45)]
         if not c:
             continue
         cut = b["start"]

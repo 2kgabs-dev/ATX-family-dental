@@ -73,7 +73,7 @@ const GrainTrack: React.FC<{ scenes: Scene[] }> = ({ scenes }) => {
 const renderScene = (s: Scene, version: string, prev?: Scene, next?: Scene) => {
   switch (s.type) {
     case "Hook":
-      return <Hook scene={s} />;
+      return <Hook scene={s} curtain={next?.type === "Chaos"} />;
     case "HookList":
       return <HookList scene={s} />;
     case "HookDemo":
@@ -83,7 +83,7 @@ const renderScene = (s: Scene, version: string, prev?: Scene, next?: Scene) => {
     case "HookPill":
       return <HookPill scene={s} />;
     case "Chaos":
-      return <Chaos scene={s} pre="none" />;
+      return <Chaos scene={s} pre={prev?.type === "Hook" ? "curtain" : "none"} />;
     case "ChaosShort":
       return <Chaos scene={s} pre={prev?.type === "HookList" ? "static" : "fly"} />;
     case "ChaosContrast":
@@ -94,9 +94,9 @@ const renderScene = (s: Scene, version: string, prev?: Scene, next?: Scene) => {
     case "Reveal15":
       return <Reveal scene={s} exitTitle={!!next} />;
     case "Demo":
-      return <Demo scene={s} exitClean={!!next} />;
+      return <Demo scene={s} exitClean={!!next} punchIn={!!prev?.type.startsWith("Reveal")} />;
     case "Demo15":
-      return <Demo scene={s} compact exitClean={!!next} />;
+      return <Demo scene={s} compact exitClean={!!next} punchIn={!!prev?.type.startsWith("Reveal")} />;
     case "Benefits":
       return <Benefits scene={s} />;
     case "MultiPet":
