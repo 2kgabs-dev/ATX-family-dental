@@ -1,6 +1,22 @@
 # Locução (Fase 9)
 
-## v3 (atual): voz feminina mais natural
+## v3.1 (atual): voz mais viva, no padrão das referências do cliente
+O cliente mandou 5 anúncios de referência e pediu "a voz igual a desses vídeos". Três deles têm locução: voz feminina, de 150 a 186 palavras/min, com variação de entonação de 4,2 a 6,0 semitons. Os outros dois só têm música. Não copiei nem clonei a voz desses anúncios: são vozes de outras marcas (Mercury, Zei, Temvo), e o briefing proíbe clonar voz de pessoa identificável sem autorização. Ajustei a nossa voz para o mesmo **estilo de locução**:
+
+| Medida (master, M1–M7) | v3 | **v3.1 (atual)** | Referências |
+|---|---|---|---|
+| Ritmo | 147 ppm | **158 ppm** | 152–186 ppm |
+| Variação de entonação | 3,35 st | **4,36 st** | 4,2–6,0 st |
+| Altura mediana | 181 Hz | **195 Hz** | 190–236 Hz |
+| Erro de transcrição (Parakeet) | 5,1% | 6,1% | — |
+
+Como foi feito (`tools/prosody.py`, por PSOLA no Praat, que mantém o timbre): a variação de altura é ampliada ×1,35 em volta da mediana de cada trecho, a voz sobe +1,5 semitom e a fala é acelerada em 7%. A aceleração é feita no PSOLA e não no Kokoro, porque o Kokoro acelerado come a primeira consoante ("Ração" virava "Ação"). As medidas de qualidade da voz (HNR, jitter, shimmer) ficaram iguais às da versão sem processamento. Comparação de áudio: `casting/fem/comparacao_v3_x_v3.1-viva.mp3`.
+
+Comando: `SPEED_MUL=1.04 PROSODY="1.35,1.5,0.93" python3 tools/build_vo.py "kokoro:pf_dora*0.6+ef_dora*0.4" fem_viva`
+
+**Limite honesto:** as referências têm voz de estúdio ou TTS comercial premium. Para chegar no mesmo nível, o caminho é locução humana ou ElevenLabs. Pelo Higgsfield, o master sai por cerca de 1,5 crédito; a conta está com 0.
+
+## v3: voz feminina mais natural
 Pedido do cliente na v3: "põe uma feminina mais natural". O que foi feito:
 
 1. **Busca de vozes femininas pt-BR com licença comercial.** Encontrei duas vozes Piper femininas novas (`pt_BR-dii-high` e `pt_BR-miro-high`), mas a licença é **CC BY-NC-SA 4.0 (uso não comercial)**: não podem ir para um anúncio. Descartadas e apagadas. A ElevenLabs via Higgsfield sai por **1,5 crédito** para o master inteiro, mas a conta está com **0 créditos**.
@@ -82,6 +98,6 @@ Tom geral: conversa com um amigo que tem pet, nada de "voz de propaganda". Energ
 | S1–S4 | Os cuidados do seu pet estão espalhados? / No DuoPet, fica tudo num lugar só. / Marque o que fez. Veja o que falta. / Três dias grátis, sem cartão. duopet ponto site. | 15 s: direto, sem pressa artificial | 2,7 / 3,2 / 2,6 / 4,0 s |
 
 ## Arquivos
-- `fem/<ID>.wav`: falas isoladas, 24 kHz/24 bit (**voz da v3**). `pm_alex/` (voz da v2), `pf_dora/`, `faber/`: alternativas do casting.
+- `fem_viva/<ID>.wav`: falas isoladas, 24 kHz/24 bit (**voz atual, v3.1**). `fem/`: voz da v3. `pm_alex/` (voz da v2), `pf_dora/`, `faber/`: alternativas do casting.
 - `mix/<versão>_voice.wav`: trilha de voz de cada versão, já posicionada no tempo, com EQ e compressão (48 kHz).
 - `*/qa.json`: transcrição automática e WER de cada fala. `*/timings.json`: tempos por palavra (usados nas legendas).

@@ -2,14 +2,14 @@
 
 Para cada versão (master, performance com 4 ganchos, 15s) define cenas, falas, legendas palavra a palavra,
 pontos de sincronia (cues) usados pela animação e a lista de efeitos sonoros usada pela mixagem.
-Uso: python3 build_timeline.py [voz]   (padrão: fem — Kokoro pf_dora 60% + ef_dora 40%)
+Uso: python3 build_timeline.py [voz]   (padrão: fem_viva — Kokoro pf_dora 60% + ef_dora 40% com prosódia viva, ver voice/tools/prosody.py)
 Legendas: cada cena recebe "captions" no formato Caption do @remotion/captions (ms absolutos, espaço antes de cada palavra,
 pageBreakAfter em pontuação, no limite de caracteres e no fim da cena).
 """
 import json, math, os, re, sys
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-VOICE = sys.argv[1] if len(sys.argv) > 1 else "fem"
+VOICE = sys.argv[1] if len(sys.argv) > 1 else "fem_viva"
 FPS = 30
 GRID = 0.25  # cortes no grid de colcheia a 120 BPM
 LINES = json.load(open(f"{ROOT}/scripts/vo-lines.json"))["lines"]

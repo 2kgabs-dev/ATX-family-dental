@@ -70,3 +70,14 @@ Analisado a 4 quadros por segundo (124 quadros) e no áudio. Folhas de análise:
 | Emoção / multi-pet / demo 15 s → CTA | O painel terracota da referência atravessa o corte com velocidade casada (acelera, cobre no corte, desacelera), borda em degradê no lugar de desfoque; a oferta só aparece (com o "pop") depois que o painel sai da frente | Continuidade + energia + viabilidade |
 
 A granulação de filme passou a ser uma camada única por cima de tudo (antes, ela aparecia duas vezes nas sobreposições e virava mosaico no zoom). Fundos verdes, órbitas, partículas e granulação passaram a usar o tempo absoluto da versão: não "pulam" mais nos cortes entre cenas verdes.
+
+## 5. v3.1: novas referências do cliente (5 anúncios de app)
+
+O cliente mandou 5 vídeos (gravações de tela de anúncios de motion design para apps: Mercury Contábil, Zei, Temvo e duas peças só com música) e pediu a voz e a legenda nesse padrão.
+
+| O que as referências fazem | Medido / observado | Como entrou |
+|---|---|---|
+| Locução feminina, rápida e com muita melodia | 152–186 palavras/min; variação de 4,2 a 6,0 semitons; altura mediana de 190 a 236 Hz | Mesma voz sintética com prosódia mais viva (158 ppm, 4,4 st, 195 Hz). Nenhuma voz foi clonada (ver `voice/README.md`) |
+| O texto na tela É a legenda: palavras finas que aparecem uma a uma, sem placa | "e o pior,", "o cliente agenda", "organizado na palma da mão" | Legenda cinética: cada palavra entra com desfoque → nítido no tempo em que é dita; sem placa, só um halo difuso para leitura |
+| Uma palavra-chave por frase em destaque (cor, peso, sublinhado ou círculo desenhado) | "atividades" em amarelo; "conseguimos reduzir essa carga" circulado; "organizado" em azul | A palavra de conteúdo mais longa de cada página fica terracota, mais pesada, e ganha um sublinhado feito à mão que se traça quando ela é dita |
+| Fundo limpo, UI do app e ícones 3D | Telas do app com cursor, ícones com volume | Já presente: UI real do DuoPet reconstruída, mundo verde, recortes de pets |

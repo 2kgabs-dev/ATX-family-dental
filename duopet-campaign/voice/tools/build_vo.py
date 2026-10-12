@@ -3,6 +3,8 @@
 python build_vo.py kokoro:pf_dora                         -> voice/pf_dora/
 python build_vo.py "kokoro:pf_dora*0.6+ef_dora*0.4" fem   -> voice/fem/   (mistura de vetores de estilo)
 Saída: <ID>.wav + timings.json + qa.json. Variável SPEED_MUL multiplica a velocidade de todas as falas.
+PROSODY="1.35,1.5,0.93" expande a variação de altura (×1,35 em volta da mediana de cada trecho), sobe +1,5 semitom e acelera 7%, por PSOLA
+(prosody.py): entonação mais próxima da locução publicitária das referências, sem mudar o timbre nem a duração.
 Pronúncia: correções no nível de fonema para "pet"/"DuoPet"/"site" (ver PRON_FIXES).
 Tempos por palavra: alinhamento real com o ASR Parakeet TDT v3 (align.py); estimativa por sílabas só onde o ASR não casou.
 Cada fala é verificada por dois ASR locais (Whisper small e Parakeet) e o WER fica em qa.json.
@@ -11,6 +13,8 @@ import sys, os, re, json, unicodedata
 import numpy as np, soundfile as sf
 sys.path.insert(0, os.path.dirname(__file__))
 from asr import transcribe
+from prosody import liven
+PROSODY = tuple(float(x) for x in os.environ["PROSODY"].split(",")) if os.environ.get("PROSODY") else None
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 M = os.environ.get("TTS_MODELS", "/tmp/claude-0/-home-user-ATX-family-dental/d7d0bf5e-2b54-532d-842a-8feb644dcc75/scratchpad/models")
@@ -23,6 +27,7 @@ PRON_FIXES = [
     (r"pˈɛtʃ(?!i)", "pˈɛtʃi"),                 # pet -> "pétchi" (pronúncia brasileira)
     (r"pˈets\b", "pˈɛts"),                     # pets -> "péts" (e aberto)
     (r"ɾə(?=[ptkbdgɡfvszʃʒmnlɾ])", "ɾ"),       # epêntese indevida: "sérətu" -> "sértu"
+    (r"^v", "vv"),                              # "v" no início da fala sai fraco ("Vacinas" virava "Pacinas"): alonga o ataque
 ]
 
 _k = None
@@ -124,7 +129,10 @@ def main(spec, name=None):
         if "same" in L: continue
         chunks, script_words = [], []
         for part in L["parts"]:
-            chunks.append(trim(synth(spec, part["t"], part.get("s", 1.0) * mul)))
+            a = trim(synth(spec, part["t"], part.get("s", 1.0) * mul))
+            if PROSODY:
+                a = liven(a, SR, *PROSODY)
+            chunks.append(a)
             script_words += part["t"].split()
             gap = part.get("p", 0)
             if gap: chunks.append(np.zeros(int(gap * SR), np.float32))
