@@ -29,7 +29,7 @@ export const useFonts = () => {
   }, [handle]);
 };
 
-const DARK = new Set(["Hook", "HookList", "HookMulti", "HookPill", "Chaos", "ChaosShort", "ChaosContrast", "Chaos15", "Emotion"]);
+const LIGHT = new Set(["Hook", "CTA", "CTA15"]);
 
 const renderScene = (s: Scene, version: string, prev?: Scene) => {
   switch (s.type) {
@@ -88,7 +88,7 @@ export const Ad: React.FC<AdProps> = ({ version, captions, audio, safe }) => {
           {renderScene(s, version, v.scenes[i - 1])}
         </Sequence>
       ))}
-      {captions && <Captions words={v.words} t={t} theme={DARK.has(cur.type) ? "dark" : "light"} y={1290} />}
+      {captions && <Captions words={v.words} t={t} theme={LIGHT.has(cur.type) ? "light" : "dark"} y={1290} />}
       {audio && <Audio src={staticFile(audio)} />}
       {safe && <SafeZone />}
     </AbsoluteFill>

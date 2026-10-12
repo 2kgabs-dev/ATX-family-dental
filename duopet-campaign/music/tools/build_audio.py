@@ -149,11 +149,19 @@ def compose(v):
                 place(wet, pan(piano(m, b - url + 0.6, 0.85), 0) * 0.35, url)
                 place(wet, pan(bell(m + 12, b - url + 0.6), 0) * 0.18, url + 0.03)
             place(bass, sub(24, b - url) * 0.7, url)
-    # sidechain do kick no baixo/pad (bombeamento sutil)
-    kick_env = np.zeros(N)
-    for d in [drums]:
-        pass
-    mix = dry + reverb(wet, mix=0.38) + bass * 0.9 + reverb(drums, mix=0.08)
+    # sidechain do kick em pad/marimba/baixo nas seções de groove (bombeamento, como na referência do cliente)
+    pump = np.ones(N)
+    for sec in secs:
+        if sec["mood"] in ("groove", "sting"):
+            for x in bars(sec["start"], sec["end"]):
+                for off in (0.0, 1.0):
+                    i = int((x + off) * SR)
+                    if i < N:
+                        L = min(int(0.45 * SR), N - i)
+                        env = 1 - 0.45 * np.exp(-np.arange(L) / (0.09 * SR))
+                        pump[i:i + L] = np.minimum(pump[i:i + L], env)
+    wet_r = reverb(wet, mix=0.38) * pump[:, None]
+    mix = dry * pump[:, None] + wet_r + bass * 0.9 * pump[:, None] ** 0.5 + reverb(drums, mix=0.08)
     mix = hp(mix, 30)
     # fade final sincronizado com o último frame
     end = int(v["duration"] * SR)
@@ -262,6 +270,20 @@ def sfx_clip(name, dur=None):
         x = sweep_filter(noise(d), 800, 4000, "band", q=1.3) * np.sin(np.linspace(0, np.pi, n(d))) ** 2 * 0.5
         x[n(0.22):n(0.22) + n(0.02)] += hp(noise(0.02), 2000) * 0.5
         return x
+    if name == "draw":
+        d = dur or 0.5
+        tt = t_axis(d)
+        x = sweep_filter(noise(d), 2500, 7000, "band", q=2.0) * np.sin(np.linspace(0, np.pi, n(d))) * 0.35
+        x += np.sin(2 * np.pi * np.cumsum(500 + 700 * tt / d) / SR) * np.sin(np.linspace(0, np.pi, n(d))) * 0.08
+        return x
+    if name == "typing":
+        d = 0.42
+        x = np.zeros(n(d))
+        for k in range(6):
+            c = hp(noise(0.012), 2500) * exp_env(n(0.012), 0.002)
+            i = int(k * 0.07 * SR)
+            x[i:i + len(c)] += c * (0.8 + 0.2 * RNG.random())
+        return x * 0.6
     if name == "air":
         d = dur or 2.5
         return lp(noise(d), 1200) * np.sin(np.linspace(0, np.pi, n(d))) ** 2 * 0.2

@@ -1,10 +1,12 @@
 import React from "react";
-import { AbsoluteFill, interpolate } from "remotion";
+import { AbsoluteFill, Img, interpolate, staticFile } from "remotion";
 import { C, EASE, FONT } from "../theme";
 import { clamp01, lerp, prog, springAt, wobble } from "../lib/anim";
 import { Scene, useSceneTime } from "../lib/timeline";
 import { Cutout, Grain, Headline, MotionBlur, NightBG, PaperBG, PaperCard, PillPack, StickyNote, CalendarCard } from "../components/Kit";
 import { Icon } from "../components/Icon";
+import { KText, Kicker } from "../components/Kinetic";
+import { ForestBG } from "../components/World";
 import { HojeScreen, PETS, ROUTINE } from "../components/AppUI";
 import { Phone, phonePt } from "../components/Phone";
 
@@ -21,48 +23,45 @@ const MY_DAY: [string, string, string][] = [
 export const Hook: React.FC<{ scene: Scene }> = ({ scene }) => {
   const { t, local } = useSceneTime(scene);
   const turn = scene.cues.turn;
-  const scatter = prog(t, turn - 0.05, 0.6, EASE.snap);
-  // lista "da sua rotina" rolando (câmera descendo) desde o frame 0
-  const scrollY = -local * 70;
+  const scatter = prog(t, turn - 0.12, 0.5, EASE.snap);
+  const scrollY = -local * 60;
+  const pets = springAt(t * 30, turn + 0.05, { damping: 15, stiffness: 110 }, 30);
   return (
     <AbsoluteFill style={{ overflow: "hidden" }}>
-      <NightBG glow={1 - scatter * 0.4} />
-      <AbsoluteFill style={{ transform: `translateY(${wobble(t, 3, 4)}px) rotate(${wobble(t, 5, 0.25)}deg)`, maskImage: "linear-gradient(180deg, transparent 0px, transparent 610px, #000 760px, #000 1500px, transparent 1700px)", WebkitMaskImage: "linear-gradient(180deg, transparent 0px, transparent 610px, #000 760px, #000 1500px, transparent 1700px)" }}>
+      <PaperBG />
+      {/* "sua rotina" organizada (cards com check) rolando desde o frame 0 */}
+      <AbsoluteFill style={{ maskImage: "linear-gradient(180deg, transparent 0px, transparent 640px, #000 760px, #000 1450px, transparent 1650px)", WebkitMaskImage: "linear-gradient(180deg, transparent 0px, transparent 640px, #000 760px, #000 1450px, transparent 1650px)" }}>
         {MY_DAY.map(([time, label], i) => {
           const y0 = 760 + i * 150 + scrollY;
-          const checkT = 0.42 + i * 0.4;
-          const ck = prog(t, scene.start + checkT, 0.3, EASE.satisfying);
+          const ck = prog(t, scene.start + 0.35 + i * 0.38, 0.3, EASE.satisfying);
           const dir = i % 2 ? 1 : -1;
-          const sx = scatter * dir * (700 + i * 120);
-          const sy = scatter * (-300 + i * 140);
-          const vx = scatter > 0 && scatter < 1 ? 30 : 0;
           return (
-            <MotionBlur key={i} id={`myday-${i}`} x={vx} y={0} style={{ position: "absolute", left: 150, top: y0, transform: `translate(${sx}px, ${sy}px) rotate(${scatter * dir * 25}deg)`, opacity: 1 - scatter * 0.9 }}>
-              <div style={{ width: 780, height: 118, borderRadius: 28, background: "rgba(244,242,238,0.07)", border: "1.5px solid rgba(244,242,238,0.12)", display: "flex", alignItems: "center", padding: "0 34px", gap: 26, fontFamily: FONT, color: C.nightText }}>
-                <div style={{ fontSize: 30, opacity: 0.6, width: 92, fontVariantNumeric: "tabular-nums" }}>{time}</div>
-                <div style={{ flex: 1, fontSize: 40, fontWeight: 600, letterSpacing: "-0.01em", opacity: 0.92 }}>{label}</div>
-                <div style={{ width: 56, height: 56, borderRadius: 56, border: "2.5px solid rgba(244,242,238,0.35)", background: ck > 0.1 ? `rgba(230,154,127,${ck})` : "transparent", display: "grid", placeItems: "center", transform: `scale(${0.8 + 0.2 * ck})` }}>
-                  {ck > 0.2 && <Icon name="check" size={32} color={C.night} stroke={3} />}
+            <MotionBlur key={i} id={`myday-${i}`} x={scatter > 0 && scatter < 1 ? 28 : 0} y={0} style={{ position: "absolute", left: 150, top: y0, transform: `translate(${scatter * dir * (760 + i * 90)}px, ${scatter * -220}px) rotate(${scatter * dir * 20}deg)`, opacity: 1 - scatter }}>
+              <div style={{ width: 780, height: 118, borderRadius: 28, background: "#fff", boxShadow: "0 18px 40px -22px rgba(20,26,22,0.35)", display: "flex", alignItems: "center", padding: "0 34px", gap: 26, fontFamily: FONT, color: C.text }}>
+                <div style={{ fontSize: 30, color: C.text2, width: 92, fontVariantNumeric: "tabular-nums" }}>{time}</div>
+                <div style={{ flex: 1, fontSize: 40, fontWeight: 600, letterSpacing: "-0.01em" }}>{label}</div>
+                <div style={{ width: 56, height: 56, borderRadius: 56, border: `2.5px solid ${ck > 0.1 ? C.forest : "#c9c3b8"}`, background: ck > 0.1 ? `rgba(32,59,45,${ck})` : "transparent", display: "grid", placeItems: "center", transform: `scale(${0.8 + 0.2 * ck})` }}>
+                  {ck > 0.2 && <Icon name="check" size={32} color="#fff" stroke={3} />}
                 </div>
               </div>
             </MotionBlur>
           );
         })}
       </AbsoluteFill>
-      {/* Título 1 */}
       <div style={{ position: "absolute", left: 80, top: 300 }}>
-        <Headline lines={["Sua rotina", "em dia"]} t={t} t0={scene.start - 0.12} size={150} dot={true} out={turn - 0.32} />
+        <KText lines={["Sua rotina", "em dia"]} mode="mask" t={t} t0={scene.start - 0.32} size={158} color={C.forest} out={turn - 0.3} />
       </div>
-      {/* Virada: o pet entra */}
-      {t > turn - 0.1 && (
-        <>
-          <div style={{ position: "absolute", left: 80, top: 300 }}>
-            <Headline lines={["E a do", "seu pet?"]} t={t} t0={turn} size={168} dot={false} accentWords={["pet?"]} stagger={0.06} />
-          </div>
-          <DogPop t={t} t0={turn} />
-        </>
+      {t > turn - 0.05 && (
+        <div style={{ position: "absolute", left: 80, top: 300 }}>
+          <Kicker text="e a do" t={t} t0={turn} color={C.forest} size={66} />
+          <KText lines={["Seu pet"]} mode="track" t={t} t0={turn + 0.08} size={196} color={C.forest} dot="?" style={{ marginTop: 6 }} />
+        </div>
       )}
-      <Grain />
+      {/* pets espiando sobem da base (abertura do vídeo de referência) */}
+      <div style={{ position: "absolute", left: 0, top: lerp(1920, 1560, pets), width: 1080, height: 600, overflow: "hidden" }}>
+        <Img src={staticFile("img/peeking.jpg")} style={{ position: "absolute", width: 1180, left: -50, top: -330, mixBlendMode: "multiply" }} />
+      </div>
+      <Grain opacity={0.035} />
     </AbsoluteFill>
   );
 };
@@ -157,13 +156,13 @@ export const HookList: React.FC<{ scene: Scene }> = ({ scene }) => {
         keys.map((k, i) =>
           i === Math.max(0, cur) ? (
             <div key={k} style={{ position: "absolute", left: 80, top: 320 }}>
-              <Headline lines={[k]} t={t} t0={i === 0 ? Math.min(items[0], scene.start) - 0.2 : items[i]} size={170} dot={i < 3 ? "," : "…"} stagger={0} />
+              <KText key={k} lines={[k]} mode="cascade" t={t} t0={i === 0 ? Math.min(items[0], scene.start) - 0.25 : items[i] - 0.05} size={170} dot={i < 3 ? "," : "…"} />
             </div>
           ) : null,
         )}
       {t >= where - 0.02 && (
         <div style={{ position: "absolute", left: 80, top: 300 }}>
-          <Headline lines={["Tá tudo", "onde?"]} t={t} t0={where} size={176} dot={false} accentWords={["onde?"]} />
+          <KText lines={["Tá tudo", "onde"]} mode="track" t={t} t0={where} size={176} dot="?" />
         </div>
       )}
       <Grain />
@@ -181,12 +180,13 @@ export const HookDemo: React.FC<{ scene: Scene }> = ({ scene }) => {
   const push = prog(t, scene.start, scene.end - scene.start, EASE.soft);
   return (
     <AbsoluteFill style={{ overflow: "hidden" }}>
-      <PaperBG />
-      <div style={{ position: "absolute", left: 80, top: 300 }}>
-        <Headline lines={["A rotina", "do seu pet"]} t={t} t0={scene.start - 0.15} size={108} color={C.forest} dot={true} />
+      <ForestBG cy={1100} />
+      <div style={{ position: "absolute", left: 80, top: 292 }}>
+        <Kicker text="a rotina do seu pet," t={t} t0={scene.start - 0.3} size={50} />
+        <KText lines={["Assim"]} mode="track" t={t} t0={scene.start - 0.1} size={150} style={{ marginTop: 2 }} />
       </div>
       <div style={{ position: "absolute", left: 260, top: 530, transform: `perspective(2400px) rotateX(${8 - push * 4}deg) rotateY(${-10 + push * 6}deg) scale(${1.0 + push * 0.04})`, transformOrigin: "50% 30%" }}>
-        <Phone width={560} shadow="0 60px 100px -40px rgba(20,26,22,0.45)">
+        <Phone width={560} shadow="0 80px 140px -40px rgba(0,0,0,0.7)">
           <HojeScreen doneP={[1, 1, 1, ck, 0]} ring={ring} next={ck > 0.5 ? "Próximo: 21:00 · Escovação" : "Próximo: 18:00 · Passeio"} press={[0, 0, 0, press, 0]} />
         </Phone>
       </div>
@@ -227,9 +227,9 @@ export const HookMulti: React.FC<{ scene: Scene }> = ({ scene }) => {
       <NightBG />
       <div style={{ position: "absolute", left: 80, top: 300 }}>
         {t < head - 0.05 ? (
-          <Headline lines={["2 pets.", "2 rotinas."]} t={t} t0={scene.start - 0.1} size={150} dot={false} accentWords={["2"]} />
+          <KText lines={["2 pets.", "2 rotinas"]} mode="scatter" t={t} t0={scene.start - 0.25} size={150} accentWords={["2"]} />
         ) : (
-          <Headline lines={["1 cabeça", "pra tudo?"]} t={t} t0={head} size={150} dot={false} accentWords={["tudo?"]} />
+          <KText lines={["1 cabeça", "pra tudo"]} mode="mask" t={t} t0={head} size={150} dot="?" />
         )}
       </div>
       <div style={{ position: "absolute", left: -60, top: 640, transform: `translateY(${(1 - sDog) * 900}px) rotate(-8deg)` }}>
@@ -275,9 +275,9 @@ export const HookPill: React.FC<{ scene: Scene }> = ({ scene }) => {
       <NightBG hue="#2a2a22" />
       <div style={{ position: "absolute", left: 80, top: 300 }}>
         {t < or ? (
-          <Headline lines={["Já deu o", "remédio hoje?"]} t={t} t0={scene.start - 0.1} size={124} dot={false} accentWords={["hoje?"]} />
+          <KText lines={["Já deu o", "remédio hoje"]} mode="type" t={t} t0={scene.start - 0.35} size={124} dot="?" />
         ) : (
-          <Headline lines={["…ou foi", "ontem?"]} t={t} t0={or} size={160} dot={false} accentWords={["ontem?"]} />
+          <KText lines={["…ou foi", "ontem"]} mode="rotate3d" t={t} t0={or} size={160} dot="?" />
         )}
       </div>
       <div style={{ position: "absolute", left: 540 - 300, top: 760, transform: `scale(${0.6 + 0.4 * s}) rotate(${-8 + wobble(t, 3, 3) + flip * 16}deg)`, transformOrigin: "50% 50%" }}>

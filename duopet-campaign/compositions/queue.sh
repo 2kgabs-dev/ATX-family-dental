@@ -19,4 +19,13 @@ for v in $VERSIONS; do
     ffmpeg -v error -y -i "$sil" -i "$ROOT/renders/audio/$v.wav" -map 0:v -map 1:a -c:v copy -c:a aac -b:a 256k -ar 48000 -movflags +faststart -shortest "$out" && echo "OK $out"
   done
 done
-echo "FIM $(date +%T)"
+echo "FIM-PRINCIPAL $(date +%T)"
+# modelos com o criador (animatic, sem áudio final)
+if [ "${CREATOR:-1}" = "1" ]; then
+  mkdir -p $ROOT/renders/criador
+  for id in criador-a criador-b; do
+    echo "== $id $(date +%T)"
+    CONC=${CONC:-4} node render.mjs video "$id" "$ROOT/renders/criador/duopet_${id}_animatic.mp4" 2>&1 | grep -v -E "emory|docker|lower amount" | tail -1 && echo "OK $ROOT/renders/criador/duopet_${id}_animatic.mp4"
+  done
+  echo "FIM-CRIADOR $(date +%T)"
+fi

@@ -81,16 +81,22 @@ def add_cues(v):
             c["impact"] = s["start"]
             c["brand"] = word_time(s, r"duopet")
             c["place"] = word_time(s, r"^lugar|^só") if any(re.search(r"^lugar|^só", w["w"]) for w in s["words"]) else s["voEnd"] - 0.6
-            sfx += [dict(n="impact", t=s["start"], g=0.75), dict(n="shimmer", t=s["start"] + 0.05, g=0.45)]
+            c["kicker"] = word_time(s, r"^cada|^fica") if any(re.search(r"^cada|^fica", w["w"]) for w in s["words"]) else c["brand"] + 0.5
+            c["text"] = ["cada cuidado", "No lugar certo"] if s["line"] in ("M3", "P3") else ["fica tudo", "Num lugar só"]
+            # transição-assinatura: traço desenhando → pata/batimento → selo com logo → íris → app sobe
+            sfx += [dict(n="impact", t=s["start"], g=0.6), dict(n="draw", t=s["start"], g=0.5), dict(n="tick", t=s["start"] + 0.5, g=0.3),
+                    dict(n="tick", t=s["start"] + 0.68, g=0.3), dict(n="pop_big", t=s["start"] + 0.84, g=0.6), dict(n="shimmer", t=s["start"] + 0.86, g=0.4),
+                    dict(n="whoosh_soft", t=s["start"] + 1.45, g=0.5, dur=0.7), dict(n="swoosh_3d", t=s["start"] + 1.6, g=0.35)]
             for k in range(5):
-                sfx.append(dict(n="click_soft", t=s["start"] + 0.18 + k * 0.09, g=0.28))
-            sfx.append(dict(n="pop", t=c["brand"] - 0.03, g=0.5))
+                sfx.append(dict(n="click_soft", t=s["start"] + 1.95 + k * 0.08, g=0.25))
         elif T in ("Demo", "Demo15"):
             c["see"] = s["voStart"]
             c["tap"] = word_time(s, r"^mar[cq]") + 0.1
             c["left"] = word_time(s, r"^falta") - 0.25
             sfx += [dict(n="whoosh_soft", t=s["start"], g=0.35), dict(n="tap", t=c["tap"], g=0.6), dict(n="check", t=c["tap"] + 0.06, g=0.7),
-                    dict(n="ring", t=c["tap"] + 0.2, g=0.4), dict(n="toast", t=c["tap"] + 0.55, g=0.35)]
+                    dict(n="ring", t=c["tap"] + 0.2, g=0.4), dict(n="toast", t=c["tap"] + 0.5, g=0.35)]
+            for tt in ([c["see"] - 0.2, c["tap"] - 0.45, c["left"] - 0.15] if s["type"] == "Demo" else [c["see"] - 0.25, c["left"] - 0.1]):
+                sfx.append(dict(n="typing", t=tt, g=0.3))
         elif T == "Benefits":
             c["health"] = word_time(s, r"^vacinas") - 0.1
             c["money"] = word_time(s, r"^gastos") - 0.1
@@ -107,12 +113,17 @@ def add_cues(v):
                     dict(n="click_soft", t=c["routine"], g=0.3)]
         elif T == "Emotion":
             c["warm"] = word_time(s, r"^mais")
-            sfx += [dict(n="air", t=s["start"], g=0.5, dur=2.5)]
+            draw_dur = max(0.6, c["warm"] - 0.35 - (s["start"] + 0.15))
+            sfx += [dict(n="air", t=s["start"], g=0.4, dur=2.5), dict(n="draw", t=s["start"] + 0.15, g=0.35)]
+            for f in (0.18, 0.42, 0.66, 0.88):
+                sfx.append(dict(n="pop", t=s["start"] + 0.15 + draw_dur * f, g=0.3))
+            sfx.append(dict(n="whoosh_soft", t=c["warm"] - 0.15, g=0.45, dur=0.8))
         elif T in ("CTA", "CTA15"):
             c["logo"] = s["voStart"] if s["words"][0]["w"].lower().startswith("duopet") else s["start"] + 0.2
             c["offer"] = word_time(s, r"^(teste|três)")
             c["url"] = word_time(s, r"^duopet", nth=1 if s["words"][0]["w"].lower().startswith("duopet") else 0)
-            sfx += [dict(n="logo_sting", t=c["logo"], g=0.7), dict(n="pop", t=c["offer"], g=0.4), dict(n="click_soft", t=c["url"], g=0.35)]
+            sfx += [dict(n="whoosh_soft", t=s["start"] - 0.05, g=0.55, dur=0.55), dict(n="logo_sting", t=c["logo"], g=0.7), dict(n="typing", t=c["logo"] + 0.15, g=0.25),
+                    dict(n="pop", t=c["offer"], g=0.4), dict(n="click_soft", t=c["url"], g=0.35)]
         elif T in ("HookList",):
             c["items"] = [word_time(s, p) - 0.04 for p in [r"^ração", r"^remédio", r"^vacina", r"^consulta"]]
             c["where"] = word_time(s, r"^tudo|^tá") - 0.05

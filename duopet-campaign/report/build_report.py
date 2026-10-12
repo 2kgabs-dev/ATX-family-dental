@@ -31,12 +31,12 @@ RENDERS = [
 ]
 
 MATRIX = [
-    ("Força do gancho", 7, "Movimento no frame 1, rosto de pet em grande-angular e pergunta direta. O gancho do master é indireto (fala da rotina da pessoa antes do pet); os ganchos H1 e H4 são mais específicos. Só os dados de hook rate validam."),
+    ("Força do gancho", 7, "Movimento e texto legível desde o frame 1, pergunta direta e os pets espiando na virada (abertura da referência do cliente). O gancho do master é indireto (fala primeiro da rotina da pessoa); H1 e H4 são mais específicos e H3 usa os recortes em grande-angular. Só o hook rate real valida."),
     ("Identificação com a dor", 8, "Objetos concretos do dia a dia (post-it de ração, cartela, carteirinha com '??', conversa 'alguém deu o remédio?'). Nada abstrato."),
     ("Clareza da solução", 8, "A transição mostra o caos virando a tela do app; a demo mostra a ação principal (marcar) e o resultado (anel 60→80%). No master o app só aparece aos 12,75 s; nas versões de performance, entre 0 e 10 s."),
     ("Benefícios demonstrados", 8, "Rotina, saúde, gastos, brincadeiras e troca de pet com a UI real reconstruída. Documentos aparecem só de passagem."),
     ("Diferenciação", 6, "Multi-pet e rotina por espécie aparecem, mas o filme não explicita a diferença para uma agenda ou para apps de carteirinha. Isso fica para a landing e para o teste C."),
-    ("Qualidade do motion design", 7, "Transições desenhadas para a narrativa (convergência → ponto → tela; cubo 3D; máscara interface → foto), curvas diferentes por tipo de movimento e desfoque direcional. Limites: renderização por software, sem modelo 3D real de celular, e as inserções de foto são mais simples que a transição-assinatura."),
+    ("Qualidade do motion design", 8, "A v2 incorpora a linguagem do vídeo de referência do cliente: linha contínua que vira pata, batimento e anel com o logo; mundo verde com órbitas; 7 animações tipográficas diferentes (cascata, máquina de escrever, 3D, letras dispersas, máscara, tracking, troca de cor); chicote 3D; curva 'MAIS LEVE'; varredura terracota. Limites: renderização por software e celular sem modelo 3D real."),
     ("Naturalidade da narração", 5, "Voz sintética local e inteligível (WER ≈ 7–13% na mix, a maior parte no nome da marca), mas sem a interpretação de um locutor. É o ponto mais fraco; a recomendação é gravar com voz humana."),
     ("Qualidade de áudio", 7, "Trilha original em 5 climas sincronizados, efeitos por evento, ducking sob a voz, −14 LUFS e pico abaixo de −1 dBTP. Uma trilha composta por um músico ou de biblioteca premium soaria mais rica."),
     ("Ritmo e retenção", 7, "Cortes no grid de 120 BPM e nada parado por mais de 0,9 s (o QA não encontrou congelamentos). O master de 45 s é longo para público frio; por isso as versões de 30 e 15 s são as de aquisição."),
@@ -147,7 +147,21 @@ a{color:var(--forest)}
 <div><h3>Não entregue (e por quê)</h3><p>Locução humana e gravação do Japa Dorama: não havia gravações autorizadas. Filmagem real de tutor com pet: não havia material; a cena usa a fotografia oficial da marca, gerada por IA.</p></div>
 </div></section>""")
     # decisões
-    h.append("""<section><h2>Decisões criativas</h2>
+    h.append("""<section><h2>Referências usadas</h2>
+<p>A v2 foi reconstruída sobre a linguagem do vídeo que o cliente enviou e sobre referências externas pesquisadas. A análise completa, cena a cena, está em <code>research/03-referencias.md</code>.</p>
+<div class="tbl"><table><thead><tr><th>Da referência do cliente</th><th>Como entrou no filme</th></tr></thead><tbody>
+<tr><td>Abertura "SEU PET." com pets espiando</td><td>Gancho do master: "e a do / SEU PET?" com as letras se aproximando e os pets subindo da base</td></tr>
+<tr><td>Linha que vira pata → sino → batimento → logo</td><td>Transição-assinatura: ponto → linha → pata → batimento → anel com o logo. O sino saiu porque o app não notifica</td></tr>
+<tr><td>Mundo verde com órbitas e partículas</td><td>Todas as cenas de produto</td></tr>
+<tr><td>Capítulos "01 — ROTINA / CUIDE."</td><td>01 ROTINA (VEJA. MARQUE.), 02 SAÚDE (CUIDE.), 03 GASTOS (CONTROLE.), 04 BRINCADEIRAS (BRINQUE.)</td></tr>
+<tr><td>"CÃO OU GATO." com troca de cor</td><td>O terracota passa de CÃO para GATO junto com a troca Thor → Mia</td></tr>
+<tr><td>"cada dia MAIS LEVE." com curva</td><td>Cena emocional com os mesmos cuidados (Ração, Passeio, Remédio, Brincar) e os filhotes</td></tr>
+<tr><td>Varredura terracota + cartão final</td><td>CTA com "SISTEMA DE GESTÃO PARA CÃES E GATOS" e a oferta em pílula (sem seta)</td></tr>
+<tr><td>"LEMBRE." com sino</td><td><strong>Removido</strong>: promete lembrete que o produto não envia</td></tr>
+</tbody></table></div>
+<p class="src">Referências externas: vídeos de lançamento da Apple (um plano, uma ideia; trilha travada no corte), case da Raycast (UI recriada do design system, um som por ação), análise de anúncios da Chewy (GoMarble), Rover "To My Hooman", AppsFlyer State of Creative 2025 e tendências de tipografia cinética. Os links estão no documento de referências.</p>
+</section>
+<section><h2>Decisões criativas</h2>
 <div class="cols">
 <div><h3>Antes × depois sentido no movimento</h3><p>Antes: fundo escuro, câmera na mão, objetos tortos, desfoque de movimento. Depois: papel creme, curvas suaves (as do CSS de produção), hierarquia e respiro.</p></div>
 <div><h3>Transição-assinatura</h3><p>Todo o caos converge para um ponto de luz, que vira a tela do app. Os cuidados se encaixam em ordem e a câmera recua até revelar o celular. A trilha muda de menor para maior no mesmo frame.</p></div>
