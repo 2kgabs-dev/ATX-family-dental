@@ -1,0 +1,56 @@
+[
+ {
+  "voice": "kokoro:pm_alex",
+  "dur": 14.02,
+  "wps": 3.14,
+  "wer": 0.068,
+  "f0_med": 131,
+  "pitch_sd_semitones": 3.03,
+  "asr": "Você organiza a sua rotina inteira. Mas e a do seu patch, ração, remédio, vacina, consulta, um pouco no calendário, um pouco no WhatsApp e o resto na cabeça. Condu o patch, cada cuidado fica no lugar certo. Teste três dias grátis, sem cartão."
+ },
+ {
+  "voice": "kokoro:pf_dora",
+  "dur": 14.02,
+  "wps": 3.14,
+  "wer": 0.068,
+  "f0_med": 176,
+  "pitch_sd_semitones": 2.64,
+  "asr": "Você organiza a sua rotina inteira. Mas e a do seu patch? Ração, remédio, vacina, consulta. Um pouco no calendário, um pouco no WhatsApp e o resto na cabeça. Condu o patch, cada cuidado fica no lugar certo. Teste três dias grátis, sem cartão."
+ },
+ {
+  "voice": "kokoro:pm_santa",
+  "dur": 14.57,
+  "wps": 3.02,
+  "wer": 0.068,
+  "f0_med": 124,
+  "pitch_sd_semitones": 4.25,
+  "asr": "Você organiza a sua rotina inteira. Mas e a do seu patch? Ração, remédio, vacina, consulta. Um pouco no calendário, um pouco no WhatsApp e o resto na cabeça. Condu o patch, cada cuidado fica no lugar certo. Teste três dias grátis sem cartão."
+ },
+ {
+  "voice": "piper:faber",
+  "dur": 14.1,
+  "wps": 3.12,
+  "wer": 0.114,
+  "f0_med": 174,
+  "pitch_sd_semitones": 2.85,
+  "asr": "Você organiza sua rotina inteira, mas e a do seu patch, ação, remédio, vacina, consulta, um pouco no calendário, um pouco no WhatsApp e o resto na cabeça. Com o do patch, cada cuidado fica no lugar certo. Teste três dias grátis, sem cartão."
+ },
+ {
+  "voice": "piper:cadu",
+  "dur": 14.89,
+  "wps": 2.96,
+  "wer": 0.159,
+  "f0_med": 128,
+  "pitch_sd_semitones": 3.01,
+  "asr": "Você organiza sua rotina inteira, mas é do seu patch. Ação, remédio, vacina, consulta, um pouco no calendário, um pouco no WhatsApp e o resto na cabeça. Com o do patch, cada cuidado fica no lugar certo. Teste 3 dias grátis, sem cartão."
+ },
+ {
+  "voice": "piper:jeff",
+  "dur": 14.2,
+  "wps": 3.1,
+  "wer": 0.205,
+  "f0_med": 142,
+  "pitch_sd_semitones": 1.67,
+  "asr": "Você urbaniza sua rotina inteira, mas é do seu pet, ação, remédio, vacina, consulta, um pouco no calendário, um pouco no whatsapp e o resto na cabeça, como do pet, cada cuidado fica no lugar certo. Teste 3G e grátis, sem cartão."
+ }
+]

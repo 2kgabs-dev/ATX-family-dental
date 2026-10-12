@@ -1,0 +1,102 @@
+{
+ "M1": {
+  "wer": 0.182,
+  "asr": "Você organiza a sua rotina inteira. Ia do seu pet.",
+  "ref": "Você organiza a sua rotina inteira… e a do seu pet?"
+ },
+ "M2": {
+  "wer": 0.059,
+  "asr": "Ração Remédio Vacina Consulta Um pouco no calendários, um pouco no WhatsApp e o resto na cabeça.",
+  "ref": "Ração, remédio, vacina, consulta… um pouco no calendário, um pouco no WhatsApp, e o resto na cabeça."
+ },
+ "M3": {
+  "wer": 0.125,
+  "asr": "No duopete, cada cuidado fica no lugar certo.",
+  "ref": "No DuoPet, cada cuidado fica no lugar certo."
+ },
+ "M4": {
+  "wer": 0.0,
+  "asr": "Você vê o que o seu pet precisa hoje, marca o que já fez e sabe exatamente o que falta.",
+  "ref": "Você vê o que o seu pet precisa hoje, marca o que já fez… e sabe exatamente o que falta."
+ },
+ "M5": {
+  "wer": 0.067,
+  "asr": "vacinas, remédios, gastos e até brincadeiras guiadas. Para cada pet da casa, cão ou gato.",
+  "ref": "Vacinas, remédios, gastos e até brincadeiras guiadas… pra cada pet da casa, cão ou gato."
+ },
+ "M6": {
+  "wer": 0.091,
+  "asr": "menos coisa na cabeça e mais tempo para quem você ama.",
+  "ref": "Menos coisa na cabeça… e mais tempo pra quem você ama."
+ },
+ "M7": {
+  "wer": 0.273,
+  "asr": "Duopete. Teste três dias grátis sem cartão. Acesse Duopete.site.",
+  "ref": "DuoPet. Teste três dias grátis, sem cartão. Acesse duopet.site"
+ },
+ "H1": {
+  "wer": 0.143,
+  "asr": "Ração, remédio, vacina, consulta. Está tudo onde?",
+  "ref": "Ração, remédio, vacina, consulta… tá tudo onde?"
+ },
+ "H2": {
+  "wer": 0.0,
+  "asr": "É assim que a rotina do seu pet deveria ficar.",
+  "ref": "É assim que a rotina do seu pet deveria ficar."
+ },
+ "H3": {
+  "wer": 0.083,
+  "asr": "Dois pés, duas rotinas. E quem guarda tudo é a sua cabeça.",
+  "ref": "Dois pets, duas rotinas… e quem guarda tudo é a sua cabeça?"
+ },
+ "H4": {
+  "wer": 0.0,
+  "asr": "Já deu o remédio hoje. Ou foi ontem.",
+  "ref": "Já deu o remédio hoje… ou foi ontem?"
+ },
+ "P2a": {
+  "wer": 0.077,
+  "asr": "Um pouco no calendários, um pouco no WhatsApp e o resto na cabeça.",
+  "ref": "Um pouco no calendário, um pouco no WhatsApp… e o resto na cabeça."
+ },
+ "P2b": {
+  "wer": 0.067,
+  "asr": "Nada de um pouco no calendários, um pouco no WhatsApp e o resto na cabeça.",
+  "ref": "Nada de um pouco no calendário, um pouco no WhatsApp e o resto na cabeça."
+ },
+ "P4": {
+  "wer": 0.0,
+  "asr": "Você vê o que o seu pet precisa hoje. Marca o que já fez e sabe o que falta.",
+  "ref": "Você vê o que o seu pet precisa hoje, marca o que já fez… e sabe o que falta."
+ },
+ "P5": {
+  "wer": 0.0,
+  "asr": "Cão e gato na mesma conta, cada um com a sua rotina.",
+  "ref": "Cão e gato na mesma conta… cada um com a sua rotina."
+ },
+ "P6": {
+  "wer": 0.0,
+  "asr": "Teste três dias grátis sem cartão. Acesse Duopet.site.",
+  "ref": "Teste três dias grátis, sem cartão. Acesse duopet.site"
+ },
+ "S1": {
+  "wer": 0.0,
+  "asr": "Os cuidados do seu pet estão espalhados.",
+  "ref": "Os cuidados do seu pet estão espalhados?"
+ },
+ "S2": {
+  "wer": 0.286,
+  "asr": "No duo patch, fica tudo num lugar só.",
+  "ref": "No DuoPet, fica tudo num lugar só."
+ },
+ "S3": {
+  "wer": 0.0,
+  "asr": "Marque o que fez. Veja o que falta.",
+  "ref": "Marque o que fez. Veja o que falta."
+ },
+ "S4": {
+  "wer": 0.25,
+  "asr": "3 dias grátis sem cartão. Do opeti.site",
+  "ref": "Três dias grátis, sem cartão. duopet.site"
+ }
+}

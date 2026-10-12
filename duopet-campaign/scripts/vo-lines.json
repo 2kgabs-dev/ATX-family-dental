@@ -1,0 +1,319 @@
+{
+ "_doc": "Fonte única das falas. Cada fala é uma lista de trechos (t) com pausa posterior (p, s) e velocidade (s). 'caption' é o texto exibido na legenda (ortografia normal). 'say' (opcional) é a grafia para TTS.",
+ "lines": {
+  "M1": {
+   "caption": "Você organiza a sua rotina inteira… e a do seu pet?",
+   "parts": [
+    {
+     "t": "Você organiza a sua rotina inteira…",
+     "p": 0.28,
+     "s": 0.95
+    },
+    {
+     "t": "e a do seu pet?",
+     "s": 0.9
+    }
+   ]
+  },
+  "M2": {
+   "caption": "Ração, remédio, vacina, consulta… um pouco no calendário, um pouco no WhatsApp, e o resto na cabeça.",
+   "parts": [
+    {
+     "t": "Ração, remédio, vacina, consulta…",
+     "p": 0.22,
+     "s": 1.0
+    },
+    {
+     "t": "um pouco no calendário,",
+     "p": 0.05,
+     "s": 1.02
+    },
+    {
+     "t": "um pouco no WhatsApp,",
+     "p": 0.08,
+     "s": 1.02
+    },
+    {
+     "t": "e o resto na cabeça.",
+     "s": 0.96
+    }
+   ]
+  },
+  "M3": {
+   "caption": "No DuoPet, cada cuidado fica no lugar certo.",
+   "parts": [
+    {
+     "t": "No DuoPet,",
+     "p": 0.12,
+     "s": 0.9
+    },
+    {
+     "t": "cada cuidado fica no lugar certo.",
+     "s": 0.93
+    }
+   ]
+  },
+  "M4": {
+   "caption": "Você vê o que o seu pet precisa hoje, marca o que já fez… e sabe exatamente o que falta.",
+   "parts": [
+    {
+     "t": "Você vê o que o seu pet precisa hoje,",
+     "p": 0.12,
+     "s": 0.97
+    },
+    {
+     "t": "marca o que já fez…",
+     "p": 0.25,
+     "s": 0.95
+    },
+    {
+     "t": "e sabe exatamente o que falta.",
+     "s": 0.95
+    }
+   ]
+  },
+  "M5": {
+   "caption": "Vacinas, remédios, gastos e até brincadeiras guiadas… pra cada pet da casa, cão ou gato.",
+   "parts": [
+    {
+     "t": "Vacinas, remédios, gastos",
+     "p": 0.06,
+     "s": 0.98
+    },
+    {
+     "t": "e até brincadeiras guiadas…",
+     "p": 0.25,
+     "s": 0.97
+    },
+    {
+     "t": "pra cada pet da casa, cão ou gato.",
+     "s": 0.95
+    }
+   ]
+  },
+  "M6": {
+   "caption": "Menos coisa na cabeça… e mais tempo pra quem você ama.",
+   "parts": [
+    {
+     "t": "Menos coisa na cabeça…",
+     "p": 0.3,
+     "s": 0.88
+    },
+    {
+     "t": "e mais tempo pra quem você ama.",
+     "s": 0.86
+    }
+   ]
+  },
+  "M7": {
+   "caption": "DuoPet. Teste três dias grátis, sem cartão. Acesse duopet.site",
+   "parts": [
+    {
+     "t": "DuoPet.",
+     "p": 0.32,
+     "s": 0.88
+    },
+    {
+     "t": "Teste três dias grátis, sem cartão.",
+     "p": 0.18,
+     "s": 0.93
+    },
+    {
+     "t": "Acesse duopet ponto site.",
+     "s": 0.9
+    }
+   ]
+  },
+  "H1": {
+   "caption": "Ração, remédio, vacina, consulta… tá tudo onde?",
+   "parts": [
+    {
+     "t": "Ração, remédio, vacina, consulta…",
+     "p": 0.18,
+     "s": 1.0
+    },
+    {
+     "t": "tá tudo onde?",
+     "s": 0.92
+    }
+   ]
+  },
+  "H2": {
+   "caption": "É assim que a rotina do seu pet deveria ficar.",
+   "parts": [
+    {
+     "t": "É assim que a rotina do seu pet deveria ficar.",
+     "s": 0.95
+    }
+   ]
+  },
+  "H3": {
+   "caption": "Dois pets, duas rotinas… e quem guarda tudo é a sua cabeça?",
+   "parts": [
+    {
+     "t": "Dois pets, duas rotinas…",
+     "p": 0.2,
+     "s": 0.95
+    },
+    {
+     "t": "e quem guarda tudo é a sua cabeça?",
+     "s": 0.95
+    }
+   ]
+  },
+  "H4": {
+   "caption": "Já deu o remédio hoje… ou foi ontem?",
+   "parts": [
+    {
+     "t": "Já deu o remédio hoje…",
+     "p": 0.3,
+     "s": 0.92
+    },
+    {
+     "t": "ou foi ontem?",
+     "s": 0.9
+    }
+   ]
+  },
+  "P2a": {
+   "caption": "Um pouco no calendário, um pouco no WhatsApp… e o resto na cabeça.",
+   "parts": [
+    {
+     "t": "Um pouco no calendário,",
+     "p": 0.05,
+     "s": 1.0
+    },
+    {
+     "t": "um pouco no WhatsApp…",
+     "p": 0.12,
+     "s": 1.0
+    },
+    {
+     "t": "e o resto na cabeça.",
+     "s": 0.95
+    }
+   ]
+  },
+  "P2b": {
+   "caption": "Nada de um pouco no calendário, um pouco no WhatsApp e o resto na cabeça.",
+   "parts": [
+    {
+     "t": "Nada de um pouco no calendário,",
+     "p": 0.05,
+     "s": 1.02
+    },
+    {
+     "t": "um pouco no WhatsApp",
+     "p": 0.06,
+     "s": 1.02
+    },
+    {
+     "t": "e o resto na cabeça.",
+     "s": 0.96
+    }
+   ]
+  },
+  "P3": {
+   "caption": "No DuoPet, cada cuidado fica no lugar certo.",
+   "same": "M3"
+  },
+  "P4": {
+   "caption": "Você vê o que o seu pet precisa hoje, marca o que já fez… e sabe o que falta.",
+   "parts": [
+    {
+     "t": "Você vê o que o seu pet precisa hoje,",
+     "p": 0.1,
+     "s": 0.98
+    },
+    {
+     "t": "marca o que já fez…",
+     "p": 0.2,
+     "s": 0.96
+    },
+    {
+     "t": "e sabe o que falta.",
+     "s": 0.95
+    }
+   ]
+  },
+  "P5": {
+   "caption": "Cão e gato na mesma conta… cada um com a sua rotina.",
+   "parts": [
+    {
+     "t": "Cão e gato na mesma conta…",
+     "p": 0.18,
+     "s": 0.96
+    },
+    {
+     "t": "cada um com a sua rotina.",
+     "s": 0.96
+    }
+   ]
+  },
+  "P6": {
+   "caption": "Teste três dias grátis, sem cartão. Acesse duopet.site",
+   "parts": [
+    {
+     "t": "Teste três dias grátis, sem cartão.",
+     "p": 0.25,
+     "s": 0.93
+    },
+    {
+     "t": "Acesse duopet ponto site.",
+     "s": 0.9
+    }
+   ]
+  },
+  "S1": {
+   "caption": "Os cuidados do seu pet estão espalhados?",
+   "parts": [
+    {
+     "t": "Os cuidados do seu pet estão espalhados?",
+     "s": 0.98
+    }
+   ]
+  },
+  "S2": {
+   "caption": "No DuoPet, fica tudo num lugar só.",
+   "parts": [
+    {
+     "t": "No DuoPet,",
+     "p": 0.08,
+     "s": 0.94
+    },
+    {
+     "t": "fica tudo num lugar só.",
+     "s": 0.97
+    }
+   ]
+  },
+  "S3": {
+   "caption": "Marque o que fez. Veja o que falta.",
+   "parts": [
+    {
+     "t": "Marque o que fez.",
+     "p": 0.15,
+     "s": 0.95
+    },
+    {
+     "t": "Veja o que falta.",
+     "s": 0.93
+    }
+   ]
+  },
+  "S4": {
+   "caption": "Três dias grátis, sem cartão. duopet.site",
+   "parts": [
+    {
+     "t": "Três dias grátis, sem cartão.",
+     "p": 0.16,
+     "s": 0.98
+    },
+    {
+     "t": "duopet ponto site.",
+     "s": 0.92
+    }
+   ]
+  }
+ }
+}

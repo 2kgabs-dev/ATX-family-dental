@@ -1,0 +1,10 @@
+compositions/node_modules/
+renders/_silent/
+qa/report/_frames/
+qa/report/_tmp.wav
+qa/stills*/
+voice/casting/pron/
+voice/*/.asr.wav
+report/_tmp.jpg
+*.pyc
+__pycache__/

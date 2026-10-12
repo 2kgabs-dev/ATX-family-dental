@@ -1,0 +1,5900 @@
+{
+ "fps": 30,
+ "width": 1080,
+ "height": 1920,
+ "voice": "pm_alex",
+ "versions": {
+  "master": {
+   "duration": 44.75,
+   "frames": 1342,
+   "scenes": [
+    {
+     "id": "00-Hook",
+     "type": "Hook",
+     "line": "M1",
+     "start": 0.0,
+     "end": 4.75,
+     "voStart": 0.15,
+     "voEnd": 4.397,
+     "words": [
+      {
+       "w": "Você",
+       "start": 0.15,
+       "end": 0.516
+      },
+      {
+       "w": "organiza",
+       "start": 0.516,
+       "end": 1.247
+      },
+      {
+       "w": "a",
+       "start": 1.247,
+       "end": 1.43
+      },
+      {
+       "w": "sua",
+       "start": 1.43,
+       "end": 1.613
+      },
+      {
+       "w": "rotina",
+       "start": 1.613,
+       "end": 2.161
+      },
+      {
+       "w": "inteira…",
+       "start": 2.161,
+       "end": 2.71
+      },
+      {
+       "w": "e",
+       "start": 2.99,
+       "end": 3.271
+      },
+      {
+       "w": "a",
+       "start": 3.271,
+       "end": 3.553
+      },
+      {
+       "w": "do",
+       "start": 3.553,
+       "end": 3.834
+      },
+      {
+       "w": "seu",
+       "start": 3.834,
+       "end": 4.116
+      },
+      {
+       "w": "pet?",
+       "start": 4.116,
+       "end": 4.397
+      }
+     ],
+     "caption": "Você organiza a sua rotina inteira… e a do seu pet?",
+     "cues": {
+      "turn": 2.94,
+      "petWord": 4.116
+     }
+    },
+    {
+     "id": "01-Chaos",
+     "type": "Chaos",
+     "line": "M2",
+     "start": 4.75,
+     "end": 12.75,
+     "voStart": 4.93,
+     "voEnd": 12.401,
+     "words": [
+      {
+       "w": "Ração,",
+       "start": 4.93,
+       "end": 5.345
+      },
+      {
+       "w": "remédio,",
+       "start": 5.345,
+       "end": 5.966
+      },
+      {
+       "w": "vacina,",
+       "start": 5.966,
+       "end": 6.588
+      },
+      {
+       "w": "consulta…",
+       "start": 6.588,
+       "end": 7.21
+      },
+      {
+       "w": "um",
+       "start": 7.43,
+       "end": 7.641
+      },
+      {
+       "w": "pouco",
+       "start": 7.641,
+       "end": 8.061
+      },
+      {
+       "w": "no",
+       "start": 8.061,
+       "end": 8.272
+      },
+      {
+       "w": "calendário,",
+       "start": 8.272,
+       "end": 9.114
+      },
+      {
+       "w": "um",
+       "start": 9.164,
+       "end": 9.43
+      },
+      {
+       "w": "pouco",
+       "start": 9.43,
+       "end": 9.964
+      },
+      {
+       "w": "no",
+       "start": 9.964,
+       "end": 10.23
+      },
+      {
+       "w": "WhatsApp,",
+       "start": 10.23,
+       "end": 10.764
+      },
+      {
+       "w": "e",
+       "start": 10.844,
+       "end": 11.038
+      },
+      {
+       "w": "o",
+       "start": 11.038,
+       "end": 11.233
+      },
+      {
+       "w": "resto",
+       "start": 11.233,
+       "end": 11.622
+      },
+      {
+       "w": "na",
+       "start": 11.622,
+       "end": 11.817
+      },
+      {
+       "w": "cabeça.",
+       "start": 11.817,
+       "end": 12.401
+      }
+     ],
+     "caption": "Ração, remédio, vacina, consulta… um pouco no calendário, um pouco no WhatsApp, e o resto na cabeça.",
+     "cues": {
+      "keys": {
+       "ração": 4.89,
+       "remédio": 5.305,
+       "vacina": 5.926,
+       "consulta": 6.548,
+       "calendário": 8.232,
+       "whatsapp": 10.19,
+       "cabeça": 11.777
+      },
+      "converge": 11.8
+     }
+    },
+    {
+     "id": "02-Reveal",
+     "type": "Reveal",
+     "line": "M3",
+     "start": 12.75,
+     "end": 17.25,
+     "voStart": 13.03,
+     "voEnd": 16.883,
+     "words": [
+      {
+       "w": "No",
+       "start": 13.03,
+       "end": 13.485
+      },
+      {
+       "w": "DuoPet,",
+       "start": 13.485,
+       "end": 14.395
+      },
+      {
+       "w": "cada",
+       "start": 14.515,
+       "end": 14.91
+      },
+      {
+       "w": "cuidado",
+       "start": 14.91,
+       "end": 15.502
+      },
+      {
+       "w": "fica",
+       "start": 15.502,
+       "end": 15.897
+      },
+      {
+       "w": "no",
+       "start": 15.897,
+       "end": 16.094
+      },
+      {
+       "w": "lugar",
+       "start": 16.094,
+       "end": 16.489
+      },
+      {
+       "w": "certo.",
+       "start": 16.489,
+       "end": 16.883
+      }
+     ],
+     "caption": "No DuoPet, cada cuidado fica no lugar certo.",
+     "cues": {
+      "impact": 12.75,
+      "brand": 13.485,
+      "place": 16.094
+     }
+    },
+    {
+     "id": "03-Demo",
+     "type": "Demo",
+     "line": "M4",
+     "start": 17.25,
+     "end": 24.25,
+     "voStart": 17.43,
+     "voEnd": 23.88,
+     "words": [
+      {
+       "w": "Você",
+       "start": 17.43,
+       "end": 17.817
+      },
+      {
+       "w": "vê",
+       "start": 17.817,
+       "end": 18.011
+      },
+      {
+       "w": "o",
+       "start": 18.011,
+       "end": 18.205
+      },
+      {
+       "w": "que",
+       "start": 18.205,
+       "end": 18.398
+      },
+      {
+       "w": "o",
+       "start": 18.398,
+       "end": 18.592
+      },
+      {
+       "w": "seu",
+       "start": 18.592,
+       "end": 18.785
+      },
+      {
+       "w": "pet",
+       "start": 18.785,
+       "end": 18.979
+      },
+      {
+       "w": "precisa",
+       "start": 18.979,
+       "end": 19.56
+      },
+      {
+       "w": "hoje,",
+       "start": 19.56,
+       "end": 19.947
+      },
+      {
+       "w": "marca",
+       "start": 20.067,
+       "end": 20.53
+      },
+      {
+       "w": "o",
+       "start": 20.53,
+       "end": 20.761
+      },
+      {
+       "w": "que",
+       "start": 20.761,
+       "end": 20.992
+      },
+      {
+       "w": "já",
+       "start": 20.992,
+       "end": 21.223
+      },
+      {
+       "w": "fez…",
+       "start": 21.223,
+       "end": 21.454
+      },
+      {
+       "w": "e",
+       "start": 21.704,
+       "end": 21.885
+      },
+      {
+       "w": "sabe",
+       "start": 21.885,
+       "end": 22.248
+      },
+      {
+       "w": "exatamente",
+       "start": 22.248,
+       "end": 23.155
+      },
+      {
+       "w": "o",
+       "start": 23.155,
+       "end": 23.336
+      },
+      {
+       "w": "que",
+       "start": 23.336,
+       "end": 23.517
+      },
+      {
+       "w": "falta.",
+       "start": 23.517,
+       "end": 23.88
+      }
+     ],
+     "caption": "Você vê o que o seu pet precisa hoje, marca o que já fez… e sabe exatamente o que falta.",
+     "cues": {
+      "see": 17.43,
+      "tap": 20.167,
+      "left": 23.267
+     }
+    },
+    {
+     "id": "04-Benefits",
+     "type": "Benefits",
+     "line": "M5",
+     "start": 24.25,
+     "end": 31.5,
+     "voStart": 24.4,
+     "voEnd": 31.067,
+     "words": [
+      {
+       "w": "Vacinas,",
+       "start": 24.4,
+       "end": 25.128
+      },
+      {
+       "w": "remédios,",
+       "start": 25.128,
+       "end": 25.856
+      },
+      {
+       "w": "gastos",
+       "start": 25.856,
+       "end": 26.341
+      },
+      {
+       "w": "e",
+       "start": 26.401,
+       "end": 26.627
+      },
+      {
+       "w": "até",
+       "start": 26.627,
+       "end": 27.077
+      },
+      {
+       "w": "brincadeiras",
+       "start": 27.077,
+       "end": 27.978
+      },
+      {
+       "w": "guiadas…",
+       "start": 27.978,
+       "end": 28.428
+      },
+      {
+       "w": "pra",
+       "start": 28.678,
+       "end": 28.895
+      },
+      {
+       "w": "cada",
+       "start": 28.895,
+       "end": 29.33
+      },
+      {
+       "w": "pet",
+       "start": 29.33,
+       "end": 29.547
+      },
+      {
+       "w": "da",
+       "start": 29.547,
+       "end": 29.764
+      },
+      {
+       "w": "casa,",
+       "start": 29.764,
+       "end": 30.198
+      },
+      {
+       "w": "cão",
+       "start": 30.198,
+       "end": 30.416
+      },
+      {
+       "w": "ou",
+       "start": 30.416,
+       "end": 30.633
+      },
+      {
+       "w": "gato.",
+       "start": 30.633,
+       "end": 31.067
+      }
+     ],
+     "caption": "Vacinas, remédios, gastos e até brincadeiras guiadas… pra cada pet da casa, cão ou gato.",
+     "cues": {
+      "health": 24.3,
+      "money": 25.756,
+      "play": 26.977,
+      "pets": 28.628,
+      "switch": 30.533
+     }
+    },
+    {
+     "id": "05-Emotion",
+     "type": "Emotion",
+     "line": "M6",
+     "start": 31.5,
+     "end": 36.75,
+     "voStart": 31.75,
+     "voEnd": 36.359,
+     "words": [
+      {
+       "w": "Menos",
+       "start": 31.75,
+       "end": 32.241
+      },
+      {
+       "w": "coisa",
+       "start": 32.241,
+       "end": 32.731
+      },
+      {
+       "w": "na",
+       "start": 32.731,
+       "end": 32.977
+      },
+      {
+       "w": "cabeça…",
+       "start": 32.977,
+       "end": 33.713
+      },
+      {
+       "w": "e",
+       "start": 34.013,
+       "end": 34.247
+      },
+      {
+       "w": "mais",
+       "start": 34.247,
+       "end": 34.482
+      },
+      {
+       "w": "tempo",
+       "start": 34.482,
+       "end": 34.951
+      },
+      {
+       "w": "pra",
+       "start": 34.951,
+       "end": 35.186
+      },
+      {
+       "w": "quem",
+       "start": 35.186,
+       "end": 35.421
+      },
+      {
+       "w": "você",
+       "start": 35.421,
+       "end": 35.89
+      },
+      {
+       "w": "ama.",
+       "start": 35.89,
+       "end": 36.359
+      }
+     ],
+     "caption": "Menos coisa na cabeça… e mais tempo pra quem você ama.",
+     "cues": {
+      "warm": 34.247
+     }
+    },
+    {
+     "id": "06-CTA",
+     "type": "CTA",
+     "line": "M7",
+     "start": 36.75,
+     "end": 44.75,
+     "voStart": 36.95,
+     "voEnd": 43.422,
+     "words": [
+      {
+       "w": "DuoPet.",
+       "start": 36.95,
+       "end": 38.101
+      },
+      {
+       "w": "Teste",
+       "start": 38.421,
+       "end": 38.994
+      },
+      {
+       "w": "três",
+       "start": 38.994,
+       "end": 39.281
+      },
+      {
+       "w": "dias",
+       "start": 39.281,
+       "end": 39.568
+      },
+      {
+       "w": "grátis,",
+       "start": 39.568,
+       "end": 40.142
+      },
+      {
+       "w": "sem",
+       "start": 40.142,
+       "end": 40.428
+      },
+      {
+       "w": "cartão.",
+       "start": 40.428,
+       "end": 41.002
+      },
+      {
+       "w": "Acesse",
+       "start": 41.182,
+       "end": 41.929
+      },
+      {
+       "w": "duopet.site",
+       "start": 41.929,
+       "end": 43.422
+      }
+     ],
+     "caption": "DuoPet. Teste três dias grátis, sem cartão. Acesse duopet.site",
+     "cues": {
+      "logo": 36.95,
+      "offer": 38.421,
+      "url": 41.929
+     }
+    }
+   ],
+   "vo": [
+    {
+     "line": "M1",
+     "file": "voice/pm_alex/M1.wav",
+     "start": 0.15,
+     "dur": 4.247
+    },
+    {
+     "line": "M2",
+     "file": "voice/pm_alex/M2.wav",
+     "start": 4.93,
+     "dur": 7.471
+    },
+    {
+     "line": "M3",
+     "file": "voice/pm_alex/M3.wav",
+     "start": 13.03,
+     "dur": 3.853
+    },
+    {
+     "line": "M4",
+     "file": "voice/pm_alex/M4.wav",
+     "start": 17.43,
+     "dur": 6.45
+    },
+    {
+     "line": "M5",
+     "file": "voice/pm_alex/M5.wav",
+     "start": 24.4,
+     "dur": 6.667
+    },
+    {
+     "line": "M6",
+     "file": "voice/pm_alex/M6.wav",
+     "start": 31.75,
+     "dur": 4.609
+    },
+    {
+     "line": "M7",
+     "file": "voice/pm_alex/M7.wav",
+     "start": 36.95,
+     "dur": 6.472
+    }
+   ],
+   "words": [
+    {
+     "w": "Você",
+     "start": 0.15,
+     "end": 0.516
+    },
+    {
+     "w": "organiza",
+     "start": 0.516,
+     "end": 1.247
+    },
+    {
+     "w": "a",
+     "start": 1.247,
+     "end": 1.43
+    },
+    {
+     "w": "sua",
+     "start": 1.43,
+     "end": 1.613
+    },
+    {
+     "w": "rotina",
+     "start": 1.613,
+     "end": 2.161
+    },
+    {
+     "w": "inteira…",
+     "start": 2.161,
+     "end": 2.71
+    },
+    {
+     "w": "e",
+     "start": 2.99,
+     "end": 3.271
+    },
+    {
+     "w": "a",
+     "start": 3.271,
+     "end": 3.553
+    },
+    {
+     "w": "do",
+     "start": 3.553,
+     "end": 3.834
+    },
+    {
+     "w": "seu",
+     "start": 3.834,
+     "end": 4.116
+    },
+    {
+     "w": "pet?",
+     "start": 4.116,
+     "end": 4.397
+    },
+    {
+     "w": "Ração,",
+     "start": 4.93,
+     "end": 5.345
+    },
+    {
+     "w": "remédio,",
+     "start": 5.345,
+     "end": 5.966
+    },
+    {
+     "w": "vacina,",
+     "start": 5.966,
+     "end": 6.588
+    },
+    {
+     "w": "consulta…",
+     "start": 6.588,
+     "end": 7.21
+    },
+    {
+     "w": "um",
+     "start": 7.43,
+     "end": 7.641
+    },
+    {
+     "w": "pouco",
+     "start": 7.641,
+     "end": 8.061
+    },
+    {
+     "w": "no",
+     "start": 8.061,
+     "end": 8.272
+    },
+    {
+     "w": "calendário,",
+     "start": 8.272,
+     "end": 9.114
+    },
+    {
+     "w": "um",
+     "start": 9.164,
+     "end": 9.43
+    },
+    {
+     "w": "pouco",
+     "start": 9.43,
+     "end": 9.964
+    },
+    {
+     "w": "no",
+     "start": 9.964,
+     "end": 10.23
+    },
+    {
+     "w": "WhatsApp,",
+     "start": 10.23,
+     "end": 10.764
+    },
+    {
+     "w": "e",
+     "start": 10.844,
+     "end": 11.038
+    },
+    {
+     "w": "o",
+     "start": 11.038,
+     "end": 11.233
+    },
+    {
+     "w": "resto",
+     "start": 11.233,
+     "end": 11.622
+    },
+    {
+     "w": "na",
+     "start": 11.622,
+     "end": 11.817
+    },
+    {
+     "w": "cabeça.",
+     "start": 11.817,
+     "end": 12.401
+    },
+    {
+     "w": "No",
+     "start": 13.03,
+     "end": 13.485
+    },
+    {
+     "w": "DuoPet,",
+     "start": 13.485,
+     "end": 14.395
+    },
+    {
+     "w": "cada",
+     "start": 14.515,
+     "end": 14.91
+    },
+    {
+     "w": "cuidado",
+     "start": 14.91,
+     "end": 15.502
+    },
+    {
+     "w": "fica",
+     "start": 15.502,
+     "end": 15.897
+    },
+    {
+     "w": "no",
+     "start": 15.897,
+     "end": 16.094
+    },
+    {
+     "w": "lugar",
+     "start": 16.094,
+     "end": 16.489
+    },
+    {
+     "w": "certo.",
+     "start": 16.489,
+     "end": 16.883
+    },
+    {
+     "w": "Você",
+     "start": 17.43,
+     "end": 17.817
+    },
+    {
+     "w": "vê",
+     "start": 17.817,
+     "end": 18.011
+    },
+    {
+     "w": "o",
+     "start": 18.011,
+     "end": 18.205
+    },
+    {
+     "w": "que",
+     "start": 18.205,
+     "end": 18.398
+    },
+    {
+     "w": "o",
+     "start": 18.398,
+     "end": 18.592
+    },
+    {
+     "w": "seu",
+     "start": 18.592,
+     "end": 18.785
+    },
+    {
+     "w": "pet",
+     "start": 18.785,
+     "end": 18.979
+    },
+    {
+     "w": "precisa",
+     "start": 18.979,
+     "end": 19.56
+    },
+    {
+     "w": "hoje,",
+     "start": 19.56,
+     "end": 19.947
+    },
+    {
+     "w": "marca",
+     "start": 20.067,
+     "end": 20.53
+    },
+    {
+     "w": "o",
+     "start": 20.53,
+     "end": 20.761
+    },
+    {
+     "w": "que",
+     "start": 20.761,
+     "end": 20.992
+    },
+    {
+     "w": "já",
+     "start": 20.992,
+     "end": 21.223
+    },
+    {
+     "w": "fez…",
+     "start": 21.223,
+     "end": 21.454
+    },
+    {
+     "w": "e",
+     "start": 21.704,
+     "end": 21.885
+    },
+    {
+     "w": "sabe",
+     "start": 21.885,
+     "end": 22.248
+    },
+    {
+     "w": "exatamente",
+     "start": 22.248,
+     "end": 23.155
+    },
+    {
+     "w": "o",
+     "start": 23.155,
+     "end": 23.336
+    },
+    {
+     "w": "que",
+     "start": 23.336,
+     "end": 23.517
+    },
+    {
+     "w": "falta.",
+     "start": 23.517,
+     "end": 23.88
+    },
+    {
+     "w": "Vacinas,",
+     "start": 24.4,
+     "end": 25.128
+    },
+    {
+     "w": "remédios,",
+     "start": 25.128,
+     "end": 25.856
+    },
+    {
+     "w": "gastos",
+     "start": 25.856,
+     "end": 26.341
+    },
+    {
+     "w": "e",
+     "start": 26.401,
+     "end": 26.627
+    },
+    {
+     "w": "até",
+     "start": 26.627,
+     "end": 27.077
+    },
+    {
+     "w": "brincadeiras",
+     "start": 27.077,
+     "end": 27.978
+    },
+    {
+     "w": "guiadas…",
+     "start": 27.978,
+     "end": 28.428
+    },
+    {
+     "w": "pra",
+     "start": 28.678,
+     "end": 28.895
+    },
+    {
+     "w": "cada",
+     "start": 28.895,
+     "end": 29.33
+    },
+    {
+     "w": "pet",
+     "start": 29.33,
+     "end": 29.547
+    },
+    {
+     "w": "da",
+     "start": 29.547,
+     "end": 29.764
+    },
+    {
+     "w": "casa,",
+     "start": 29.764,
+     "end": 30.198
+    },
+    {
+     "w": "cão",
+     "start": 30.198,
+     "end": 30.416
+    },
+    {
+     "w": "ou",
+     "start": 30.416,
+     "end": 30.633
+    },
+    {
+     "w": "gato.",
+     "start": 30.633,
+     "end": 31.067
+    },
+    {
+     "w": "Menos",
+     "start": 31.75,
+     "end": 32.241
+    },
+    {
+     "w": "coisa",
+     "start": 32.241,
+     "end": 32.731
+    },
+    {
+     "w": "na",
+     "start": 32.731,
+     "end": 32.977
+    },
+    {
+     "w": "cabeça…",
+     "start": 32.977,
+     "end": 33.713
+    },
+    {
+     "w": "e",
+     "start": 34.013,
+     "end": 34.247
+    },
+    {
+     "w": "mais",
+     "start": 34.247,
+     "end": 34.482
+    },
+    {
+     "w": "tempo",
+     "start": 34.482,
+     "end": 34.951
+    },
+    {
+     "w": "pra",
+     "start": 34.951,
+     "end": 35.186
+    },
+    {
+     "w": "quem",
+     "start": 35.186,
+     "end": 35.421
+    },
+    {
+     "w": "você",
+     "start": 35.421,
+     "end": 35.89
+    },
+    {
+     "w": "ama.",
+     "start": 35.89,
+     "end": 36.359
+    },
+    {
+     "w": "DuoPet.",
+     "start": 36.95,
+     "end": 38.101
+    },
+    {
+     "w": "Teste",
+     "start": 38.421,
+     "end": 38.994
+    },
+    {
+     "w": "três",
+     "start": 38.994,
+     "end": 39.281
+    },
+    {
+     "w": "dias",
+     "start": 39.281,
+     "end": 39.568
+    },
+    {
+     "w": "grátis,",
+     "start": 39.568,
+     "end": 40.142
+    },
+    {
+     "w": "sem",
+     "start": 40.142,
+     "end": 40.428
+    },
+    {
+     "w": "cartão.",
+     "start": 40.428,
+     "end": 41.002
+    },
+    {
+     "w": "Acesse",
+     "start": 41.182,
+     "end": 41.929
+    },
+    {
+     "w": "duopet.site",
+     "start": 41.929,
+     "end": 43.422
+    }
+   ],
+   "sfx": [
+    {
+     "n": "whoosh_soft",
+     "t": 0.02,
+     "g": 0.5
+    },
+    {
+     "n": "tick",
+     "t": 0.45,
+     "g": 0.35
+    },
+    {
+     "n": "tick",
+     "t": 0.85,
+     "g": 0.35
+    },
+    {
+     "n": "tick",
+     "t": 1.25,
+     "g": 0.35
+    },
+    {
+     "n": "pop_big",
+     "t": 2.94,
+     "g": 0.8
+    },
+    {
+     "n": "boing",
+     "t": 2.99,
+     "g": 0.35
+    },
+    {
+     "n": "card_slap",
+     "t": 4.89,
+     "g": 0.55
+    },
+    {
+     "n": "card_slap",
+     "t": 5.305,
+     "g": 0.55
+    },
+    {
+     "n": "card_slap",
+     "t": 5.926,
+     "g": 0.55
+    },
+    {
+     "n": "card_slap",
+     "t": 6.548,
+     "g": 0.55
+    },
+    {
+     "n": "paper",
+     "t": 8.232,
+     "g": 0.22
+    },
+    {
+     "n": "paper",
+     "t": 10.19,
+     "g": 0.22
+    },
+    {
+     "n": "riser",
+     "t": 11.15,
+     "g": 0.6,
+     "dur": 1.6
+    },
+    {
+     "n": "paper",
+     "t": 11.777,
+     "g": 0.22
+    },
+    {
+     "n": "suck",
+     "t": 11.9,
+     "g": 0.55
+    },
+    {
+     "n": "impact",
+     "t": 12.75,
+     "g": 0.75
+    },
+    {
+     "n": "shimmer",
+     "t": 12.8,
+     "g": 0.45
+    },
+    {
+     "n": "click_soft",
+     "t": 12.93,
+     "g": 0.28
+    },
+    {
+     "n": "click_soft",
+     "t": 13.02,
+     "g": 0.28
+    },
+    {
+     "n": "click_soft",
+     "t": 13.11,
+     "g": 0.28
+    },
+    {
+     "n": "click_soft",
+     "t": 13.2,
+     "g": 0.28
+    },
+    {
+     "n": "click_soft",
+     "t": 13.29,
+     "g": 0.28
+    },
+    {
+     "n": "pop",
+     "t": 13.455,
+     "g": 0.5
+    },
+    {
+     "n": "whoosh_soft",
+     "t": 17.25,
+     "g": 0.35
+    },
+    {
+     "n": "tap",
+     "t": 20.167,
+     "g": 0.6
+    },
+    {
+     "n": "check",
+     "t": 20.227,
+     "g": 0.7
+    },
+    {
+     "n": "ring",
+     "t": 20.367,
+     "g": 0.4
+    },
+    {
+     "n": "toast",
+     "t": 20.717,
+     "g": 0.35
+    },
+    {
+     "n": "swoosh_3d",
+     "t": 24.3,
+     "g": 0.45
+    },
+    {
+     "n": "swoosh_3d",
+     "t": 25.756,
+     "g": 0.45
+    },
+    {
+     "n": "coin",
+     "t": 26.106,
+     "g": 0.3
+    },
+    {
+     "n": "swoosh_3d",
+     "t": 26.977,
+     "g": 0.45
+    },
+    {
+     "n": "squeak",
+     "t": 27.327,
+     "g": 0.35
+    },
+    {
+     "n": "whoosh_soft",
+     "t": 28.628,
+     "g": 0.4
+    },
+    {
+     "n": "tap",
+     "t": 30.533,
+     "g": 0.5
+    },
+    {
+     "n": "pop",
+     "t": 30.583,
+     "g": 0.4
+    },
+    {
+     "n": "air",
+     "t": 31.5,
+     "g": 0.5,
+     "dur": 2.5
+    },
+    {
+     "n": "logo_sting",
+     "t": 36.95,
+     "g": 0.7
+    },
+    {
+     "n": "pop",
+     "t": 38.421,
+     "g": 0.4
+    },
+    {
+     "n": "click_soft",
+     "t": 41.929,
+     "g": 0.35
+    }
+   ],
+   "music": [
+    {
+     "mood": "tension",
+     "start": 0.0,
+     "end": 12.75
+    },
+    {
+     "mood": "reveal",
+     "start": 12.75,
+     "end": 17.25
+    },
+    {
+     "mood": "groove",
+     "start": 17.25,
+     "end": 31.5
+    },
+    {
+     "mood": "warm",
+     "start": 31.5,
+     "end": 36.75
+    },
+    {
+     "mood": "sting",
+     "start": 36.75,
+     "end": 44.75
+    }
+   ]
+  },
+  "perf_h1": {
+   "duration": 30.75,
+   "frames": 922,
+   "scenes": [
+    {
+     "id": "00-HookList",
+     "type": "HookList",
+     "line": "H1",
+     "start": 0.0,
+     "end": 4.25,
+     "voStart": 0.1,
+     "voEnd": 3.883,
+     "words": [
+      {
+       "w": "Ração,",
+       "start": 0.1,
+       "end": 0.515
+      },
+      {
+       "w": "remédio,",
+       "start": 0.515,
+       "end": 1.136
+      },
+      {
+       "w": "vacina,",
+       "start": 1.136,
+       "end": 1.758
+      },
+      {
+       "w": "consulta…",
+       "start": 1.758,
+       "end": 2.38
+      },
+      {
+       "w": "tá",
+       "start": 2.56,
+       "end": 2.825
+      },
+      {
+       "w": "tudo",
+       "start": 2.825,
+       "end": 3.354
+      },
+      {
+       "w": "onde?",
+       "start": 3.354,
+       "end": 3.883
+      }
+     ],
+     "caption": "Ração, remédio, vacina, consulta… tá tudo onde?",
+     "cues": {
+      "items": [
+       0.060000000000000005,
+       0.47500000000000003,
+       1.0959999999999999,
+       1.718
+      ],
+      "where": 2.51
+     }
+    },
+    {
+     "id": "01-ChaosShort",
+     "type": "ChaosShort",
+     "line": "P2a",
+     "start": 4.25,
+     "end": 9.75,
+     "voStart": 4.37,
+     "voEnd": 9.383,
+     "words": [
+      {
+       "w": "Um",
+       "start": 4.37,
+       "end": 4.581
+      },
+      {
+       "w": "pouco",
+       "start": 4.581,
+       "end": 5.002
+      },
+      {
+       "w": "no",
+       "start": 5.002,
+       "end": 5.213
+      },
+      {
+       "w": "calendário,",
+       "start": 5.213,
+       "end": 6.055
+      },
+      {
+       "w": "um",
+       "start": 6.105,
+       "end": 6.368
+      },
+      {
+       "w": "pouco",
+       "start": 6.368,
+       "end": 6.895
+      },
+      {
+       "w": "no",
+       "start": 6.895,
+       "end": 7.158
+      },
+      {
+       "w": "WhatsApp…",
+       "start": 7.158,
+       "end": 7.684
+      },
+      {
+       "w": "e",
+       "start": 7.804,
+       "end": 8.001
+      },
+      {
+       "w": "o",
+       "start": 8.001,
+       "end": 8.199
+      },
+      {
+       "w": "resto",
+       "start": 8.199,
+       "end": 8.593
+      },
+      {
+       "w": "na",
+       "start": 8.593,
+       "end": 8.791
+      },
+      {
+       "w": "cabeça.",
+       "start": 8.791,
+       "end": 9.383
+      }
+     ],
+     "caption": "Um pouco no calendário, um pouco no WhatsApp… e o resto na cabeça.",
+     "cues": {
+      "keys": {
+       "calendário": 5.173,
+       "whatsapp": 7.118,
+       "cabeça": 8.751
+      },
+      "converge": 8.8
+     }
+    },
+    {
+     "id": "02-Reveal",
+     "type": "Reveal",
+     "line": "M3",
+     "start": 9.75,
+     "end": 14.0,
+     "voStart": 9.97,
+     "voEnd": 13.823,
+     "words": [
+      {
+       "w": "No",
+       "start": 9.97,
+       "end": 10.425
+      },
+      {
+       "w": "DuoPet,",
+       "start": 10.425,
+       "end": 11.335
+      },
+      {
+       "w": "cada",
+       "start": 11.455,
+       "end": 11.85
+      },
+      {
+       "w": "cuidado",
+       "start": 11.85,
+       "end": 12.442
+      },
+      {
+       "w": "fica",
+       "start": 12.442,
+       "end": 12.837
+      },
+      {
+       "w": "no",
+       "start": 12.837,
+       "end": 13.034
+      },
+      {
+       "w": "lugar",
+       "start": 13.034,
+       "end": 13.429
+      },
+      {
+       "w": "certo.",
+       "start": 13.429,
+       "end": 13.823
+      }
+     ],
+     "caption": "No DuoPet, cada cuidado fica no lugar certo.",
+     "cues": {
+      "impact": 9.75,
+      "brand": 10.425,
+      "place": 13.034
+     }
+    },
+    {
+     "id": "03-Demo",
+     "type": "Demo",
+     "line": "P4",
+     "start": 14.0,
+     "end": 20.0,
+     "voStart": 14.15,
+     "voEnd": 19.783,
+     "words": [
+      {
+       "w": "Você",
+       "start": 14.15,
+       "end": 14.534
+      },
+      {
+       "w": "vê",
+       "start": 14.534,
+       "end": 14.726
+      },
+      {
+       "w": "o",
+       "start": 14.726,
+       "end": 14.918
+      },
+      {
+       "w": "que",
+       "start": 14.918,
+       "end": 15.11
+      },
+      {
+       "w": "o",
+       "start": 15.11,
+       "end": 15.302
+      },
+      {
+       "w": "seu",
+       "start": 15.302,
+       "end": 15.494
+      },
+      {
+       "w": "pet",
+       "start": 15.494,
+       "end": 15.686
+      },
+      {
+       "w": "precisa",
+       "start": 15.686,
+       "end": 16.262
+      },
+      {
+       "w": "hoje,",
+       "start": 16.262,
+       "end": 16.646
+      },
+      {
+       "w": "marca",
+       "start": 16.746,
+       "end": 17.208
+      },
+      {
+       "w": "o",
+       "start": 17.208,
+       "end": 17.439
+      },
+      {
+       "w": "que",
+       "start": 17.439,
+       "end": 17.67
+      },
+      {
+       "w": "já",
+       "start": 17.67,
+       "end": 17.902
+      },
+      {
+       "w": "fez…",
+       "start": 17.902,
+       "end": 18.133
+      },
+      {
+       "w": "e",
+       "start": 18.333,
+       "end": 18.54
+      },
+      {
+       "w": "sabe",
+       "start": 18.54,
+       "end": 18.954
+      },
+      {
+       "w": "o",
+       "start": 18.954,
+       "end": 19.162
+      },
+      {
+       "w": "que",
+       "start": 19.162,
+       "end": 19.369
+      },
+      {
+       "w": "falta.",
+       "start": 19.369,
+       "end": 19.783
+      }
+     ],
+     "caption": "Você vê o que o seu pet precisa hoje, marca o que já fez… e sabe o que falta.",
+     "cues": {
+      "see": 14.15,
+      "tap": 16.846,
+      "left": 19.119
+     }
+    },
+    {
+     "id": "04-MultiPet",
+     "type": "MultiPet",
+     "line": "P5",
+     "start": 20.0,
+     "end": 24.25,
+     "voStart": 20.12,
+     "voEnd": 24.055,
+     "words": [
+      {
+       "w": "Cão",
+       "start": 20.12,
+       "end": 20.326
+      },
+      {
+       "w": "e",
+       "start": 20.326,
+       "end": 20.532
+      },
+      {
+       "w": "gato",
+       "start": 20.532,
+       "end": 20.945
+      },
+      {
+       "w": "na",
+       "start": 20.945,
+       "end": 21.151
+      },
+      {
+       "w": "mesma",
+       "start": 21.151,
+       "end": 21.564
+      },
+      {
+       "w": "conta…",
+       "start": 21.564,
+       "end": 21.976
+      },
+      {
+       "w": "cada",
+       "start": 22.156,
+       "end": 22.578
+      },
+      {
+       "w": "um",
+       "start": 22.578,
+       "end": 22.789
+      },
+      {
+       "w": "com",
+       "start": 22.789,
+       "end": 23.0
+      },
+      {
+       "w": "a",
+       "start": 23.0,
+       "end": 23.211
+      },
+      {
+       "w": "sua",
+       "start": 23.211,
+       "end": 23.422
+      },
+      {
+       "w": "rotina.",
+       "start": 23.422,
+       "end": 24.055
+      }
+     ],
+     "caption": "Cão e gato na mesma conta… cada um com a sua rotina.",
+     "cues": {
+      "switch": 21.514,
+      "routine": 23.422
+     }
+    },
+    {
+     "id": "05-CTA",
+     "type": "CTA",
+     "line": "P6",
+     "start": 24.25,
+     "end": 30.75,
+     "voStart": 24.4,
+     "voEnd": 29.471,
+     "words": [
+      {
+       "w": "Teste",
+       "start": 24.4,
+       "end": 24.974
+      },
+      {
+       "w": "três",
+       "start": 24.974,
+       "end": 25.26
+      },
+      {
+       "w": "dias",
+       "start": 25.26,
+       "end": 25.547
+      },
+      {
+       "w": "grátis,",
+       "start": 25.547,
+       "end": 26.121
+      },
+      {
+       "w": "sem",
+       "start": 26.121,
+       "end": 26.408
+      },
+      {
+       "w": "cartão.",
+       "start": 26.408,
+       "end": 26.981
+      },
+      {
+       "w": "Acesse",
+       "start": 27.231,
+       "end": 27.978
+      },
+      {
+       "w": "duopet.site",
+       "start": 27.978,
+       "end": 29.471
+      }
+     ],
+     "caption": "Teste três dias grátis, sem cartão. Acesse duopet.site",
+     "cues": {
+      "logo": 24.45,
+      "offer": 24.4,
+      "url": 27.978
+     }
+    }
+   ],
+   "vo": [
+    {
+     "line": "H1",
+     "file": "voice/pm_alex/H1.wav",
+     "start": 0.1,
+     "dur": 3.783
+    },
+    {
+     "line": "P2a",
+     "file": "voice/pm_alex/P2a.wav",
+     "start": 4.37,
+     "dur": 5.013
+    },
+    {
+     "line": "M3",
+     "file": "voice/pm_alex/M3.wav",
+     "start": 9.97,
+     "dur": 3.853
+    },
+    {
+     "line": "P4",
+     "file": "voice/pm_alex/P4.wav",
+     "start": 14.15,
+     "dur": 5.633
+    },
+    {
+     "line": "P5",
+     "file": "voice/pm_alex/P5.wav",
+     "start": 20.12,
+     "dur": 3.935
+    },
+    {
+     "line": "P6",
+     "file": "voice/pm_alex/P6.wav",
+     "start": 24.4,
+     "dur": 5.071
+    }
+   ],
+   "words": [
+    {
+     "w": "Ração,",
+     "start": 0.1,
+     "end": 0.515
+    },
+    {
+     "w": "remédio,",
+     "start": 0.515,
+     "end": 1.136
+    },
+    {
+     "w": "vacina,",
+     "start": 1.136,
+     "end": 1.758
+    },
+    {
+     "w": "consulta…",
+     "start": 1.758,
+     "end": 2.38
+    },
+    {
+     "w": "tá",
+     "start": 2.56,
+     "end": 2.825
+    },
+    {
+     "w": "tudo",
+     "start": 2.825,
+     "end": 3.354
+    },
+    {
+     "w": "onde?",
+     "start": 3.354,
+     "end": 3.883
+    },
+    {
+     "w": "Um",
+     "start": 4.37,
+     "end": 4.581
+    },
+    {
+     "w": "pouco",
+     "start": 4.581,
+     "end": 5.002
+    },
+    {
+     "w": "no",
+     "start": 5.002,
+     "end": 5.213
+    },
+    {
+     "w": "calendário,",
+     "start": 5.213,
+     "end": 6.055
+    },
+    {
+     "w": "um",
+     "start": 6.105,
+     "end": 6.368
+    },
+    {
+     "w": "pouco",
+     "start": 6.368,
+     "end": 6.895
+    },
+    {
+     "w": "no",
+     "start": 6.895,
+     "end": 7.158
+    },
+    {
+     "w": "WhatsApp…",
+     "start": 7.158,
+     "end": 7.684
+    },
+    {
+     "w": "e",
+     "start": 7.804,
+     "end": 8.001
+    },
+    {
+     "w": "o",
+     "start": 8.001,
+     "end": 8.199
+    },
+    {
+     "w": "resto",
+     "start": 8.199,
+     "end": 8.593
+    },
+    {
+     "w": "na",
+     "start": 8.593,
+     "end": 8.791
+    },
+    {
+     "w": "cabeça.",
+     "start": 8.791,
+     "end": 9.383
+    },
+    {
+     "w": "No",
+     "start": 9.97,
+     "end": 10.425
+    },
+    {
+     "w": "DuoPet,",
+     "start": 10.425,
+     "end": 11.335
+    },
+    {
+     "w": "cada",
+     "start": 11.455,
+     "end": 11.85
+    },
+    {
+     "w": "cuidado",
+     "start": 11.85,
+     "end": 12.442
+    },
+    {
+     "w": "fica",
+     "start": 12.442,
+     "end": 12.837
+    },
+    {
+     "w": "no",
+     "start": 12.837,
+     "end": 13.034
+    },
+    {
+     "w": "lugar",
+     "start": 13.034,
+     "end": 13.429
+    },
+    {
+     "w": "certo.",
+     "start": 13.429,
+     "end": 13.823
+    },
+    {
+     "w": "Você",
+     "start": 14.15,
+     "end": 14.534
+    },
+    {
+     "w": "vê",
+     "start": 14.534,
+     "end": 14.726
+    },
+    {
+     "w": "o",
+     "start": 14.726,
+     "end": 14.918
+    },
+    {
+     "w": "que",
+     "start": 14.918,
+     "end": 15.11
+    },
+    {
+     "w": "o",
+     "start": 15.11,
+     "end": 15.302
+    },
+    {
+     "w": "seu",
+     "start": 15.302,
+     "end": 15.494
+    },
+    {
+     "w": "pet",
+     "start": 15.494,
+     "end": 15.686
+    },
+    {
+     "w": "precisa",
+     "start": 15.686,
+     "end": 16.262
+    },
+    {
+     "w": "hoje,",
+     "start": 16.262,
+     "end": 16.646
+    },
+    {
+     "w": "marca",
+     "start": 16.746,
+     "end": 17.208
+    },
+    {
+     "w": "o",
+     "start": 17.208,
+     "end": 17.439
+    },
+    {
+     "w": "que",
+     "start": 17.439,
+     "end": 17.67
+    },
+    {
+     "w": "já",
+     "start": 17.67,
+     "end": 17.902
+    },
+    {
+     "w": "fez…",
+     "start": 17.902,
+     "end": 18.133
+    },
+    {
+     "w": "e",
+     "start": 18.333,
+     "end": 18.54
+    },
+    {
+     "w": "sabe",
+     "start": 18.54,
+     "end": 18.954
+    },
+    {
+     "w": "o",
+     "start": 18.954,
+     "end": 19.162
+    },
+    {
+     "w": "que",
+     "start": 19.162,
+     "end": 19.369
+    },
+    {
+     "w": "falta.",
+     "start": 19.369,
+     "end": 19.783
+    },
+    {
+     "w": "Cão",
+     "start": 20.12,
+     "end": 20.326
+    },
+    {
+     "w": "e",
+     "start": 20.326,
+     "end": 20.532
+    },
+    {
+     "w": "gato",
+     "start": 20.532,
+     "end": 20.945
+    },
+    {
+     "w": "na",
+     "start": 20.945,
+     "end": 21.151
+    },
+    {
+     "w": "mesma",
+     "start": 21.151,
+     "end": 21.564
+    },
+    {
+     "w": "conta…",
+     "start": 21.564,
+     "end": 21.976
+    },
+    {
+     "w": "cada",
+     "start": 22.156,
+     "end": 22.578
+    },
+    {
+     "w": "um",
+     "start": 22.578,
+     "end": 22.789
+    },
+    {
+     "w": "com",
+     "start": 22.789,
+     "end": 23.0
+    },
+    {
+     "w": "a",
+     "start": 23.0,
+     "end": 23.211
+    },
+    {
+     "w": "sua",
+     "start": 23.211,
+     "end": 23.422
+    },
+    {
+     "w": "rotina.",
+     "start": 23.422,
+     "end": 24.055
+    },
+    {
+     "w": "Teste",
+     "start": 24.4,
+     "end": 24.974
+    },
+    {
+     "w": "três",
+     "start": 24.974,
+     "end": 25.26
+    },
+    {
+     "w": "dias",
+     "start": 25.26,
+     "end": 25.547
+    },
+    {
+     "w": "grátis,",
+     "start": 25.547,
+     "end": 26.121
+    },
+    {
+     "w": "sem",
+     "start": 26.121,
+     "end": 26.408
+    },
+    {
+     "w": "cartão.",
+     "start": 26.408,
+     "end": 26.981
+    },
+    {
+     "w": "Acesse",
+     "start": 27.231,
+     "end": 27.978
+    },
+    {
+     "w": "duopet.site",
+     "start": 27.978,
+     "end": 29.471
+    }
+   ],
+   "sfx": [
+    {
+     "n": "card_slap",
+     "t": 0.06,
+     "g": 0.55
+    },
+    {
+     "n": "card_slap",
+     "t": 0.475,
+     "g": 0.55
+    },
+    {
+     "n": "card_slap",
+     "t": 1.096,
+     "g": 0.55
+    },
+    {
+     "n": "card_slap",
+     "t": 1.718,
+     "g": 0.55
+    },
+    {
+     "n": "pop_big",
+     "t": 2.51,
+     "g": 0.7
+    },
+    {
+     "n": "paper",
+     "t": 5.173,
+     "g": 0.22
+    },
+    {
+     "n": "paper",
+     "t": 7.118,
+     "g": 0.22
+    },
+    {
+     "n": "riser",
+     "t": 8.15,
+     "g": 0.6,
+     "dur": 1.6
+    },
+    {
+     "n": "paper",
+     "t": 8.751,
+     "g": 0.22
+    },
+    {
+     "n": "suck",
+     "t": 8.9,
+     "g": 0.55
+    },
+    {
+     "n": "impact",
+     "t": 9.75,
+     "g": 0.75
+    },
+    {
+     "n": "shimmer",
+     "t": 9.8,
+     "g": 0.45
+    },
+    {
+     "n": "click_soft",
+     "t": 9.93,
+     "g": 0.28
+    },
+    {
+     "n": "click_soft",
+     "t": 10.02,
+     "g": 0.28
+    },
+    {
+     "n": "click_soft",
+     "t": 10.11,
+     "g": 0.28
+    },
+    {
+     "n": "click_soft",
+     "t": 10.2,
+     "g": 0.28
+    },
+    {
+     "n": "click_soft",
+     "t": 10.29,
+     "g": 0.28
+    },
+    {
+     "n": "pop",
+     "t": 10.395,
+     "g": 0.5
+    },
+    {
+     "n": "whoosh_soft",
+     "t": 14.0,
+     "g": 0.35
+    },
+    {
+     "n": "tap",
+     "t": 16.846,
+     "g": 0.6
+    },
+    {
+     "n": "check",
+     "t": 16.906,
+     "g": 0.7
+    },
+    {
+     "n": "ring",
+     "t": 17.046,
+     "g": 0.4
+    },
+    {
+     "n": "toast",
+     "t": 17.396,
+     "g": 0.35
+    },
+    {
+     "n": "swoosh_3d",
+     "t": 20.0,
+     "g": 0.45
+    },
+    {
+     "n": "tap",
+     "t": 21.514,
+     "g": 0.5
+    },
+    {
+     "n": "pop",
+     "t": 21.564,
+     "g": 0.4
+    },
+    {
+     "n": "click_soft",
+     "t": 23.422,
+     "g": 0.3
+    },
+    {
+     "n": "pop",
+     "t": 24.4,
+     "g": 0.4
+    },
+    {
+     "n": "logo_sting",
+     "t": 24.45,
+     "g": 0.7
+    },
+    {
+     "n": "click_soft",
+     "t": 27.978,
+     "g": 0.35
+    }
+   ],
+   "music": [
+    {
+     "mood": "tension",
+     "start": 0.0,
+     "end": 9.75
+    },
+    {
+     "mood": "reveal",
+     "start": 9.75,
+     "end": 14.0
+    },
+    {
+     "mood": "groove",
+     "start": 14.0,
+     "end": 24.25
+    },
+    {
+     "mood": "sting",
+     "start": 24.25,
+     "end": 30.75
+    }
+   ]
+  },
+  "perf_h2": {
+   "duration": 30.25,
+   "frames": 908,
+   "scenes": [
+    {
+     "id": "00-HookDemo",
+     "type": "HookDemo",
+     "line": "H2",
+     "start": 0.0,
+     "end": 3.5,
+     "voStart": 0.12,
+     "voEnd": 3.107,
+     "words": [
+      {
+       "w": "É",
+       "start": 0.12,
+       "end": 0.307
+      },
+      {
+       "w": "assim",
+       "start": 0.307,
+       "end": 0.68
+      },
+      {
+       "w": "que",
+       "start": 0.68,
+       "end": 0.867
+      },
+      {
+       "w": "a",
+       "start": 0.867,
+       "end": 1.053
+      },
+      {
+       "w": "rotina",
+       "start": 1.053,
+       "end": 1.613
+      },
+      {
+       "w": "do",
+       "start": 1.613,
+       "end": 1.8
+      },
+      {
+       "w": "seu",
+       "start": 1.8,
+       "end": 1.987
+      },
+      {
+       "w": "pet",
+       "start": 1.987,
+       "end": 2.173
+      },
+      {
+       "w": "deveria",
+       "start": 2.173,
+       "end": 2.733
+      },
+      {
+       "w": "ficar.",
+       "start": 2.733,
+       "end": 3.107
+      }
+     ],
+     "caption": "É assim que a rotina do seu pet deveria ficar.",
+     "cues": {
+      "tap": 0.55,
+      "pet": 1.987
+     }
+    },
+    {
+     "id": "01-ChaosContrast",
+     "type": "ChaosContrast",
+     "line": "P2b",
+     "start": 3.5,
+     "end": 9.25,
+     "voStart": 3.62,
+     "voEnd": 8.871,
+     "words": [
+      {
+       "w": "Nada",
+       "start": 3.62,
+       "end": 3.996
+      },
+      {
+       "w": "de",
+       "start": 3.996,
+       "end": 4.184
+      },
+      {
+       "w": "um",
+       "start": 4.184,
+       "end": 4.372
+      },
+      {
+       "w": "pouco",
+       "start": 4.372,
+       "end": 4.749
+      },
+      {
+       "w": "no",
+       "start": 4.749,
+       "end": 4.937
+      },
+      {
+       "w": "calendário,",
+       "start": 4.937,
+       "end": 5.689
+      },
+      {
+       "w": "um",
+       "start": 5.739,
+       "end": 5.992
+      },
+      {
+       "w": "pouco",
+       "start": 5.992,
+       "end": 6.497
+      },
+      {
+       "w": "no",
+       "start": 6.497,
+       "end": 6.749
+      },
+      {
+       "w": "WhatsApp",
+       "start": 6.749,
+       "end": 7.254
+      },
+      {
+       "w": "e",
+       "start": 7.314,
+       "end": 7.509
+      },
+      {
+       "w": "o",
+       "start": 7.509,
+       "end": 7.703
+      },
+      {
+       "w": "resto",
+       "start": 7.703,
+       "end": 8.093
+      },
+      {
+       "w": "na",
+       "start": 8.093,
+       "end": 8.287
+      },
+      {
+       "w": "cabeça.",
+       "start": 8.287,
+       "end": 8.871
+      }
+     ],
+     "caption": "Nada de um pouco no calendário, um pouco no WhatsApp e o resto na cabeça.",
+     "cues": {
+      "keys": {
+       "calendário": 4.897,
+       "whatsapp": 6.709,
+       "cabeça": 8.247
+      },
+      "converge": 8.3
+     }
+    },
+    {
+     "id": "02-Reveal",
+     "type": "Reveal",
+     "line": "M3",
+     "start": 9.25,
+     "end": 13.5,
+     "voStart": 9.47,
+     "voEnd": 13.323,
+     "words": [
+      {
+       "w": "No",
+       "start": 9.47,
+       "end": 9.925
+      },
+      {
+       "w": "DuoPet,",
+       "start": 9.925,
+       "end": 10.835
+      },
+      {
+       "w": "cada",
+       "start": 10.955,
+       "end": 11.35
+      },
+      {
+       "w": "cuidado",
+       "start": 11.35,
+       "end": 11.942
+      },
+      {
+       "w": "fica",
+       "start": 11.942,
+       "end": 12.337
+      },
+      {
+       "w": "no",
+       "start": 12.337,
+       "end": 12.534
+      },
+      {
+       "w": "lugar",
+       "start": 12.534,
+       "end": 12.929
+      },
+      {
+       "w": "certo.",
+       "start": 12.929,
+       "end": 13.323
+      }
+     ],
+     "caption": "No DuoPet, cada cuidado fica no lugar certo.",
+     "cues": {
+      "impact": 9.25,
+      "brand": 9.925,
+      "place": 12.534
+     }
+    },
+    {
+     "id": "03-Demo",
+     "type": "Demo",
+     "line": "P4",
+     "start": 13.5,
+     "end": 19.5,
+     "voStart": 13.65,
+     "voEnd": 19.283,
+     "words": [
+      {
+       "w": "Você",
+       "start": 13.65,
+       "end": 14.034
+      },
+      {
+       "w": "vê",
+       "start": 14.034,
+       "end": 14.226
+      },
+      {
+       "w": "o",
+       "start": 14.226,
+       "end": 14.418
+      },
+      {
+       "w": "que",
+       "start": 14.418,
+       "end": 14.61
+      },
+      {
+       "w": "o",
+       "start": 14.61,
+       "end": 14.802
+      },
+      {
+       "w": "seu",
+       "start": 14.802,
+       "end": 14.994
+      },
+      {
+       "w": "pet",
+       "start": 14.994,
+       "end": 15.186
+      },
+      {
+       "w": "precisa",
+       "start": 15.186,
+       "end": 15.762
+      },
+      {
+       "w": "hoje,",
+       "start": 15.762,
+       "end": 16.146
+      },
+      {
+       "w": "marca",
+       "start": 16.246,
+       "end": 16.708
+      },
+      {
+       "w": "o",
+       "start": 16.708,
+       "end": 16.939
+      },
+      {
+       "w": "que",
+       "start": 16.939,
+       "end": 17.17
+      },
+      {
+       "w": "já",
+       "start": 17.17,
+       "end": 17.402
+      },
+      {
+       "w": "fez…",
+       "start": 17.402,
+       "end": 17.633
+      },
+      {
+       "w": "e",
+       "start": 17.833,
+       "end": 18.04
+      },
+      {
+       "w": "sabe",
+       "start": 18.04,
+       "end": 18.454
+      },
+      {
+       "w": "o",
+       "start": 18.454,
+       "end": 18.662
+      },
+      {
+       "w": "que",
+       "start": 18.662,
+       "end": 18.869
+      },
+      {
+       "w": "falta.",
+       "start": 18.869,
+       "end": 19.283
+      }
+     ],
+     "caption": "Você vê o que o seu pet precisa hoje, marca o que já fez… e sabe o que falta.",
+     "cues": {
+      "see": 13.65,
+      "tap": 16.346,
+      "left": 18.619
+     }
+    },
+    {
+     "id": "04-MultiPet",
+     "type": "MultiPet",
+     "line": "P5",
+     "start": 19.5,
+     "end": 23.75,
+     "voStart": 19.62,
+     "voEnd": 23.555,
+     "words": [
+      {
+       "w": "Cão",
+       "start": 19.62,
+       "end": 19.826
+      },
+      {
+       "w": "e",
+       "start": 19.826,
+       "end": 20.032
+      },
+      {
+       "w": "gato",
+       "start": 20.032,
+       "end": 20.445
+      },
+      {
+       "w": "na",
+       "start": 20.445,
+       "end": 20.651
+      },
+      {
+       "w": "mesma",
+       "start": 20.651,
+       "end": 21.064
+      },
+      {
+       "w": "conta…",
+       "start": 21.064,
+       "end": 21.476
+      },
+      {
+       "w": "cada",
+       "start": 21.656,
+       "end": 22.078
+      },
+      {
+       "w": "um",
+       "start": 22.078,
+       "end": 22.289
+      },
+      {
+       "w": "com",
+       "start": 22.289,
+       "end": 22.5
+      },
+      {
+       "w": "a",
+       "start": 22.5,
+       "end": 22.711
+      },
+      {
+       "w": "sua",
+       "start": 22.711,
+       "end": 22.922
+      },
+      {
+       "w": "rotina.",
+       "start": 22.922,
+       "end": 23.555
+      }
+     ],
+     "caption": "Cão e gato na mesma conta… cada um com a sua rotina.",
+     "cues": {
+      "switch": 21.014,
+      "routine": 22.922
+     }
+    },
+    {
+     "id": "05-CTA",
+     "type": "CTA",
+     "line": "P6",
+     "start": 23.75,
+     "end": 30.25,
+     "voStart": 23.9,
+     "voEnd": 28.971,
+     "words": [
+      {
+       "w": "Teste",
+       "start": 23.9,
+       "end": 24.474
+      },
+      {
+       "w": "três",
+       "start": 24.474,
+       "end": 24.76
+      },
+      {
+       "w": "dias",
+       "start": 24.76,
+       "end": 25.047
+      },
+      {
+       "w": "grátis,",
+       "start": 25.047,
+       "end": 25.621
+      },
+      {
+       "w": "sem",
+       "start": 25.621,
+       "end": 25.908
+      },
+      {
+       "w": "cartão.",
+       "start": 25.908,
+       "end": 26.481
+      },
+      {
+       "w": "Acesse",
+       "start": 26.731,
+       "end": 27.478
+      },
+      {
+       "w": "duopet.site",
+       "start": 27.478,
+       "end": 28.971
+      }
+     ],
+     "caption": "Teste três dias grátis, sem cartão. Acesse duopet.site",
+     "cues": {
+      "logo": 23.95,
+      "offer": 23.9,
+      "url": 27.478
+     }
+    }
+   ],
+   "vo": [
+    {
+     "line": "H2",
+     "file": "voice/pm_alex/H2.wav",
+     "start": 0.12,
+     "dur": 2.987
+    },
+    {
+     "line": "P2b",
+     "file": "voice/pm_alex/P2b.wav",
+     "start": 3.62,
+     "dur": 5.251
+    },
+    {
+     "line": "M3",
+     "file": "voice/pm_alex/M3.wav",
+     "start": 9.47,
+     "dur": 3.853
+    },
+    {
+     "line": "P4",
+     "file": "voice/pm_alex/P4.wav",
+     "start": 13.65,
+     "dur": 5.633
+    },
+    {
+     "line": "P5",
+     "file": "voice/pm_alex/P5.wav",
+     "start": 19.62,
+     "dur": 3.935
+    },
+    {
+     "line": "P6",
+     "file": "voice/pm_alex/P6.wav",
+     "start": 23.9,
+     "dur": 5.071
+    }
+   ],
+   "words": [
+    {
+     "w": "É",
+     "start": 0.12,
+     "end": 0.307
+    },
+    {
+     "w": "assim",
+     "start": 0.307,
+     "end": 0.68
+    },
+    {
+     "w": "que",
+     "start": 0.68,
+     "end": 0.867
+    },
+    {
+     "w": "a",
+     "start": 0.867,
+     "end": 1.053
+    },
+    {
+     "w": "rotina",
+     "start": 1.053,
+     "end": 1.613
+    },
+    {
+     "w": "do",
+     "start": 1.613,
+     "end": 1.8
+    },
+    {
+     "w": "seu",
+     "start": 1.8,
+     "end": 1.987
+    },
+    {
+     "w": "pet",
+     "start": 1.987,
+     "end": 2.173
+    },
+    {
+     "w": "deveria",
+     "start": 2.173,
+     "end": 2.733
+    },
+    {
+     "w": "ficar.",
+     "start": 2.733,
+     "end": 3.107
+    },
+    {
+     "w": "Nada",
+     "start": 3.62,
+     "end": 3.996
+    },
+    {
+     "w": "de",
+     "start": 3.996,
+     "end": 4.184
+    },
+    {
+     "w": "um",
+     "start": 4.184,
+     "end": 4.372
+    },
+    {
+     "w": "pouco",
+     "start": 4.372,
+     "end": 4.749
+    },
+    {
+     "w": "no",
+     "start": 4.749,
+     "end": 4.937
+    },
+    {
+     "w": "calendário,",
+     "start": 4.937,
+     "end": 5.689
+    },
+    {
+     "w": "um",
+     "start": 5.739,
+     "end": 5.992
+    },
+    {
+     "w": "pouco",
+     "start": 5.992,
+     "end": 6.497
+    },
+    {
+     "w": "no",
+     "start": 6.497,
+     "end": 6.749
+    },
+    {
+     "w": "WhatsApp",
+     "start": 6.749,
+     "end": 7.254
+    },
+    {
+     "w": "e",
+     "start": 7.314,
+     "end": 7.509
+    },
+    {
+     "w": "o",
+     "start": 7.509,
+     "end": 7.703
+    },
+    {
+     "w": "resto",
+     "start": 7.703,
+     "end": 8.093
+    },
+    {
+     "w": "na",
+     "start": 8.093,
+     "end": 8.287
+    },
+    {
+     "w": "cabeça.",
+     "start": 8.287,
+     "end": 8.871
+    },
+    {
+     "w": "No",
+     "start": 9.47,
+     "end": 9.925
+    },
+    {
+     "w": "DuoPet,",
+     "start": 9.925,
+     "end": 10.835
+    },
+    {
+     "w": "cada",
+     "start": 10.955,
+     "end": 11.35
+    },
+    {
+     "w": "cuidado",
+     "start": 11.35,
+     "end": 11.942
+    },
+    {
+     "w": "fica",
+     "start": 11.942,
+     "end": 12.337
+    },
+    {
+     "w": "no",
+     "start": 12.337,
+     "end": 12.534
+    },
+    {
+     "w": "lugar",
+     "start": 12.534,
+     "end": 12.929
+    },
+    {
+     "w": "certo.",
+     "start": 12.929,
+     "end": 13.323
+    },
+    {
+     "w": "Você",
+     "start": 13.65,
+     "end": 14.034
+    },
+    {
+     "w": "vê",
+     "start": 14.034,
+     "end": 14.226
+    },
+    {
+     "w": "o",
+     "start": 14.226,
+     "end": 14.418
+    },
+    {
+     "w": "que",
+     "start": 14.418,
+     "end": 14.61
+    },
+    {
+     "w": "o",
+     "start": 14.61,
+     "end": 14.802
+    },
+    {
+     "w": "seu",
+     "start": 14.802,
+     "end": 14.994
+    },
+    {
+     "w": "pet",
+     "start": 14.994,
+     "end": 15.186
+    },
+    {
+     "w": "precisa",
+     "start": 15.186,
+     "end": 15.762
+    },
+    {
+     "w": "hoje,",
+     "start": 15.762,
+     "end": 16.146
+    },
+    {
+     "w": "marca",
+     "start": 16.246,
+     "end": 16.708
+    },
+    {
+     "w": "o",
+     "start": 16.708,
+     "end": 16.939
+    },
+    {
+     "w": "que",
+     "start": 16.939,
+     "end": 17.17
+    },
+    {
+     "w": "já",
+     "start": 17.17,
+     "end": 17.402
+    },
+    {
+     "w": "fez…",
+     "start": 17.402,
+     "end": 17.633
+    },
+    {
+     "w": "e",
+     "start": 17.833,
+     "end": 18.04
+    },
+    {
+     "w": "sabe",
+     "start": 18.04,
+     "end": 18.454
+    },
+    {
+     "w": "o",
+     "start": 18.454,
+     "end": 18.662
+    },
+    {
+     "w": "que",
+     "start": 18.662,
+     "end": 18.869
+    },
+    {
+     "w": "falta.",
+     "start": 18.869,
+     "end": 19.283
+    },
+    {
+     "w": "Cão",
+     "start": 19.62,
+     "end": 19.826
+    },
+    {
+     "w": "e",
+     "start": 19.826,
+     "end": 20.032
+    },
+    {
+     "w": "gato",
+     "start": 20.032,
+     "end": 20.445
+    },
+    {
+     "w": "na",
+     "start": 20.445,
+     "end": 20.651
+    },
+    {
+     "w": "mesma",
+     "start": 20.651,
+     "end": 21.064
+    },
+    {
+     "w": "conta…",
+     "start": 21.064,
+     "end": 21.476
+    },
+    {
+     "w": "cada",
+     "start": 21.656,
+     "end": 22.078
+    },
+    {
+     "w": "um",
+     "start": 22.078,
+     "end": 22.289
+    },
+    {
+     "w": "com",
+     "start": 22.289,
+     "end": 22.5
+    },
+    {
+     "w": "a",
+     "start": 22.5,
+     "end": 22.711
+    },
+    {
+     "w": "sua",
+     "start": 22.711,
+     "end": 22.922
+    },
+    {
+     "w": "rotina.",
+     "start": 22.922,
+     "end": 23.555
+    },
+    {
+     "w": "Teste",
+     "start": 23.9,
+     "end": 24.474
+    },
+    {
+     "w": "três",
+     "start": 24.474,
+     "end": 24.76
+    },
+    {
+     "w": "dias",
+     "start": 24.76,
+     "end": 25.047
+    },
+    {
+     "w": "grátis,",
+     "start": 25.047,
+     "end": 25.621
+    },
+    {
+     "w": "sem",
+     "start": 25.621,
+     "end": 25.908
+    },
+    {
+     "w": "cartão.",
+     "start": 25.908,
+     "end": 26.481
+    },
+    {
+     "w": "Acesse",
+     "start": 26.731,
+     "end": 27.478
+    },
+    {
+     "w": "duopet.site",
+     "start": 27.478,
+     "end": 28.971
+    }
+   ],
+   "sfx": [
+    {
+     "n": "tap",
+     "t": 0.55,
+     "g": 0.6
+    },
+    {
+     "n": "check",
+     "t": 0.61,
+     "g": 0.7
+    },
+    {
+     "n": "ring",
+     "t": 0.75,
+     "g": 0.4
+    },
+    {
+     "n": "paper",
+     "t": 4.897,
+     "g": 0.22
+    },
+    {
+     "n": "paper",
+     "t": 6.709,
+     "g": 0.22
+    },
+    {
+     "n": "riser",
+     "t": 7.65,
+     "g": 0.6,
+     "dur": 1.6
+    },
+    {
+     "n": "paper",
+     "t": 8.247,
+     "g": 0.22
+    },
+    {
+     "n": "suck",
+     "t": 8.4,
+     "g": 0.55
+    },
+    {
+     "n": "impact",
+     "t": 9.25,
+     "g": 0.75
+    },
+    {
+     "n": "shimmer",
+     "t": 9.3,
+     "g": 0.45
+    },
+    {
+     "n": "click_soft",
+     "t": 9.43,
+     "g": 0.28
+    },
+    {
+     "n": "click_soft",
+     "t": 9.52,
+     "g": 0.28
+    },
+    {
+     "n": "click_soft",
+     "t": 9.61,
+     "g": 0.28
+    },
+    {
+     "n": "click_soft",
+     "t": 9.7,
+     "g": 0.28
+    },
+    {
+     "n": "click_soft",
+     "t": 9.79,
+     "g": 0.28
+    },
+    {
+     "n": "pop",
+     "t": 9.895,
+     "g": 0.5
+    },
+    {
+     "n": "whoosh_soft",
+     "t": 13.5,
+     "g": 0.35
+    },
+    {
+     "n": "tap",
+     "t": 16.346,
+     "g": 0.6
+    },
+    {
+     "n": "check",
+     "t": 16.406,
+     "g": 0.7
+    },
+    {
+     "n": "ring",
+     "t": 16.546,
+     "g": 0.4
+    },
+    {
+     "n": "toast",
+     "t": 16.896,
+     "g": 0.35
+    },
+    {
+     "n": "swoosh_3d",
+     "t": 19.5,
+     "g": 0.45
+    },
+    {
+     "n": "tap",
+     "t": 21.014,
+     "g": 0.5
+    },
+    {
+     "n": "pop",
+     "t": 21.064,
+     "g": 0.4
+    },
+    {
+     "n": "click_soft",
+     "t": 22.922,
+     "g": 0.3
+    },
+    {
+     "n": "pop",
+     "t": 23.9,
+     "g": 0.4
+    },
+    {
+     "n": "logo_sting",
+     "t": 23.95,
+     "g": 0.7
+    },
+    {
+     "n": "click_soft",
+     "t": 27.478,
+     "g": 0.35
+    }
+   ],
+   "music": [
+    {
+     "mood": "groove",
+     "start": 0.0,
+     "end": 3.5
+    },
+    {
+     "mood": "tension",
+     "start": 3.5,
+     "end": 9.25
+    },
+    {
+     "mood": "reveal",
+     "start": 9.25,
+     "end": 13.5
+    },
+    {
+     "mood": "groove",
+     "start": 13.5,
+     "end": 23.75
+    },
+    {
+     "mood": "sting",
+     "start": 23.75,
+     "end": 30.25
+    }
+   ]
+  },
+  "perf_h3": {
+   "duration": 31.25,
+   "frames": 938,
+   "scenes": [
+    {
+     "id": "00-HookMulti",
+     "type": "HookMulti",
+     "line": "H3",
+     "start": 0.0,
+     "end": 4.75,
+     "voStart": 0.1,
+     "voEnd": 4.609,
+     "words": [
+      {
+       "w": "Dois",
+       "start": 0.1,
+       "end": 0.399
+      },
+      {
+       "w": "pets,",
+       "start": 0.399,
+       "end": 0.697
+      },
+      {
+       "w": "duas",
+       "start": 0.697,
+       "end": 0.996
+      },
+      {
+       "w": "rotinas…",
+       "start": 0.996,
+       "end": 1.892
+      },
+      {
+       "w": "e",
+       "start": 2.092,
+       "end": 2.302
+      },
+      {
+       "w": "quem",
+       "start": 2.302,
+       "end": 2.512
+      },
+      {
+       "w": "guarda",
+       "start": 2.512,
+       "end": 2.931
+      },
+      {
+       "w": "tudo",
+       "start": 2.931,
+       "end": 3.351
+      },
+      {
+       "w": "é",
+       "start": 3.351,
+       "end": 3.56
+      },
+      {
+       "w": "a",
+       "start": 3.56,
+       "end": 3.77
+      },
+      {
+       "w": "sua",
+       "start": 3.77,
+       "end": 3.98
+      },
+      {
+       "w": "cabeça?",
+       "start": 3.98,
+       "end": 4.609
+      }
+     ],
+     "caption": "Dois pets, duas rotinas… e quem guarda tudo é a sua cabeça?",
+     "cues": {
+      "two": 0.946,
+      "head": 3.88
+     }
+    },
+    {
+     "id": "01-ChaosShort",
+     "type": "ChaosShort",
+     "line": "P2a",
+     "start": 4.75,
+     "end": 10.25,
+     "voStart": 4.87,
+     "voEnd": 9.883,
+     "words": [
+      {
+       "w": "Um",
+       "start": 4.87,
+       "end": 5.081
+      },
+      {
+       "w": "pouco",
+       "start": 5.081,
+       "end": 5.502
+      },
+      {
+       "w": "no",
+       "start": 5.502,
+       "end": 5.713
+      },
+      {
+       "w": "calendário,",
+       "start": 5.713,
+       "end": 6.555
+      },
+      {
+       "w": "um",
+       "start": 6.605,
+       "end": 6.868
+      },
+      {
+       "w": "pouco",
+       "start": 6.868,
+       "end": 7.395
+      },
+      {
+       "w": "no",
+       "start": 7.395,
+       "end": 7.658
+      },
+      {
+       "w": "WhatsApp…",
+       "start": 7.658,
+       "end": 8.184
+      },
+      {
+       "w": "e",
+       "start": 8.304,
+       "end": 8.501
+      },
+      {
+       "w": "o",
+       "start": 8.501,
+       "end": 8.699
+      },
+      {
+       "w": "resto",
+       "start": 8.699,
+       "end": 9.093
+      },
+      {
+       "w": "na",
+       "start": 9.093,
+       "end": 9.291
+      },
+      {
+       "w": "cabeça.",
+       "start": 9.291,
+       "end": 9.883
+      }
+     ],
+     "caption": "Um pouco no calendário, um pouco no WhatsApp… e o resto na cabeça.",
+     "cues": {
+      "keys": {
+       "calendário": 5.673,
+       "whatsapp": 7.618,
+       "cabeça": 9.251
+      },
+      "converge": 9.3
+     }
+    },
+    {
+     "id": "02-Reveal",
+     "type": "Reveal",
+     "line": "M3",
+     "start": 10.25,
+     "end": 14.5,
+     "voStart": 10.47,
+     "voEnd": 14.323,
+     "words": [
+      {
+       "w": "No",
+       "start": 10.47,
+       "end": 10.925
+      },
+      {
+       "w": "DuoPet,",
+       "start": 10.925,
+       "end": 11.835
+      },
+      {
+       "w": "cada",
+       "start": 11.955,
+       "end": 12.35
+      },
+      {
+       "w": "cuidado",
+       "start": 12.35,
+       "end": 12.942
+      },
+      {
+       "w": "fica",
+       "start": 12.942,
+       "end": 13.337
+      },
+      {
+       "w": "no",
+       "start": 13.337,
+       "end": 13.534
+      },
+      {
+       "w": "lugar",
+       "start": 13.534,
+       "end": 13.929
+      },
+      {
+       "w": "certo.",
+       "start": 13.929,
+       "end": 14.323
+      }
+     ],
+     "caption": "No DuoPet, cada cuidado fica no lugar certo.",
+     "cues": {
+      "impact": 10.25,
+      "brand": 10.925,
+      "place": 13.534
+     }
+    },
+    {
+     "id": "03-Demo",
+     "type": "Demo",
+     "line": "P4",
+     "start": 14.5,
+     "end": 20.5,
+     "voStart": 14.65,
+     "voEnd": 20.283,
+     "words": [
+      {
+       "w": "Você",
+       "start": 14.65,
+       "end": 15.034
+      },
+      {
+       "w": "vê",
+       "start": 15.034,
+       "end": 15.226
+      },
+      {
+       "w": "o",
+       "start": 15.226,
+       "end": 15.418
+      },
+      {
+       "w": "que",
+       "start": 15.418,
+       "end": 15.61
+      },
+      {
+       "w": "o",
+       "start": 15.61,
+       "end": 15.802
+      },
+      {
+       "w": "seu",
+       "start": 15.802,
+       "end": 15.994
+      },
+      {
+       "w": "pet",
+       "start": 15.994,
+       "end": 16.186
+      },
+      {
+       "w": "precisa",
+       "start": 16.186,
+       "end": 16.762
+      },
+      {
+       "w": "hoje,",
+       "start": 16.762,
+       "end": 17.146
+      },
+      {
+       "w": "marca",
+       "start": 17.246,
+       "end": 17.708
+      },
+      {
+       "w": "o",
+       "start": 17.708,
+       "end": 17.939
+      },
+      {
+       "w": "que",
+       "start": 17.939,
+       "end": 18.17
+      },
+      {
+       "w": "já",
+       "start": 18.17,
+       "end": 18.402
+      },
+      {
+       "w": "fez…",
+       "start": 18.402,
+       "end": 18.633
+      },
+      {
+       "w": "e",
+       "start": 18.833,
+       "end": 19.04
+      },
+      {
+       "w": "sabe",
+       "start": 19.04,
+       "end": 19.454
+      },
+      {
+       "w": "o",
+       "start": 19.454,
+       "end": 19.662
+      },
+      {
+       "w": "que",
+       "start": 19.662,
+       "end": 19.869
+      },
+      {
+       "w": "falta.",
+       "start": 19.869,
+       "end": 20.283
+      }
+     ],
+     "caption": "Você vê o que o seu pet precisa hoje, marca o que já fez… e sabe o que falta.",
+     "cues": {
+      "see": 14.65,
+      "tap": 17.346,
+      "left": 19.619
+     }
+    },
+    {
+     "id": "04-MultiPet",
+     "type": "MultiPet",
+     "line": "P5",
+     "start": 20.5,
+     "end": 24.75,
+     "voStart": 20.62,
+     "voEnd": 24.555,
+     "words": [
+      {
+       "w": "Cão",
+       "start": 20.62,
+       "end": 20.826
+      },
+      {
+       "w": "e",
+       "start": 20.826,
+       "end": 21.032
+      },
+      {
+       "w": "gato",
+       "start": 21.032,
+       "end": 21.445
+      },
+      {
+       "w": "na",
+       "start": 21.445,
+       "end": 21.651
+      },
+      {
+       "w": "mesma",
+       "start": 21.651,
+       "end": 22.064
+      },
+      {
+       "w": "conta…",
+       "start": 22.064,
+       "end": 22.476
+      },
+      {
+       "w": "cada",
+       "start": 22.656,
+       "end": 23.078
+      },
+      {
+       "w": "um",
+       "start": 23.078,
+       "end": 23.289
+      },
+      {
+       "w": "com",
+       "start": 23.289,
+       "end": 23.5
+      },
+      {
+       "w": "a",
+       "start": 23.5,
+       "end": 23.711
+      },
+      {
+       "w": "sua",
+       "start": 23.711,
+       "end": 23.922
+      },
+      {
+       "w": "rotina.",
+       "start": 23.922,
+       "end": 24.555
+      }
+     ],
+     "caption": "Cão e gato na mesma conta… cada um com a sua rotina.",
+     "cues": {
+      "switch": 22.014,
+      "routine": 23.922
+     }
+    },
+    {
+     "id": "05-CTA",
+     "type": "CTA",
+     "line": "P6",
+     "start": 24.75,
+     "end": 31.25,
+     "voStart": 24.9,
+     "voEnd": 29.971,
+     "words": [
+      {
+       "w": "Teste",
+       "start": 24.9,
+       "end": 25.474
+      },
+      {
+       "w": "três",
+       "start": 25.474,
+       "end": 25.76
+      },
+      {
+       "w": "dias",
+       "start": 25.76,
+       "end": 26.047
+      },
+      {
+       "w": "grátis,",
+       "start": 26.047,
+       "end": 26.621
+      },
+      {
+       "w": "sem",
+       "start": 26.621,
+       "end": 26.908
+      },
+      {
+       "w": "cartão.",
+       "start": 26.908,
+       "end": 27.481
+      },
+      {
+       "w": "Acesse",
+       "start": 27.731,
+       "end": 28.478
+      },
+      {
+       "w": "duopet.site",
+       "start": 28.478,
+       "end": 29.971
+      }
+     ],
+     "caption": "Teste três dias grátis, sem cartão. Acesse duopet.site",
+     "cues": {
+      "logo": 24.95,
+      "offer": 24.9,
+      "url": 28.478
+     }
+    }
+   ],
+   "vo": [
+    {
+     "line": "H3",
+     "file": "voice/pm_alex/H3.wav",
+     "start": 0.1,
+     "dur": 4.509
+    },
+    {
+     "line": "P2a",
+     "file": "voice/pm_alex/P2a.wav",
+     "start": 4.87,
+     "dur": 5.013
+    },
+    {
+     "line": "M3",
+     "file": "voice/pm_alex/M3.wav",
+     "start": 10.47,
+     "dur": 3.853
+    },
+    {
+     "line": "P4",
+     "file": "voice/pm_alex/P4.wav",
+     "start": 14.65,
+     "dur": 5.633
+    },
+    {
+     "line": "P5",
+     "file": "voice/pm_alex/P5.wav",
+     "start": 20.62,
+     "dur": 3.935
+    },
+    {
+     "line": "P6",
+     "file": "voice/pm_alex/P6.wav",
+     "start": 24.9,
+     "dur": 5.071
+    }
+   ],
+   "words": [
+    {
+     "w": "Dois",
+     "start": 0.1,
+     "end": 0.399
+    },
+    {
+     "w": "pets,",
+     "start": 0.399,
+     "end": 0.697
+    },
+    {
+     "w": "duas",
+     "start": 0.697,
+     "end": 0.996
+    },
+    {
+     "w": "rotinas…",
+     "start": 0.996,
+     "end": 1.892
+    },
+    {
+     "w": "e",
+     "start": 2.092,
+     "end": 2.302
+    },
+    {
+     "w": "quem",
+     "start": 2.302,
+     "end": 2.512
+    },
+    {
+     "w": "guarda",
+     "start": 2.512,
+     "end": 2.931
+    },
+    {
+     "w": "tudo",
+     "start": 2.931,
+     "end": 3.351
+    },
+    {
+     "w": "é",
+     "start": 3.351,
+     "end": 3.56
+    },
+    {
+     "w": "a",
+     "start": 3.56,
+     "end": 3.77
+    },
+    {
+     "w": "sua",
+     "start": 3.77,
+     "end": 3.98
+    },
+    {
+     "w": "cabeça?",
+     "start": 3.98,
+     "end": 4.609
+    },
+    {
+     "w": "Um",
+     "start": 4.87,
+     "end": 5.081
+    },
+    {
+     "w": "pouco",
+     "start": 5.081,
+     "end": 5.502
+    },
+    {
+     "w": "no",
+     "start": 5.502,
+     "end": 5.713
+    },
+    {
+     "w": "calendário,",
+     "start": 5.713,
+     "end": 6.555
+    },
+    {
+     "w": "um",
+     "start": 6.605,
+     "end": 6.868
+    },
+    {
+     "w": "pouco",
+     "start": 6.868,
+     "end": 7.395
+    },
+    {
+     "w": "no",
+     "start": 7.395,
+     "end": 7.658
+    },
+    {
+     "w": "WhatsApp…",
+     "start": 7.658,
+     "end": 8.184
+    },
+    {
+     "w": "e",
+     "start": 8.304,
+     "end": 8.501
+    },
+    {
+     "w": "o",
+     "start": 8.501,
+     "end": 8.699
+    },
+    {
+     "w": "resto",
+     "start": 8.699,
+     "end": 9.093
+    },
+    {
+     "w": "na",
+     "start": 9.093,
+     "end": 9.291
+    },
+    {
+     "w": "cabeça.",
+     "start": 9.291,
+     "end": 9.883
+    },
+    {
+     "w": "No",
+     "start": 10.47,
+     "end": 10.925
+    },
+    {
+     "w": "DuoPet,",
+     "start": 10.925,
+     "end": 11.835
+    },
+    {
+     "w": "cada",
+     "start": 11.955,
+     "end": 12.35
+    },
+    {
+     "w": "cuidado",
+     "start": 12.35,
+     "end": 12.942
+    },
+    {
+     "w": "fica",
+     "start": 12.942,
+     "end": 13.337
+    },
+    {
+     "w": "no",
+     "start": 13.337,
+     "end": 13.534
+    },
+    {
+     "w": "lugar",
+     "start": 13.534,
+     "end": 13.929
+    },
+    {
+     "w": "certo.",
+     "start": 13.929,
+     "end": 14.323
+    },
+    {
+     "w": "Você",
+     "start": 14.65,
+     "end": 15.034
+    },
+    {
+     "w": "vê",
+     "start": 15.034,
+     "end": 15.226
+    },
+    {
+     "w": "o",
+     "start": 15.226,
+     "end": 15.418
+    },
+    {
+     "w": "que",
+     "start": 15.418,
+     "end": 15.61
+    },
+    {
+     "w": "o",
+     "start": 15.61,
+     "end": 15.802
+    },
+    {
+     "w": "seu",
+     "start": 15.802,
+     "end": 15.994
+    },
+    {
+     "w": "pet",
+     "start": 15.994,
+     "end": 16.186
+    },
+    {
+     "w": "precisa",
+     "start": 16.186,
+     "end": 16.762
+    },
+    {
+     "w": "hoje,",
+     "start": 16.762,
+     "end": 17.146
+    },
+    {
+     "w": "marca",
+     "start": 17.246,
+     "end": 17.708
+    },
+    {
+     "w": "o",
+     "start": 17.708,
+     "end": 17.939
+    },
+    {
+     "w": "que",
+     "start": 17.939,
+     "end": 18.17
+    },
+    {
+     "w": "já",
+     "start": 18.17,
+     "end": 18.402
+    },
+    {
+     "w": "fez…",
+     "start": 18.402,
+     "end": 18.633
+    },
+    {
+     "w": "e",
+     "start": 18.833,
+     "end": 19.04
+    },
+    {
+     "w": "sabe",
+     "start": 19.04,
+     "end": 19.454
+    },
+    {
+     "w": "o",
+     "start": 19.454,
+     "end": 19.662
+    },
+    {
+     "w": "que",
+     "start": 19.662,
+     "end": 19.869
+    },
+    {
+     "w": "falta.",
+     "start": 19.869,
+     "end": 20.283
+    },
+    {
+     "w": "Cão",
+     "start": 20.62,
+     "end": 20.826
+    },
+    {
+     "w": "e",
+     "start": 20.826,
+     "end": 21.032
+    },
+    {
+     "w": "gato",
+     "start": 21.032,
+     "end": 21.445
+    },
+    {
+     "w": "na",
+     "start": 21.445,
+     "end": 21.651
+    },
+    {
+     "w": "mesma",
+     "start": 21.651,
+     "end": 22.064
+    },
+    {
+     "w": "conta…",
+     "start": 22.064,
+     "end": 22.476
+    },
+    {
+     "w": "cada",
+     "start": 22.656,
+     "end": 23.078
+    },
+    {
+     "w": "um",
+     "start": 23.078,
+     "end": 23.289
+    },
+    {
+     "w": "com",
+     "start": 23.289,
+     "end": 23.5
+    },
+    {
+     "w": "a",
+     "start": 23.5,
+     "end": 23.711
+    },
+    {
+     "w": "sua",
+     "start": 23.711,
+     "end": 23.922
+    },
+    {
+     "w": "rotina.",
+     "start": 23.922,
+     "end": 24.555
+    },
+    {
+     "w": "Teste",
+     "start": 24.9,
+     "end": 25.474
+    },
+    {
+     "w": "três",
+     "start": 25.474,
+     "end": 25.76
+    },
+    {
+     "w": "dias",
+     "start": 25.76,
+     "end": 26.047
+    },
+    {
+     "w": "grátis,",
+     "start": 26.047,
+     "end": 26.621
+    },
+    {
+     "w": "sem",
+     "start": 26.621,
+     "end": 26.908
+    },
+    {
+     "w": "cartão.",
+     "start": 26.908,
+     "end": 27.481
+    },
+    {
+     "w": "Acesse",
+     "start": 27.731,
+     "end": 28.478
+    },
+    {
+     "w": "duopet.site",
+     "start": 28.478,
+     "end": 29.971
+    }
+   ],
+   "sfx": [
+    {
+     "n": "pop",
+     "t": 0.05,
+     "g": 0.5
+    },
+    {
+     "n": "pop",
+     "t": 0.35,
+     "g": 0.5
+    },
+    {
+     "n": "shuffle",
+     "t": 0.946,
+     "g": 0.5
+    },
+    {
+     "n": "pop_big",
+     "t": 3.88,
+     "g": 0.6
+    },
+    {
+     "n": "paper",
+     "t": 5.673,
+     "g": 0.22
+    },
+    {
+     "n": "paper",
+     "t": 7.618,
+     "g": 0.22
+    },
+    {
+     "n": "riser",
+     "t": 8.65,
+     "g": 0.6,
+     "dur": 1.6
+    },
+    {
+     "n": "paper",
+     "t": 9.251,
+     "g": 0.22
+    },
+    {
+     "n": "suck",
+     "t": 9.4,
+     "g": 0.55
+    },
+    {
+     "n": "impact",
+     "t": 10.25,
+     "g": 0.75
+    },
+    {
+     "n": "shimmer",
+     "t": 10.3,
+     "g": 0.45
+    },
+    {
+     "n": "click_soft",
+     "t": 10.43,
+     "g": 0.28
+    },
+    {
+     "n": "click_soft",
+     "t": 10.52,
+     "g": 0.28
+    },
+    {
+     "n": "click_soft",
+     "t": 10.61,
+     "g": 0.28
+    },
+    {
+     "n": "click_soft",
+     "t": 10.7,
+     "g": 0.28
+    },
+    {
+     "n": "click_soft",
+     "t": 10.79,
+     "g": 0.28
+    },
+    {
+     "n": "pop",
+     "t": 10.895,
+     "g": 0.5
+    },
+    {
+     "n": "whoosh_soft",
+     "t": 14.5,
+     "g": 0.35
+    },
+    {
+     "n": "tap",
+     "t": 17.346,
+     "g": 0.6
+    },
+    {
+     "n": "check",
+     "t": 17.406,
+     "g": 0.7
+    },
+    {
+     "n": "ring",
+     "t": 17.546,
+     "g": 0.4
+    },
+    {
+     "n": "toast",
+     "t": 17.896,
+     "g": 0.35
+    },
+    {
+     "n": "swoosh_3d",
+     "t": 20.5,
+     "g": 0.45
+    },
+    {
+     "n": "tap",
+     "t": 22.014,
+     "g": 0.5
+    },
+    {
+     "n": "pop",
+     "t": 22.064,
+     "g": 0.4
+    },
+    {
+     "n": "click_soft",
+     "t": 23.922,
+     "g": 0.3
+    },
+    {
+     "n": "pop",
+     "t": 24.9,
+     "g": 0.4
+    },
+    {
+     "n": "logo_sting",
+     "t": 24.95,
+     "g": 0.7
+    },
+    {
+     "n": "click_soft",
+     "t": 28.478,
+     "g": 0.35
+    }
+   ],
+   "music": [
+    {
+     "mood": "tension",
+     "start": 0.0,
+     "end": 10.25
+    },
+    {
+     "mood": "reveal",
+     "start": 10.25,
+     "end": 14.5
+    },
+    {
+     "mood": "groove",
+     "start": 14.5,
+     "end": 24.75
+    },
+    {
+     "mood": "sting",
+     "start": 24.75,
+     "end": 31.25
+    }
+   ]
+  },
+  "perf_h4": {
+   "duration": 30.5,
+   "frames": 915,
+   "scenes": [
+    {
+     "id": "00-HookPill",
+     "type": "HookPill",
+     "line": "H4",
+     "start": 0.0,
+     "end": 4.0,
+     "voStart": 0.12,
+     "voEnd": 3.512,
+     "words": [
+      {
+       "w": "Já",
+       "start": 0.12,
+       "end": 0.355
+      },
+      {
+       "w": "deu",
+       "start": 0.355,
+       "end": 0.589
+      },
+      {
+       "w": "o",
+       "start": 0.589,
+       "end": 0.824
+      },
+      {
+       "w": "remédio",
+       "start": 0.824,
+       "end": 1.528
+      },
+      {
+       "w": "hoje…",
+       "start": 1.528,
+       "end": 1.997
+      },
+      {
+       "w": "ou",
+       "start": 2.297,
+       "end": 2.601
+      },
+      {
+       "w": "foi",
+       "start": 2.601,
+       "end": 2.905
+      },
+      {
+       "w": "ontem?",
+       "start": 2.905,
+       "end": 3.512
+      }
+     ],
+     "caption": "Já deu o remédio hoje… ou foi ontem?",
+     "cues": {
+      "or": 2.247
+     }
+    },
+    {
+     "id": "01-ChaosShort",
+     "type": "ChaosShort",
+     "line": "P2a",
+     "start": 4.0,
+     "end": 9.5,
+     "voStart": 4.12,
+     "voEnd": 9.133,
+     "words": [
+      {
+       "w": "Um",
+       "start": 4.12,
+       "end": 4.331
+      },
+      {
+       "w": "pouco",
+       "start": 4.331,
+       "end": 4.752
+      },
+      {
+       "w": "no",
+       "start": 4.752,
+       "end": 4.963
+      },
+      {
+       "w": "calendário,",
+       "start": 4.963,
+       "end": 5.805
+      },
+      {
+       "w": "um",
+       "start": 5.855,
+       "end": 6.118
+      },
+      {
+       "w": "pouco",
+       "start": 6.118,
+       "end": 6.645
+      },
+      {
+       "w": "no",
+       "start": 6.645,
+       "end": 6.908
+      },
+      {
+       "w": "WhatsApp…",
+       "start": 6.908,
+       "end": 7.434
+      },
+      {
+       "w": "e",
+       "start": 7.554,
+       "end": 7.751
+      },
+      {
+       "w": "o",
+       "start": 7.751,
+       "end": 7.949
+      },
+      {
+       "w": "resto",
+       "start": 7.949,
+       "end": 8.343
+      },
+      {
+       "w": "na",
+       "start": 8.343,
+       "end": 8.541
+      },
+      {
+       "w": "cabeça.",
+       "start": 8.541,
+       "end": 9.133
+      }
+     ],
+     "caption": "Um pouco no calendário, um pouco no WhatsApp… e o resto na cabeça.",
+     "cues": {
+      "keys": {
+       "calendário": 4.923,
+       "whatsapp": 6.868,
+       "cabeça": 8.501
+      },
+      "converge": 8.55
+     }
+    },
+    {
+     "id": "02-Reveal",
+     "type": "Reveal",
+     "line": "M3",
+     "start": 9.5,
+     "end": 13.75,
+     "voStart": 9.72,
+     "voEnd": 13.573,
+     "words": [
+      {
+       "w": "No",
+       "start": 9.72,
+       "end": 10.175
+      },
+      {
+       "w": "DuoPet,",
+       "start": 10.175,
+       "end": 11.085
+      },
+      {
+       "w": "cada",
+       "start": 11.205,
+       "end": 11.6
+      },
+      {
+       "w": "cuidado",
+       "start": 11.6,
+       "end": 12.192
+      },
+      {
+       "w": "fica",
+       "start": 12.192,
+       "end": 12.587
+      },
+      {
+       "w": "no",
+       "start": 12.587,
+       "end": 12.784
+      },
+      {
+       "w": "lugar",
+       "start": 12.784,
+       "end": 13.179
+      },
+      {
+       "w": "certo.",
+       "start": 13.179,
+       "end": 13.573
+      }
+     ],
+     "caption": "No DuoPet, cada cuidado fica no lugar certo.",
+     "cues": {
+      "impact": 9.5,
+      "brand": 10.175,
+      "place": 12.784
+     }
+    },
+    {
+     "id": "03-Demo",
+     "type": "Demo",
+     "line": "P4",
+     "start": 13.75,
+     "end": 19.75,
+     "voStart": 13.9,
+     "voEnd": 19.533,
+     "words": [
+      {
+       "w": "Você",
+       "start": 13.9,
+       "end": 14.284
+      },
+      {
+       "w": "vê",
+       "start": 14.284,
+       "end": 14.476
+      },
+      {
+       "w": "o",
+       "start": 14.476,
+       "end": 14.668
+      },
+      {
+       "w": "que",
+       "start": 14.668,
+       "end": 14.86
+      },
+      {
+       "w": "o",
+       "start": 14.86,
+       "end": 15.052
+      },
+      {
+       "w": "seu",
+       "start": 15.052,
+       "end": 15.244
+      },
+      {
+       "w": "pet",
+       "start": 15.244,
+       "end": 15.436
+      },
+      {
+       "w": "precisa",
+       "start": 15.436,
+       "end": 16.012
+      },
+      {
+       "w": "hoje,",
+       "start": 16.012,
+       "end": 16.396
+      },
+      {
+       "w": "marca",
+       "start": 16.496,
+       "end": 16.958
+      },
+      {
+       "w": "o",
+       "start": 16.958,
+       "end": 17.189
+      },
+      {
+       "w": "que",
+       "start": 17.189,
+       "end": 17.42
+      },
+      {
+       "w": "já",
+       "start": 17.42,
+       "end": 17.652
+      },
+      {
+       "w": "fez…",
+       "start": 17.652,
+       "end": 17.883
+      },
+      {
+       "w": "e",
+       "start": 18.083,
+       "end": 18.29
+      },
+      {
+       "w": "sabe",
+       "start": 18.29,
+       "end": 18.704
+      },
+      {
+       "w": "o",
+       "start": 18.704,
+       "end": 18.912
+      },
+      {
+       "w": "que",
+       "start": 18.912,
+       "end": 19.119
+      },
+      {
+       "w": "falta.",
+       "start": 19.119,
+       "end": 19.533
+      }
+     ],
+     "caption": "Você vê o que o seu pet precisa hoje, marca o que já fez… e sabe o que falta.",
+     "cues": {
+      "see": 13.9,
+      "tap": 16.596,
+      "left": 18.869
+     }
+    },
+    {
+     "id": "04-MultiPet",
+     "type": "MultiPet",
+     "line": "P5",
+     "start": 19.75,
+     "end": 24.0,
+     "voStart": 19.87,
+     "voEnd": 23.805,
+     "words": [
+      {
+       "w": "Cão",
+       "start": 19.87,
+       "end": 20.076
+      },
+      {
+       "w": "e",
+       "start": 20.076,
+       "end": 20.282
+      },
+      {
+       "w": "gato",
+       "start": 20.282,
+       "end": 20.695
+      },
+      {
+       "w": "na",
+       "start": 20.695,
+       "end": 20.901
+      },
+      {
+       "w": "mesma",
+       "start": 20.901,
+       "end": 21.314
+      },
+      {
+       "w": "conta…",
+       "start": 21.314,
+       "end": 21.726
+      },
+      {
+       "w": "cada",
+       "start": 21.906,
+       "end": 22.328
+      },
+      {
+       "w": "um",
+       "start": 22.328,
+       "end": 22.539
+      },
+      {
+       "w": "com",
+       "start": 22.539,
+       "end": 22.75
+      },
+      {
+       "w": "a",
+       "start": 22.75,
+       "end": 22.961
+      },
+      {
+       "w": "sua",
+       "start": 22.961,
+       "end": 23.172
+      },
+      {
+       "w": "rotina.",
+       "start": 23.172,
+       "end": 23.805
+      }
+     ],
+     "caption": "Cão e gato na mesma conta… cada um com a sua rotina.",
+     "cues": {
+      "switch": 21.264,
+      "routine": 23.172
+     }
+    },
+    {
+     "id": "05-CTA",
+     "type": "CTA",
+     "line": "P6",
+     "start": 24.0,
+     "end": 30.5,
+     "voStart": 24.15,
+     "voEnd": 29.221,
+     "words": [
+      {
+       "w": "Teste",
+       "start": 24.15,
+       "end": 24.724
+      },
+      {
+       "w": "três",
+       "start": 24.724,
+       "end": 25.01
+      },
+      {
+       "w": "dias",
+       "start": 25.01,
+       "end": 25.297
+      },
+      {
+       "w": "grátis,",
+       "start": 25.297,
+       "end": 25.871
+      },
+      {
+       "w": "sem",
+       "start": 25.871,
+       "end": 26.158
+      },
+      {
+       "w": "cartão.",
+       "start": 26.158,
+       "end": 26.731
+      },
+      {
+       "w": "Acesse",
+       "start": 26.981,
+       "end": 27.728
+      },
+      {
+       "w": "duopet.site",
+       "start": 27.728,
+       "end": 29.221
+      }
+     ],
+     "caption": "Teste três dias grátis, sem cartão. Acesse duopet.site",
+     "cues": {
+      "logo": 24.2,
+      "offer": 24.15,
+      "url": 27.728
+     }
+    }
+   ],
+   "vo": [
+    {
+     "line": "H4",
+     "file": "voice/pm_alex/H4.wav",
+     "start": 0.12,
+     "dur": 3.392
+    },
+    {
+     "line": "P2a",
+     "file": "voice/pm_alex/P2a.wav",
+     "start": 4.12,
+     "dur": 5.013
+    },
+    {
+     "line": "M3",
+     "file": "voice/pm_alex/M3.wav",
+     "start": 9.72,
+     "dur": 3.853
+    },
+    {
+     "line": "P4",
+     "file": "voice/pm_alex/P4.wav",
+     "start": 13.9,
+     "dur": 5.633
+    },
+    {
+     "line": "P5",
+     "file": "voice/pm_alex/P5.wav",
+     "start": 19.87,
+     "dur": 3.935
+    },
+    {
+     "line": "P6",
+     "file": "voice/pm_alex/P6.wav",
+     "start": 24.15,
+     "dur": 5.071
+    }
+   ],
+   "words": [
+    {
+     "w": "Já",
+     "start": 0.12,
+     "end": 0.355
+    },
+    {
+     "w": "deu",
+     "start": 0.355,
+     "end": 0.589
+    },
+    {
+     "w": "o",
+     "start": 0.589,
+     "end": 0.824
+    },
+    {
+     "w": "remédio",
+     "start": 0.824,
+     "end": 1.528
+    },
+    {
+     "w": "hoje…",
+     "start": 1.528,
+     "end": 1.997
+    },
+    {
+     "w": "ou",
+     "start": 2.297,
+     "end": 2.601
+    },
+    {
+     "w": "foi",
+     "start": 2.601,
+     "end": 2.905
+    },
+    {
+     "w": "ontem?",
+     "start": 2.905,
+     "end": 3.512
+    },
+    {
+     "w": "Um",
+     "start": 4.12,
+     "end": 4.331
+    },
+    {
+     "w": "pouco",
+     "start": 4.331,
+     "end": 4.752
+    },
+    {
+     "w": "no",
+     "start": 4.752,
+     "end": 4.963
+    },
+    {
+     "w": "calendário,",
+     "start": 4.963,
+     "end": 5.805
+    },
+    {
+     "w": "um",
+     "start": 5.855,
+     "end": 6.118
+    },
+    {
+     "w": "pouco",
+     "start": 6.118,
+     "end": 6.645
+    },
+    {
+     "w": "no",
+     "start": 6.645,
+     "end": 6.908
+    },
+    {
+     "w": "WhatsApp…",
+     "start": 6.908,
+     "end": 7.434
+    },
+    {
+     "w": "e",
+     "start": 7.554,
+     "end": 7.751
+    },
+    {
+     "w": "o",
+     "start": 7.751,
+     "end": 7.949
+    },
+    {
+     "w": "resto",
+     "start": 7.949,
+     "end": 8.343
+    },
+    {
+     "w": "na",
+     "start": 8.343,
+     "end": 8.541
+    },
+    {
+     "w": "cabeça.",
+     "start": 8.541,
+     "end": 9.133
+    },
+    {
+     "w": "No",
+     "start": 9.72,
+     "end": 10.175
+    },
+    {
+     "w": "DuoPet,",
+     "start": 10.175,
+     "end": 11.085
+    },
+    {
+     "w": "cada",
+     "start": 11.205,
+     "end": 11.6
+    },
+    {
+     "w": "cuidado",
+     "start": 11.6,
+     "end": 12.192
+    },
+    {
+     "w": "fica",
+     "start": 12.192,
+     "end": 12.587
+    },
+    {
+     "w": "no",
+     "start": 12.587,
+     "end": 12.784
+    },
+    {
+     "w": "lugar",
+     "start": 12.784,
+     "end": 13.179
+    },
+    {
+     "w": "certo.",
+     "start": 13.179,
+     "end": 13.573
+    },
+    {
+     "w": "Você",
+     "start": 13.9,
+     "end": 14.284
+    },
+    {
+     "w": "vê",
+     "start": 14.284,
+     "end": 14.476
+    },
+    {
+     "w": "o",
+     "start": 14.476,
+     "end": 14.668
+    },
+    {
+     "w": "que",
+     "start": 14.668,
+     "end": 14.86
+    },
+    {
+     "w": "o",
+     "start": 14.86,
+     "end": 15.052
+    },
+    {
+     "w": "seu",
+     "start": 15.052,
+     "end": 15.244
+    },
+    {
+     "w": "pet",
+     "start": 15.244,
+     "end": 15.436
+    },
+    {
+     "w": "precisa",
+     "start": 15.436,
+     "end": 16.012
+    },
+    {
+     "w": "hoje,",
+     "start": 16.012,
+     "end": 16.396
+    },
+    {
+     "w": "marca",
+     "start": 16.496,
+     "end": 16.958
+    },
+    {
+     "w": "o",
+     "start": 16.958,
+     "end": 17.189
+    },
+    {
+     "w": "que",
+     "start": 17.189,
+     "end": 17.42
+    },
+    {
+     "w": "já",
+     "start": 17.42,
+     "end": 17.652
+    },
+    {
+     "w": "fez…",
+     "start": 17.652,
+     "end": 17.883
+    },
+    {
+     "w": "e",
+     "start": 18.083,
+     "end": 18.29
+    },
+    {
+     "w": "sabe",
+     "start": 18.29,
+     "end": 18.704
+    },
+    {
+     "w": "o",
+     "start": 18.704,
+     "end": 18.912
+    },
+    {
+     "w": "que",
+     "start": 18.912,
+     "end": 19.119
+    },
+    {
+     "w": "falta.",
+     "start": 19.119,
+     "end": 19.533
+    },
+    {
+     "w": "Cão",
+     "start": 19.87,
+     "end": 20.076
+    },
+    {
+     "w": "e",
+     "start": 20.076,
+     "end": 20.282
+    },
+    {
+     "w": "gato",
+     "start": 20.282,
+     "end": 20.695
+    },
+    {
+     "w": "na",
+     "start": 20.695,
+     "end": 20.901
+    },
+    {
+     "w": "mesma",
+     "start": 20.901,
+     "end": 21.314
+    },
+    {
+     "w": "conta…",
+     "start": 21.314,
+     "end": 21.726
+    },
+    {
+     "w": "cada",
+     "start": 21.906,
+     "end": 22.328
+    },
+    {
+     "w": "um",
+     "start": 22.328,
+     "end": 22.539
+    },
+    {
+     "w": "com",
+     "start": 22.539,
+     "end": 22.75
+    },
+    {
+     "w": "a",
+     "start": 22.75,
+     "end": 22.961
+    },
+    {
+     "w": "sua",
+     "start": 22.961,
+     "end": 23.172
+    },
+    {
+     "w": "rotina.",
+     "start": 23.172,
+     "end": 23.805
+    },
+    {
+     "w": "Teste",
+     "start": 24.15,
+     "end": 24.724
+    },
+    {
+     "w": "três",
+     "start": 24.724,
+     "end": 25.01
+    },
+    {
+     "w": "dias",
+     "start": 25.01,
+     "end": 25.297
+    },
+    {
+     "w": "grátis,",
+     "start": 25.297,
+     "end": 25.871
+    },
+    {
+     "w": "sem",
+     "start": 25.871,
+     "end": 26.158
+    },
+    {
+     "w": "cartão.",
+     "start": 26.158,
+     "end": 26.731
+    },
+    {
+     "w": "Acesse",
+     "start": 26.981,
+     "end": 27.728
+    },
+    {
+     "w": "duopet.site",
+     "start": 27.728,
+     "end": 29.221
+    }
+   ],
+   "sfx": [
+    {
+     "n": "pop_big",
+     "t": 0.05,
+     "g": 0.7
+    },
+    {
+     "n": "flip",
+     "t": 2.247,
+     "g": 0.55
+    },
+    {
+     "n": "paper",
+     "t": 4.923,
+     "g": 0.22
+    },
+    {
+     "n": "paper",
+     "t": 6.868,
+     "g": 0.22
+    },
+    {
+     "n": "riser",
+     "t": 7.9,
+     "g": 0.6,
+     "dur": 1.6
+    },
+    {
+     "n": "paper",
+     "t": 8.501,
+     "g": 0.22
+    },
+    {
+     "n": "suck",
+     "t": 8.65,
+     "g": 0.55
+    },
+    {
+     "n": "impact",
+     "t": 9.5,
+     "g": 0.75
+    },
+    {
+     "n": "shimmer",
+     "t": 9.55,
+     "g": 0.45
+    },
+    {
+     "n": "click_soft",
+     "t": 9.68,
+     "g": 0.28
+    },
+    {
+     "n": "click_soft",
+     "t": 9.77,
+     "g": 0.28
+    },
+    {
+     "n": "click_soft",
+     "t": 9.86,
+     "g": 0.28
+    },
+    {
+     "n": "click_soft",
+     "t": 9.95,
+     "g": 0.28
+    },
+    {
+     "n": "click_soft",
+     "t": 10.04,
+     "g": 0.28
+    },
+    {
+     "n": "pop",
+     "t": 10.145,
+     "g": 0.5
+    },
+    {
+     "n": "whoosh_soft",
+     "t": 13.75,
+     "g": 0.35
+    },
+    {
+     "n": "tap",
+     "t": 16.596,
+     "g": 0.6
+    },
+    {
+     "n": "check",
+     "t": 16.656,
+     "g": 0.7
+    },
+    {
+     "n": "ring",
+     "t": 16.796,
+     "g": 0.4
+    },
+    {
+     "n": "toast",
+     "t": 17.146,
+     "g": 0.35
+    },
+    {
+     "n": "swoosh_3d",
+     "t": 19.75,
+     "g": 0.45
+    },
+    {
+     "n": "tap",
+     "t": 21.264,
+     "g": 0.5
+    },
+    {
+     "n": "pop",
+     "t": 21.314,
+     "g": 0.4
+    },
+    {
+     "n": "click_soft",
+     "t": 23.172,
+     "g": 0.3
+    },
+    {
+     "n": "pop",
+     "t": 24.15,
+     "g": 0.4
+    },
+    {
+     "n": "logo_sting",
+     "t": 24.2,
+     "g": 0.7
+    },
+    {
+     "n": "click_soft",
+     "t": 27.728,
+     "g": 0.35
+    }
+   ],
+   "music": [
+    {
+     "mood": "tension",
+     "start": 0.0,
+     "end": 9.5
+    },
+    {
+     "mood": "reveal",
+     "start": 9.5,
+     "end": 13.75
+    },
+    {
+     "mood": "groove",
+     "start": 13.75,
+     "end": 24.0
+    },
+    {
+     "mood": "sting",
+     "start": 24.0,
+     "end": 30.5
+    }
+   ]
+  },
+  "short15": {
+   "duration": 15.0,
+   "frames": 450,
+   "scenes": [
+    {
+     "id": "00-Chaos15",
+     "type": "Chaos15",
+     "line": "S1",
+     "start": 0.0,
+     "end": 3.25,
+     "voStart": 0.08,
+     "voEnd": 2.768,
+     "words": [
+      {
+       "w": "Os",
+       "start": 0.08,
+       "end": 0.287
+      },
+      {
+       "w": "cuidados",
+       "start": 0.287,
+       "end": 0.907
+      },
+      {
+       "w": "do",
+       "start": 0.907,
+       "end": 1.114
+      },
+      {
+       "w": "seu",
+       "start": 1.114,
+       "end": 1.321
+      },
+      {
+       "w": "pet",
+       "start": 1.321,
+       "end": 1.527
+      },
+      {
+       "w": "estão",
+       "start": 1.527,
+       "end": 1.941
+      },
+      {
+       "w": "espalhados?",
+       "start": 1.941,
+       "end": 2.768
+      }
+     ],
+     "caption": "Os cuidados do seu pet estão espalhados?",
+     "cues": {
+      "keys": {
+       "espalhados": 1.901,
+       "cuidados": 0.247
+      },
+      "converge": 2.3
+     }
+    },
+    {
+     "id": "01-Reveal15",
+     "type": "Reveal15",
+     "line": "S2",
+     "start": 3.25,
+     "end": 6.75,
+     "voStart": 3.37,
+     "voEnd": 6.522,
+     "words": [
+      {
+       "w": "No",
+       "start": 3.37,
+       "end": 3.804
+      },
+      {
+       "w": "DuoPet,",
+       "start": 3.804,
+       "end": 4.671
+      },
+      {
+       "w": "fica",
+       "start": 4.751,
+       "end": 5.194
+      },
+      {
+       "w": "tudo",
+       "start": 5.194,
+       "end": 5.637
+      },
+      {
+       "w": "num",
+       "start": 5.637,
+       "end": 5.858
+      },
+      {
+       "w": "lugar",
+       "start": 5.858,
+       "end": 6.301
+      },
+      {
+       "w": "só.",
+       "start": 6.301,
+       "end": 6.522
+      }
+     ],
+     "caption": "No DuoPet, fica tudo num lugar só.",
+     "cues": {
+      "impact": 3.25,
+      "brand": 3.804,
+      "place": 5.858
+     }
+    },
+    {
+     "id": "02-Demo15",
+     "type": "Demo15",
+     "line": "S3",
+     "start": 6.75,
+     "end": 9.75,
+     "voStart": 6.85,
+     "voEnd": 9.453,
+     "words": [
+      {
+       "w": "Marque",
+       "start": 6.85,
+       "end": 7.319
+      },
+      {
+       "w": "o",
+       "start": 7.319,
+       "end": 7.554
+      },
+      {
+       "w": "que",
+       "start": 7.554,
+       "end": 7.789
+      },
+      {
+       "w": "fez.",
+       "start": 7.789,
+       "end": 8.023
+      },
+      {
+       "w": "Veja",
+       "start": 8.173,
+       "end": 8.6
+      },
+      {
+       "w": "o",
+       "start": 8.6,
+       "end": 8.813
+      },
+      {
+       "w": "que",
+       "start": 8.813,
+       "end": 9.027
+      },
+      {
+       "w": "falta.",
+       "start": 9.027,
+       "end": 9.453
+      }
+     ],
+     "caption": "Marque o que fez. Veja o que falta.",
+     "cues": {
+      "see": 6.85,
+      "tap": 6.95,
+      "left": 8.777
+     }
+    },
+    {
+     "id": "03-CTA15",
+     "type": "CTA15",
+     "line": "S4",
+     "start": 9.75,
+     "end": 15.0,
+     "voStart": 9.87,
+     "voEnd": 13.891,
+     "words": [
+      {
+       "w": "Três",
+       "start": 9.87,
+       "end": 10.169
+      },
+      {
+       "w": "dias",
+       "start": 10.169,
+       "end": 10.467
+      },
+      {
+       "w": "grátis,",
+       "start": 10.467,
+       "end": 11.065
+      },
+      {
+       "w": "sem",
+       "start": 11.065,
+       "end": 11.363
+      },
+      {
+       "w": "cartão.",
+       "start": 11.363,
+       "end": 11.961
+      },
+      {
+       "w": "duopet.site",
+       "start": 12.121,
+       "end": 13.891
+      }
+     ],
+     "caption": "Três dias grátis, sem cartão. duopet.site",
+     "cues": {
+      "logo": 9.95,
+      "offer": 9.87,
+      "url": 12.121
+     }
+    }
+   ],
+   "vo": [
+    {
+     "line": "S1",
+     "file": "voice/pm_alex/S1.wav",
+     "start": 0.08,
+     "dur": 2.688
+    },
+    {
+     "line": "S2",
+     "file": "voice/pm_alex/S2.wav",
+     "start": 3.37,
+     "dur": 3.152
+    },
+    {
+     "line": "S3",
+     "file": "voice/pm_alex/S3.wav",
+     "start": 6.85,
+     "dur": 2.603
+    },
+    {
+     "line": "S4",
+     "file": "voice/pm_alex/S4.wav",
+     "start": 9.87,
+     "dur": 4.021
+    }
+   ],
+   "words": [
+    {
+     "w": "Os",
+     "start": 0.08,
+     "end": 0.287
+    },
+    {
+     "w": "cuidados",
+     "start": 0.287,
+     "end": 0.907
+    },
+    {
+     "w": "do",
+     "start": 0.907,
+     "end": 1.114
+    },
+    {
+     "w": "seu",
+     "start": 1.114,
+     "end": 1.321
+    },
+    {
+     "w": "pet",
+     "start": 1.321,
+     "end": 1.527
+    },
+    {
+     "w": "estão",
+     "start": 1.527,
+     "end": 1.941
+    },
+    {
+     "w": "espalhados?",
+     "start": 1.941,
+     "end": 2.768
+    },
+    {
+     "w": "No",
+     "start": 3.37,
+     "end": 3.804
+    },
+    {
+     "w": "DuoPet,",
+     "start": 3.804,
+     "end": 4.671
+    },
+    {
+     "w": "fica",
+     "start": 4.751,
+     "end": 5.194
+    },
+    {
+     "w": "tudo",
+     "start": 5.194,
+     "end": 5.637
+    },
+    {
+     "w": "num",
+     "start": 5.637,
+     "end": 5.858
+    },
+    {
+     "w": "lugar",
+     "start": 5.858,
+     "end": 6.301
+    },
+    {
+     "w": "só.",
+     "start": 6.301,
+     "end": 6.522
+    },
+    {
+     "w": "Marque",
+     "start": 6.85,
+     "end": 7.319
+    },
+    {
+     "w": "o",
+     "start": 7.319,
+     "end": 7.554
+    },
+    {
+     "w": "que",
+     "start": 7.554,
+     "end": 7.789
+    },
+    {
+     "w": "fez.",
+     "start": 7.789,
+     "end": 8.023
+    },
+    {
+     "w": "Veja",
+     "start": 8.173,
+     "end": 8.6
+    },
+    {
+     "w": "o",
+     "start": 8.6,
+     "end": 8.813
+    },
+    {
+     "w": "que",
+     "start": 8.813,
+     "end": 9.027
+    },
+    {
+     "w": "falta.",
+     "start": 9.027,
+     "end": 9.453
+    },
+    {
+     "w": "Três",
+     "start": 9.87,
+     "end": 10.169
+    },
+    {
+     "w": "dias",
+     "start": 10.169,
+     "end": 10.467
+    },
+    {
+     "w": "grátis,",
+     "start": 10.467,
+     "end": 11.065
+    },
+    {
+     "w": "sem",
+     "start": 11.065,
+     "end": 11.363
+    },
+    {
+     "w": "cartão.",
+     "start": 11.363,
+     "end": 11.961
+    },
+    {
+     "w": "duopet.site",
+     "start": 12.121,
+     "end": 13.891
+    }
+   ],
+   "sfx": [
+    {
+     "n": "paper",
+     "t": 0.247,
+     "g": 0.22
+    },
+    {
+     "n": "riser",
+     "t": 1.65,
+     "g": 0.6,
+     "dur": 1.6
+    },
+    {
+     "n": "paper",
+     "t": 1.901,
+     "g": 0.22
+    },
+    {
+     "n": "suck",
+     "t": 2.4,
+     "g": 0.55
+    },
+    {
+     "n": "impact",
+     "t": 3.25,
+     "g": 0.75
+    },
+    {
+     "n": "shimmer",
+     "t": 3.3,
+     "g": 0.45
+    },
+    {
+     "n": "click_soft",
+     "t": 3.43,
+     "g": 0.28
+    },
+    {
+     "n": "click_soft",
+     "t": 3.52,
+     "g": 0.28
+    },
+    {
+     "n": "click_soft",
+     "t": 3.61,
+     "g": 0.28
+    },
+    {
+     "n": "click_soft",
+     "t": 3.7,
+     "g": 0.28
+    },
+    {
+     "n": "pop",
+     "t": 3.774,
+     "g": 0.5
+    },
+    {
+     "n": "click_soft",
+     "t": 3.79,
+     "g": 0.28
+    },
+    {
+     "n": "whoosh_soft",
+     "t": 6.75,
+     "g": 0.35
+    },
+    {
+     "n": "tap",
+     "t": 6.95,
+     "g": 0.6
+    },
+    {
+     "n": "check",
+     "t": 7.01,
+     "g": 0.7
+    },
+    {
+     "n": "ring",
+     "t": 7.15,
+     "g": 0.4
+    },
+    {
+     "n": "toast",
+     "t": 7.5,
+     "g": 0.35
+    },
+    {
+     "n": "pop",
+     "t": 9.87,
+     "g": 0.4
+    },
+    {
+     "n": "logo_sting",
+     "t": 9.95,
+     "g": 0.7
+    },
+    {
+     "n": "click_soft",
+     "t": 12.121,
+     "g": 0.35
+    }
+   ],
+   "music": [
+    {
+     "mood": "tension",
+     "start": 0.0,
+     "end": 3.25
+    },
+    {
+     "mood": "reveal",
+     "start": 3.25,
+     "end": 6.75
+    },
+    {
+     "mood": "groove",
+     "start": 6.75,
+     "end": 9.75
+    },
+    {
+     "mood": "sting",
+     "start": 9.75,
+     "end": 15.0
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,82 @@
+{
+ "file": "renders/master/duopet_master_45s_legendado.mp4",
+ "probe": {
+  "programs": [],
+  "streams": [
+   {
+    "codec_name": "h264",
+    "width": 1080,
+    "height": 1920,
+    "pix_fmt": "yuvj420p",
+    "r_frame_rate": "30/1",
+    "bit_rate": "7626961",
+    "side_data_list": [
+     {}
+    ]
+   },
+   {
+    "codec_name": "aac",
+    "sample_rate": "48000",
+    "channels": 2,
+    "r_frame_rate": "0/0",
+    "bit_rate": "263460"
+   }
+  ],
+  "format": {
+   "duration": "44.733333",
+   "bit_rate": "7899487"
+  }
+ },
+ "black_segments": [],
+ "freezes": [],
+ "loudness": {
+  "integrated_lufs": -14.0,
+  "true_peak_dbfs": -0.8
+ },
+ "asr": [
+  {
+   "scene": "Hook",
+   "ref": "Você organiza a sua rotina inteira… e a do seu pet?",
+   "asr": "Você organiza a sua rotina inteira e ha do seu pet.",
+   "wer": 0.091
+  },
+  {
+   "scene": "Chaos",
+   "ref": "Ração, remédio, vacina, consulta… um pouco no calendário, um pouco no WhatsApp, e o resto na cabeça.",
+   "asr": "Ação Remédio Vacina Consulta Um pouco no calendário, um pouco no WhatsApp e o resto na cabeça.",
+   "wer": 0.059
+  },
+  {
+   "scene": "Reveal",
+   "ref": "No DuoPet, cada cuidado fica no lugar certo.",
+   "asr": "No duo pechi, cada cuidado fica no lugar certo.",
+   "wer": 0.25
+  },
+  {
+   "scene": "Demo",
+   "ref": "Você vê o que o seu pet precisa hoje, marca o que já fez… e sabe exatamente o que falta.",
+   "asr": "Você vê o que o seu pet te precisa hoje, marca o que já fez e sabe exatamente o que falta.",
+   "wer": 0.05
+  },
+  {
+   "scene": "Benefits",
+   "ref": "Vacinas, remédios, gastos e até brincadeiras guiadas… pra cada pet da casa, cão ou gato.",
+   "asr": "vacinas, remédios, gastos e até brincadeiras guiadas. Para cada peixe da casa, cão ou gato.",
+   "wer": 0.133
+  },
+  {
+   "scene": "Emotion",
+   "ref": "Menos coisa na cabeça… e mais tempo pra quem você ama.",
+   "asr": "menos coisa na cabeça e mais tempo para quem você ama.",
+   "wer": 0.091
+  },
+  {
+   "scene": "CTA",
+   "ref": "DuoPet. Teste três dias grátis, sem cartão. Acesse duopet.site",
+   "asr": "Duopete. Teste três dias gratis sem cartão. Acesse Duopete.site.",
+   "wer": 0.273
+  }
+ ],
+ "asr_mean_wer": 0.135,
+ "mobile_sheet": "qa/report/duopet_master_45s_legendado_mobile.jpg"
+}
