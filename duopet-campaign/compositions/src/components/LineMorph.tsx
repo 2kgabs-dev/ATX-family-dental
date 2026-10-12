@@ -10,7 +10,7 @@ import { prog } from "../lib/anim";
  * Caixa de desenho: 400×400.
  */
 export const SHAPES: Record<string, string> = {
-  line: "M 0 210 L 400 210",
+  line: "M 0 200 L 400 200", // y=200: centro exato do canvas, onde termina o ponto do caos
   paw:
     "M 0 300 L 128 300 C 118 255 158 214 200 214 C 242 214 282 255 272 300 C 264 334 228 322 200 322 C 172 322 136 334 128 300 " +
     "L 112 212 A 22 27 -20 1 1 112.5 212.5 L 162 160 A 22 27 -6 1 1 162.5 160.5 L 238 160 A 22 27 6 1 1 238.5 160.5 L 288 212 A 22 27 20 1 1 288.5 212.5 L 400 300",

@@ -1,5 +1,5 @@
 import React from "react";
-import { AbsoluteFill, Img, interpolate, staticFile } from "remotion";
+import { AbsoluteFill, Img, interpolate, Sequence, staticFile } from "remotion";
 import { getLength, getPointAtLength } from "@remotion/paths";
 import { C, EASE, FONT, MONO } from "../theme";
 import { clamp01, lerp, prog, springAt, wobble } from "../lib/anim";
@@ -11,6 +11,7 @@ import { Phone, phonePt, phoneHeight } from "../components/Phone";
 import { ForestBG } from "../components/World";
 import { Chapter, Kicker, KText } from "../components/Kinetic";
 import { LineMorph } from "../components/LineMorph";
+import { LightLeakOverlay } from "../components/Transitions";
 import { ChaosObject, Finger, FlyIn, ITEM_LAYOUT } from "./Hooks";
 
 /** Posição do telefone "herói" (revelação → demonstração → benefícios). */
@@ -124,6 +125,9 @@ export const Chaos: React.FC<{ scene: Scene; pre?: "static" | "fly" | "none" }> 
   );
 };
 
+const STRETCH = 0.28; // ponto → linha
+const DOT_R = 35; // raio do ponto no último quadro do caos (40 px × escala ~0,88)
+
 /* ============ REVELAÇÃO (transição-assinatura) ============
  * ponto → linha → pata → batimento → anel com o logo (referência do cliente) → íris → o app sobe no mundo verde */
 export const Reveal: React.FC<{ scene: Scene }> = ({ scene }) => {
@@ -139,19 +143,48 @@ export const Reveal: React.FC<{ scene: Scene }> = ({ scene }) => {
   const rise = springAt(t * 30, t0 + 1.55, { damping: 17, stiffness: 70, mass: 1.1 }, 30);
   const rowsIn = [0, 1, 2, 3, 4].map((i) => prog(t, t0 + 1.9 + i * 0.08, 0.45));
   const glint = prog(t, placeT - 0.2, 1.0, EASE.inOut);
+  const stretch = prog(t, t0, STRETCH, EASE.inOut);
   return (
     <AbsoluteFill style={{ overflow: "hidden" }}>
       <NightBG />
       <AbsoluteFill style={{ opacity: green }}>
         <ForestBG cy={1100} orbits={iris} particles={0.4 + 0.6 * green} />
       </AbsoluteFill>
-      {iris < 1 && (
+      {/* onda de choque fina no impacto (som "impact" no mesmo quadro) */}
+      {t < t0 + 0.4 && (
+        <div
+          style={{
+            position: "absolute",
+            left: CENTER[0] - lerp(DOT_R, 300, prog(t, t0, 0.4, EASE.out)),
+            top: CENTER[1] - lerp(DOT_R, 300, prog(t, t0, 0.4, EASE.out)),
+            width: 2 * lerp(DOT_R, 300, prog(t, t0, 0.4, EASE.out)),
+            height: 2 * lerp(DOT_R, 300, prog(t, t0, 0.4, EASE.out)),
+            borderRadius: 600,
+            border: `${lerp(5, 1, prog(t, t0, 0.4))}px solid rgba(244,242,238,${0.55 * (1 - prog(t, t0, 0.4))})`,
+          }}
+        />
+      )}
+      {/* match cut com o fim do caos: o mesmo ponto creme (540,900) se estica e vira a linha */}
+      {t < t0 + STRETCH && (
+        <div
+          style={{
+            position: "absolute",
+            left: CENTER[0] - lerp(DOT_R, 280, stretch),
+            top: CENTER[1] - lerp(DOT_R, 2.5, stretch),
+            width: lerp(DOT_R * 2, 560, stretch),
+            height: lerp(DOT_R * 2, 5, stretch),
+            borderRadius: 80,
+            background: C.page,
+            boxShadow: `0 0 ${lerp(70, 18, stretch)}px ${lerp(26, 4, stretch)}px rgba(244,242,238,${lerp(0.45, 0.25, stretch)})`,
+          }}
+        />
+      )}
+      {iris < 1 && t >= t0 + STRETCH && (
         <LineMorph
           t={t}
           x={CENTER[0]}
           y={CENTER[1]}
           size={560}
-          drawOn={[t0, 0.28]}
           opacity={1 - iris}
           keys={[
             { shape: "line", at: t0 },
@@ -168,10 +201,13 @@ export const Reveal: React.FC<{ scene: Scene }> = ({ scene }) => {
       )}
       {iris > 0 && (
         <AbsoluteFill style={{ clipPath: `circle(${lerp(150, 2300, iris)}px at ${CENTER[0]}px ${CENTER[1]}px)` }}>
-          <div style={{ position: "absolute", left: PH.left, top: PH.top, transform: `perspective(2200px) translateY(${(1 - rise) * 820}px) rotateX(${(1 - rise) * 32 + 3}deg) rotateZ(${(1 - rise) * -6}deg)`, transformOrigin: "50% 100%" }}>
-            <Phone width={PH.width} shadow={PHONE_SHADOW} glare={lerp(0.1, 0.9, glint)}>
-              <HojeScreen doneP={[1, 1, 1, 0, 0]} ring={0.6 * clamp01(rise)} next="Próximo: 18:00 · Passeio" rowsIn={rowsIn} summaryIn={prog(t, t0 + 1.8, 0.4)} />
-            </Phone>
+          {/* pose final idêntica à do 1º quadro da demonstração (mesma perspectiva e origem): a fusão do corte não "fantasma" */}
+          <div style={{ position: "absolute", left: PH.left, top: PH.top, transform: "perspective(2600px) rotateY(0deg) rotateX(3deg)", transformOrigin: "50% 40%" }}>
+            <div style={{ transform: `perspective(2200px) translateY(${(1 - rise) * 820}px) rotateX(${(1 - rise) * 32}deg) rotateZ(${(1 - rise) * -6}deg)`, transformOrigin: "50% 100%" }}>
+              <Phone width={PH.width} shadow={PHONE_SHADOW} glare={lerp(0.1, 0.9, glint)}>
+                <HojeScreen doneP={[1, 1, 1, 0, 0]} ring={0.6 * clamp01(rise)} next="Próximo: 18:00 · Passeio" rowsIn={rowsIn} summaryIn={prog(t, t0 + 1.8, 0.4)} />
+              </Phone>
+            </div>
           </div>
         </AbsoluteFill>
       )}
@@ -332,13 +368,17 @@ export const Benefits: React.FC<{ scene: Scene }> = ({ scene }) => {
   const orbitP = prog(t, play + 0.2, 0.5);
   const ballP = prog(t, play + 0.35, 1.1, EASE.soft);
   const sc = 1.1;
+  const settle = prog(t, scene.start, 0.5, EASE.inOut);
   return (
     <AbsoluteFill style={{ overflow: "hidden" }}>
-      <ForestBG cy={1150} />
+      <ForestBG cy={lerp(1100, 1150, settle)} />
       {!perfilPhase ? (
         <>
-          <div style={{ position: "absolute", left: PH.left, top: PH.top + 20, width: PH.width, height: phoneH, perspective: 2400, transform: `scale(${sc})`, transformOrigin: "50% 0%" }}>
-            <WhipFlip t={t} switches={[health, money, play]} width={PH.width} faces={faces} />
+          {/* continuidade com o fim da demonstração: o telefone parte da mesma pose (inclinado, escala 1) e assenta durante o 1º giro */}
+          <div style={{ position: "absolute", left: PH.left, top: PH.top + 20 * settle, width: PH.width, height: phoneH, transform: `scale(${lerp(1, sc, settle)})`, transformOrigin: "50% 0%" }}>
+            <div style={{ position: "absolute", inset: 0, perspective: 2400, transform: `perspective(2600px) rotateY(${-9 * (1 - settle)}deg) rotateX(${6 * (1 - settle)}deg)`, transformOrigin: "50% 40%" }}>
+              <WhipFlip t={t} switches={[health, money, play]} width={PH.width} faces={faces} />
+            </div>
           </div>
           {card > 0.01 && (
             <div style={{ position: "absolute", left: 90, top: 880, transform: `perspective(1400px) translate(${(1 - card) * 200}px, ${(1 - card) * 60}px) rotateY(${(1 - card) * 40 + 12}deg) scale(${0.7 + 0.3 * card})`, opacity: clamp01(card * 1.5) }}>
@@ -433,15 +473,20 @@ export const MultiPet: React.FC<{ scene: Scene }> = ({ scene }) => {
   const pill = prog(t, sw, 0.45, EASE.satisfying);
   const enter = springAt(t * 30, scene.start, { damping: 14 }, 30);
   const phoneH = phoneHeight(PH.width);
+  // continuidade com o fim da demonstração: mesma pose e mesma tela; o giro leva ao Perfil
+  const settle = prog(t, scene.start, 0.5, EASE.inOut);
   return (
     <AbsoluteFill style={{ overflow: "hidden" }}>
-      <ForestBG cy={1150} />
-      <div style={{ position: "absolute", left: PH.left, top: PH.top, width: PH.width, height: phoneH, perspective: 2400, transform: `translateY(${(1 - enter) * 300}px)` }}>
+      <ForestBG cy={lerp(1100, 1150, settle)} />
+      <div style={{ position: "absolute", left: PH.left, top: PH.top, width: PH.width, height: phoneH, perspective: 2400, transform: `perspective(2600px) rotateY(${-9 * (1 - settle)}deg) rotateX(${6 * (1 - settle)}deg)`, transformOrigin: "50% 40%" }}>
         <WhipFlip
           t={t}
-          switches={[routine - 0.1]}
+          switches={[scene.start + 0.04, routine - 0.1]}
           width={PH.width}
           faces={[
+            <PhoneFace key="d">
+              <HojeScreen doneP={[1, 1, 1, 1, 0]} ring={0.8} next="Próximo: 21:00 · Escovação" />
+            </PhoneFace>,
             <PhoneFace key="p">
               <PerfilScreen pet={pill > 0.5 ? "mia" : "thor"} pill={pill} />
             </PhoneFace>,
@@ -483,7 +528,8 @@ const CHIPS: [number, string, string][] = [
 ];
 
 export const Emotion: React.FC<{ scene: Scene }> = ({ scene }) => {
-  const { t } = useSceneTime(scene);
+  const { t, frame } = useSceneTime(scene);
+  const sceneOrigin = t - frame / 30; // tempo absoluto do quadro 0 desta Sequence
   const t0 = scene.start;
   const warm = scene.cues.warm;
   const drawDur = Math.max(0.6, warm - 0.35 - (t0 + 0.15));
@@ -533,6 +579,10 @@ export const Emotion: React.FC<{ scene: Scene }> = ({ scene }) => {
           <Img src={staticFile("img/duo.jpg")} style={{ position: "absolute", width: 1919 * 1.18, left: -379 * 1.18 - 40, top: 190, transform: `scale(${1 + kb * 0.07})`, transformOrigin: "52% 40%" }} />
           <AbsoluteFill style={{ background: "radial-gradient(70% 50% at 80% 20%, rgba(255,190,130,0.35), rgba(255,190,130,0) 70%)", mixBlendMode: "screen" }} />
           <AbsoluteFill style={{ background: "linear-gradient(180deg, rgba(17,33,26,0.3) 0%, rgba(17,33,26,0) 30%, rgba(17,33,26,0) 70%, rgba(17,33,26,0.85) 100%)" }} />
+          {/* luz quente sobre a foto no "mais tempo juntos" (lightLeak de @remotion/effects, progresso pelo quadro) */}
+          <Sequence from={Math.round((warm - 0.1 - sceneOrigin) * 30)} durationInFrames={36} layout="none">
+            <LightLeakOverlay seed={2} hueShift={0} strength={0.42} />
+          </Sequence>
           <div style={{ position: "absolute", left: 80, top: 292 }}>
             <Kicker text="mais tempo" t={t} t0={warm + 0.1} color="#fff" size={60} />
             <KText lines={["Juntos"]} mode="track" t={t} t0={warm + 0.2} size={190} color="#fff" style={{ textShadow: "0 6px 30px rgba(0,0,0,0.25)" }} />
@@ -549,7 +599,7 @@ export const CTA: React.FC<{ scene: Scene; short?: boolean }> = ({ scene }) => {
   const { t } = useSceneTime(scene);
   const t0 = scene.start;
   const { logo, offer, url } = scene.cues;
-  const wipe = prog(t, t0, 0.5, EASE.inOut);
+  const wipe = prog(t, t0, 0.27, (x) => 1 - (1 - x) * (1 - x)); // desacelera: continua a subida que começou antes do corte (8 quadros, ~520 px/quadro no corte, igual à chegada)
   const mark = springAt(t * 30, logo, { damping: 11, stiffness: 140 }, 30);
   const typeSteps = Math.min(6, Math.max(0, Math.floor((t - logo - 0.15) / 0.07)));
   const word = typeSteps / 6;
@@ -562,7 +612,7 @@ export const CTA: React.FC<{ scene: Scene; short?: boolean }> = ({ scene }) => {
   return (
     <AbsoluteFill style={{ overflow: "hidden" }}>
       <PaperBG warm={1} />
-      <div style={{ position: "absolute", left: 0, right: 0, top: 300, display: "flex", flexDirection: "column", alignItems: "center" }}>
+      <div style={{ position: "absolute", left: 0, right: 0, top: 300, display: "flex", flexDirection: "column", alignItems: "center", translate: `0px ${(1 - wipe) * 90}px` }}>
         <Img src={staticFile("img/logo-mark.png")} style={{ height: 230, transform: `scale(${mark}) rotate(${(1 - mark) * 25}deg)`, opacity: clamp01(mark * 2) }} />
         <div style={{ height: 112, marginTop: 6, clipPath: `inset(0 ${(1 - word) * 100}% 0 0)` }}>
           <Img src={staticFile("img/logo-word.png")} style={{ height: 112 }} />
@@ -587,7 +637,12 @@ export const CTA: React.FC<{ scene: Scene; short?: boolean }> = ({ scene }) => {
         <Img src={staticFile("img/family.jpg")} style={{ position: "absolute", width: 1100, left: -10, top: lerp(500, -40, fam), mixBlendMode: "multiply" }} />
       </div>
       {/* varredura terracota que abre o cartão (referência do cliente) */}
-      {wipe < 1 && <AbsoluteFill style={{ background: C.terracotta, transform: `translateY(${-wipe * 105}%)` }} />}
+      {wipe < 1 && (
+        <AbsoluteFill style={{ transform: `translateY(${-wipe * 2100}px)` }}>
+          <AbsoluteFill style={{ background: C.terracotta }} />
+          <div style={{ position: "absolute", left: 0, right: 0, top: 1920, height: 160, background: `linear-gradient(180deg, ${C.terracotta} 0%, rgba(201,104,74,0) 100%)` }} />
+        </AbsoluteFill>
+      )}
       <Grain opacity={0.035} />
     </AbsoluteFill>
   );

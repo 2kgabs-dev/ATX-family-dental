@@ -1,8 +1,11 @@
 """Gera a locução de todas as falas de scripts/vo-lines.json para uma voz.
 
-python build_vo.py kokoro:pf_dora   -> voice/pf_dora/<ID>.wav + timings.json + qa.json
+python build_vo.py kokoro:pf_dora                         -> voice/pf_dora/
+python build_vo.py "kokoro:pf_dora*0.6+ef_dora*0.4" fem   -> voice/fem/   (mistura de vetores de estilo)
+Saída: <ID>.wav + timings.json + qa.json. Variável SPEED_MUL multiplica a velocidade de todas as falas.
 Pronúncia: correções no nível de fonema para "pet"/"DuoPet"/"site" (ver PRON_FIXES).
-Cada fala é verificada por ASR (Whisper small, local) e o WER fica em qa.json.
+Tempos por palavra: alinhamento real com o ASR Parakeet TDT v3 (align.py); estimativa por sílabas só onde o ASR não casou.
+Cada fala é verificada por dois ASR locais (Whisper small e Parakeet) e o WER fica em qa.json.
 """
 import sys, os, re, json, unicodedata
 import numpy as np, soundfile as sf
@@ -19,7 +22,7 @@ PRON_FIXES = [
     (r"dˌuʊ pˈɛtʃi?", "dˈu o pˈɛtʃi"),
     (r"pˈɛtʃ(?!i)", "pˈɛtʃi"),                 # pet -> "pétchi" (pronúncia brasileira)
     (r"pˈets\b", "pˈɛts"),                     # pets -> "péts" (e aberto)
-    (r"ɾə(?=[ptkbdgfvszʃʒmnlɾ])", "ɾ"),       # epêntese indevida: "sérətu" -> "sértu"
+    (r"ɾə(?=[ptkbdgɡfvszʃʒmnlɾ])", "ɾ"),       # epêntese indevida: "sérətu" -> "sértu"
 ]
 
 _k = None
@@ -54,6 +57,8 @@ def piper(voice, text, speed):
 def synth(spec, text, speed):
     eng, voice = spec.split(":")
     if eng == "piper": return piper(voice, text, speed)
+    if "*" in voice:  # mistura: "pf_dora*0.6+ef_dora*0.4"
+        voice = sum(kokoro().get_voice_style(n) * float(w) for n, w in (x.split("*") for x in voice.split("+"))).astype(np.float32)
     a, sr = kokoro().create(phonemes(text), voice=voice, speed=speed, lang="pt-br", is_phonemes=True)
     assert sr == SR
     return a.astype(np.float32)
@@ -83,33 +88,59 @@ def wer(ref, hyp):
 def syll_weight(w):
     return max(1, len(re.findall(r"[aeiouáéíóúâêôãõà]+", w.lower())))
 
-def main(spec):
+def split_merged(hyp):
+    """O ASR junta "duopet ponto site" em "duopet.site": separa nas três palavras faladas."""
+    out = []
+    for w, t0, t1 in hyp:
+        if re.sub(r"[^a-z]", "", w.lower()) == "duopetsite":
+            d = t1 - t0; out += [("duopet", t0, t0 + .43 * d), ("ponto", t0 + .43 * d, t0 + .71 * d), ("site", t0 + .71 * d, t1)]
+        else: out.append((w, t0, t1))
+    return out
+
+def word_times(script_words, y):
+    from align import asr_words, align
+    hyp, text = asr_words(y, SR); hyp = split_merged(hyp)
+    pairs = align(script_words, hyp); dur = len(y) / SR
+    T = [(hyp[pairs[i]][1], hyp[pairs[i]][2]) if i in pairs else None for i in range(len(script_words))]
+    i = 0
+    while i < len(T):  # interpola as não casadas pelo peso silábico entre as vizinhas
+        if T[i] is not None: i += 1; continue
+        j = i
+        while j < len(T) and T[j] is None: j += 1
+        a = T[i - 1][1] if i > 0 else 0.0; b = T[j][0] if j < len(T) else dur
+        wt = [syll_weight(w) for w in script_words[i:j]]; tot = sum(wt); acc = 0
+        for k in range(i, j):
+            T[k] = (a + (b - a) * acc / tot, a + (b - a) * (acc + wt[k - i]) / tot); acc += wt[k - i]
+        i = j
+    return [{"w": w, "start": round(t0, 3), "end": round(max(t1, t0 + 0.06), 3), "asr": i in pairs}
+            for i, (w, (t0, t1)) in enumerate(zip(script_words, T))], text
+
+def main(spec, name=None):
     lines = json.load(open(f"{ROOT}/scripts/vo-lines.json"))["lines"]
-    name = spec.split(":")[1]
+    name = name or spec.split(":")[1]; mul = float(os.environ.get("SPEED_MUL", "1"))
     out_dir = f"{ROOT}/voice/{name}"; os.makedirs(out_dir, exist_ok=True)
     timings, qa = {}, {}
     for lid, L in lines.items():
         if "same" in L: continue
-        chunks, words, t = [], [], 0.0
+        chunks, script_words = [], []
         for part in L["parts"]:
-            a = trim(synth(spec, part["t"], part.get("s", 1.0)))
-            dur = len(a) / SR
-            ws = part["t"].split(); wt = [syll_weight(w) for w in ws]; tot = sum(wt); acc = 0
-            for w, k in zip(ws, wt):
-                words.append({"w": w, "start": round(t + dur * acc / tot, 3), "end": round(t + dur * (acc + k) / tot, 3)}); acc += k
-            chunks.append(a); t += dur
+            chunks.append(trim(synth(spec, part["t"], part.get("s", 1.0) * mul)))
+            script_words += part["t"].split()
             gap = part.get("p", 0)
-            if gap: chunks.append(np.zeros(int(gap * SR), np.float32)); t += gap
+            if gap: chunks.append(np.zeros(int(gap * SR), np.float32))
         y = np.concatenate(chunks); y = y / max(1e-6, np.abs(y).max()) * 0.89
         path = f"{out_dir}/{lid}.wav"; sf.write(path, y, SR, subtype="PCM_24")
+        words, ptext = word_times(script_words, y)
         padded = np.concatenate([np.zeros(int(0.5 * SR), np.float32), y, np.zeros(int(0.8 * SR), np.float32)])
-        sf.write(f"{out_dir}/.asr.wav", padded, SR); hyp = transcribe(f"{out_dir}/.asr.wav")
+        sf.write(f"{out_dir}/.asr.wav", padded, SR); hyp = transcribe(f"{out_dir}/.asr.wav"); os.remove(f"{out_dir}/.asr.wav")
         timings[lid] = {"dur": round(len(y) / SR, 3), "words": words}
-        qa[lid] = {"wer": round(wer(L["caption"], hyp), 3), "asr": hyp, "ref": L["caption"]}
-        print(f"{lid:4s} {timings[lid]['dur']:5.2f}s WER={qa[lid]['wer']:.2f} | {hyp}", flush=True)
+        qa[lid] = {"wer": round(wer(L["caption"], hyp), 3), "wer_parakeet": round(wer(L["caption"], ptext), 3),
+                   "asr": hyp, "asr_parakeet": ptext, "ref": L["caption"], "aligned": f"{sum(w['asr'] for w in words)}/{len(words)}"}
+        print(f"{lid:4s} {timings[lid]['dur']:5.2f}s WER={qa[lid]['wer']:.2f}/{qa[lid]['wer_parakeet']:.2f} al={qa[lid]['aligned']} | {ptext}", flush=True)
     json.dump(timings, open(f"{out_dir}/timings.json", "w"), ensure_ascii=False, indent=1)
     json.dump(qa, open(f"{out_dir}/qa.json", "w"), ensure_ascii=False, indent=1)
-    print("WER médio:", round(float(np.mean([v["wer"] for v in qa.values()])), 3))
+    print("WER médio Whisper:", round(float(np.mean([v["wer"] for v in qa.values()])), 3),
+          "| Parakeet:", round(float(np.mean([v["wer_parakeet"] for v in qa.values()])), 3))
 
 if __name__ == "__main__":
-    main(sys.argv[1])
+    main(sys.argv[1], sys.argv[2] if len(sys.argv) > 2 else None)

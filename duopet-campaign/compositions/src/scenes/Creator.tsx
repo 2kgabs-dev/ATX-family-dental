@@ -41,7 +41,7 @@ const PubliTag: React.FC = () => (
 
 /** Cria uma "cena" sintética para reaproveitar as cenas de produto com tempos próprios. */
 const mkScene = (type: string, start: number, end: number, cues: Record<string, any>): Scene => ({
-  id: type, type, line: "", start, end, voStart: start, voEnd: end, words: [{ w: "duopet", start: start + 0.5, end: start + 0.9 }], caption: "", cues,
+  id: type, type, line: "", start, end, voStart: start, voEnd: end, words: [{ w: "duopet", start: start + 0.5, end: start + 0.9 }], caption: "", cues, captions: [],
 });
 
 export const CREATOR_A_FRAMES = sec(30);

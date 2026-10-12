@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { AbsoluteFill, Audio, continueRender, delayRender, Sequence, staticFile, useCurrentFrame } from "remotion";
-import { FPS, sec } from "./lib/anim";
-import { Scene, TIMELINE } from "./lib/timeline";
-import { Captions, SafeZone } from "./components/Kit";
+import { AbsoluteFill, Audio, continueRender, delayRender, staticFile, useVideoConfig } from "remotion";
+import { TransitionSeries } from "@remotion/transitions";
+import { sec } from "./lib/anim";
+import { Scene, SceneOrigin, TIMELINE, useSceneTime } from "./lib/timeline";
+import { cutBetween } from "./components/Transitions";
+import { SafeZone } from "./components/Kit";
+import { CaptionTheme, FontsReady, PageCaptions } from "./components/Captions";
 import { Hook, HookDemo, HookList, HookMulti, HookPill } from "./scenes/Hooks";
 import { Benefits, Chaos, CTA, Demo, Emotion, MultiPet, Reveal } from "./scenes/Story";
 
@@ -12,8 +15,11 @@ const FONTS: [string, string, string][] = [
   ["Caveat", "fonts/Caveat-600-latin.woff2", "600"],
 ];
 
+/** Carrega as fontes locais. Devolve `ready`; o render só continua depois que a árvore re-renderizou com as fontes
+ * (as legendas medem texto com measureText e não podem medir com a fonte de reserva). */
 export const useFonts = () => {
   const [handle] = useState(() => delayRender("fonts"));
+  const [ready, setReady] = useState(false);
   useEffect(() => {
     Promise.all(
       FONTS.map(([family, file, weight]) => {
@@ -21,15 +27,32 @@ export const useFonts = () => {
         return f.load().then((ff) => (document.fonts as any).add(ff));
       }),
     )
-      .then(() => continueRender(handle))
+      .then(() => setReady(true))
       .catch((e) => {
         console.error(e);
-        continueRender(handle);
+        setReady(true);
       });
   }, [handle]);
+  useEffect(() => {
+    if (ready) continueRender(handle);
+  }, [ready, handle]);
+  return ready;
 };
 
-const LIGHT = new Set(["Hook", "CTA", "CTA15"]);
+// tema e altura da legenda por cena (fundo creme → texto verde; fundo escuro/verde → texto claro)
+const LIGHT = new Set(["Hook", "Emotion", "CTA", "CTA15"]);
+const captionTheme = (s: Scene): CaptionTheme => (LIGHT.has(s.type) ? "light" : "dark");
+const CAPTION_Y: Record<string, number> = {};
+const captionY = (s: Scene) => CAPTION_Y[s.type] ?? 1262;
+
+// No cartão final a locução repete o texto da tela (oferta e endereço): a legenda sairia duplicada, então não aparece.
+const NO_CAPTIONS = new Set(["CTA", "CTA15"]);
+
+const SceneCaptions: React.FC<{ scene: Scene }> = ({ scene }) => {
+  const { t } = useSceneTime(scene);
+  if (NO_CAPTIONS.has(scene.type)) return null;
+  return <PageCaptions captions={scene.captions} t={t} theme={captionTheme(scene)} y={captionY(scene)} />;
+};
 
 const renderScene = (s: Scene, version: string, prev?: Scene) => {
   switch (s.type) {
@@ -75,22 +98,48 @@ const renderScene = (s: Scene, version: string, prev?: Scene) => {
 
 export type AdProps = { version: string; captions: boolean; audio?: string; safe?: boolean };
 
+/**
+ * Montagem com <TransitionSeries> (regra transitions da skill Remotion).
+ * A sincronia com a voz não muda: numa Transition de D quadros a cena que sai é estendida em ⌈D/2⌉ e a que entra
+ * começa ⌊D/2⌋ antes do seu início (SceneOrigin dá o tempo absoluto do quadro 0 de cada cena). Overlays não mexem na duração.
+ */
 export const Ad: React.FC<AdProps> = ({ version, captions, audio, safe }) => {
-  useFonts();
+  const ready = useFonts();
+  const { fps } = useVideoConfig();
   const v = TIMELINE.versions[version];
-  const frame = useCurrentFrame();
-  const t = frame / FPS;
-  const cur = v.scenes.find((s) => t >= s.start && t < s.end) ?? v.scenes[v.scenes.length - 1];
-  return (
-    <AbsoluteFill style={{ background: "#0e1311" }}>
-      {v.scenes.map((s, i) => (
-        <Sequence key={s.id} from={sec(s.start)} durationInFrames={sec(s.end) - sec(s.start)} name={s.id}>
+  const cuts = v.scenes.map((s, i) => (i < v.scenes.length - 1 ? cutBetween(s, v.scenes[i + 1], version) : null));
+  const tDur = cuts.map((c) => (c && c.kind === "transition" ? c.frames : 0));
+  const items: React.ReactNode[] = [];
+  v.scenes.forEach((s, i) => {
+    const pre = i > 0 ? Math.floor(tDur[i - 1] / 2) : 0;
+    const begin = sec(s.start) - pre;
+    const end = sec(s.end) + (i < v.scenes.length - 1 ? Math.ceil(tDur[i] / 2) : 0);
+    items.push(
+      <TransitionSeries.Sequence key={s.id} name={s.id} durationInFrames={end - begin} premountFor={fps}>
+        <SceneOrigin.Provider value={begin / fps}>
           {renderScene(s, version, v.scenes[i - 1])}
-        </Sequence>
-      ))}
-      {captions && <Captions words={v.words} t={t} theme={LIGHT.has(cur.type) ? "light" : "dark"} y={1290} />}
-      {audio && <Audio src={staticFile(audio)} />}
-      {safe && <SafeZone />}
-    </AbsoluteFill>
+          {captions && <SceneCaptions scene={s} />}
+        </SceneOrigin.Provider>
+      </TransitionSeries.Sequence>,
+    );
+    const c = cuts[i];
+    if (c?.kind === "transition") {
+      items.push(<TransitionSeries.Transition key={`${s.id}-t`} presentation={c.presentation} timing={c.timing} />);
+    } else if (c?.kind === "overlay") {
+      items.push(
+        <TransitionSeries.Overlay key={`${s.id}-o`} durationInFrames={c.frames} offset={c.offset ?? 0} premountFor={fps}>
+          {c.render()}
+        </TransitionSeries.Overlay>,
+      );
+    }
+  });
+  return (
+    <FontsReady.Provider value={ready}>
+      <AbsoluteFill style={{ background: "#0e1311" }}>
+        <TransitionSeries name={`${version} cenas`}>{items}</TransitionSeries>
+        {audio && <Audio src={staticFile(audio)} />}
+        {safe && <SafeZone />}
+      </AbsoluteFill>
+    </FontsReady.Provider>
   );
 };

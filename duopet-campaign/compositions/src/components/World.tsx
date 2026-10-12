@@ -1,6 +1,7 @@
 import React from "react";
-import { AbsoluteFill, useCurrentFrame } from "remotion";
+import { AbsoluteFill } from "remotion";
 import { pseudo } from "../lib/anim";
+import { useAbsTime } from "../lib/timeline";
 
 /**
  * Mundo do produto (referência: vídeo enviado pelo cliente): verde-floresta profundo com vinheta,
@@ -13,8 +14,7 @@ export const ForestBG: React.FC<{ cx?: number; cy?: number; orbits?: number; par
   particles = 1,
   glow = 1,
 }) => {
-  const f = useCurrentFrame();
-  const t = f / 30;
+  const t = useAbsTime(); // tempo absoluto: órbitas e partículas não pulam no corte entre cenas verdes
   return (
     <AbsoluteFill style={{ overflow: "hidden" }}>
       <AbsoluteFill

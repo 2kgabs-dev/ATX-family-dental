@@ -41,3 +41,32 @@ Analisado a 4 quadros por segundo (124 quadros) e no áudio. Folhas de análise:
 ## 3. Limitações desta pesquisa
 - Não consegui abrir a Meta Ads Library nem o TikTok Creative Center por este ambiente (exigem login). O roteiro de varredura manual está em `research/01-pesquisa-mercado.md`, seção 7.
 - As fontes externas são, na maior parte, análises de agências e ferramentas. Servem como referência de técnica, não como prova de desempenho.
+
+## 4. v3: skill oficial do Remotion e transições
+
+**Pesquisa da skill.** As Agent Skills oficiais do Remotion ficam em [`remotion-dev/skills`](https://github.com/remotion-dev/skills) e foram instaladas no projeto com `npx skills add remotion-dev/skills` (pasta `.claude/skills/` na raiz do repositório). As regras usadas nesta versão:
+
+| Regra da skill | O que diz | Como entrou no filme |
+|---|---|---|
+| `remotion-captions` / `display-captions` | Legendas no tipo `Caption` (JSON, espaço antes de cada palavra, `pageBreakAfter`), páginas com `createTikTokStyleCaptions`, legenda dentro da `Sequence` de cada cena | `build_timeline.py` gera `captions` por cena com quebra editorial (pontuação, ≤17 caracteres, sem terminar em artigo ou preposição). `Captions.tsx` usa `createTikTokStyleCaptions` |
+| `transitions` | `<TransitionSeries>` com `Transition` (sobrepõe) e `Overlay` (não muda a duração), `premountFor={fps}` | `Ad.tsx` montado em `TransitionSeries`. A cena que sai é estendida por metade da transição e a que entra começa metade antes; um contexto de tempo absoluto mantém a sincronia com a voz |
+| `light-leaks` | `lightLeak()` de `@remotion/effects` sobre `<Solid>`, com `progress` pelo quadro | Luz quente sobre a foto no "mais tempo juntos". Testei também no corte revelação→demo, mas ali virou um véu amarelo-oliva sobre o verde e saiu |
+| `measuring-text` | `measureText()` só com a fonte carregada | Posição da pílula da legenda; o render espera as fontes antes de medir |
+| `voiceover` | Recomenda ElevenLabs | Sem créditos na conta. Usei Kokoro local (ver `voice/README.md`) |
+
+**Limitação encontrada.** As transições WebGL do pacote (`zoomBlur`, `crossZoom`, `dreamyZoom`…) dependem de HTML-in-canvas (Chrome 149+). O Chromium de render deste ambiente não tem isso. Todas as transições foram feitas com CSS e SVG, que renderizam em qualquer máquina.
+
+**Painel de transições.** Três propostas independentes (continuidade/match cut no estilo Apple, energia nativa de Reels/TikTok, viabilidade técnica com fidelidade à referência) para cada corte das 6 versões, depois consolidadas. O que entrou:
+
+| Corte | Transição | De onde veio |
+|---|---|---|
+| Gancho → caos (master, H3) | Mergulho no "?" terracota até a cor tomar a tela; o caos abre em círculo a partir do mesmo ponto | Energia: movimento no quadro do corte |
+| Lista → caos (H1) | Corte invisível (mesmos objetos dos dois lados) e o título sai por uma máscara nos 6 últimos quadros | Continuidade |
+| Demo → caos (H2), comprimido → caos (H4) | Whip pan com desfoque direcional (filtro SVG só durante a transição) | Energia |
+| Caos → revelação (todas) | O mesmo ponto creme se estica e vira a linha, com uma onda de choque fina no impacto | Continuidade + energia |
+| Revelação → demo | Fusão de 8 quadros; o celular está na mesma pose dos dois lados, então só o título troca | Continuidade (pose de câmera unificada) |
+| Demo → benefícios / multi-pet | Sem corte visível: o celular começa na pose final da demo e assenta durante o 1º giro | Continuidade |
+| Benefícios → emoção | Portal: a tela do celular (creme) vira o papel creme da cena e cresce até cobrir o quadro | Continuidade (portal de tela) |
+| Emoção / multi-pet / demo 15 s → CTA | O painel terracota da referência atravessa o corte com velocidade casada (acelera, cobre no corte, desacelera) e borda em degradê no lugar de desfoque | Continuidade + energia |
+
+Fundos verdes, órbitas, partículas e granulação passaram a usar o tempo absoluto da versão: não "pulam" mais nos cortes entre cenas verdes.

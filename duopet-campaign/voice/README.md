@@ -1,11 +1,38 @@
 # Locução (Fase 9)
 
-## O que foi usado e por quê
+## v3 (atual): voz feminina mais natural
+Pedido do cliente na v3: "põe uma feminina mais natural". O que foi feito:
+
+1. **Busca de vozes femininas pt-BR com licença comercial.** Encontrei duas vozes Piper femininas novas (`pt_BR-dii-high` e `pt_BR-miro-high`), mas a licença é **CC BY-NC-SA 4.0 (uso não comercial)**: não podem ir para um anúncio. Descartadas e apagadas. A ElevenLabs via Higgsfield sai por **1,5 crédito** para o master inteiro, mas a conta está com **0 créditos**.
+2. **Casting com o Kokoro-82M (Apache-2.0, uso comercial permitido).** A `pf_dora` é a única voz feminina pt-BR do modelo. Testei misturas do vetor de estilo dela (timbre e prosódia) com outras vozes femininas, mantendo os fonemas em português (`tools/casting_fem.py`, resultados em `casting/fem/casting-fem.json`).
+3. **Escolhida: `pf_dora` 60% + `ef_dora` 40%, velocidade ×1,04** (`fem/`). Entre as candidatas, foi a que teve **mais variação de entonação**, sem perder inteligibilidade nem pronúncia ("pet" e "DuoPet" reconhecidos corretamente).
+
+| Voz (master, falas M1–M7) | Tom mediano | Variação de tom | Ritmo | Erro de transcrição Whisper | Erro de transcrição Parakeet |
+|---|---|---|---|---|---|
+| v2: masculina `pm_alex` | 138 Hz | 3,24 semitons | 137 ppm | 7,6% | — |
+| feminina `pf_dora` pura | 183 Hz | 3,17 semitons | 141 ppm | 8,5% | — |
+| **v3: feminina `pf_dora`+`ef_dora` (escolhida)** | 180 Hz | **3,40 semitons** | 147 ppm | 8,3% | **5,1%** |
+
+Os erros que sobram são de grafia, não de pronúncia: "pra" transcrito como "para", "tá" como "está", "DuoPet" como "Duo Pet". Comparação de áudio: `casting/fem/comparacao_vozes_v2-masc_dora_v3-fem.mp3` (as mesmas 3 falas na voz masculina da v2, na `pf_dora` pura e na nova voz).
+
+**Legendas com tempo real.** As legendas agora usam o tempo de cada palavra medido pelo ASR **Parakeet TDT 0.6B v3** (NVIDIA, CC-BY-4.0, local, `tools/align.py`), não mais a estimativa por sílabas. O alinhamento casou 226 das 229 palavras faladas; as 3 restantes (como "tá", transcrito "está", e partes de "duopet ponto site") recebem tempo interpolado entre as vizinhas.
+
+**Minha opinião honesta:** a voz ficou mais natural do que a da v2, mas continua sintética. Para veicular com verba, as duas opções que mais melhoram o resultado são:
+- **Locutora humana.** É a melhor opção. O roteiro de gravação está abaixo, e trocar a voz é rodar 3 comandos.
+- **ElevenLabs** (multilingual, voz feminina pt-BR). Custa ~1,5 crédito do Higgsfield para o master. Com créditos na conta, eu gero e troco em minutos.
+
+Não usei clonagem de voz de ninguém.
+
+---
+
+## v1–v2 (histórico)
+
+### O que foi usado e por quê
 - **Motor:** Kokoro-82M (licença Apache-2.0) rodando **localmente**, sem enviar o texto a terceiros. As vozes Piper pt_BR (datasets CC0) entraram como 3ª interpretação.
 - **Não há voz de pessoa real clonada.** Nada do Japa Dorama foi sintetizado.
 - A conta do Higgsfield conectada estava com **0 créditos**, então os motores comerciais (ElevenLabs/MiniMax via Higgsfield) não puderam ser usados.
 
-## Casting: 3 interpretações avaliadas
+### Casting: 3 interpretações avaliadas
 Todas com o mesmo roteiro do master. WER = erro de transcrição por reconhecimento automático (Whisper small, local), usado como medida objetiva de inteligibilidade. Quanto menor, melhor.
 
 | Interpretação | Arquivos | WER médio | Tom (F0 mediano) | Expressividade (desvio de tom) | Ritmo |
@@ -55,6 +82,6 @@ Tom geral: conversa com um amigo que tem pet, nada de "voz de propaganda". Energ
 | S1–S4 | Os cuidados do seu pet estão espalhados? / No DuoPet, fica tudo num lugar só. / Marque o que fez. Veja o que falta. / Três dias grátis, sem cartão. duopet ponto site. | 15 s: direto, sem pressa artificial | 2,7 / 3,2 / 2,6 / 4,0 s |
 
 ## Arquivos
-- `pm_alex/<ID>.wav`: falas isoladas, 24 kHz/24 bit (voz escolhida). `pf_dora/`, `faber/`: alternativas do casting.
+- `fem/<ID>.wav`: falas isoladas, 24 kHz/24 bit (**voz da v3**). `pm_alex/` (voz da v2), `pf_dora/`, `faber/`: alternativas do casting.
 - `mix/<versão>_voice.wav`: trilha de voz de cada versão, já posicionada no tempo, com EQ e compressão (48 kHz).
 - `*/qa.json`: transcrição automática e WER de cada fala. `*/timings.json`: tempos por palavra (usados nas legendas).

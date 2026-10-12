@@ -10,12 +10,19 @@ const BROWSER = process.env.REMOTION_BROWSER || "/opt/pw-browsers/chromium_headl
 const [, , mode, compId, arg3, arg4, ...rest] = process.argv;
 const safe = rest.includes("--safe") || arg4 === "--safe";
 
+// @remotion/transitions 4.0.534: o build ESM embute react-dom 19 por engano e quebra com React 18.
+// Usamos o build CommonJS do mesmo pacote (correto). Corrigido na 4.0.535; ver compositions/README.
+export const webpackOverride = (c) => ({
+  ...c,
+  resolve: { ...c.resolve, alias: { ...(c.resolve?.alias || {}), "@remotion/transitions$": path.resolve("node_modules/@remotion/transitions/dist/index.js") } },
+});
+
 const cacheFile = "/tmp/claude-0/-home-user-ATX-family-dental/d7d0bf5e-2b54-532d-842a-8feb644dcc75/scratchpad/bundle-path.txt";
 let serveUrl;
 if (process.env.REUSE_BUNDLE && fs.existsSync(cacheFile) && fs.existsSync(fs.readFileSync(cacheFile, "utf8"))) {
   serveUrl = fs.readFileSync(cacheFile, "utf8");
 } else {
-  serveUrl = await bundle({ entryPoint: path.resolve("src/index.ts"), publicDir: path.resolve("public"), webpackOverride: (c) => c });
+  serveUrl = await bundle({ entryPoint: path.resolve("src/index.ts"), publicDir: path.resolve("public"), webpackOverride });
   fs.writeFileSync(cacheFile, serveUrl);
 }
 const inputProps = {};

@@ -1,12 +1,13 @@
 """Storyboard a partir dos renders finais: 2 quadros por cena (entrada e meio da fala), com legenda de cena e timecode."""
-import json, os, subprocess
+import json, math, os, subprocess
 from PIL import Image, ImageDraw, ImageFont
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 TL = json.load(open(f"{ROOT}/compositions/src/data/timeline.json"))
-FILES = {"master": "master/duopet_master_45s_sem-legenda.mp4", "perf_h1": "performance/duopet_perf-h1-dor_31s_sem-legenda.mp4",
-         "perf_h2": "performance/duopet_perf-h2-demo_30s_sem-legenda.mp4", "perf_h3": "performance/duopet_perf-h3-multipet_31s_sem-legenda.mp4",
-         "perf_h4": "performance/duopet_perf-h4-remedio_31s_sem-legenda.mp4", "short15": "curto/duopet_curto_15s_sem-legenda.mp4"}
+_s = lambda v: math.ceil(TL["versions"][v]["duration"])  # mesmos nomes de compositions/queue.sh
+FILES = {"master": f"master/duopet_master_{_s('master')}s_sem-legenda.mp4", "perf_h1": f"performance/duopet_perf-h1-dor_{_s('perf_h1')}s_sem-legenda.mp4",
+         "perf_h2": f"performance/duopet_perf-h2-demo_{_s('perf_h2')}s_sem-legenda.mp4", "perf_h3": f"performance/duopet_perf-h3-multipet_{_s('perf_h3')}s_sem-legenda.mp4",
+         "perf_h4": f"performance/duopet_perf-h4-remedio_{_s('perf_h4')}s_sem-legenda.mp4", "short15": f"curto/duopet_curto_{_s('short15')}s_sem-legenda.mp4"}
 try:
     FONT = ImageFont.truetype(f"{ROOT}/compositions/node_modules/geist/dist/fonts/geist-sans/Geist-SemiBold.ttf", 22)
     FONT_S = ImageFont.truetype(f"{ROOT}/compositions/node_modules/geist/dist/fonts/geist-sans/Geist-Regular.ttf", 17)

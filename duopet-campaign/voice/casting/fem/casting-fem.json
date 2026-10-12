@@ -1,0 +1,127 @@
+[
+ {
+  "name": "dora",
+  "mix": {
+   "pf_dora": 1.0
+  },
+  "speed": 1.0,
+  "dur": 18.99,
+  "wer": 0.085,
+  "f0": 180,
+  "pitch_sd": 3.0,
+  "wps": 2.48,
+  "asr": "Você organiza a sua rotina inteira. E a do seu patch, ração, remédio, vacina, consulta. Um pouco no calendário, um pouco no WhatsApp e o resto na cabeça. No duo patch, cada cuidado fica no lugar certo. Menos coisa na cabeça. E mais tempo para quem você ama."
+ },
+ {
+  "name": "dora_lenta",
+  "mix": {
+   "pf_dora": 1.0
+  },
+  "speed": 0.92,
+  "dur": 20.06,
+  "wer": 0.128,
+  "f0": 183,
+  "pitch_sd": 2.93,
+  "wps": 2.34,
+  "asr": "Você organiza a sua rotina inteira. Ia do seu patch. Ração, remédio, vacina, consulta. Um pouco no calendário, um pouco no WhatsApp e o resto na cabeça. No duo patch, cada cuidado fica no lugar certo. Menos coisa na cabeça. E mais tempo para quem você ama."
+ },
+ {
+  "name": "dora_heart30",
+  "mix": {
+   "pf_dora": 0.7,
+   "af_heart": 0.3
+  },
+  "speed": 0.95,
+  "dur": 20.03,
+  "wer": 0.085,
+  "f0": 186,
+  "pitch_sd": 2.74,
+  "wps": 2.35,
+  "asr": "Você organiza a sua rotina inteira. E a do seu patch. Ração, remédio, vacina, consulta. Um pouco no calendário, um pouco no WhatsApp e o resto na cabeça. No duo patch, cada cuidado fica no lugar certo. Menos coisa na cabeça e mais tempo para quem você ama."
+ },
+ {
+  "name": "dora_heart50",
+  "mix": {
+   "pf_dora": 0.5,
+   "af_heart": 0.5
+  },
+  "speed": 0.95,
+  "dur": 20.04,
+  "wer": 0.085,
+  "f0": 193,
+  "pitch_sd": 2.76,
+  "wps": 2.35,
+  "asr": "Você organiza a sua rotina inteira. E a do seu peti. Ração, remédio, vacina, consulta. Um pouco no calendário, um pouco no WhatsApp e o resto na cabeça. No duo peti, cada cuidado fica no lugar certo. Menos coisa na cabeça e mais tempo para quem você ama."
+ },
+ {
+  "name": "dora_sara40",
+  "mix": {
+   "pf_dora": 0.6,
+   "if_sara": 0.4
+  },
+  "speed": 0.95,
+  "dur": 19.65,
+  "wer": 0.085,
+  "f0": 210,
+  "pitch_sd": 2.61,
+  "wps": 2.39,
+  "asr": "Você organiza a sua rotina inteira. E a do seu patch, ração, remédio, vacina, consulta. Um pouco no calendário, um pouco no WhatsApp e o resto na cabeça. No duo patch, cada cuidado fica no lugar certo. Menos coisa na cabeça e mais tempo para quem você ama."
+ },
+ {
+  "name": "dora_edora40",
+  "mix": {
+   "pf_dora": 0.6,
+   "ef_dora": 0.4
+  },
+  "speed": 0.95,
+  "dur": 19.46,
+  "wer": 0.085,
+  "f0": 179,
+  "pitch_sd": 3.05,
+  "wps": 2.41,
+  "asr": "Você organiza a sua rotina inteira. E a do seu peti, ração, remédio, vacina, consulta. Um pouco no calendário, um pouco no WhatsApp e o resto na cabeça. No duo peti, cada cuidado fica no lugar certo. Menos coisa na cabeça. E mais tempo para quem você ama."
+ },
+ {
+  "name": "dora_bella30",
+  "mix": {
+   "pf_dora": 0.7,
+   "af_bella": 0.3
+  },
+  "speed": 0.95,
+  "dur": 19.94,
+  "wer": 0.128,
+  "f0": 189,
+  "pitch_sd": 2.62,
+  "wps": 2.36,
+  "asr": "Você organiza a sua rotina inteira. Ia do seu peti. Ração, remédio, vacina, consulta. Um pouco no calendário, um pouco no WhatsApp e o resto na cabeça. No duo peti, cada cuidado fica no lugar certo. Menos coisa na cabeça e mais tempo para quem você ama."
+ },
+ {
+  "name": "dora_siwis30",
+  "mix": {
+   "pf_dora": 0.7,
+   "ff_siwis": 0.3
+  },
+  "speed": 0.95,
+  "dur": 20.34,
+  "wer": 0.085,
+  "f0": 192,
+  "pitch_sd": 3.02,
+  "wps": 2.31,
+  "asr": "Você organiza a sua rotina inteira. E a do seu patch. Ração, remédio, vacina, consulta. Um pouco no calendário, um pouco no WhatsApp e o resto na cabeça. No duo patch, cada cuidado fica no lugar certo. Menos coisa na cabeça. E mais tempo para quem você ama."
+ },
+ {
+  "name": "dora_sara_heart",
+  "mix": {
+   "pf_dora": 0.5,
+   "if_sara": 0.25,
+   "af_heart": 0.25
+  },
+  "speed": 0.95,
+  "dur": 19.86,
+  "wer": 0.085,
+  "f0": 205,
+  "pitch_sd": 2.62,
+  "wps": 2.37,
+  "asr": "Você organiza a sua rotina inteira. E a do seu peti, ração, remédio, vacina, consulta. Um pouco no calendário, um pouco no WhatsApp e o resto na cabeça. No duo peti, cada cuidado fica no lugar certo. Menos coisa na cabeça e mais tempo para quem você ama."
+ }
+]

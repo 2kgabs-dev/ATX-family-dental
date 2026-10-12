@@ -1,5 +1,5 @@
 """Gera report/index.html (página do relatório da campanha) a partir dos arquivos reais do projeto."""
-import base64, html, json, os, subprocess
+import base64, html, json, math, os, subprocess
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 OUT = f"{ROOT}/report"
@@ -21,13 +21,18 @@ def qa(name):
     return json.load(open(p)) if os.path.exists(p) else None
 
 
+def secs(v):
+    return math.ceil(TL["versions"][v]["duration"])
+
+
+# mesmos nomes de compositions/queue.sh (a duração arredondada vem da linha do tempo)
 RENDERS = [
-    ("master", "Master cinematográfico", "renders/master/duopet_master_45s"),
-    ("perf_h1", "Performance · H1 dor/lista (controle)", "renders/performance/duopet_perf-h1-dor_31s"),
-    ("perf_h2", "Performance · H2 demo no 1º frame", "renders/performance/duopet_perf-h2-demo_30s"),
-    ("perf_h3", "Performance · H3 multi-pet", "renders/performance/duopet_perf-h3-multipet_31s"),
-    ("perf_h4", "Performance · H4 'já deu o remédio?'", "renders/performance/duopet_perf-h4-remedio_31s"),
-    ("short15", "Curto 15 s", "renders/curto/duopet_curto_15s"),
+    ("master", "Master cinematográfico", f"renders/master/duopet_master_{secs('master')}s"),
+    ("perf_h1", "Performance · H1 dor/lista (controle)", f"renders/performance/duopet_perf-h1-dor_{secs('perf_h1')}s"),
+    ("perf_h2", "Performance · H2 demo no 1º frame", f"renders/performance/duopet_perf-h2-demo_{secs('perf_h2')}s"),
+    ("perf_h3", "Performance · H3 multi-pet", f"renders/performance/duopet_perf-h3-multipet_{secs('perf_h3')}s"),
+    ("perf_h4", "Performance · H4 'já deu o remédio?'", f"renders/performance/duopet_perf-h4-remedio_{secs('perf_h4')}s"),
+    ("short15", "Curto", f"renders/curto/duopet_curto_{secs('short15')}s"),
 ]
 
 MATRIX = [
@@ -123,7 +128,7 @@ a{color:var(--forest)}
 """)
     # vídeos
     h.append('<section class="wide"><div class="wrap"><h2>Assista</h2><p>Prévias em resolução reduzida. Os arquivos finais (1080×1920, H.264, AAC) estão na pasta <code>renders/</code>, com e sem legenda.</p></div><div class="videos">')
-    for key, label in [("master", "Master · 45 s"), ("perf_h1", "Performance H1 · 31 s"), ("perf_h3", "Performance H3 multi-pet · 31 s"), ("short15", "Curto · 15 s")]:
+    for key, label in [("master", f"Master · {secs('master')} s"), ("perf_h1", f"Performance H1 · {secs('perf_h1')} s"), ("perf_h3", f"Performance H3 multi-pet · {secs('perf_h3')} s"), ("short15", f"Curto · {secs('short15')} s")]:
         h.append(f'<div class="vid"><video controls playsinline preload="metadata" src="{key}.mp4"></video><div class="cap">{E(label)}</div></div>')
     h.append("</div></section>")
     # entregáveis + QA
@@ -197,7 +202,7 @@ a{color:var(--forest)}
 <tr><td>D · Curto × longo</td><td>15 s × H1</td><td>Custo por cadastro <em>e</em> % de assinatura em 7 dias</td></tr>
 <tr><td>E · Multi-pet</td><td>H3 no público multi-pet × H1 amplo</td><td>CAC</td></tr>
 </tbody></table></div>
-<p>Evento de otimização da fase 1: <strong>cadastro</strong> (não visualização). Regra de corte: ≥ 50 cadastros por braço ou 2× o custo-alvo gasto sem cadastro. Exemplo de UTM: <code>https://duopet.site/?utm_source=meta&amp;utm_medium=paid_social&amp;utm_campaign=dp_cadastro_202610&amp;utm_content=prf31_h3_multi&amp;utm_term=multipet</code></p>
+<p>Evento de otimização da fase 1: <strong>cadastro</strong> (não visualização). Regra de corte: ≥ 50 cadastros por braço ou 2× o custo-alvo gasto sem cadastro. Exemplo de UTM: <code>https://duopet.site/?utm_source=meta&amp;utm_medium=paid_social&amp;utm_campaign=dp_cadastro_202610&amp;utm_content=prf30_h3_multi&amp;utm_term=multipet</code></p>
 </section>
 <section><h2>Funil: o que resolver primeiro</h2>
 <div class="tbl"><table><thead><tr><th>Ponto</th><th>Por que importa</th><th>Recomendação</th></tr></thead><tbody>

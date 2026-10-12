@@ -141,6 +141,7 @@ export const HookList: React.FC<{ scene: Scene }> = ({ scene }) => {
   const items: number[] = scene.cues.items;
   const where = scene.cues.where;
   const cur = items.filter((x) => t >= x).length - 1;
+  const titleOut = prog(t, scene.end - 0.2, 0.2, EASE.inOut);
   return (
     <AbsoluteFill style={{ overflow: "hidden" }}>
       <NightBG />
@@ -161,7 +162,8 @@ export const HookList: React.FC<{ scene: Scene }> = ({ scene }) => {
           ) : null,
         )}
       {t >= where - 0.02 && (
-        <div style={{ position: "absolute", left: 80, top: 300 }}>
+        // sai por uma máscara que sobe nos 6 últimos quadros: o corte para o caos (mesmos objetos) fica invisível
+        <div style={{ position: "absolute", left: 80, top: 300, clipPath: `inset(-40px -40px ${titleOut * 100}% -40px)`, translate: `0px ${-titleOut * 40}px` }}>
           <KText lines={["Tá tudo", "onde"]} mode="track" t={t} t0={where} size={176} dot="?" />
         </div>
       )}

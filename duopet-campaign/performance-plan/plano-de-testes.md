@@ -32,17 +32,17 @@ Padrão: `https://duopet.site/?utm_source={plataforma}&utm_medium=paid_social&ut
 
 | Criativo (arquivo) | utm_content |
 |---|---|
-| `master/duopet_master_45s_*.mp4` | `mst45_h0_voz` |
-| `performance/duopet_perf-h1-dor_31s_*.mp4` | `prf31_h1_dor` |
-| `performance/duopet_perf-h2-demo_30s_*.mp4` | `prf30_h2_demo` |
-| `performance/duopet_perf-h3-multipet_31s_*.mp4` | `prf31_h3_multi` |
-| `performance/duopet_perf-h4-remedio_31s_*.mp4` | `prf31_h4_remedio` |
+| `master/duopet_master_42s_*.mp4` | `mst42_h0_voz` |
+| `performance/duopet_perf-h1-dor_30s_*.mp4` | `prf30_h1_dor` |
+| `performance/duopet_perf-h2-demo_29s_*.mp4` | `prf29_h2_demo` |
+| `performance/duopet_perf-h3-multipet_30s_*.mp4` | `prf30_h3_multi` |
+| `performance/duopet_perf-h4-remedio_29s_*.mp4` | `prf29_h4_remedio` |
 | `curto/duopet_curto_15s_*.mp4` | `sht15_dor` |
 | Japa Dorama — corte A / B | `cri_jd_a` / `cri_jd_b` |
 
 Exemplos prontos:
-- Meta, multi-pet: `https://duopet.site/?utm_source=meta&utm_medium=paid_social&utm_campaign=dp_cadastro_202610&utm_content=prf31_h3_multi&utm_term=multipet`
-- TikTok, amplo: `https://duopet.site/?utm_source=tiktok&utm_medium=paid_social&utm_campaign=dp_cadastro_202610&utm_content=prf31_h1_dor&utm_term=amplo`
+- Meta, multi-pet: `https://duopet.site/?utm_source=meta&utm_medium=paid_social&utm_campaign=dp_cadastro_202610&utm_content=prf30_h3_multi&utm_term=multipet`
+- TikTok, amplo: `https://duopet.site/?utm_source=tiktok&utm_medium=paid_social&utm_campaign=dp_cadastro_202610&utm_content=prf30_h1_dor&utm_term=amplo`
 
 ## 3. Estrutura de campanha sugerida (fase 1, 14 dias)
 

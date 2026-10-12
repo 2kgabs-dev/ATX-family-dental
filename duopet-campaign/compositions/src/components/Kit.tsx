@@ -1,5 +1,6 @@
 import React from "react";
 import { AbsoluteFill, Img, staticFile, useCurrentFrame } from "remotion";
+import { useAbsTime } from "../lib/timeline";
 import { C, EASE, FONT, HAND, MONO } from "../theme";
 import { clamp01, FPS, prog } from "../lib/anim";
 
@@ -25,7 +26,7 @@ export const PaperBG: React.FC<{ style?: React.CSSProperties; warm?: number }> =
 
 /** Granulação de filme animada (bem sutil): 6 texturas pré-geradas alternadas — muito mais leve que feTurbulence. */
 export const Grain: React.FC<{ opacity?: number }> = ({ opacity = 0.07 }) => {
-  const f = useCurrentFrame();
+  const f = Math.round(useAbsTime() * 30);
   return (
     <AbsoluteFill style={{ pointerEvents: "none", mixBlendMode: "overlay", opacity: opacity * 1.6 }}>
       <Img src={staticFile(`img/grain-${f % 6}.png`)} style={{ width: 1080, height: 1920, imageRendering: "pixelated" }} />

@@ -1,0 +1,26 @@
+{
+ "pm_alex": {
+  "dur": 39.77,
+  "f0": 138,
+  "sd": 3.24,
+  "wpm": 137,
+  "wer_whisper": 0.076,
+  "wer_parakeet": NaN
+ },
+ "pf_dora": {
+  "dur": 38.75,
+  "f0": 183,
+  "sd": 3.17,
+  "wpm": 141,
+  "wer_whisper": 0.085,
+  "wer_parakeet": NaN
+ },
+ "fem": {
+  "dur": 37.04,
+  "f0": 180,
+  "sd": 3.4,
+  "wpm": 147,
+  "wer_whisper": 0.083,
+  "wer_parakeet": 0.051
+ }
+}

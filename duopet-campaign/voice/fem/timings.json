@@ -1,0 +1,1476 @@
+{
+ "M1": {
+  "dur": 3.843,
+  "words": [
+   {
+    "w": "Você",
+    "start": 0.0,
+    "end": 0.24,
+    "asr": true
+   },
+   {
+    "w": "organiza",
+    "start": 0.24,
+    "end": 0.96,
+    "asr": true
+   },
+   {
+    "w": "a",
+    "start": 0.96,
+    "end": 1.12,
+    "asr": true
+   },
+   {
+    "w": "sua",
+    "start": 1.12,
+    "end": 1.28,
+    "asr": true
+   },
+   {
+    "w": "rotina",
+    "start": 1.28,
+    "end": 1.76,
+    "asr": true
+   },
+   {
+    "w": "inteira…",
+    "start": 1.76,
+    "end": 2.24,
+    "asr": true
+   },
+   {
+    "w": "e",
+    "start": 2.4,
+    "end": 2.64,
+    "asr": true
+   },
+   {
+    "w": "a",
+    "start": 2.64,
+    "end": 2.8,
+    "asr": true
+   },
+   {
+    "w": "do",
+    "start": 2.8,
+    "end": 2.96,
+    "asr": true
+   },
+   {
+    "w": "seu",
+    "start": 2.96,
+    "end": 3.2,
+    "asr": true
+   },
+   {
+    "w": "pet?",
+    "start": 3.2,
+    "end": 3.52,
+    "asr": true
+   }
+  ]
+ },
+ "M2": {
+  "dur": 6.921,
+  "words": [
+   {
+    "w": "Ração,",
+    "start": 0.0,
+    "end": 0.24,
+    "asr": true
+   },
+   {
+    "w": "remédio,",
+    "start": 0.48,
+    "end": 0.96,
+    "asr": true
+   },
+   {
+    "w": "vacina,",
+    "start": 1.12,
+    "end": 1.52,
+    "asr": true
+   },
+   {
+    "w": "consulta…",
+    "start": 1.68,
+    "end": 2.16,
+    "asr": true
+   },
+   {
+    "w": "um",
+    "start": 2.4,
+    "end": 2.64,
+    "asr": true
+   },
+   {
+    "w": "pouco",
+    "start": 2.64,
+    "end": 2.96,
+    "asr": true
+   },
+   {
+    "w": "no",
+    "start": 2.96,
+    "end": 3.12,
+    "asr": true
+   },
+   {
+    "w": "calendário,",
+    "start": 3.12,
+    "end": 3.76,
+    "asr": true
+   },
+   {
+    "w": "um",
+    "start": 4.0,
+    "end": 4.16,
+    "asr": true
+   },
+   {
+    "w": "pouco",
+    "start": 4.16,
+    "end": 4.48,
+    "asr": true
+   },
+   {
+    "w": "no",
+    "start": 4.48,
+    "end": 4.64,
+    "asr": true
+   },
+   {
+    "w": "WhatsApp,",
+    "start": 4.64,
+    "end": 5.36,
+    "asr": true
+   },
+   {
+    "w": "e",
+    "start": 5.44,
+    "end": 5.6,
+    "asr": true
+   },
+   {
+    "w": "o",
+    "start": 5.6,
+    "end": 5.76,
+    "asr": true
+   },
+   {
+    "w": "resto",
+    "start": 5.76,
+    "end": 6.16,
+    "asr": true
+   },
+   {
+    "w": "na",
+    "start": 6.16,
+    "end": 6.32,
+    "asr": true
+   },
+   {
+    "w": "cabeça.",
+    "start": 6.32,
+    "end": 7.12,
+    "asr": true
+   }
+  ]
+ },
+ "M3": {
+  "dur": 3.573,
+  "words": [
+   {
+    "w": "No",
+    "start": 0.0,
+    "end": 0.08,
+    "asr": true
+   },
+   {
+    "w": "DuoPet,",
+    "start": 0.08,
+    "end": 0.48,
+    "asr": true
+   },
+   {
+    "w": "cada",
+    "start": 1.36,
+    "end": 1.68,
+    "asr": true
+   },
+   {
+    "w": "cuidado",
+    "start": 1.68,
+    "end": 2.24,
+    "asr": true
+   },
+   {
+    "w": "fica",
+    "start": 2.24,
+    "end": 2.56,
+    "asr": true
+   },
+   {
+    "w": "no",
+    "start": 2.56,
+    "end": 2.8,
+    "asr": true
+   },
+   {
+    "w": "lugar",
+    "start": 2.8,
+    "end": 3.12,
+    "asr": true
+   },
+   {
+    "w": "certo.",
+    "start": 3.12,
+    "end": 3.6,
+    "asr": true
+   }
+  ]
+ },
+ "M4": {
+  "dur": 6.151,
+  "words": [
+   {
+    "w": "Você",
+    "start": 0.0,
+    "end": 0.16,
+    "asr": true
+   },
+   {
+    "w": "vê",
+    "start": 0.16,
+    "end": 0.48,
+    "asr": true
+   },
+   {
+    "w": "o",
+    "start": 0.48,
+    "end": 0.56,
+    "asr": true
+   },
+   {
+    "w": "que",
+    "start": 0.56,
+    "end": 0.72,
+    "asr": true
+   },
+   {
+    "w": "o",
+    "start": 0.72,
+    "end": 0.8,
+    "asr": true
+   },
+   {
+    "w": "seu",
+    "start": 0.8,
+    "end": 0.96,
+    "asr": true
+   },
+   {
+    "w": "pet",
+    "start": 0.96,
+    "end": 1.2,
+    "asr": true
+   },
+   {
+    "w": "precisa",
+    "start": 1.6,
+    "end": 2.0,
+    "asr": true
+   },
+   {
+    "w": "hoje,",
+    "start": 2.0,
+    "end": 2.32,
+    "asr": true
+   },
+   {
+    "w": "marca",
+    "start": 2.48,
+    "end": 2.96,
+    "asr": true
+   },
+   {
+    "w": "o",
+    "start": 2.96,
+    "end": 3.12,
+    "asr": true
+   },
+   {
+    "w": "que",
+    "start": 3.12,
+    "end": 3.28,
+    "asr": true
+   },
+   {
+    "w": "já",
+    "start": 3.28,
+    "end": 3.44,
+    "asr": true
+   },
+   {
+    "w": "fez…",
+    "start": 3.44,
+    "end": 3.84,
+    "asr": true
+   },
+   {
+    "w": "e",
+    "start": 4.08,
+    "end": 4.24,
+    "asr": true
+   },
+   {
+    "w": "sabe",
+    "start": 4.24,
+    "end": 4.56,
+    "asr": true
+   },
+   {
+    "w": "exatamente",
+    "start": 4.72,
+    "end": 5.28,
+    "asr": true
+   },
+   {
+    "w": "o",
+    "start": 5.28,
+    "end": 5.44,
+    "asr": true
+   },
+   {
+    "w": "que",
+    "start": 5.44,
+    "end": 5.68,
+    "asr": true
+   },
+   {
+    "w": "falta.",
+    "start": 5.68,
+    "end": 6.32,
+    "asr": true
+   }
+  ]
+ },
+ "M5": {
+  "dur": 6.388,
+  "words": [
+   {
+    "w": "Vacinas,",
+    "start": 0.0,
+    "end": 0.48,
+    "asr": true
+   },
+   {
+    "w": "remédios,",
+    "start": 0.64,
+    "end": 1.2,
+    "asr": true
+   },
+   {
+    "w": "gastos",
+    "start": 1.28,
+    "end": 1.84,
+    "asr": true
+   },
+   {
+    "w": "e",
+    "start": 1.92,
+    "end": 2.08,
+    "asr": true
+   },
+   {
+    "w": "até",
+    "start": 2.08,
+    "end": 2.4,
+    "asr": true
+   },
+   {
+    "w": "brincadeiras",
+    "start": 2.4,
+    "end": 3.2,
+    "asr": true
+   },
+   {
+    "w": "guiadas…",
+    "start": 3.2,
+    "end": 3.76,
+    "asr": true
+   },
+   {
+    "w": "pra",
+    "start": 4.0,
+    "end": 4.16,
+    "asr": true
+   },
+   {
+    "w": "cada",
+    "start": 4.24,
+    "end": 4.48,
+    "asr": true
+   },
+   {
+    "w": "pet",
+    "start": 4.48,
+    "end": 4.72,
+    "asr": true
+   },
+   {
+    "w": "da",
+    "start": 4.88,
+    "end": 5.04,
+    "asr": true
+   },
+   {
+    "w": "casa,",
+    "start": 5.04,
+    "end": 5.28,
+    "asr": true
+   },
+   {
+    "w": "cão",
+    "start": 5.44,
+    "end": 5.76,
+    "asr": true
+   },
+   {
+    "w": "ou",
+    "start": 5.76,
+    "end": 6.0,
+    "asr": true
+   },
+   {
+    "w": "gato.",
+    "start": 6.0,
+    "end": 6.56,
+    "asr": true
+   }
+  ]
+ },
+ "M6": {
+  "dur": 4.204,
+  "words": [
+   {
+    "w": "Menos",
+    "start": 0.0,
+    "end": 0.48,
+    "asr": true
+   },
+   {
+    "w": "coisa",
+    "start": 0.48,
+    "end": 0.88,
+    "asr": true
+   },
+   {
+    "w": "na",
+    "start": 0.88,
+    "end": 1.12,
+    "asr": true
+   },
+   {
+    "w": "cabeça…",
+    "start": 1.12,
+    "end": 1.68,
+    "asr": true
+   },
+   {
+    "w": "e",
+    "start": 1.92,
+    "end": 2.24,
+    "asr": true
+   },
+   {
+    "w": "mais",
+    "start": 2.24,
+    "end": 2.56,
+    "asr": true
+   },
+   {
+    "w": "tempo",
+    "start": 2.56,
+    "end": 2.88,
+    "asr": true
+   },
+   {
+    "w": "pra",
+    "start": 2.88,
+    "end": 3.12,
+    "asr": true
+   },
+   {
+    "w": "quem",
+    "start": 3.12,
+    "end": 3.52,
+    "asr": true
+   },
+   {
+    "w": "você",
+    "start": 3.52,
+    "end": 3.76,
+    "asr": true
+   },
+   {
+    "w": "ama.",
+    "start": 3.76,
+    "end": 4.32,
+    "asr": true
+   }
+  ]
+ },
+ "M7": {
+  "dur": 5.958,
+  "words": [
+   {
+    "w": "DuoPet.",
+    "start": 0.0,
+    "end": 0.8,
+    "asr": true
+   },
+   {
+    "w": "Teste",
+    "start": 1.2,
+    "end": 1.76,
+    "asr": true
+   },
+   {
+    "w": "três",
+    "start": 1.76,
+    "end": 2.08,
+    "asr": true
+   },
+   {
+    "w": "dias",
+    "start": 2.08,
+    "end": 2.4,
+    "asr": true
+   },
+   {
+    "w": "grátis,",
+    "start": 2.4,
+    "end": 2.8,
+    "asr": true
+   },
+   {
+    "w": "sem",
+    "start": 2.96,
+    "end": 3.2,
+    "asr": true
+   },
+   {
+    "w": "cartão.",
+    "start": 3.2,
+    "end": 3.6,
+    "asr": true
+   },
+   {
+    "w": "Acesse",
+    "start": 3.76,
+    "end": 4.16,
+    "asr": true
+   },
+   {
+    "w": "duopet",
+    "start": 4.24,
+    "end": 6.0,
+    "asr": true
+   },
+   {
+    "w": "ponto",
+    "start": 6.0,
+    "end": 6.06,
+    "asr": false
+   },
+   {
+    "w": "site.",
+    "start": 5.979,
+    "end": 6.039,
+    "asr": false
+   }
+  ]
+ },
+ "H1": {
+  "dur": 3.551,
+  "words": [
+   {
+    "w": "Ração,",
+    "start": 0.0,
+    "end": 0.24,
+    "asr": true
+   },
+   {
+    "w": "remédio,",
+    "start": 0.48,
+    "end": 0.96,
+    "asr": true
+   },
+   {
+    "w": "vacina,",
+    "start": 1.12,
+    "end": 1.52,
+    "asr": true
+   },
+   {
+    "w": "consulta…",
+    "start": 1.68,
+    "end": 2.16,
+    "asr": true
+   },
+   {
+    "w": "tá",
+    "start": 2.16,
+    "end": 2.64,
+    "asr": false
+   },
+   {
+    "w": "tudo",
+    "start": 2.64,
+    "end": 2.96,
+    "asr": true
+   },
+   {
+    "w": "onde?",
+    "start": 2.96,
+    "end": 3.28,
+    "asr": true
+   }
+  ]
+ },
+ "H2": {
+  "dur": 2.837,
+  "words": [
+   {
+    "w": "É",
+    "start": 0.0,
+    "end": 0.08,
+    "asr": true
+   },
+   {
+    "w": "assim",
+    "start": 0.08,
+    "end": 0.4,
+    "asr": true
+   },
+   {
+    "w": "que",
+    "start": 0.4,
+    "end": 0.56,
+    "asr": true
+   },
+   {
+    "w": "a",
+    "start": 0.56,
+    "end": 0.64,
+    "asr": true
+   },
+   {
+    "w": "rotina",
+    "start": 0.64,
+    "end": 1.04,
+    "asr": true
+   },
+   {
+    "w": "do",
+    "start": 1.04,
+    "end": 1.2,
+    "asr": true
+   },
+   {
+    "w": "seu",
+    "start": 1.2,
+    "end": 1.36,
+    "asr": true
+   },
+   {
+    "w": "pet",
+    "start": 1.36,
+    "end": 1.6,
+    "asr": true
+   },
+   {
+    "w": "deveria",
+    "start": 1.92,
+    "end": 2.48,
+    "asr": true
+   },
+   {
+    "w": "ficar.",
+    "start": 2.48,
+    "end": 3.04,
+    "asr": true
+   }
+  ]
+ },
+ "H3": {
+  "dur": 4.189,
+  "words": [
+   {
+    "w": "Dois",
+    "start": 0.0,
+    "end": 0.16,
+    "asr": true
+   },
+   {
+    "w": "pets,",
+    "start": 0.16,
+    "end": 0.48,
+    "asr": true
+   },
+   {
+    "w": "duas",
+    "start": 0.72,
+    "end": 1.04,
+    "asr": true
+   },
+   {
+    "w": "rotinas…",
+    "start": 1.04,
+    "end": 1.52,
+    "asr": true
+   },
+   {
+    "w": "e",
+    "start": 1.76,
+    "end": 1.92,
+    "asr": true
+   },
+   {
+    "w": "quem",
+    "start": 1.92,
+    "end": 2.32,
+    "asr": true
+   },
+   {
+    "w": "guarda",
+    "start": 2.4,
+    "end": 2.88,
+    "asr": true
+   },
+   {
+    "w": "tudo",
+    "start": 2.88,
+    "end": 3.12,
+    "asr": true
+   },
+   {
+    "w": "é",
+    "start": 3.12,
+    "end": 3.28,
+    "asr": true
+   },
+   {
+    "w": "a",
+    "start": 3.28,
+    "end": 3.36,
+    "asr": true
+   },
+   {
+    "w": "sua",
+    "start": 3.36,
+    "end": 3.68,
+    "asr": true
+   },
+   {
+    "w": "cabeça?",
+    "start": 3.68,
+    "end": 4.32,
+    "asr": true
+   }
+  ]
+ },
+ "H4": {
+  "dur": 3.031,
+  "words": [
+   {
+    "w": "Já",
+    "start": 0.0,
+    "end": 0.16,
+    "asr": true
+   },
+   {
+    "w": "deu",
+    "start": 0.16,
+    "end": 0.48,
+    "asr": true
+   },
+   {
+    "w": "o",
+    "start": 0.48,
+    "end": 0.64,
+    "asr": true
+   },
+   {
+    "w": "remédio",
+    "start": 0.64,
+    "end": 1.2,
+    "asr": true
+   },
+   {
+    "w": "hoje…",
+    "start": 1.2,
+    "end": 1.6,
+    "asr": true
+   },
+   {
+    "w": "ou",
+    "start": 1.76,
+    "end": 2.08,
+    "asr": true
+   },
+   {
+    "w": "foi",
+    "start": 2.08,
+    "end": 2.4,
+    "asr": true
+   },
+   {
+    "w": "ontem?",
+    "start": 2.4,
+    "end": 3.12,
+    "asr": true
+   }
+  ]
+ },
+ "P2a": {
+  "dur": 4.65,
+  "words": [
+   {
+    "w": "Um",
+    "start": 0.0,
+    "end": 0.16,
+    "asr": true
+   },
+   {
+    "w": "pouco",
+    "start": 0.16,
+    "end": 0.56,
+    "asr": true
+   },
+   {
+    "w": "no",
+    "start": 0.56,
+    "end": 0.72,
+    "asr": true
+   },
+   {
+    "w": "calendário,",
+    "start": 0.72,
+    "end": 1.44,
+    "asr": true
+   },
+   {
+    "w": "um",
+    "start": 1.6,
+    "end": 1.84,
+    "asr": true
+   },
+   {
+    "w": "pouco",
+    "start": 1.84,
+    "end": 2.16,
+    "asr": true
+   },
+   {
+    "w": "no",
+    "start": 2.16,
+    "end": 2.32,
+    "asr": true
+   },
+   {
+    "w": "WhatsApp…",
+    "start": 2.32,
+    "end": 3.04,
+    "asr": true
+   },
+   {
+    "w": "e",
+    "start": 3.12,
+    "end": 3.36,
+    "asr": true
+   },
+   {
+    "w": "o",
+    "start": 3.36,
+    "end": 3.44,
+    "asr": true
+   },
+   {
+    "w": "resto",
+    "start": 3.44,
+    "end": 3.84,
+    "asr": true
+   },
+   {
+    "w": "na",
+    "start": 3.84,
+    "end": 4.08,
+    "asr": true
+   },
+   {
+    "w": "cabeça.",
+    "start": 4.08,
+    "end": 4.8,
+    "asr": true
+   }
+  ]
+ },
+ "P2b": {
+  "dur": 4.782,
+  "words": [
+   {
+    "w": "Nada",
+    "start": 0.0,
+    "end": 0.24,
+    "asr": true
+   },
+   {
+    "w": "de",
+    "start": 0.24,
+    "end": 0.48,
+    "asr": true
+   },
+   {
+    "w": "um",
+    "start": 0.48,
+    "end": 0.64,
+    "asr": true
+   },
+   {
+    "w": "pouco",
+    "start": 0.64,
+    "end": 0.96,
+    "asr": true
+   },
+   {
+    "w": "no",
+    "start": 0.96,
+    "end": 1.12,
+    "asr": true
+   },
+   {
+    "w": "calendário,",
+    "start": 1.12,
+    "end": 1.68,
+    "asr": true
+   },
+   {
+    "w": "um",
+    "start": 1.92,
+    "end": 2.08,
+    "asr": true
+   },
+   {
+    "w": "pouco",
+    "start": 2.08,
+    "end": 2.48,
+    "asr": true
+   },
+   {
+    "w": "no",
+    "start": 2.48,
+    "end": 2.64,
+    "asr": true
+   },
+   {
+    "w": "WhatsApp",
+    "start": 2.64,
+    "end": 3.28,
+    "asr": true
+   },
+   {
+    "w": "e",
+    "start": 3.28,
+    "end": 3.52,
+    "asr": true
+   },
+   {
+    "w": "o",
+    "start": 3.52,
+    "end": 3.6,
+    "asr": true
+   },
+   {
+    "w": "resto",
+    "start": 3.6,
+    "end": 4.0,
+    "asr": true
+   },
+   {
+    "w": "na",
+    "start": 4.0,
+    "end": 4.16,
+    "asr": true
+   },
+   {
+    "w": "cabeça.",
+    "start": 4.16,
+    "end": 4.96,
+    "asr": true
+   }
+  ]
+ },
+ "P4": {
+  "dur": 5.374,
+  "words": [
+   {
+    "w": "Você",
+    "start": 0.0,
+    "end": 0.16,
+    "asr": true
+   },
+   {
+    "w": "vê",
+    "start": 0.16,
+    "end": 0.48,
+    "asr": true
+   },
+   {
+    "w": "o",
+    "start": 0.48,
+    "end": 0.56,
+    "asr": true
+   },
+   {
+    "w": "que",
+    "start": 0.56,
+    "end": 0.72,
+    "asr": true
+   },
+   {
+    "w": "o",
+    "start": 0.72,
+    "end": 0.8,
+    "asr": true
+   },
+   {
+    "w": "seu",
+    "start": 0.8,
+    "end": 0.96,
+    "asr": true
+   },
+   {
+    "w": "pet",
+    "start": 0.96,
+    "end": 1.2,
+    "asr": true
+   },
+   {
+    "w": "precisa",
+    "start": 1.6,
+    "end": 2.0,
+    "asr": true
+   },
+   {
+    "w": "hoje,",
+    "start": 2.0,
+    "end": 2.32,
+    "asr": true
+   },
+   {
+    "w": "marca",
+    "start": 2.48,
+    "end": 2.96,
+    "asr": true
+   },
+   {
+    "w": "o",
+    "start": 2.96,
+    "end": 3.04,
+    "asr": true
+   },
+   {
+    "w": "que",
+    "start": 3.04,
+    "end": 3.2,
+    "asr": true
+   },
+   {
+    "w": "já",
+    "start": 3.2,
+    "end": 3.44,
+    "asr": true
+   },
+   {
+    "w": "fez…",
+    "start": 3.44,
+    "end": 3.76,
+    "asr": true
+   },
+   {
+    "w": "e",
+    "start": 3.92,
+    "end": 4.16,
+    "asr": true
+   },
+   {
+    "w": "sabe",
+    "start": 4.16,
+    "end": 4.48,
+    "asr": true
+   },
+   {
+    "w": "o",
+    "start": 4.48,
+    "end": 4.64,
+    "asr": true
+   },
+   {
+    "w": "que",
+    "start": 4.64,
+    "end": 4.88,
+    "asr": true
+   },
+   {
+    "w": "falta.",
+    "start": 4.88,
+    "end": 5.52,
+    "asr": true
+   }
+  ]
+ },
+ "P5": {
+  "dur": 3.742,
+  "words": [
+   {
+    "w": "Cão",
+    "start": 0.0,
+    "end": 0.24,
+    "asr": true
+   },
+   {
+    "w": "e",
+    "start": 0.24,
+    "end": 0.4,
+    "asr": true
+   },
+   {
+    "w": "gato",
+    "start": 0.4,
+    "end": 0.8,
+    "asr": true
+   },
+   {
+    "w": "na",
+    "start": 0.8,
+    "end": 0.96,
+    "asr": true
+   },
+   {
+    "w": "mesma",
+    "start": 0.96,
+    "end": 1.36,
+    "asr": true
+   },
+   {
+    "w": "conta…",
+    "start": 1.36,
+    "end": 1.76,
+    "asr": true
+   },
+   {
+    "w": "cada",
+    "start": 1.92,
+    "end": 2.32,
+    "asr": true
+   },
+   {
+    "w": "um",
+    "start": 2.32,
+    "end": 2.56,
+    "asr": true
+   },
+   {
+    "w": "com",
+    "start": 2.56,
+    "end": 2.72,
+    "asr": true
+   },
+   {
+    "w": "a",
+    "start": 2.72,
+    "end": 2.88,
+    "asr": true
+   },
+   {
+    "w": "sua",
+    "start": 2.88,
+    "end": 3.12,
+    "asr": true
+   },
+   {
+    "w": "rotina.",
+    "start": 3.12,
+    "end": 3.84,
+    "asr": true
+   }
+  ]
+ },
+ "P6": {
+  "dur": 4.706,
+  "words": [
+   {
+    "w": "Teste",
+    "start": 0.0,
+    "end": 0.4,
+    "asr": true
+   },
+   {
+    "w": "três",
+    "start": 0.4,
+    "end": 0.72,
+    "asr": true
+   },
+   {
+    "w": "dias",
+    "start": 0.72,
+    "end": 1.04,
+    "asr": true
+   },
+   {
+    "w": "grátis,",
+    "start": 1.04,
+    "end": 1.52,
+    "asr": true
+   },
+   {
+    "w": "sem",
+    "start": 1.6,
+    "end": 1.76,
+    "asr": true
+   },
+   {
+    "w": "cartão.",
+    "start": 1.92,
+    "end": 2.32,
+    "asr": true
+   },
+   {
+    "w": "Acesse",
+    "start": 2.48,
+    "end": 2.88,
+    "asr": true
+   },
+   {
+    "w": "duopet",
+    "start": 3.04,
+    "end": 3.728,
+    "asr": true
+   },
+   {
+    "w": "ponto",
+    "start": 3.728,
+    "end": 4.176,
+    "asr": true
+   },
+   {
+    "w": "site.",
+    "start": 4.176,
+    "end": 4.64,
+    "asr": true
+   }
+  ]
+ },
+ "S1": {
+  "dur": 2.603,
+  "words": [
+   {
+    "w": "Os",
+    "start": 0.0,
+    "end": 0.06,
+    "asr": true
+   },
+   {
+    "w": "cuidados",
+    "start": 0.0,
+    "end": 0.56,
+    "asr": true
+   },
+   {
+    "w": "do",
+    "start": 0.56,
+    "end": 0.72,
+    "asr": true
+   },
+   {
+    "w": "seu",
+    "start": 0.72,
+    "end": 0.88,
+    "asr": true
+   },
+   {
+    "w": "pet",
+    "start": 0.88,
+    "end": 1.12,
+    "asr": true
+   },
+   {
+    "w": "estão",
+    "start": 1.52,
+    "end": 1.84,
+    "asr": true
+   },
+   {
+    "w": "espalhados?",
+    "start": 1.84,
+    "end": 2.72,
+    "asr": true
+   }
+  ]
+ },
+ "S2": {
+  "dur": 2.832,
+  "words": [
+   {
+    "w": "No",
+    "start": 0.0,
+    "end": 0.08,
+    "asr": true
+   },
+   {
+    "w": "DuoPet,",
+    "start": 0.08,
+    "end": 0.4,
+    "asr": true
+   },
+   {
+    "w": "fica",
+    "start": 1.28,
+    "end": 1.68,
+    "asr": true
+   },
+   {
+    "w": "tudo",
+    "start": 1.68,
+    "end": 1.92,
+    "asr": true
+   },
+   {
+    "w": "num",
+    "start": 1.92,
+    "end": 2.08,
+    "asr": true
+   },
+   {
+    "w": "lugar",
+    "start": 2.24,
+    "end": 2.56,
+    "asr": true
+   },
+   {
+    "w": "só.",
+    "start": 2.56,
+    "end": 3.04,
+    "asr": true
+   }
+  ]
+ },
+ "S3": {
+  "dur": 2.518,
+  "words": [
+   {
+    "w": "Marque",
+    "start": 0.0,
+    "end": 0.32,
+    "asr": true
+   },
+   {
+    "w": "o",
+    "start": 0.4,
+    "end": 0.56,
+    "asr": true
+   },
+   {
+    "w": "que",
+    "start": 0.56,
+    "end": 0.72,
+    "asr": true
+   },
+   {
+    "w": "fez.",
+    "start": 0.72,
+    "end": 1.04,
+    "asr": true
+   },
+   {
+    "w": "Veja",
+    "start": 1.28,
+    "end": 1.68,
+    "asr": true
+   },
+   {
+    "w": "o",
+    "start": 1.68,
+    "end": 1.84,
+    "asr": true
+   },
+   {
+    "w": "que",
+    "start": 1.84,
+    "end": 2.0,
+    "asr": true
+   },
+   {
+    "w": "falta.",
+    "start": 2.0,
+    "end": 2.56,
+    "asr": true
+   }
+  ]
+ },
+ "S4": {
+  "dur": 3.784,
+  "words": [
+   {
+    "w": "Três",
+    "start": 0.0,
+    "end": 0.24,
+    "asr": true
+   },
+   {
+    "w": "dias",
+    "start": 0.24,
+    "end": 0.64,
+    "asr": true
+   },
+   {
+    "w": "grátis,",
+    "start": 0.64,
+    "end": 1.12,
+    "asr": true
+   },
+   {
+    "w": "sem",
+    "start": 1.28,
+    "end": 1.52,
+    "asr": true
+   },
+   {
+    "w": "cartão.",
+    "start": 1.52,
+    "end": 1.84,
+    "asr": true
+   },
+   {
+    "w": "duopet",
+    "start": 2.0,
+    "end": 2.722,
+    "asr": true
+   },
+   {
+    "w": "ponto",
+    "start": 2.722,
+    "end": 3.193,
+    "asr": true
+   },
+   {
+    "w": "site.",
+    "start": 3.193,
+    "end": 3.68,
+    "asr": true
+   }
+  ]
+ }
+}

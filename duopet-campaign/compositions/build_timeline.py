@@ -2,12 +2,14 @@
 
 Para cada versão (master, performance com 4 ganchos, 15s) define cenas, falas, legendas palavra a palavra,
 pontos de sincronia (cues) usados pela animação e a lista de efeitos sonoros usada pela mixagem.
-Uso: python3 build_timeline.py [voz]   (padrão: pm_alex)
+Uso: python3 build_timeline.py [voz]   (padrão: fem — Kokoro pf_dora 60% + ef_dora 40%)
+Legendas: cada cena recebe "captions" no formato Caption do @remotion/captions (ms absolutos, espaço antes de cada palavra,
+pageBreakAfter em pontuação, no limite de caracteres e no fim da cena).
 """
 import json, math, os, re, sys
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-VOICE = sys.argv[1] if len(sys.argv) > 1 else "pm_alex"
+VOICE = sys.argv[1] if len(sys.argv) > 1 else "fem"
 FPS = 30
 GRID = 0.25  # cortes no grid de colcheia a 120 BPM
 LINES = json.load(open(f"{ROOT}/scripts/vo-lines.json"))["lines"]
@@ -33,7 +35,7 @@ def build(spec, tail=1.0):
         is_last = i == len(spec) - 1
         length = q(lead + T["dur"] + (tail if is_last else 0.14) + extra)
         vstart = t + lead
-        ws = [{"w": w["w"], "start": round(vstart + w["start"], 3), "end": round(vstart + w["end"], 3)} for w in T["words"]]
+        ws = [{"w": w["w"], "start": round(vstart + w["start"], 3), "end": round(vstart + w["end"], 3), "asr": w.get("asr", True)} for w in T["words"]]
         scenes.append({"id": f"{i:02d}-{stype}", "type": stype, "line": src, "start": round(t, 3), "end": round(t + length, 3),
                        "voStart": round(vstart, 3), "voEnd": round(vstart + T["dur"], 3), "words": ws, "caption": L["caption"]})
         vo.append({"line": src, "file": f"voice/{VOICE}/{src}.wav", "start": round(vstart, 3), "dur": T["dur"]})
@@ -42,9 +44,50 @@ def build(spec, tail=1.0):
             if ws[k]["w"].lower() == "duopet" and ws[k + 1]["w"].lower() == "ponto" and ws[k + 2]["w"].lower().startswith("site"):
                 ws[k:k + 3] = [{"w": "duopet.site", "start": ws[k]["start"], "end": ws[k + 2]["end"]}]
                 break
+        scenes[-1]["captions"] = to_captions(ws)
         words_all += ws
         t += length
     return {"duration": round(t, 3), "frames": int(round(t * FPS)), "scenes": scenes, "vo": vo, "words": words_all}
+
+
+MAX_CHARS, MAX_WEIGHT = 17, 3.0
+# palavras que não devem ficar sozinhas no fim de uma página (artigos, preposições, conjunções curtas)
+FUNC = set("a o as os e de do da dos das no na nos nas em que seu sua pra com ou é até ao à num cada se".split())
+
+
+def _key(w):
+    return re.sub(r"[^\wáéíóúâêôãõàç]", "", w.lower())
+
+
+def _paginate(words):
+    """Divide uma frase (sem pontuação interna) em páginas por programação dinâmica:
+    ≤17 caracteres, peso ≤3 (palavra funcional pesa 0,5), sem terminar página em palavra funcional, páginas equilibradas."""
+    n = len(words); total = len(" ".join(words)); k = max(1, math.ceil(total / 15)); T = total / k
+    best = [0.0] + [math.inf] * n; prev = [0] * (n + 1)
+    for j in range(1, n + 1):
+        for i in range(j - 1, -1, -1):
+            chunk = words[i:j]; chars = len(" ".join(chunk))
+            weight = sum(0.5 if _key(w) in FUNC else 1 for w in chunk)
+            if len(chunk) > 1 and (chars > MAX_CHARS or weight > MAX_WEIGHT): break
+            c = 1 + ((chars - T) / T) ** 2
+            if j < n and _key(chunk[-1]) in FUNC: c += 3
+            if best[i] + c < best[j]: best[j], prev[j] = best[i] + c, i
+    cuts, j = [], n
+    while j > 0: cuts.append(j); j = prev[j]
+    return sorted(cuts)
+
+
+def to_captions(ws):
+    """Palavras -> Caption[] (@remotion/captions), com quebra de página editorial em pontuação + _paginate."""
+    caps = [{"text": (" " if k else "") + w["w"], "startMs": round(w["start"] * 1000), "endMs": round(w["end"] * 1000),
+             "timestampMs": round((w["start"] + w["end"]) * 500), "confidence": 1.0 if w.get("asr", True) else 0.5} for k, w in enumerate(ws)]
+    start = 0
+    for k, w in enumerate(ws):
+        if re.search(r"[,.…?!:]$", w["w"]) or k == len(ws) - 1:
+            for c in _paginate([x["w"] for x in ws[start:k + 1]]):
+                caps[start + c - 1]["pageBreakAfter"] = True
+            start = k + 1
+    return caps
 
 
 def word_time(scene, pattern, which="start", nth=0):
@@ -52,6 +95,28 @@ def word_time(scene, pattern, which="start", nth=0):
     if len(hits) <= nth:
         raise ValueError(f"{pattern} não encontrado em {scene['line']}: {[w['w'] for w in scene['words']]}")
     return hits[nth][which]
+
+
+# Transição de cada corte. frames a 30 qps. "None" = corte seco, quando a continuidade já está dentro das cenas
+# (caos → revelação: o ponto vira a linha; demo → benefícios/multi-pet: o celular continua na mesma pose e gira).
+CUTS = {
+    ("Hook", "Chaos"): dict(preset="zoomThrough", frames=12, params=dict(x=889, y=470)),  # mergulho no "?" de SEU PET?
+    ("HookMulti", "ChaosShort"): dict(preset="zoomThrough", frames=12, params=dict(x=850, y=490)),  # "?" de PRA TUDO?
+    ("HookDemo", "ChaosContrast"): dict(preset="whip", frames=10, params=dict(dir="left")),
+    ("HookPill", "ChaosShort"): dict(preset="whip", frames=10, params=dict(dir="up")),
+    # o celular e o fundo continuam iguais; só o título troca, então basta uma fusão curta
+    ("Reveal", "Demo"): dict(preset="fade", frames=8),
+    ("Reveal15", "Demo15"): dict(preset="fade", frames=8),
+    # portal: a tela do celular (Perfil, creme) vira o papel creme da cena emocional. Retângulo da tela do telefone em PH.
+    ("Benefits", "Emotion"): dict(preset="portal", frames=16, params=dict(x=279.0, y=489.0, w=522.0, h=1129.5, r=68.0)),
+    ("Emotion", "CTA"): dict(preset="colorWipe", frames=16),
+    ("MultiPet", "CTA"): dict(preset="colorWipe", frames=16),
+    ("Demo15", "CTA15"): dict(preset="colorWipe", frames=16),
+}
+
+
+def cut_spec(a, b):
+    return CUTS.get((a, b))
 
 
 def add_cues(v):
@@ -118,11 +183,12 @@ def add_cues(v):
             for f in (0.18, 0.42, 0.66, 0.88):
                 sfx.append(dict(n="pop", t=s["start"] + 0.15 + draw_dur * f, g=0.3))
             sfx.append(dict(n="whoosh_soft", t=c["warm"] - 0.15, g=0.45, dur=0.8))
+            sfx.append(dict(n="shimmer", t=c["warm"] + 0.05, g=0.22))  # luz quente (light leak) sobre a foto
         elif T in ("CTA", "CTA15"):
             c["logo"] = s["voStart"] if s["words"][0]["w"].lower().startswith("duopet") else s["start"] + 0.2
             c["offer"] = word_time(s, r"^(teste|três)")
             c["url"] = word_time(s, r"^duopet", nth=1 if s["words"][0]["w"].lower().startswith("duopet") else 0)
-            sfx += [dict(n="whoosh_soft", t=s["start"] - 0.05, g=0.55, dur=0.55), dict(n="logo_sting", t=c["logo"], g=0.7), dict(n="typing", t=c["logo"] + 0.15, g=0.25),
+            sfx += [dict(n="whoosh_soft", t=s["start"] - 0.22, g=0.55, dur=0.55), dict(n="logo_sting", t=c["logo"], g=0.7), dict(n="typing", t=c["logo"] + 0.15, g=0.25),
                     dict(n="pop", t=c["offer"], g=0.4), dict(n="click_soft", t=c["url"], g=0.35)]
         elif T in ("HookList",):
             c["items"] = [word_time(s, p) - 0.04 for p in [r"^ração", r"^remédio", r"^vacina", r"^consulta"]]
@@ -140,6 +206,21 @@ def add_cues(v):
             c["or"] = word_time(s, r"^ou") - 0.05
             sfx += [dict(n="pop_big", t=s["start"] + 0.05, g=0.7), dict(n="flip", t=c["or"], g=0.55)]
         s["cues"] = {k: (round(vv, 3) if isinstance(vv, (int, float)) else vv) for k, vv in c.items()}
+    # transições entre cenas (lidas por src/components/Transitions.tsx) + o som de cada uma
+    for a, b in zip(v["scenes"], v["scenes"][1:]):
+        c = cut_spec(a["type"], b["type"])
+        a["cutAfter"] = c
+        if not c:
+            continue
+        cut = b["start"]
+        if c["preset"] == "zoomThrough":
+            sfx += [dict(n="whoosh_soft", t=cut - 0.32, g=0.55, dur=0.45), dict(n="impact", t=cut - 0.02, g=0.35)]
+        elif c["preset"] == "whip":
+            sfx += [dict(n="swoosh_3d", t=cut - 0.2, g=0.6)]
+        elif c["preset"] in ("sheet", "portal"):
+            sfx += [dict(n="whoosh_soft", t=cut - 0.25, g=0.45, dur=0.5), dict(n="paper", t=cut + 0.05, g=0.18)]
+        elif c["preset"] == "lightLeak":
+            sfx += [dict(n="shimmer", t=cut - 0.15, g=0.28)]
     v["sfx"] = sorted([dict(x, t=round(max(0, x["t"]), 3)) for x in sfx], key=lambda x: x["t"])
     # mapa de seções musicais (troca de clima na revelação, pausa emocional e assinatura)
     secs = []
