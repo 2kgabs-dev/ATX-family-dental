@@ -158,5 +158,45 @@
   "asr_parakeet": "Três dias grátis sem cartão. Duopet.site.",
   "ref": "Três dias grátis, sem cartão. duopet.site",
   "aligned": "8/8"
+ },
+ "V4M": {
+  "wer": 0.056,
+  "wer_parakeet": 0.034,
+  "asr": "Tem cão e gato. Veja o que cada um precisa hoje. Nada de receita perdida. Marcou o Enel Ande e mostra o que falta. Do cão pro gato num toque. Rotina pronta pra cada espécie. E repete do seu jeito. Vacinas, remédios e consultas. Receitas e exames por pet. Os gastos de cada um. Sua semana e o peso. Brincadeiras guiadas e sons de brinquedo. Sem instalar, celular ou computador. Tudo num lugar só. Comece gratis com um pet. Ou três dias de plus, sem cartão.",
+  "asr_parakeet": "Tem cão e gato. Veja o que cada um precisa hoje. Nada de receita perdida. Marcou o anel anda e mostra o que falta. Do cão para o gato, num toque. Rotina pronta para cada espécie. E repete do seu jeito. Vacinas, remédios e consultas. Receitas e exames por pet. Os gastos de cada um. Sua semana e o peso. Brincadeiras guiadas e sons de brinquedo. Sem instalar celular ou computador. Tudo num lugar só. Comece grátis com um pet. Ou três dias de plus, sem cartão, sem cobrança automática.",
+  "ref": "Tem cão e gato? Veja o que cada um precisa hoje. Nada de receita perdida. Marcou? O anel anda e mostra o que falta. Do cão pro gato, num toque. Rotina pronta pra cada espécie… e repete do seu jeito. Vacinas, remédios e consultas. Receitas e exames, por pet. Os gastos de cada um. Sua semana, e o peso. Brincadeiras guiadas e sons de brinquedo. Sem instalar: celular ou computador. Tudo num lugar só. Comece grátis com um pet. Ou três dias de Plus: sem cartão, sem cobrança automática.",
+  "aligned": "88/89"
+ },
+ "V4P": {
+  "wer": 0.098,
+  "wer_parakeet": 0.059,
+  "asr": "Veja o que cada um precisa hoje. Marcou o Enel Anda e mostra o que falta. Duca um pro gato num toque. Vacinas, remédios, exames, gastos e brincadeiras de cada patch. Sem instalar, celular ou computador. Comece grátis com um patch ou 3 dias de plus, sem cartão, sem cobrança automática.",
+  "asr_parakeet": "Veja o que cada um precisa hoje. Marcou o anel anda e mostra o que falta. Do cão para o gato, não toque. Vacinas, remédios, exames, gastos e brincadeiras de cada pet. Sem instalar celular ou computador. Comece grátis com um pet. Ou três dias de plus, sem cartão, sem cobrança automática.",
+  "ref": "Veja o que cada um precisa hoje. Marcou? O anel anda e mostra o que falta. Do cão pro gato, num toque. Vacinas, remédios, exames, gastos e brincadeiras, de cada pet. Sem instalar: celular ou computador. Comece grátis com um pet. Ou três dias de Plus: sem cartão, sem cobrança automática.",
+  "aligned": "49/51"
+ },
+ "V4S": {
+  "wer": 0.0,
+  "wer_parakeet": 0.08,
+  "asr": "Tem cão e gato. Marcou o anel mostra o que falta. Saúde, exames e gastos de cada pet. Três dias de plus grátis sem cartão.",
+  "asr_parakeet": "Tem cão e gato. Marcou o anel mostro que falta. Saúde, exames e gastos de cada pet. Três dias de plus grátis sem cartão.",
+  "ref": "Tem cão e gato? Marcou? O anel mostra o que falta. Saúde, exames e gastos de cada pet. Três dias de Plus grátis, sem cartão.",
+  "aligned": "23/25"
+ },
+ "V4E": {
+  "wer": 0.2,
+  "wer_parakeet": 0.2,
+  "asr": "Saiba o que seu PET precisa hoje. Do opet.site.",
+  "asr_parakeet": "Saiba o que seu pet precisa hoje. Duo pet.site.",
+  "ref": "Saiba o que seu pet precisa hoje: duopet.site",
+  "aligned": "8/10"
+ },
+ "V4E15": {
+  "wer": 0.667,
+  "wer_parakeet": 0.0,
+  "asr": "Do opete.site",
+  "asr_parakeet": "Duopet.site",
+  "ref": "duopet.site",
+  "aligned": "3/3"
  }
 }

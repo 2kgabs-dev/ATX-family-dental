@@ -23,6 +23,12 @@ for name, rel in FILES.items():
     v = TL["versions"][name]
     shots = []
     for s in v["scenes"]:
+        if s.get("cues", {}).get("shots"):  # montagem: 1 quadro por plano (60% do plano)
+            sh = s["cues"]["shots"]
+            ends = [x["t0"] for x in sh[1:]] + [s["end"]]
+            for x, e in zip(sh, ends):
+                shots.append(({**s, "type": f"{s['type']} · {x['key']}"}, max(0.05, x["t0"] + (e - x["t0"]) * 0.6)))
+            continue
         for t in (s["start"] + min(0.35, (s["end"] - s["start"]) * 0.15), (s["voStart"] + s["voEnd"]) / 2):
             shots.append((s, t))
     cols = min(len(shots), 7)

@@ -32,25 +32,25 @@ Padrão: `https://duopet.site/?utm_source={plataforma}&utm_medium=paid_social&ut
 
 | Criativo (arquivo) | utm_content |
 |---|---|
-| `master/duopet_master_42s_*.mp4` | `mst42_h0_voz` |
-| `performance/duopet_perf-h1-dor_30s_*.mp4` | `prf30_h1_dor` |
-| `performance/duopet_perf-h2-demo_29s_*.mp4` | `prf29_h2_demo` |
-| `performance/duopet_perf-h3-multipet_30s_*.mp4` | `prf30_h3_multi` |
-| `performance/duopet_perf-h4-remedio_29s_*.mp4` | `prf29_h4_remedio` |
-| `curto/duopet_curto_15s_*.mp4` | `sht15_dor` |
+| `master/duopet_master_36s_*.mp4` | `mst36_h0_vantagens` |
+| `performance/duopet_perf-h1-dor_28s_*.mp4` | `prf28_h1_dor` |
+| `performance/duopet_perf-h2-demo_27s_*.mp4` | `prf27_h2_demo` |
+| `performance/duopet_perf-h3-multipet_28s_*.mp4` | `prf28_h3_multi` |
+| `performance/duopet_perf-h4-remedio_27s_*.mp4` | `prf27_h4_remedio` |
+| `curto/duopet_curto_11s_*.mp4` | `sht11_caogato` |
 | Japa Dorama — corte A / B | `cri_jd_a` / `cri_jd_b` |
 
 Exemplos prontos:
-- Meta, multi-pet: `https://duopet.site/?utm_source=meta&utm_medium=paid_social&utm_campaign=dp_cadastro_202610&utm_content=prf30_h3_multi&utm_term=multipet`
-- TikTok, amplo: `https://duopet.site/?utm_source=tiktok&utm_medium=paid_social&utm_campaign=dp_cadastro_202610&utm_content=prf30_h1_dor&utm_term=amplo`
+- Meta, multi-pet: `https://duopet.site/?utm_source=meta&utm_medium=paid_social&utm_campaign=dp_cadastro_202610&utm_content=prf28_h3_multi&utm_term=multipet`
+- TikTok, amplo: `https://duopet.site/?utm_source=tiktok&utm_medium=paid_social&utm_campaign=dp_cadastro_202610&utm_content=prf28_h1_dor&utm_term=amplo`
 
 ## 3. Estrutura de campanha sugerida (fase 1, 14 dias)
 
 | Conjunto | Público | Criativos | Observação |
 |---|---|---|---|
-| A — Amplo | BR, 22–55, sem interesses (deixe o algoritmo achar) | H1, H2, H4, 15 s | Teste de gancho |
+| A — Amplo | BR, 22–55, sem interesses (deixe o algoritmo achar) | H1, H2, H4, curto 11 s | Teste de gancho |
 | B — Multi-pet | Interesses: gatos + cães, pet shop, ração para gatos E cães; ou lookalike de quem cadastrou 2 pets (quando houver 100+) | H3, master | Hipótese de maior LTV |
-| C — Remarketing | Visitou landing e não cadastrou (7 dias) | master 44 s, depoimento real (quando houver) | Prova e objeções |
+| C — Remarketing | Visitou landing e não cadastrou (7 dias) | master 36 s (11 vantagens + oferta), depoimento real (quando houver) | Prova e objeções |
 
 Orçamento: distribuir de forma igual entre os criativos do conjunto A até cada um ter **pelo menos 50 cadastros ou 2× o CPL-alvo gasto sem cadastro** (regra de corte). Não declarar vencedor antes disso.
 
@@ -59,9 +59,9 @@ Orçamento: distribuir de forma igual entre os criativos do conjunto A até cada
 | Teste | Variável | Versões | Hipótese | Métrica de decisão | Métrica de alerta |
 |---|---|---|---|---|---|
 | **A — Dor × Demonstração** | Primeiros 3 s | `perf_h1` (dor) × `perf_h2` (demo) | Mostrar o produto já no frame 1 atrai clique mais qualificado (CPL igual, mais 1º check) | CPL e % 1º check | Hook rate |
-| **B — Emoção × Praticidade** | Fechamento (cena emocional) | `master` (com "mais tempo juntos") × `perf_h1` (direto ao ponto) | A emoção aumenta a conclusão, mas não necessariamente o cadastro | CPL | % conclusão |
+| **B — Profundidade (teste de conceito)** | Quantidade de vantagens (e o gancho junto: 2 variáveis, então ler como conceito) | `master` (36 s, 11 vantagens, "Tem cão e gato?") × `perf_h2` (27 s, 7 vantagens, demo primeiro) | Mais vantagens qualificam o clique (2º pet, assinatura) mesmo com menos conclusão | % assinatura em 7 dias e CPL | % conclusão |
 | **C — Locução × Criador** | Voz/rosto | `perf_h1` × corte Japa Dorama A | O criador traz confiança e reduz o CPL no público dele | CPL, e-mail confirmado | Comentários negativos |
-| **D — Curto × Longo** | Duração | `short15` × `perf_h1` | O 15 s ganha em CPM/alcance, o 30 s ganha em qualidade (2º pet, assinatura) | CPL **e** % assinatura em 7 dias | CTR |
+| **D — Curto × Longo** | Duração | `short15` (11 s) × `perf_h1` (28 s) | O curto ganha em CPM/alcance, o de 28 s ganha em qualidade (2º pet, assinatura) | CPL **e** % assinatura em 7 dias | CTR |
 | E — Gancho multi-pet | Público + gancho | `perf_h3` no conjunto B × `perf_h1` no conjunto A | Multi-pet tem CPL maior, mas assinatura/CAC melhores | CAC | CPL |
 
 Regras:

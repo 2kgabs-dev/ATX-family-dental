@@ -314,6 +314,221 @@
      "s": 0.92
     }
    ]
+  },
+  "V4M": {
+   "caption": "Tem cão e gato? Veja o que cada um precisa hoje. Nada de receita perdida. Marcou? O anel anda e mostra o que falta. Do cão pro gato, num toque. Rotina pronta pra cada espécie… e repete do seu jeito. Vacinas, remédios e consultas. Receitas e exames, por pet. Os gastos de cada um. Sua semana, e o peso. Brincadeiras guiadas e sons de brinquedo. Sem instalar: celular ou computador. Tudo num lugar só. Comece grátis com um pet. Ou três dias de Plus: sem cartão, sem cobrança automática.",
+   "parts": [
+    {
+     "t": "Tem cão e gato?",
+     "p": 0.18,
+     "s": 0.95,
+     "shot": "hook"
+    },
+    {
+     "t": "Veja o que cada um precisa hoje.",
+     "p": 0.16,
+     "s": 0.98,
+     "shot": "promessa"
+    },
+    {
+     "t": "Nada de receita perdida.",
+     "p": 0.14,
+     "s": 1.0,
+     "shot": "contraste"
+    },
+    {
+     "t": "Marcou? O anel anda e mostra o que falta.",
+     "p": 0.16,
+     "s": 0.98,
+     "shot": "rotina"
+    },
+    {
+     "t": "Do cão pro gato, num toque.",
+     "p": 0.14,
+     "s": 1.0,
+     "shot": "multipet"
+    },
+    {
+     "t": "Rotina pronta pra cada espécie…",
+     "p": 0.06,
+     "s": 1.02,
+     "shot": "pronta"
+    },
+    {
+     "t": "e repete do seu jeito.",
+     "p": 0.14,
+     "s": 1.0,
+     "shot": "recorrencia"
+    },
+    {
+     "t": "Vacinas, remédios e consultas.",
+     "p": 0.12,
+     "s": 1.02,
+     "shot": "saude"
+    },
+    {
+     "t": "Receitas e exames, por pet.",
+     "p": 0.12,
+     "s": 1.02,
+     "shot": "documentos"
+    },
+    {
+     "t": "Os gastos de cada um.",
+     "p": 0.12,
+     "s": 1.02,
+     "shot": "gastos"
+    },
+    {
+     "t": "Sua semana, e o peso.",
+     "p": 0.12,
+     "s": 1.02,
+     "shot": "semana"
+    },
+    {
+     "t": "Brincadeiras guiadas e sons de brinquedo.",
+     "p": 0.14,
+     "s": 1.02,
+     "shot": "brincar"
+    },
+    {
+     "t": "Sem instalar: celular ou computador.",
+     "p": 0.16,
+     "s": 1.0,
+     "shot": "instalar"
+    },
+    {
+     "t": "Tudo num lugar só.",
+     "p": 0.2,
+     "s": 0.96,
+     "shot": "triade"
+    },
+    {
+     "t": "Comece grátis com um pet.",
+     "p": 0.16,
+     "s": 0.97,
+     "shot": "gratis"
+    },
+    {
+     "t": "Ou três dias de Plus: sem cartão, sem cobrança automática.",
+     "s": 0.98,
+     "shot": "plus"
+    }
+   ]
+  },
+  "V4P": {
+   "caption": "Veja o que cada um precisa hoje. Marcou? O anel anda e mostra o que falta. Do cão pro gato, num toque. Vacinas, remédios, exames, gastos e brincadeiras, de cada pet. Sem instalar: celular ou computador. Comece grátis com um pet. Ou três dias de Plus: sem cartão, sem cobrança automática.",
+   "parts": [
+    {
+     "t": "Veja o que cada um precisa hoje.",
+     "p": 0.14,
+     "s": 0.98,
+     "shot": "promessa"
+    },
+    {
+     "t": "Marcou? O anel anda e mostra o que falta.",
+     "p": 0.14,
+     "s": 0.98,
+     "shot": "rotina"
+    },
+    {
+     "t": "Do cão pro gato, num toque.",
+     "p": 0.12,
+     "s": 1.0,
+     "shot": "multipet"
+    },
+    {
+     "t": "Vacinas, remédios,",
+     "p": 0.04,
+     "s": 1.04,
+     "shot": "saude"
+    },
+    {
+     "t": "exames,",
+     "p": 0.04,
+     "s": 1.04,
+     "shot": "documentos"
+    },
+    {
+     "t": "gastos",
+     "p": 0.04,
+     "s": 1.04,
+     "shot": "gastos"
+    },
+    {
+     "t": "e brincadeiras, de cada pet.",
+     "p": 0.14,
+     "s": 1.02,
+     "shot": "brincar"
+    },
+    {
+     "t": "Sem instalar: celular ou computador.",
+     "p": 0.14,
+     "s": 1.0,
+     "shot": "instalar"
+    },
+    {
+     "t": "Comece grátis com um pet.",
+     "p": 0.14,
+     "s": 0.98,
+     "shot": "gratis"
+    },
+    {
+     "t": "Ou três dias de Plus: sem cartão, sem cobrança automática.",
+     "s": 0.98,
+     "shot": "plus"
+    }
+   ]
+  },
+  "V4S": {
+   "caption": "Tem cão e gato? Marcou? O anel mostra o que falta. Saúde, exames e gastos de cada pet. Três dias de Plus grátis, sem cartão.",
+   "parts": [
+    {
+     "t": "Tem cão e gato?",
+     "p": 0.12,
+     "s": 0.98,
+     "shot": "hook"
+    },
+    {
+     "t": "Marcou? O anel mostra o que falta.",
+     "p": 0.1,
+     "s": 1.0,
+     "shot": "rotina"
+    },
+    {
+     "t": "Saúde, exames e gastos de cada pet.",
+     "p": 0.12,
+     "s": 1.02,
+     "shot": "saude"
+    },
+    {
+     "t": "Três dias de Plus grátis, sem cartão.",
+     "s": 1.0,
+     "shot": "plus"
+    }
+   ]
+  },
+  "V4E": {
+   "caption": "Saiba o que seu pet precisa hoje: duopet.site",
+   "parts": [
+    {
+     "t": "Saiba o que seu pet precisa hoje:",
+     "p": 0.12,
+     "s": 0.96
+    },
+    {
+     "t": "duopet ponto site.",
+     "s": 0.92
+    }
+   ]
+  },
+  "V4E15": {
+   "caption": "duopet.site",
+   "parts": [
+    {
+     "t": "duopet ponto site.",
+     "s": 0.92
+    }
+   ]
   }
  }
 }

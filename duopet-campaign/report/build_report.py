@@ -27,7 +27,7 @@ def secs(v):
 
 # mesmos nomes de compositions/queue.sh (a duração arredondada vem da linha do tempo)
 RENDERS = [
-    ("master", "Master cinematográfico", f"renders/master/duopet_master_{secs('master')}s"),
+    ("master", "Master · montagem de vantagens", f"renders/master/duopet_master_{secs('master')}s"),
     ("perf_h1", "Performance · H1 dor/lista (controle)", f"renders/performance/duopet_perf-h1-dor_{secs('perf_h1')}s"),
     ("perf_h2", "Performance · H2 demo no 1º frame", f"renders/performance/duopet_perf-h2-demo_{secs('perf_h2')}s"),
     ("perf_h3", "Performance · H3 multi-pet", f"renders/performance/duopet_perf-h3-multipet_{secs('perf_h3')}s"),
@@ -36,18 +36,18 @@ RENDERS = [
 ]
 
 MATRIX = [
-    ("Força do gancho", 7, "Movimento e texto legível desde o frame 1, pergunta direta e os pets espiando na virada (abertura da referência do cliente). O gancho do master é indireto (fala primeiro da rotina da pessoa); H1 e H4 são mais específicos e H3 usa os recortes em grande-angular. Só o hook rate real valida."),
-    ("Identificação com a dor", 8, "Objetos concretos do dia a dia (post-it de ração, cartela, carteirinha com '??', conversa 'alguém deu o remédio?'). Nada abstrato."),
-    ("Clareza da solução", 8, "A transição mostra o caos virando a tela do app; a demo mostra a ação principal (marcar) e o resultado (anel 60→80%). No master o app só aparece aos 12,75 s; nas versões de performance, entre 0 e 10 s."),
-    ("Benefícios demonstrados", 8, "Rotina, saúde, gastos, brincadeiras e troca de pet com a UI real reconstruída. Documentos aparecem só de passagem."),
-    ("Diferenciação", 6, "Multi-pet e rotina por espécie aparecem, mas o filme não explicita a diferença para uma agenda ou para apps de carteirinha. Isso fica para a landing e para o teste C."),
-    ("Qualidade do motion design", 8, "A v2 incorpora a linguagem do vídeo de referência do cliente: linha contínua que vira pata, batimento e anel com o logo; mundo verde com órbitas; 7 animações tipográficas diferentes (cascata, máquina de escrever, 3D, letras dispersas, máscara, tracking, troca de cor); chicote 3D; curva 'MAIS LEVE'; varredura terracota. Limites: renderização por software e celular sem modelo 3D real."),
-    ("Naturalidade da narração", 5, "Voz sintética local e inteligível (WER ≈ 7–13% na mix, a maior parte no nome da marca), mas sem a interpretação de um locutor. É o ponto mais fraco; a recomendação é gravar com voz humana."),
-    ("Qualidade de áudio", 7, "Trilha original em 5 climas sincronizados, efeitos por evento, ducking sob a voz, −14 LUFS e pico abaixo de −1 dBTP. Uma trilha composta por um músico ou de biblioteca premium soaria mais rica."),
-    ("Ritmo e retenção", 7, "Cortes no grid de 120 BPM e nada parado por mais de 0,9 s (o QA não encontrou congelamentos). O master de 45 s é longo para público frio; por isso as versões de 30 e 15 s são as de aquisição."),
-    ("Clareza do CTA", 9, "Marca + 'Saiba o que seu pet precisa hoje' (igual ao topo da landing) + selos '3 dias grátis' e 'sem cartão' + URL grande. Não há botão falso."),
-    ("Credibilidade", 8, "Só funções que existem, nenhuma promessa de notificação, nenhum depoimento inventado. A foto emocional é gerada por IA (da própria marca) e convém declarar; filmagem real elevaria a nota."),
-    ("Potencial de conversão", 7, "Hipótese, não previsão: a oferta sem cartão e o público multi-pet são fortes. O resultado real depende do checkout ativo, da confirmação por e-mail e da medição por UTM."),
+    ("Força do gancho", 8, "v4: produto no quadro 0 (celular com a tela Hoje), chamada direta ao público multi-pet ('Tem cão e gato?') com cão e gato em recorte e o 'check' do app como assinatura sonora. Os ganchos de performance (dor, demo, multi-pet, remédio) mergulham pelo ponto do título direto na montagem. Só o hook rate real valida."),
+    ("Identificação com a dor", 6, "No master a dor virou um contraste curto ('Nada de receita perdida': os papéis são sugados para o celular). A dor concreta ficou nos ganchos H1, H3 e H4, que são os que vão a teste."),
+    ("Clareza da solução", 9, "A tela real do app aparece em 12 dos 16 planos, com causa e efeito (toque → check → anel → 'o que falta')."),
+    ("Benefícios demonstrados", 9, "11 vantagens verificadas na auditoria, uma por plano, com contador '01 / 11': rotina, multi-pet, rotina por espécie, recorrência, saúde, documentos, gastos, semana e peso, brincadeiras e sons, sem instalar."),
+    ("Diferenciação", 7, "Cão e gato na mesma conta, rotina pronta por espécie, sem instalar e um plano Grátis de verdade. Ainda falta comparar explicitamente com agenda e app de carteirinha; isso fica para a landing."),
+    ("Qualidade do motion design", 8, "Linguagem das 5 referências: palavra gigante atrás do celular 3D, etiquetas de anotação com linha-guia, ícones 3D com órbita, cursor, círculo à mão, tríade final, trocas variadas (push com desfoque e rastro de luz, slam com flash, rise). Limites: 3D em CSS (sem modelo de celular real) e renderização por software."),
+    ("Naturalidade da narração", 5, "Ainda é a voz sintética local (inteligível, mas sem interpretação). A troca por voz premium (Higgsfield/ElevenLabs, pt-BR) está pronta para rodar assim que os créditos forem ativados; o pipeline re-sincroniza tudo sozinho."),
+    ("Qualidade de áudio", 7, "Trilha original com arranjo guiado pelos planos (viradas antes dos slams, stop-time na tríade, subida na oferta), efeito de UI em cada ação, ducking, −14 LUFS e pico ≤ −1 dBTP."),
+    ("Ritmo e retenção", 8, "Um plano a cada 1,3–2,5 s, com micro-movimento contínuo; listas rápidas de 0,6–0,8 s na performance. O master tem 36 s, acima da faixa de 21–34 s recomendada pelo TikTok: use as versões de 27–28 s para aquisição."),
+    ("Clareza do CTA", 9, "CTA falado e escrito, igual ao topo da landing ('Saiba o que seu pet precisa hoje') + oferta + 'sem cartão · sem cobrança automática' + URL grande, parado ~3 s. Nenhum botão falso."),
+    ("Credibilidade", 8, "Só funções que existem, nenhuma notificação (as etiquetas foram redesenhadas para não parecer push), 'imagens ilustrativas' nos planos com dados de exemplo. Falta o rótulo de IA ao publicar (voz sintética e fotos da marca geradas por IA)."),
+    ("Potencial de conversão", 8, "Hipótese, não previsão: produto cedo, vantagens empilhadas e risco zero colado na oferta são as alavancas mais citadas na pesquisa. O resultado real depende da cobrança ativa, da confirmação por e-mail e da UTM no cadastro."),
 ]
 
 
@@ -113,17 +113,17 @@ a{color:var(--forest)}
 <header>
   <div class="eyebrow">Campanha de aquisição · Brasil · out/2026 · 9:16</div>
   <h1>DuoPet<br>tudo no seu lugar<span class="dot">.</span></h1>
-  <p class="lead">Um comercial master, quatro variações de performance com ganchos diferentes e um anúncio de 15 s, todos construídos sobre a interface real do app e sobre uma promessa que o produto cumpre: <strong>saber o que o seu pet precisa hoje</strong>.</p>
+  <p class="lead">Um master com 11 vantagens em motion design, quatro variações de performance com ganchos diferentes e um anúncio curto, todos construídos sobre a interface real do app, com a oferta real no fim (<strong>3 dias de Plus grátis, sem cartão e sem cobrança automática</strong>) e uma promessa que o produto cumpre: <strong>saber o que o seu pet precisa hoje</strong>.</p>
 </header>
 """)
     # resumo
     h.append("""<section><h2>Resumo</h2><ol class="summary">
 <li><span><strong>Público prioritário: tutores com 2+ pets.</strong> São 58% dos tutores (Serasa/Opinion Box, set/2025) e os que precisam pagar, porque o plano Grátis cobre 1 pet.</span></li>
 <li><span><strong>Promessa:</strong> "Saiba o que seu pet precisa hoje", a mesma frase do topo da landing, demonstrada na tela (marcar o passeio faz o anel ir de 60% para 80%).</span></li>
-<li><span><strong>Oferta no CTA:</strong> 3 dias grátis, sem cartão. Verificada no site em 12/10/2026.</span></li>
+<li><span><strong>Oferta no fim:</strong> "Comece grátis com um pet. Ou três dias de Plus: sem cartão, sem cobrança automática." Verificada no site e no código em 12/10/2026.</span></li>
 <li><span><strong>Correção de rota:</strong> o vídeo anterior dizia "LEMBRE" com um sino, mas o DuoPet não envia notificação (FAQ oficial). Os novos filmes não prometem lembrete.</span></li>
 <li><span><strong>Antes de pôr verba:</strong> confirmar que a cobrança (Asaas) está ativa em produção e salvar a UTM no cadastro. Sem isso, não dá para saber qual criativo gera assinatura.</span></li>
-<li><span><strong>Maior melhoria possível:</strong> trocar a voz sintética por um locutor humano e filmar 2 planos reais de tutor com pet.</span></li>
+<li><span><strong>Maior melhoria possível:</strong> trocar a voz sintética (já está tudo pronto para gerar a voz premium assim que os créditos do Higgsfield forem ativados) e testar um conceito UGC com tutor real ao lado do motion.</span></li>
 </ol></section>
 """)
     # vídeos
@@ -152,33 +152,22 @@ a{color:var(--forest)}
 <div><h3>Não entregue (e por quê)</h3><p>Locução humana e gravação do Japa Dorama: não havia gravações autorizadas. Filmagem real de tutor com pet: não havia material; a cena usa a fotografia oficial da marca, gerada por IA.</p></div>
 </div></section>""")
     # decisões
-    h.append("""<section><h2>Referências usadas</h2>
-<p>A v2 foi reconstruída sobre a linguagem do vídeo que o cliente enviou e sobre referências externas pesquisadas. A análise completa, cena a cena, está em <code>research/03-referencias.md</code>.</p>
-<div class="tbl"><table><thead><tr><th>Da referência do cliente</th><th>Como entrou no filme</th></tr></thead><tbody>
-<tr><td>Abertura "SEU PET." com pets espiando</td><td>Gancho do master: "e a do / SEU PET?" com as letras se aproximando e os pets subindo da base</td></tr>
-<tr><td>Linha que vira pata → sino → batimento → logo</td><td>Transição-assinatura: ponto → linha → pata → batimento → anel com o logo. O sino saiu porque o app não notifica</td></tr>
-<tr><td>Mundo verde com órbitas e partículas</td><td>Todas as cenas de produto</td></tr>
-<tr><td>Capítulos "01 — ROTINA / CUIDE."</td><td>01 ROTINA (VEJA. MARQUE.), 02 SAÚDE (CUIDE.), 03 GASTOS (CONTROLE.), 04 BRINCADEIRAS (BRINQUE.)</td></tr>
-<tr><td>"CÃO OU GATO." com troca de cor</td><td>O terracota passa de CÃO para GATO junto com a troca Thor → Mia</td></tr>
-<tr><td>"cada dia MAIS LEVE." com curva</td><td>Cena emocional com os mesmos cuidados (Ração, Passeio, Remédio, Brincar) e os filhotes</td></tr>
-<tr><td>Varredura terracota + cartão final</td><td>CTA com "SISTEMA DE GESTÃO PARA CÃES E GATOS" e a oferta em pílula (sem seta)</td></tr>
-<tr><td>"LEMBRE." com sino</td><td><strong>Removido</strong>: promete lembrete que o produto não envia</td></tr>
+    h.append("""<section><h2>O que mudou na v4 (e por quê)</h2>
+<p>Pedido: mais vantagens, foco em venda e motion design profissional no estilo das 5 referências. A pesquisa de conversão (fontes em <code>research/03-referencias.md</code>, seção 6) mudou a estrutura: <strong>produto no quadro 0 → promessa com a marca → vantagens empilhadas → oferta com risco zero → cartão final</strong>.</p>
+<div class="tbl"><table><thead><tr><th>Alavanca (evidência)</th><th>Como entrou no filme</th></tr></thead><tbody>
+<tr><td>Produto e mensagem nos 3 primeiros segundos (TikTok)</td><td>Quadro 0 já tem o celular com a tela Hoje, cão e gato e "TEM CÃO E GATO?"</td></tr>
+<tr><td>Marca + mensagem até 5 s: 1,7× (Meta × Toluna, correlacional)</td><td>Selo DuoPet em ~1,3 s junto com "O QUE CADA UM PRECISA HOJE"</td></tr>
+<tr><td>Produto mais de uma vez: 2,7×; vantagens com texto: 5,3× (Meta × Toluna)</td><td>11 vantagens, uma por plano, sobre a UI real, com contador "01 / 11"</td></tr>
+<tr><td>Risco zero colado na oferta (VWO; Procon/Reclame Aqui sobre renovação automática)</td><td>"3 DIAS DE PLUS GRÁTIS" + selos "Sem cartão" (circulado), "Sem cobrança automática", "Depois, segue no Grátis", no tempo da fala</td></tr>
+<tr><td>Preço zero (Shampanier, Mazar e Ariely, 2007)</td><td>Plano "GRÁTIS." · "Plano Grátis · 1 pet" (verdadeiro)</td></tr>
+<tr><td>CTA falado e escrito: 1,9× (Meta × Toluna); proibido imitar botão/notificação (Meta)</td><td>Fala igual ao topo da landing; oferta em rótulo de duas linhas; etiquetas de dado com linha-guia até a tela, sem cara de push</td></tr>
 </tbody></table></div>
-<p class="src">Referências externas: vídeos de lançamento da Apple (um plano, uma ideia; trilha travada no corte), case da Raycast (UI recriada do design system, um som por ação), análise de anúncios da Chewy (GoMarble), Rover "To My Hooman", AppsFlyer State of Creative 2025 e tendências de tipografia cinética. Os links estão no documento de referências.</p>
-</section>
-<section><h2>Decisões criativas</h2>
-<div class="cols">
-<div><h3>Antes × depois sentido no movimento</h3><p>Antes: fundo escuro, câmera na mão, objetos tortos, desfoque de movimento. Depois: papel creme, curvas suaves (as do CSS de produção), hierarquia e respiro.</p></div>
-<div><h3>Transição-assinatura</h3><p>Todo o caos converge para um ponto de luz, que vira a tela do app. Os cuidados se encaixam em ordem e a câmera recua até revelar o celular. A trilha muda de menor para maior no mesmo frame.</p></div>
-<div><h3>Interface real</h3><p>As telas foram reconstruídas a partir da demonstração oficial do site (mesmos textos, ícones, fonte Geist e cores). Por isso o check, o anel e a troca Thor ↔ Mia são animações, não prints deslizando.</p></div>
-<div><h3>Som</h3><p>Trilha original em 5 climas (tensão → descoberta → groove a 120 BPM → abertura emocional → assinatura Sol–Dó–Mi), efeitos por evento e ducking da música sob a voz.</p></div>
-</div>
-<div class="note">Mudei três pontos do briefing: o CTA passou a usar a oferta real ("3 dias grátis, sem cartão") no lugar de "veja como funciona"; nenhuma fala usa "lembrar/avisar"; e o multi-pet entrou no roteiro principal porque é o que leva à assinatura.</div>
+<p class="src">Linguagem visual das referências do cliente (Mercury, Zei, Temvo, Nomad e 4.roues): palavra gigante atrás do objeto, pílulas de vidro, ícones 3D com órbita tracejada, cursor clicando, círculo à mão, rastro de luz nas trocas e recapitulação em três palavras.</p>
 </section>""")
     # storyboard
     sb = f"{ROOT}/storyboard/master.jpg"
     if os.path.exists(sb):
-        h.append(f'<section class="wide"><div class="wrap"><h2>Storyboard · master</h2><p>Dois quadros por cena, extraídos do arquivo final. Role para o lado. Os storyboards das outras versões estão em <code>storyboard/</code>.</p></div><div class="board"><img alt="Storyboard do master com quadros-chave de cada cena" src="{img64(sb, 2000)}"></div></section>')
+        h.append(f'<section class="wide"><div class="wrap"><h2>Storyboard · master</h2><p>Um quadro por plano da montagem (e dois por cena nas demais), extraídos do arquivo final. Role para o lado. Os storyboards das outras versões estão em <code>storyboard/</code>.</p></div><div class="board"><img alt="Storyboard do master com quadros-chave de cada cena" src="{img64(sb, 2000)}"></div></section>')
     # ganchos
     h.append("""<section><h2>Ganchos em teste</h2><p>Doze ganchos foram pontuados (interrupção, relevância, clareza sem som, veracidade, produto cedo). Os quatro escolhidos testam hipóteses diferentes, não só frases diferentes.</p>
 <div class="tbl"><table><thead><tr><th>Versão</th><th>Primeiros 3 s</th><th>Hipótese</th></tr></thead><tbody>
@@ -197,12 +186,12 @@ a{color:var(--forest)}
     h.append("""<section><h2>Testes e medição</h2>
 <div class="tbl"><table><thead><tr><th>Teste</th><th>Compara</th><th>Decide por</th></tr></thead><tbody>
 <tr><td>A · Dor × demo</td><td>H1 × H2</td><td>Custo por cadastro e % com 1º check no dia 0</td></tr>
-<tr><td>B · Emoção × praticidade</td><td>Master × H1</td><td>Custo por cadastro (conclusão como alerta)</td></tr>
+<tr><td>B · Profundidade (conceito)</td><td>Master 36 s × H2 27 s</td><td>% de assinatura em 7 dias e custo por cadastro</td></tr>
 <tr><td>C · Locução × criador</td><td>H1 × corte A do Japa Dorama</td><td>Custo por cadastro e e-mail confirmado</td></tr>
-<tr><td>D · Curto × longo</td><td>15 s × H1</td><td>Custo por cadastro <em>e</em> % de assinatura em 7 dias</td></tr>
+<tr><td>D · Curto × longo</td><td>Curto 11 s × H1</td><td>Custo por cadastro <em>e</em> % de assinatura em 7 dias</td></tr>
 <tr><td>E · Multi-pet</td><td>H3 no público multi-pet × H1 amplo</td><td>CAC</td></tr>
 </tbody></table></div>
-<p>Evento de otimização da fase 1: <strong>cadastro</strong> (não visualização). Regra de corte: ≥ 50 cadastros por braço ou 2× o custo-alvo gasto sem cadastro. Exemplo de UTM: <code>https://duopet.site/?utm_source=meta&amp;utm_medium=paid_social&amp;utm_campaign=dp_cadastro_202610&amp;utm_content=prf30_h3_multi&amp;utm_term=multipet</code></p>
+<p>Evento de otimização da fase 1: <strong>cadastro</strong> (não visualização). Regra de corte: ≥ 50 cadastros por braço ou 2× o custo-alvo gasto sem cadastro. Exemplo de UTM: <code>https://duopet.site/?utm_source=meta&amp;utm_medium=paid_social&amp;utm_campaign=dp_cadastro_202610&amp;utm_content=prf28_h3_multi&amp;utm_term=multipet</code></p>
 </section>
 <section><h2>Funil: o que resolver primeiro</h2>
 <div class="tbl"><table><thead><tr><th>Ponto</th><th>Por que importa</th><th>Recomendação</th></tr></thead><tbody>
@@ -221,6 +210,7 @@ a{color:var(--forest)}
 <div><h3>Testes curtos convertem menos</h3><p>Em apps de assinatura, testes de ≤ 4 dias têm conversão mediana menor que os longos. É um motivo para testar 7 dias de Plus.</p><p class="src"><a href="https://www.revenuecat.com/blog/growth/free-trial-length" target="_blank" rel="noopener">RevenueCat</a> (apps mobile; referência indireta)</p></div>
 </div></section>""")
     h.append("""<section><h2>O que preciso de você</h2><ol class="summary">
+<li><span>Ativar os créditos do Higgsfield (teste grátis ou plano) para eu gerar a voz feminina premium em pt-BR; o custo medido é de 1,5 crédito para a fala do master.</span></li>
 <li><span>Confirmar se a assinatura (Asaas) está ativa em produção.</span></li>
 <li><span>Link do perfil do Japa Dorama e, se houver, as gravações autorizadas.</span></li>
 <li><span>Se quiser voz humana: o locutor grava as falas do roteiro em <code>voice/README.md</code> e eu remonto tudo.</span></li>

@@ -144,13 +144,13 @@ export const FlyIn: React.FC<{ id: string; t: number; t0: number; x: number; y: 
   );
 };
 
-export const HookList: React.FC<{ scene: Scene }> = ({ scene }) => {
+export const HookList: React.FC<{ scene: Scene; maskOut?: boolean }> = ({ scene, maskOut = true }) => {
   const { t } = useSceneTime(scene);
   const keys = ["ração", "remédio", "vacina", "consulta"];
   const items: number[] = scene.cues.items;
   const where = scene.cues.where;
   const cur = items.filter((x) => t >= x).length - 1;
-  const titleOut = prog(t, scene.end - 0.2, 0.2, EASE.inOut);
+  const titleOut = maskOut ? prog(t, scene.end - 0.2, 0.2, EASE.inOut) : 0; // sem máscara quando o corte é o mergulho no "?"
   return (
     <AbsoluteFill style={{ overflow: "hidden" }}>
       <NightBG />

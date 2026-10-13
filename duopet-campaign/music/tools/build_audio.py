@@ -86,7 +86,28 @@ def compose(v):
             for x in beats(b - 1.0, b, 0.5):
                 place(drums, K * 0.5, x)
         elif mood == "groove":
+            # v4: arranjo guiado pelos planos da montagem (sem isso 30 s do mesmo loop cansam):
+            # virada antes de cada corte seco, "stop-time" na tríade (só os impactos), camada de sino a partir da
+            # metade e subida (hats abertos + sino uma oitava acima) na oferta.
+            mont = next((s for s in scenes if s["type"].startswith("Montage") and s["start"] < b and s["end"] > a), None)
+            shots = mont["cues"]["shots"] if mont else []
+            ends_ = [sh["t0"] for sh in shots[1:]] + [mont["end"] if mont else b]
+            brk = [(sh["t0"], e) for sh, e in zip(shots, ends_) if sh["key"] == "triade"]
+            slams = [sh["t0"] for sh in shots[1:] if sh["key"] in ("promessa", "triade", "gratis")]
+            mid = next((sh["t0"] for sh in shots if sh["key"] in ("saude",)), None)
+            lift = next((sh["t0"] for sh in shots if sh["key"] in ("gratis", "plus")), None)
+            in_brk = lambda t_: any(x0 - 0.02 <= t_ < x1 - 0.05 for x0, x1 in brk)
+            for x0, x1 in brk:
+                step = max(0.3, (x1 - x0) / 3)
+                for j in range(3):
+                    place(drums, K * 1.0, x0 + j * step)
+                    place(bass, sub(36 - 5 * j, 0.35) * 0.9, x0 + j * step)
+            for sl in slams:  # virada de caixa em semicolcheias crescendo no último meio tempo
+                for j in range(4):
+                    place(drums, pan(CL, 0.1 * (j - 1.5)) * (0.18 + 0.1 * j), sl - 0.5 + j * 0.125)
             for bi, x in enumerate(bars(a, b)):
+                if in_brk(x) and in_brk(x + BAR - 0.01):
+                    continue
                 root, chord, arp = GROOVE[bi % 4]
                 L = min(BAR, b - x)
                 place(wet, pan(pad(chord, L + 0.3, cutoff=2200, attack=0.08, release=0.3), 0) * 0.32, x)
@@ -96,22 +117,29 @@ def compose(v):
                         place(bass, sub(m, ln) * 0.85, x + off)
                 # marimba em colcheias
                 for i, m in enumerate(arp):
-                    if i * 0.25 < L:
+                    if i * 0.25 < L and not in_brk(x + i * 0.25):
                         place(dry, pan(marimba(m, 0.5), -0.35 if i % 2 else 0.35) * 0.30, x + i * 0.25)
+                # camada de sino (2ª metade) e subida na oferta
+                if mid is not None and x >= mid - 0.01:
+                    up = 12 if (lift is not None and x >= lift - 0.01) else 0
+                    for i, m in enumerate(arp[::2]):
+                        if i * 0.5 < L and not in_brk(x + i * 0.5):
+                            place(wet, pan(bell(m + 12 + up, 0.9), -0.5 + 0.33 * i) * 0.12, x + i * 0.5 + 0.25)
                 # bateria
+                lifted = lift is not None and x >= lift - 0.01
                 for off in (0.0, 1.0):
-                    if off < L:
+                    if off < L and not in_brk(x + off):
                         place(drums, K * 0.95, x + off)
                 for off in (0.5, 1.5):
-                    if off < L:
+                    if off < L and not in_brk(x + off) and not any(0 <= sl - (x + off) < 0.5 for sl in slams):
                         place(drums, pan(CL, 0.05) * 0.55, x + off)
                 for k8 in range(8):
                     off = k8 * 0.25
-                    if off < L:
-                        place(drums, pan(hat(open_=(k8 % 2 == 1)), 0.25) * (0.28 if k8 % 2 else 0.18), x + off)
+                    if off < L and not in_brk(x + off):
+                        place(drums, pan(hat(open_=(k8 % 2 == 1)), 0.25) * ((0.34 if lifted else 0.28) if k8 % 2 else 0.18), x + off)
                 for k16 in range(16):
                     off = k16 * 0.125
-                    if off < L:
+                    if off < L and not in_brk(x + off):
                         place(drums, pan(shaker(), -0.3) * (0.22 if k16 % 2 else 0.12), x + off)
             if nxt in ("warm", "sting"):
                 place(drums, pan(riser(1.0), 0) * 0.25, b - 1.0)

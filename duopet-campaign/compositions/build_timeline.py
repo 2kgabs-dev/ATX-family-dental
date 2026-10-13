@@ -117,6 +117,16 @@ CUTS = {
     ("Emotion", "CTA"): dict(preset="colorWipe", frames=16),
     ("MultiPet", "CTA"): dict(preset="colorWipe", frames=16),
     ("Demo15", "CTA15"): dict(preset="colorWipe", frames=16),
+    # v4: a revelação sai em chicote para a montagem de vantagens; a montagem termina na varredura terracota
+    ("Reveal", "Montage"): dict(preset="whip", frames=10, params=dict(dir="left")),
+    ("Reveal15", "Montage15"): dict(preset="whip", frames=10, params=dict(dir="left")),
+    ("Montage", "CTA"): dict(preset="colorWipe", frames=16),
+    # v4 performance: gancho → montagem pelo mesmo "mergulho" no ponto do título (o A/B mede o gancho, não a transição)
+    ("HookList", "Montage"): dict(preset="dive", frames=14, params=dict(x=605, y=587, r0=15)),  # ponto do "?" de ONDE? (medido no render)
+    ("HookDemo", "Montage"): dict(preset="dive", frames=14, params=dict(x=564, y=463, r0=13)),
+    ("HookMulti", "Montage"): dict(preset="dive", frames=14, params=dict(x=841, y=542, r0=15)),
+    ("HookPill", "Montage"): dict(preset="dive", frames=14, params=dict(x=676, y=558, r0=16)),
+    ("Montage15", "CTA15"): dict(preset="colorWipe", frames=16),
 }
 
 
@@ -169,6 +179,63 @@ def add_cues(v):
                     dict(n="ring", t=c["tap"] + 0.2, g=0.4), dict(n="toast", t=c["tap"] + 0.5, g=0.35)]
             for tt in ([c["see"] - 0.2, c["tap"] - 0.45, c["left"] - 0.15] if s["type"] == "Demo" else [c["see"] - 0.25, c["left"] - 0.1]):
                 sfx.append(dict(n="typing", t=tt, g=0.3))
+        elif T in ("Montage", "Montage15"):
+            # um plano por trecho da fala (parts com "shot" em scripts/vo-lines.json); o plano começa 0,12 s antes da 1ª palavra
+            shots, wi = [], 0
+            for part in LINES[s["line"]]["parts"]:
+                n = len(part["t"].split())
+                if part.get("shot") and wi < len(s["words"]):
+                    ws = s["words"][wi:wi + n]
+                    shots.append({"key": part["shot"], "t0": round(ws[0]["start"] - 0.12, 3), "words": [[w["w"], w["start"]] for w in ws]})
+                wi += n
+            shots[0]["t0"] = min(shots[0]["t0"], s["start"] + 0.05)
+            c["shots"] = shots
+            ends = [sh["t0"] for sh in shots[1:]] + [s["end"]]
+            # a tela já escreve a fala em letra grande nesses planos: legenda desligada (sem texto duplicado)
+            # (+0,07 s: a página do plano mudo some exatamente quando a 1ª palavra do plano seguinte aparece)
+            c["muteCaps"] = [[sh["t0"] - 0.05, e + 0.07] for sh, e in zip(shots, ends) if sh["key"] in ("hook", "promessa", "triade", "gratis", "plus")]
+            def wt(sh, pat, nth=0, fb=None):
+                hits = [tt for w, tt in sh["words"] if re.search(pat, w, re.I)]
+                return hits[nth] if len(hits) > nth else (fb if fb is not None else sh["t0"] + 0.5)
+            enter = {"promessa": "slam", "triade": "slam", "gratis": "slam", "plus": "rise"}
+            for k, sh in enumerate(shots):
+                key, t0 = sh["key"], sh["t0"]
+                if k > 0:
+                    mode = enter.get(key, "push")
+                    if mode == "push":
+                        sfx.append(dict(n="swoosh_3d", t=t0 - 0.28, g=0.42))
+                    elif mode == "slam":
+                        sfx += [dict(n="impact", t=t0 - 0.02, g=0.42), dict(n="pop_big", t=t0, g=0.35)]
+                    else:
+                        sfx.append(dict(n="whoosh_soft", t=t0 - 0.35, g=0.55, dur=0.45))
+                if key == "hook":
+                    # assinatura sonora: o "check" de duas notas do app abre o anúncio (e o motivo Sol–Dó–Mi fecha no cartão)
+                    sfx += [dict(n="check", t=s["start"] + 0.2, g=0.55), dict(n="pop", t=wt(sh, r"^gato") - 0.1, g=0.45), dict(n="boing", t=wt(sh, r"^gato"), g=0.25)]
+                elif key == "promessa":
+                    sfx += [dict(n="logo_sting", t=t0 + 0.05, g=0.35), dict(n="draw", t=wt(sh, r"^hoje"), g=0.35)]
+                elif key == "contraste":
+                    sfx += [dict(n="suck", t=t0 + 0.1, g=0.5), dict(n="pop", t=t0 + 0.75, g=0.35)]
+                elif key == "rotina":
+                    tap = max(t0 + 0.35, wt(sh, r"^marc", 0, t0 + 0.4) + 0.32)
+                    sfx += [dict(n="tap", t=tap, g=0.55), dict(n="check", t=tap + 0.06, g=0.6), dict(n="ring", t=tap + 0.15, g=0.3), dict(n="toast", t=tap + 0.2, g=0.3)]
+                elif key == "multipet":
+                    tap = wt(sh, r"^gato", 0, t0 + 0.75) - 0.08
+                    sfx += [dict(n="tap", t=tap, g=0.45), dict(n="pop", t=tap + 0.05, g=0.35)]
+                elif key == "gastos":
+                    sfx.append(dict(n="coin", t=t0 + 0.25, g=0.3))
+                elif key == "brincar":
+                    sfx += [dict(n="pop", t=t0 + 0.3, g=0.28), dict(n="squeak", t=wt(sh, r"^sons", 0, t0 + 1.3), g=0.3)]
+                elif key == "triade":
+                    step = max(0.3, (ends[k] - t0) / 3)
+                    sfx += [dict(n="impact", t=t0 + j * step - 0.02, g=0.35) for j in (1, 2)]
+                elif key == "gratis":
+                    sfx.append(dict(n="shimmer", t=t0 + 0.1, g=0.3))
+                elif key == "plus":
+                    sem0 = wt(sh, r"^sem$", 0, t0 + 1.4)
+                    sem1 = wt(sh, r"^sem$", 1, sem0 + 0.6)
+                    sfx += [dict(n="pop", t=sem0 - 0.08, g=0.4), dict(n="draw", t=sem0 + 0.25, g=0.3), dict(n="pop", t=sem1 - 0.08, g=0.4), dict(n="pop", t=sem1 + 0.6, g=0.35)]
+                else:
+                    sfx.append(dict(n="pop", t=t0 + 0.3, g=0.28))
         elif T == "Benefits":
             c["health"] = word_time(s, r"^vacinas") - 0.1
             c["money"] = word_time(s, r"^gastos") - 0.1
@@ -193,9 +260,13 @@ def add_cues(v):
             sfx.append(dict(n="shimmer", t=c["warm"] + 0.05, g=0.22))  # luz quente (light leak) sobre a foto
         elif T in ("CTA", "CTA15"):
             c["logo"] = s["voStart"] if s["words"][0]["w"].lower().startswith("duopet") else s["start"] + 0.2
-            c["offer"] = word_time(s, r"^(teste|três)")
+            hit = [w for w in s["words"] if re.search(r"^(teste|três)", w["w"], re.I)]
+            spoken_head = s["words"][0]["w"].lower().startswith("saiba")  # v4: a locução do cartão É o título
+            c["head"] = s["voStart"] - 0.05 if spoken_head else c["logo"] + (0.7 if T == "CTA" else 0.25)
+            # v4: a oferta já foi falada no plano "plus"; no cartão ela entra logo depois do título
+            c["offer"] = hit[0]["start"] if hit else c["head"] + (0.75 if T == "CTA" else 0.3)
             c["offerVis"] = max(c["offer"], s["start"] + 0.3)  # a varredura terracota cobre a oferta até ~0,27 s
-            c["url"] = word_time(s, r"^duopet", nth=1 if s["words"][0]["w"].lower().startswith("duopet") else 0)
+            c["url"] = [w for w in s["words"] if re.search(r"^duopet", w["w"], re.I)][-1]["start"]  # a última menção ao endereço
             sfx += [dict(n="whoosh_soft", t=s["start"] - 0.22, g=0.55, dur=0.55), dict(n="logo_sting", t=c["logo"], g=0.7), dict(n="typing", t=c["logo"] + 0.15, g=0.25),
                     dict(n="pop", t=c["offerVis"], g=0.4), dict(n="click_soft", t=c["url"], g=0.35)]
         elif T in ("HookList",):
@@ -244,7 +315,7 @@ def add_cues(v):
         mood = {"Hook": "tension", "HookList": "tension", "HookDemo": "groove", "HookMulti": "tension", "HookPill": "tension",
                 "Chaos": "tension", "ChaosShort": "tension", "ChaosContrast": "tension", "Chaos15": "tension",
                 "Reveal": "reveal", "Reveal15": "reveal", "Demo": "groove", "Demo15": "groove", "Benefits": "groove", "MultiPet": "groove",
-                "Emotion": "warm", "CTA": "sting", "CTA15": "sting"}[s["type"]]
+                "Emotion": "warm", "CTA": "sting", "CTA15": "sting", "Montage": "groove", "Montage15": "groove"}[s["type"]]
         if secs and secs[-1]["mood"] == mood:
             secs[-1]["end"] = s["end"]
         else:
@@ -254,17 +325,13 @@ def add_cues(v):
 
 
 VERSIONS = {
-    "master": [("Hook", "M1", 0.15, 0), ("Chaos", "M2", 0.18, 0.1), ("Reveal", "M3", 0.28, 0.05), ("Demo", "M4", 0.18, 0.05),
-               ("Benefits", "M5", 0.15, 0.05), ("Emotion", "M6", 0.25, 0.1), ("CTA", "M7", 0.2, 0)],
-    "perf_h1": [("HookList", "H1", 0.1, 0), ("ChaosShort", "P2a", 0.12, 0.1), ("Reveal", "P3", 0.22, 0), ("Demo", "P4", 0.15, 0),
-                ("MultiPet", "P5", 0.12, 0), ("CTA", "P6", 0.15, 0)],
-    "perf_h2": [("HookDemo", "H2", 0.12, 0.2), ("ChaosContrast", "P2b", 0.12, 0.1), ("Reveal", "P3", 0.22, 0), ("Demo", "P4", 0.15, 0),
-                ("MultiPet", "P5", 0.12, 0), ("CTA", "P6", 0.15, 0)],
-    "perf_h3": [("HookMulti", "H3", 0.1, 0), ("ChaosShort", "P2a", 0.12, 0.1), ("Reveal", "P3", 0.22, 0), ("Demo", "P4", 0.15, 0),
-                ("MultiPet", "P5", 0.12, 0), ("CTA", "P6", 0.15, 0)],
-    "perf_h4": [("HookPill", "H4", 0.12, 0.1), ("ChaosShort", "P2a", 0.12, 0.1), ("Reveal", "P3", 0.22, 0), ("Demo", "P4", 0.15, 0),
-                ("MultiPet", "P5", 0.12, 0), ("CTA", "P6", 0.15, 0)],
-    "short15": [("Chaos15", "S1", 0.08, 0.15), ("Reveal15", "S2", 0.12, 0), ("Demo15", "S3", 0.1, 0.1), ("CTA15", "S4", 0.12, 0)],
+    # v4: a montagem de vantagens É o corpo do anúncio (produto no quadro 0, marca antes de 5 s, oferta e risco zero no fim)
+    "master": [("Montage", "V4M", 0.06, 0.1), ("CTA", "V4E", 0.2, 0)],
+    "perf_h1": [("HookList", "H1", 0.1, 0), ("Montage", "V4P", 0.12, 0.1), ("CTA", "V4E", 0.2, 0)],
+    "perf_h2": [("HookDemo", "H2", 0.12, 0.2), ("Montage", "V4P", 0.12, 0.1), ("CTA", "V4E", 0.2, 0)],
+    "perf_h3": [("HookMulti", "H3", 0.1, 0), ("Montage", "V4P", 0.12, 0.1), ("CTA", "V4E", 0.2, 0)],
+    "perf_h4": [("HookPill", "H4", 0.12, 0.1), ("Montage", "V4P", 0.12, 0.1), ("CTA", "V4E", 0.2, 0)],
+    "short15": [("Montage15", "V4S", 0.06, 0.1), ("CTA15", "V4E15", 0.12, 0)],
 }
 
 if __name__ == "__main__":

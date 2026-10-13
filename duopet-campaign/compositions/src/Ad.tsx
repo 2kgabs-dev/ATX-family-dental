@@ -8,6 +8,7 @@ import { GlobalGrain, Grain, SafeZone } from "./components/Kit";
 import { CaptionTheme, FontsReady, PageCaptions } from "./components/Captions";
 import { Hook, HookDemo, HookList, HookMulti, HookPill } from "./scenes/Hooks";
 import { Benefits, Chaos, CTA, Demo, Emotion, MultiPet, Reveal } from "./scenes/Story";
+import { Montage } from "./scenes/Montage";
 
 const FONTS: [string, string, string][] = [
   ["Geist", "fonts/Geist-Variable.woff2", "100 900"],
@@ -40,7 +41,7 @@ export const useFonts = () => {
 };
 
 // tema e altura da legenda por cena (fundo creme → texto verde; fundo escuro/verde → texto claro)
-const LIGHT = new Set(["Hook", "Emotion", "CTA", "CTA15"]);
+const LIGHT = new Set(["Hook", "Emotion", "CTA", "CTA15"]); // Montage é escura (mundo verde)
 const captionTheme = (s: Scene): CaptionTheme => (LIGHT.has(s.type) ? "light" : "dark");
 const CAPTION_Y: Record<string, number> = {};
 const captionY = (s: Scene) => CAPTION_Y[s.type] ?? 1262;
@@ -59,11 +60,16 @@ const CaptionTrack: React.FC<{ scenes: Scene[] }> = ({ scenes }) => {
   const t = frame / fps;
   const caps = React.useMemo(() => scenes.filter((s) => !NO_CAPTIONS.has(s.type)).flatMap((s) => s.captions), [scenes]);
   const cur = scenes.find((s) => t >= s.start && t < s.end) ?? scenes[scenes.length - 1];
+  // no cartão final a última página da cena anterior não pode "vazar" por cima da varredura
+  if (NO_CAPTIONS.has(cur.type)) return null;
+  // trechos em que a tela já escreve a fala em letra grande (gancho, promessa, tríade, grátis, oferta): sem legenda duplicada
+  const muted = scenes.some((s) => (s.cues?.muteCaps ?? []).some(([a, b]: [number, number]) => t >= a && t < b));
+  if (muted) return null;
   return <PageCaptions captions={caps} t={t} theme={captionTheme(cur)} y={captionY(cur)} />;
 };
 
 // granulação por cena (mesmos valores que as cenas usavam), desenhada uma vez só no topo
-const GRAIN: Record<string, number> = { Hook: 0.035, HookDemo: 0.04, Reveal: 0.05, Reveal15: 0.05, Demo: 0.05, Demo15: 0.05, Benefits: 0.05, MultiPet: 0.05, Emotion: 0.05, CTA: 0.035, CTA15: 0.035 };
+const GRAIN: Record<string, number> = { Hook: 0.035, HookDemo: 0.04, Reveal: 0.05, Reveal15: 0.05, Demo: 0.05, Demo15: 0.05, Benefits: 0.05, MultiPet: 0.05, Montage: 0.05, Montage15: 0.05, Emotion: 0.05, CTA: 0.035, CTA15: 0.035 };
 const GrainTrack: React.FC<{ scenes: Scene[] }> = ({ scenes }) => {
   const t = useCurrentFrame() / 30;
   const cur = scenes.find((s) => t >= s.start && t < s.end) ?? scenes[scenes.length - 1];
@@ -75,7 +81,7 @@ const renderScene = (s: Scene, version: string, prev?: Scene, next?: Scene) => {
     case "Hook":
       return <Hook scene={s} curtain={next?.type === "Chaos"} />;
     case "HookList":
-      return <HookList scene={s} />;
+      return <HookList scene={s} maskOut={next?.type === "ChaosShort"} />;
     case "HookDemo":
       return <HookDemo scene={s} />;
     case "HookMulti":
@@ -99,6 +105,9 @@ const renderScene = (s: Scene, version: string, prev?: Scene, next?: Scene) => {
       return <Demo scene={s} compact exitClean={!!next} punchIn={!!prev?.type.startsWith("Reveal")} />;
     case "Benefits":
       return <Benefits scene={s} />;
+    case "Montage":
+    case "Montage15":
+      return <Montage scene={s} />;
     case "MultiPet":
       return <MultiPet scene={s} />;
     case "Emotion":

@@ -12,6 +12,7 @@ import { ForestBG } from "../components/World";
 import { Chapter, Kicker, KText } from "../components/Kinetic";
 import { LineMorph } from "../components/LineMorph";
 import { LightLeakOverlay } from "../components/Transitions";
+import { Blobs, DashedOrbit } from "../components/Motion";
 import { ChaosObject, Finger, FlyIn, ITEM_LAYOUT } from "./Hooks";
 
 /** Posição do telefone "herói" (revelação → demonstração → benefícios). */
@@ -200,6 +201,22 @@ export const Reveal: React.FC<{ scene: Scene; exitTitle?: boolean }> = ({ scene,
             { shape: "pulse", at: t0 + 0.68, dur: 0.18 },
             { shape: "ring", at: t0 + 0.84, dur: 0.2 },
           ]}
+        />
+      )}
+      {t > badgeT - 0.02 && t < badgeT + 0.3 && (
+        <div
+          style={{
+            position: "absolute",
+            left: CENTER[0] - 400,
+            top: CENTER[1] - 400,
+            width: 800,
+            height: 800,
+            borderRadius: 800,
+            background: "radial-gradient(circle, rgba(255,255,255,0.95) 0%, rgba(230,154,127,0.55) 28%, rgba(230,154,127,0) 65%)",
+            transform: `scale(${lerp(0.2, 2.6, prog(t, badgeT - 0.02, 0.26, EASE.out))})`,
+            opacity: 1 - prog(t, badgeT, 0.26),
+            mixBlendMode: "screen",
+          }}
         />
       )}
       {t > badgeT - 0.02 && iris < 1 && (
@@ -613,6 +630,9 @@ export const Emotion: React.FC<{ scene: Scene }> = ({ scene }) => {
 };
 
 /* ============ CTA (cartão final no estilo da referência do cliente) ============ */
+// Oferta (condições reais, ver research/02-auditoria-produto.md): teste do Plus por 3 dias, sem cartão e sem cobrança
+// automática; depois do teste a conta segue no plano Grátis (1 pet). v4: os selos já aparecem um a um no plano "plus"
+// da montagem; aqui a oferta vira um rótulo de duas linhas (lê como informação, não como botão) e o endereço é o herói.
 export const CTA: React.FC<{ scene: Scene; short?: boolean }> = ({ scene }) => {
   const { t } = useSceneTime(scene);
   const t0 = scene.start;
@@ -622,7 +642,7 @@ export const CTA: React.FC<{ scene: Scene; short?: boolean }> = ({ scene }) => {
   const typeSteps = Math.min(6, Math.max(0, Math.floor((t - logo - 0.15) / 0.07)));
   const word = typeSteps / 6;
   const sys = prog(t, logo + 0.55, 0.5, EASE.out);
-  const head = prog(t, logo + 0.7, 0.6, EASE.out);
+  const head = prog(t, scene.cues.head ?? logo + 0.7, 0.6, EASE.out);
   const offerVis: number = scene.cues.offerVis ?? offer; // nunca antes de o painel terracota sair da frente
   const off = springAt(t * 30, offerVis, { damping: 13, stiffness: 150 }, 30);
   const urlP = prog(t, url - 0.1, 0.55, EASE.out);
@@ -631,29 +651,59 @@ export const CTA: React.FC<{ scene: Scene; short?: boolean }> = ({ scene }) => {
   return (
     <AbsoluteFill style={{ overflow: "hidden" }}>
       <PaperBG warm={1} />
-      <div style={{ position: "absolute", left: 0, right: 0, top: 300, display: "flex", flexDirection: "column", alignItems: "center", translate: `0px ${(1 - wipe) * 90}px` }}>
-        <Img src={staticFile("img/logo-mark.png")} style={{ height: 230, transform: `scale(${mark}) rotate(${(1 - mark) * 25}deg)`, opacity: clamp01(mark * 2) }} />
-        <div style={{ height: 112, marginTop: 6, clipPath: `inset(0 ${(1 - word) * 100}% 0 0)` }}>
-          <Img src={staticFile("img/logo-word.png")} style={{ height: 112 }} />
+      <Blobs t={t} colors={["#f3d9cc", "#e7efe7", "#f6e4dd"]} opacity={0.7} />
+      <div style={{ position: "absolute", left: 0, right: 0, top: 270, display: "flex", flexDirection: "column", alignItems: "center", translate: `0px ${(1 - wipe) * 90}px` }}>
+        <div style={{ position: "relative", width: 230, height: 190, display: "grid", placeItems: "center" }}>
+          <Img src={staticFile("img/logo-mark.png")} style={{ height: 180, transform: `scale(${mark}) rotate(${(1 - mark) * 25}deg)`, opacity: clamp01(mark * 2) }} />
         </div>
-        <div style={{ fontFamily: MONO, fontSize: 22, letterSpacing: "0.24em", color: C.terracottaText, marginTop: 10, opacity: sys }}>SISTEMA DE GESTÃO PARA CÃES E GATOS</div>
-        <div style={{ fontFamily: FONT, fontWeight: 500, fontSize: 58, lineHeight: 1.12, letterSpacing: "-0.03em", color: C.text, textAlign: "center", marginTop: 30, opacity: head, transform: `translateY(${(1 - head) * 26}px)` }}>
-          Saiba o que seu pet
-          <br />
-          precisa <span style={{ color: C.terracottaText }}>hoje.</span>
+        <div style={{ height: 96, marginTop: 4, clipPath: `inset(0 ${(1 - word) * 100}% 0 0)` }}>
+          <Img src={staticFile("img/logo-word.png")} style={{ height: 96 }} />
         </div>
-        {/* selo da oferta: pílula sem seta, para não parecer um botão clicável dentro do vídeo */}
-        <div style={{ marginTop: 34, padding: "20px 40px", borderRadius: 60, background: C.forest, color: "#fff", fontFamily: FONT, fontWeight: 700, fontSize: 40, display: "flex", alignItems: "center", gap: 14, transform: `scale(${off})`, opacity: clamp01(off * 2), boxShadow: "0 24px 50px -24px rgba(32,59,45,0.8)" }}>
-          <Icon name="check" size={34} color="#fff" stroke={3} /> 3 dias grátis · sem cartão
+        <div style={{ fontFamily: FONT, fontWeight: 500, fontSize: 50, lineHeight: 1.1, letterSpacing: "-0.03em", color: C.text, textAlign: "center", marginTop: 18, opacity: head, transform: `translateY(${(1 - head) * 26}px)` }}>
+          Saiba o que seu pet precisa <span style={{ color: C.terracottaText }}>hoje.</span>
         </div>
-        <div style={{ marginTop: 26, position: "relative", opacity: urlP, transform: `translateY(${(1 - urlP) * 30}px)` }}>
-          <div style={{ fontFamily: FONT, fontWeight: 800, fontSize: 112, letterSpacing: "-0.05em", color: C.forest }}>duopet.site</div>
+        {/* oferta + redução de risco num rótulo de duas linhas (sem seta e sem cara de botão) */}
+        <div style={{ marginTop: 34, padding: "20px 48px 22px", borderRadius: 34, background: C.forest, color: "#fff", fontFamily: FONT, textAlign: "center", transform: `scale(${off})`, opacity: clamp01(off * 2), boxShadow: "0 30px 60px -28px rgba(32,59,45,0.85)" }}>
+          <div style={{ fontSize: 66, fontWeight: 800, letterSpacing: "-0.04em", lineHeight: 1.02 }}>
+            3 dias de Plus <span style={{ color: "#f2a183" }}>grátis</span>
+          </div>
+          <div style={{ marginTop: 10, display: "flex", justifyContent: "center", gap: 22, fontSize: 30, fontWeight: 600, color: "rgba(255,255,255,0.86)", opacity: prog(t, offerVis + 0.3, 0.35) }}>
+            <span style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <Icon name="card" size={28} color="#f2a183" stroke={2.4} /> sem cartão
+            </span>
+            <span style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <Icon name="shield" size={28} color="#f2a183" stroke={2.4} /> sem cobrança automática
+            </span>
+          </div>
+        </div>
+        <div style={{ marginTop: 44, fontFamily: MONO, fontSize: 26, letterSpacing: "0.3em", color: C.text2, opacity: urlP }}>COMECE EM</div>
+        <div style={{ marginTop: 6, position: "relative", opacity: urlP, transform: `translateY(${(1 - urlP) * 30}px)` }}>
+          <div
+            style={{
+              fontFamily: FONT,
+              fontWeight: 800,
+              fontSize: 112,
+              letterSpacing: "-0.05em",
+              color: "transparent",
+              backgroundImage: `linear-gradient(105deg, ${C.forest} 40%, #9fd0b4 50%, ${C.forest} 60%)`,
+              backgroundSize: "300% 100%",
+              backgroundPosition: `${lerp(100, -50, prog(t, url + 0.7, 0.6, EASE.inOut))}% 0%`,
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+            }}
+          >
+            duopet.site
+          </div>
           <div style={{ position: "absolute", left: 0, bottom: 4, height: 9, borderRadius: 9, width: `${underline * 100}%`, background: C.terracotta }} />
         </div>
-        <div style={{ marginTop: 10, fontFamily: FONT, fontSize: 28, color: C.text2, opacity: prog(t, url + 0.4, 0.5) }}>No celular ou no computador · sem instalar</div>
       </div>
-      <div style={{ position: "absolute", left: 0, top: 1440, width: 1080, height: 480, overflow: "hidden" }}>
-        <Img src={staticFile("img/family.jpg")} style={{ position: "absolute", width: 1100, left: -10, top: lerp(500, -40, fam), mixBlendMode: "multiply" }} />
+      {/* órbita tracejada em volta do símbolo (linguagem das referências) */}
+      <DashedOrbit t={t} t0={logo + 0.2} cx={540} cy={365} r={128} width={3} />
+      <div style={{ position: "absolute", left: 0, right: 0, top: 1218, textAlign: "center", fontFamily: FONT, fontSize: 25, color: C.text2, opacity: prog(t, url + 0.4, 0.4) }}>
+        Depois do teste, segue no Grátis (1 pet) · Imagens ilustrativas
+      </div>
+      <div style={{ position: "absolute", left: 0, top: 1300, width: 1080, height: 620, overflow: "hidden" }}>
+        <Img src={staticFile("img/family.jpg")} style={{ position: "absolute", width: 1100, left: -10, top: lerp(660, 60, fam), mixBlendMode: "multiply" }} />
       </div>
       {/* varredura terracota que abre o cartão (referência do cliente) */}
       {wipe < 1 && (
