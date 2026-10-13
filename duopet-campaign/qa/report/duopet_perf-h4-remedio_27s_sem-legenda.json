@@ -1,0 +1,58 @@
+{
+ "file": "renders/performance/duopet_perf-h4-remedio_27s_sem-legenda.mp4",
+ "probe": {
+  "programs": [],
+  "streams": [
+   {
+    "codec_name": "h264",
+    "width": 1080,
+    "height": 1920,
+    "pix_fmt": "yuvj420p",
+    "r_frame_rate": "30/1",
+    "bit_rate": "10098017",
+    "side_data_list": [
+     {}
+    ]
+   },
+   {
+    "codec_name": "aac",
+    "sample_rate": "48000",
+    "channels": 2,
+    "r_frame_rate": "0/0",
+    "bit_rate": "266772"
+   }
+  ],
+  "format": {
+   "duration": "26.733333",
+   "bit_rate": "10374181"
+  }
+ },
+ "black_segments": [],
+ "freezes": [],
+ "loudness": {
+  "integrated_lufs": -14.1,
+  "true_peak_dbfs": -1.2
+ },
+ "asr": [
+  {
+   "scene": "HookPill",
+   "ref": "Já deu o remédio hoje… ou foi ontem?",
+   "asr": "Já deu o remédio hoje. Ou foi ontem.",
+   "wer": 0.0
+  },
+  {
+   "scene": "Montage",
+   "ref": "Veja o que cada um precisa hoje. Marcou? O anel anda e mostra o que falta. Do cão pro gato, num toque. Vacinas, remédios, exames, gastos e brincadeiras, de cada pet. Sem instalar: celular ou computador. Comece grátis com um pet. Ou três dias de Plus: sem cartão, sem cobrança automática.",
+   "asr": "Veja o que cada um precisa hoje. Marcou o Enel Anday Mostro que falta. Do cão pro gato num toque. Vacinas, remédios, exames, gastos e brincadeiras de cada patch. Sem instalar, celular ou computador. Comece gratis com um patch. Ou 3 dias de plus, sem cartão, sem cobrança automática.",
+   "wer": 0.157
+  },
+  {
+   "scene": "CTA",
+   "ref": "Saiba o que seu pet precisa hoje: duopet.site",
+   "asr": "Saiba o que seu Pet te precisa hoje!",
+   "wer": 0.4
+  }
+ ],
+ "asr_mean_wer": 0.186,
+ "mobile_sheet": "qa/report/duopet_perf-h4-remedio_27s_sem-legenda_mobile.jpg"
+}

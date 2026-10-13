@@ -1,0 +1,52 @@
+{
+ "file": "renders/master/duopet_master_36s_legendado.mp4",
+ "probe": {
+  "programs": [],
+  "streams": [
+   {
+    "codec_name": "h264",
+    "width": 1080,
+    "height": 1920,
+    "pix_fmt": "yuvj420p",
+    "r_frame_rate": "30/1",
+    "bit_rate": "10946634",
+    "side_data_list": [
+     {}
+    ]
+   },
+   {
+    "codec_name": "aac",
+    "sample_rate": "48000",
+    "channels": 2,
+    "r_frame_rate": "0/0",
+    "bit_rate": "268186"
+   }
+  ],
+  "format": {
+   "duration": "36.000000",
+   "bit_rate": "11224036"
+  }
+ },
+ "black_segments": [],
+ "freezes": [],
+ "loudness": {
+  "integrated_lufs": -14.1,
+  "true_peak_dbfs": -1.4
+ },
+ "asr": [
+  {
+   "scene": "Montage",
+   "ref": "Tem cão e gato? Veja o que cada um precisa hoje. Nada de receita perdida. Marcou? O anel anda e mostra o que falta. Do cão pro gato, num toque. Rotina pronta pra cada espécie… e repete do seu jeito. Vacinas, remédios e consultas. Receitas e exames, por pet. Os gastos de cada um. Sua semana, e o peso. Brincadeiras guiadas e sons de brinquedo. Sem instalar: celular ou computador. Tudo num lugar só. Comece grátis com um pet. Ou três dias de Plus: sem cartão, sem cobrança automática.",
+   "asr": "[Música]",
+   "wer": 1.0
+  },
+  {
+   "scene": "CTA",
+   "ref": "Saiba o que seu pet precisa hoje: duopet.site",
+   "asr": "Saiba o que seu Pet te precisa hoje!",
+   "wer": 0.4
+  }
+ ],
+ "asr_mean_wer": 0.7,
+ "mobile_sheet": "qa/report/duopet_master_36s_legendado_mobile.jpg"
+}

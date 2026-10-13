@@ -1,0 +1,52 @@
+{
+ "file": "renders/curto/duopet_curto_11s_sem-legenda.mp4",
+ "probe": {
+  "programs": [],
+  "streams": [
+   {
+    "codec_name": "h264",
+    "width": 1080,
+    "height": 1920,
+    "pix_fmt": "yuvj420p",
+    "r_frame_rate": "30/1",
+    "bit_rate": "10606187",
+    "side_data_list": [
+     {}
+    ]
+   },
+   {
+    "codec_name": "aac",
+    "sample_rate": "48000",
+    "channels": 2,
+    "r_frame_rate": "0/0",
+    "bit_rate": "267526"
+   }
+  ],
+  "format": {
+   "duration": "11.000000",
+   "bit_rate": "10884213"
+  }
+ },
+ "black_segments": [],
+ "freezes": [],
+ "loudness": {
+  "integrated_lufs": -14.1,
+  "true_peak_dbfs": -1.5
+ },
+ "asr": [
+  {
+   "scene": "Montage15",
+   "ref": "Tem cão e gato? Marcou? O anel mostra o que falta. Saúde, exames e gastos de cada pet. Três dias de Plus grátis, sem cartão.",
+   "asr": "[Música]",
+   "wer": 1.0
+  },
+  {
+   "scene": "CTA15",
+   "ref": "duopet.site",
+   "asr": "Do Opeti.site",
+   "wer": 0.667
+  }
+ ],
+ "asr_mean_wer": 0.834,
+ "mobile_sheet": "qa/report/duopet_curto_11s_sem-legenda_mobile.jpg"
+}
