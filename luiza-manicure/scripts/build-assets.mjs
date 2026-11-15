@@ -204,7 +204,11 @@ async function softShadow(cutBuf, opacity = 0.2, blur = 26) {
 async function cropCut(name, crop = { l: 0, t: 0, w: 1, h: 1 }) {
   const src = out("source-photos/recortes", `${name}.png`);
   const m = await sharp(src).metadata();
-  return sharp(src)
+  // aperta a borda do recorte (~1px) para eliminar o fio claro/escuro do fundo original
+  const rgb = await sharp(src).removeAlpha().png().toBuffer();
+  const a = await sharp(src).extractChannel(3).linear(1.7, -0.7 * 255).png().toBuffer();
+  const tight = await sharp(rgb).joinChannel(a).png().toBuffer();
+  return sharp(tight)
     .extract({
       left: Math.round(m.width * crop.l),
       top: Math.round(m.height * crop.t),
@@ -220,16 +224,24 @@ async function cropCut(name, crop = { l: 0, t: 0, w: 1, h: 1 }) {
  * como em uma foto de estúdio; as cores do trabalho não são alteradas.
  */
 const TILE_W = 1200, TILE_H = 1500;
-async function tile(name, { crop, fit = "width", anchor = "top", scale = 1, overshoot = 0.03 }) {
+async function tile(name, { crop, fit = "width", anchor = "top", scale = 1, overshoot = 0.03, offsetY = 0, fadeTop = 0 }) {
   let cut = await cropCut(name, crop);
   const m = await sharp(cut).metadata();
   const k = (fit === "width" ? TILE_W / m.width : TILE_H / m.height) * scale;
   const w = Math.round(m.width * k), h = Math.round(m.height * k);
   cut = await sharp(cut).resize(w, h).png().toBuffer();
+  if (fadeTop > 0) {
+    // degradê no topo: a borda cortada da foto some suavemente no fundo
+    const fh = Math.round(h * fadeTop);
+    const mask = Buffer.from(
+      `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="${(fh / h).toFixed(3)}" stop-color="#fff" stop-opacity="1"/></linearGradient></defs><rect width="${w}" height="${h}" fill="url(#g)"/></svg>`,
+    );
+    cut = await sharp(cut).composite([{ input: mask, blend: "dest-in" }]).png().toBuffer();
+  }
   // a borda cortada da foto (pulso/braço) sai um pouco do quadro, escondendo o degradê do recorte
   const os = Math.round(h * overshoot);
   let left = Math.round((TILE_W - w) / 2);
-  let top = anchor.startsWith("bottom") ? TILE_H - h + os : -os;
+  let top = (anchor.startsWith("bottom") ? TILE_H - h + os : -os) + Math.round(TILE_H * offsetY);
   if (anchor.endsWith("right")) left = TILE_W - w + Math.round(w * overshoot);
   // recorta o que excede o quadro
   const exL = Math.max(0, -left), exT = Math.max(0, -top);
@@ -267,7 +279,13 @@ async function tile(name, { crop, fit = "width", anchor = "top", scale = 1, over
 }
 
 const meta = {};
-meta["vermelho-vinho"] = await tile("vermelho-vinho", { crop: { l: 0, t: 0.27, w: 1, h: 0.73 }, anchor: "top", scale: 1.32 });
+meta["vermelho-vinho"] = await tile("vermelho-vinho", {
+  crop: { l: 0, t: 0.27, w: 1, h: 0.73 },
+  anchor: "top",
+  scale: 1.3,
+  offsetY: 0.21,
+  fadeTop: 0.16,
+});
 meta["vermelho-tatuagens"] = await tile("vermelho-tatuagens", { crop: { l: 0, t: 0, w: 1, h: 1 }, anchor: "top" });
 meta["terracota"] = await tile("terracota", { crop: { l: 0, t: 0, w: 1, h: 1 }, fit: "height", anchor: "bottom", scale: 1.04, overshoot: 0.08 });
 meta["verde-metalizado"] = await tile("verde-metalizado", { crop: { l: 0, t: 0, w: 1, h: 1 }, fit: "height", anchor: "bottom-right" });

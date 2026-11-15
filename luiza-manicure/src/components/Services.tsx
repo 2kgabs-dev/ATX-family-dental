@@ -57,8 +57,10 @@ export function Services() {
                 event={event}
                 className="group flex h-full flex-col items-center rounded-[10px] bg-tile px-8 pb-10 pt-12 text-center transition-[transform,background-color,box-shadow] duration-500 ease-[var(--ease-out)] hover:-translate-y-1 hover:bg-[#ead9ce] hover:shadow-[0_24px_40px_-30px_rgb(84_49_36/0.45)] md:px-10 md:pt-14"
               >
-                <Icon size={30} className="text-rose-ink" />
-                <h3 className="h3 mt-7 text-cacau-soft">{title}.</h3>
+                <span className="inline-flex size-16 items-center justify-center rounded-full border border-rose/60 text-rose-ink transition-colors duration-500 group-hover:bg-porcelana/70">
+                  <Icon size={28} />
+                </span>
+                <h3 className="h3 mt-8 text-cacau-soft">{title}.</h3>
                 <p className="mt-4 max-w-[26ch] text-[0.98rem] leading-relaxed text-cacau-soft">{text}</p>
                 <span className="text-link mt-auto pt-8">
                   {cta}

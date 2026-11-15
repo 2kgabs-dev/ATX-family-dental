@@ -97,10 +97,6 @@ export function PortfolioGallery() {
             </li>
           ))}
         </ul>
-        <p className="mx-auto mt-10 max-w-xl text-center text-[0.88rem] leading-relaxed text-cacau-soft">
-          Trabalhos reais da Luiza. O fundo das fotos foi trocado para deixar a galeria uniforme; mãos, unhas e cores
-          não foram retocadas.
-        </p>
       </div>
 
       <dialog

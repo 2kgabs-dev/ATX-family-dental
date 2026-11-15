@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { PHOTOS } from "@/lib/photos";
-import { Monogram } from "./Logo";
+import { Monogram, Sprig } from "./Logo";
 import { WhatsAppButton } from "./WhatsAppButton";
 
 const d = (i: number) => ({ "--i": i }) as React.CSSProperties;
@@ -10,16 +10,19 @@ function HeroVisual({ className = "" }: { className?: string }) {
   const photo = PHOTOS.hero;
   return (
     <div className={`relative overflow-hidden ${className}`}>
+      {/* ramos atrás do arco: aparecem só pelas bordas */}
+      <Sprig className="arch-in-late pointer-events-none absolute bottom-[2%] left-[1%] h-[48%] w-auto -rotate-[16deg] text-rose sm:left-[4%]" />
+      <Sprig className="arch-in-late pointer-events-none absolute right-[1%] top-[14%] h-[34%] w-auto rotate-[168deg] -scale-x-100 text-rose/80 sm:right-[4%]" />
       {/* arco de fundo + contorno fino */}
       <div
         aria-hidden="true"
-        className="arch-in absolute bottom-0 left-1/2 h-[86%] w-[80%] max-w-[500px] -translate-x-1/2 rounded-t-full bg-nude/45"
+        className="hero-arch arch-in absolute bottom-0 left-1/2 h-[86%] w-[80%] max-w-[500px] -translate-x-1/2 rounded-t-full"
       />
       <div
         aria-hidden="true"
         className="arch-in-late absolute bottom-0 left-1/2 h-[calc(86%+18px)] w-[calc(80%+36px)] max-w-[536px] -translate-x-1/2 rounded-t-full border border-b-0 border-rose/45"
       />
-      <div className="hands-in absolute inset-x-0 bottom-0 flex h-[94%] justify-center">
+      <div className="hands-in absolute inset-x-0 bottom-0 flex h-[86%] justify-center">
         <Image
           src={photo.src}
           alt={photo.alt}

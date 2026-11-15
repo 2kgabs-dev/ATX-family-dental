@@ -63,3 +63,19 @@ export function Monogram({ className }: { className?: string }) {
     </svg>
   );
 }
+
+/** Ramo botânico em traço fino (decorativo), no espírito das referências. */
+export function Sprig({ className }: { className?: string }) {
+  const leaves: [number, number, number][] = [
+    [50, 204, -38], [69, 186, 36], [47, 164, -32], [67, 144, 38], [48, 122, -26],
+    [69, 102, 40], [55, 80, -20], [74, 62, 42], [63, 40, -12], [78, 25, 30],
+  ];
+  return (
+    <svg viewBox="0 0 120 240" className={className} aria-hidden="true" fill="none" stroke="currentColor" strokeWidth={1} strokeLinecap="round">
+      <path d="M60 238C58 182 52 122 72 6" />
+      {leaves.map(([cx, cy, r], i) => (
+        <ellipse key={i} cx={cx} cy={cy} rx={4.4} ry={11} transform={`rotate(${r} ${cx} ${cy})`} />
+      ))}
+    </svg>
+  );
+}

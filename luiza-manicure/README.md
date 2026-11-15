@@ -58,7 +58,7 @@ Símbolo botânico de três folhas redesenhado em vetor + "LUIZA" em Cormorant c
 ---
 
 ## 2. Fotografias
-Quatro fotos reais da profissional. O fundo de celular (tecido, plástico, salão) foi **removido** com `@imgly/background-removal-node` (offline) e trocado pelo fundo nude da marca, com sombra suave. **Mãos, unhas e cores não foram retocadas.** A galeria avisa isso em uma linha.
+Quatro fotos reais da profissional. O fundo de celular (tecido, plástico, salão) foi **removido** com `@imgly/background-removal-node` (offline) e trocado pelo fundo nude da marca, com sombra suave. **Mãos, unhas e cores não foram retocadas.** A borda do recorte é apertada ~1px para eliminar o fio do fundo original.
 
 - Originais: `source-photos/*.jpg` · Recortes: `source-photos/recortes/*.png`
 - `npm run assets` gera os quadros 4:5 da galeria e o recorte transparente da Hero em `public/photos/`, com hash do conteúdo no nome (evita cache de versões antigas).

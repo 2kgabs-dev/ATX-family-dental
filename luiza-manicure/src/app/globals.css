@@ -311,6 +311,13 @@ a {
   animation: monogram-in 1000ms var(--ease-out) 900ms both;
 }
 
+/* Arco da Hero: nude mais profundo com luz suave no alto, para as mãos destacarem */
+.hero-arch {
+  background:
+    radial-gradient(120% 70% at 50% 18%, rgb(255 248 243 / 0.55), transparent 62%),
+    color-mix(in oklab, var(--color-nude) 82%, var(--color-rose) 18%);
+}
+
 /* Quadros de foto */
 .photo-frame {
   overflow: hidden;
