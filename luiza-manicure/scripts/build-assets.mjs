@@ -119,12 +119,32 @@ fs.writeFileSync(out("src/app/icon.svg"), faviconSvg);
 await sharp(Buffer.from(faviconSvg)).resize(180, 180).png().toFile(out("src/app/apple-icon.png"));
 await sharp(Buffer.from(faviconSvg)).resize(48, 48).toFile(out("public/favicon-48.png"));
 
+/* Monograma em arco: "L" sobre o ramo, dentro de uma cápsula */
+const monoL = textPath(serif, "L", 46, { wght: 500 });
+const monoW = 56, monoH = 112;
+const monoLx = (monoW - monoL.w) / 2, monoLy = 30;
+const monoSymScale = 0.62;
+const monoSymX = monoW / 2 - 20 * monoSymScale, monoSymY = monoLy + monoL.h + 9;
+function monogramSvg(line, fill, sym) {
+  return svg(
+    monoW,
+    monoH,
+    `<rect x="0.75" y="0.75" width="${monoW - 1.5}" height="${monoH - 1.5}" rx="${(monoW - 1.5) / 2}" fill="${fill}" stroke="${line}" stroke-width="1"/>` +
+      placed(monoL, monoLx, monoLy, line) +
+      symbolMarkup(sym, { x: monoSymX, y: monoSymY, scale: monoSymScale, stem: 1.3 }),
+    "Monograma LUIZA",
+  );
+}
+fs.writeFileSync(out("public/brand/luiza-monograma.svg"), monogramSvg(C.roseText, C.porcelana, C.rose));
+fs.writeFileSync(out("public/brand/luiza-monograma-escuro.svg"), monogramSvg(C.nude, C.cacau, C.nude));
+
 /* Caminhos para uso inline nos componentes React */
 fs.writeFileSync(
   out("src/lib/brand-paths.ts"),
   `// Gerado por scripts/build-assets.mjs — não edite à mão.
 export const SYMBOL = { viewBox: "0 0 40 56", leaves: ${JSON.stringify(symbolLeaves)}, stem: ${JSON.stringify(symbolStem)} } as const;
 export const WORDMARK = { viewBox: "0 0 ${word.w.toFixed(1)} ${word.h.toFixed(1)}", d: ${JSON.stringify(word.d)}, tx: ${(-word.bb.x1).toFixed(2)}, ty: ${(-word.bb.y1).toFixed(2)} } as const;
+export const MONOGRAM = { viewBox: "0 0 ${monoW} ${monoH}", w: ${monoW}, h: ${monoH}, l: ${JSON.stringify(monoL.d)}, lx: ${(monoLx - monoL.bb.x1).toFixed(2)}, ly: ${(monoLy - monoL.bb.y1).toFixed(2)}, symX: ${monoSymX.toFixed(2)}, symY: ${monoSymY.toFixed(2)}, symScale: ${monoSymScale} } as const;
 export const TAGLINE = { viewBox: "0 0 ${tag.w.toFixed(1)} ${tag.h.toFixed(1)}", d: ${JSON.stringify(tag.d)}, tx: ${(-tag.bb.x1).toFixed(2)}, ty: ${(-tag.bb.y1).toFixed(2)} } as const;
 `,
 );

@@ -1,4 +1,4 @@
-import { SYMBOL, TAGLINE, WORDMARK } from "@/lib/brand-paths";
+import { MONOGRAM, SYMBOL, TAGLINE, WORDMARK } from "@/lib/brand-paths";
 
 type Tone = "light" | "dark";
 
@@ -46,5 +46,20 @@ export function Logo({ tone = "light", className }: { tone?: Tone; className?: s
       </span>
       <span className="sr-only">LUIZA Manicure &amp; Beleza</span>
     </span>
+  );
+}
+
+/** Monograma em cápsula: "L" sobre o ramo (inspirado no arco editorial). */
+export function Monogram({ className }: { className?: string }) {
+  const m = MONOGRAM;
+  return (
+    <svg viewBox={m.viewBox} className={className} aria-hidden="true">
+      <rect x="0.75" y="0.75" width={m.w - 1.5} height={m.h - 1.5} rx={(m.w - 1.5) / 2} fill="var(--color-porcelana)" stroke="var(--color-rose-ink)" strokeWidth="1" />
+      <path transform={`translate(${m.lx} ${m.ly})`} d={m.l} fill="var(--color-rose-ink)" />
+      <g transform={`translate(${m.symX} ${m.symY}) scale(${m.symScale})`}>
+        <path d={SYMBOL.stem} fill="none" stroke="var(--color-rose)" strokeWidth={1.3} strokeLinecap="round" />
+        <path d={SYMBOL.leaves} fill="var(--color-rose)" />
+      </g>
+    </svg>
   );
 }

@@ -45,7 +45,7 @@ export function WhatsAppButton({
       aria-label={ariaLabel}
       onClick={() => trackWhatsApp(event)}
     >
-      {icon && variant !== "link" && <IconWhatsApp size={18} className="shrink-0" />}
+      {icon && variant !== "link" && <IconWhatsApp size={16} className="shrink-0" />}
       <span>{children}</span>
       {variant === "link" && <IconArrow size={18} className="text-link-arrow shrink-0" />}
     </a>

@@ -36,7 +36,7 @@ export function FloatingWhatsApp() {
           exit={{ y: "110%" }}
           transition={{ duration: 0.38, ease: [0.32, 0.72, 0, 1] }}
         >
-          <div className="rounded-full bg-porcelana/80 p-1.5 shadow-[0_12px_30px_-12px_rgb(84_49_36/0.45)] backdrop-blur-md">
+          <div className="bg-porcelana/85 p-1.5 shadow-[0_12px_30px_-12px_rgb(84_49_36/0.45)] backdrop-blur-md">
             <WhatsAppButton event="floating_whatsapp_click" className="w-full">
               Agendar pelo WhatsApp
             </WhatsAppButton>

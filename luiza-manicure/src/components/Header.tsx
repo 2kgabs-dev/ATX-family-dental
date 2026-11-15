@@ -55,7 +55,7 @@ export function Header() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow,backdrop-filter] duration-300 ${
         scrolled || open
-          ? "bg-porcelana/88 shadow-[0_1px_0_0_rgb(84_49_36/0.08)] backdrop-blur-md"
+          ? "bg-porcelana/90 shadow-[0_1px_0_0_rgb(84_49_36/0.08)] backdrop-blur-md"
           : "bg-transparent"
       }`}
     >
@@ -75,7 +75,7 @@ export function Header() {
                 <a
                   href={item.href}
                   aria-current={active === item.href ? "location" : undefined}
-                  className="group relative inline-flex min-h-11 items-center px-3.5 text-[0.9rem] font-medium text-cacau-soft transition-colors duration-200 hover:text-cacau aria-[current=location]:text-cacau"
+                  className="group relative inline-flex min-h-11 items-center px-3.5 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-cacau-soft transition-colors duration-200 hover:text-cacau aria-[current=location]:text-cacau"
                 >
                   {item.label}
                   <span
@@ -89,7 +89,7 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <WhatsAppButton event="header_whatsapp_click" className="hidden min-h-11! px-5! text-[0.88rem]! sm:inline-flex">
+          <WhatsAppButton event="header_whatsapp_click" variant="secondary" icon={false} className="hidden min-h-11! px-6! sm:inline-flex">
             Agendar horário
           </WhatsAppButton>
           <button

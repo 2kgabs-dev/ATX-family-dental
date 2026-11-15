@@ -19,7 +19,7 @@ export function FinalCTA() {
             Entre em contato e reserve um momento especial para você.
           </p>
           <div className="mt-10 flex flex-col items-center gap-5">
-            <WhatsAppButton event="final_whatsapp_click" className="min-h-[58px] px-9 text-[1rem]">
+            <WhatsAppButton event="final_whatsapp_click" className="min-h-[58px] px-10">
               Agendar pelo WhatsApp
             </WhatsAppButton>
             <p className="text-[0.95rem] text-cacau">

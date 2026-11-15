@@ -71,6 +71,9 @@ Nenhuma foto de unha representa depilação ou plástica dos pés: esses serviç
 
 ---
 
+### Direção da Hero
+Inspirada na referência "Maison Nail Atelier" enviada pela cliente: fundo porcelana rosado, título serifado em duas linhas, linha de serviços em caixa-alta espaçada, botão retangular rosé, CTA vazado no cabeçalho, fotografia sangrando pela borda direita e monograma em cápsula ("L" sobre o ramo, `public/brand/luiza-monograma*.svg`) na divisa com a seção seguinte. A borda da foto se funde ao fundo só nos primeiros 8% da largura, para não alterar a cor real das unhas.
+
 ## 3. Estrutura da página
 `Header → Hero → Serviços → Atendimento a domicílio → Galeria → Diferenciais → Como agendar → FAQ → CTA final → Footer` + barra fixa de WhatsApp no celular (aparece depois da Hero e some no CTA final).
 
@@ -109,7 +112,7 @@ Todos abrem em nova aba (`noopener`). O texto da página deixa claro que o horá
 ## 6. QA — resultados (build de produção local)
 - `eslint` ✓ · `tsc --noEmit` ✓ · `next build` ✓ (rota estática)
 - `tests/e2e.mjs`: **67/67** verificações — 14 links de WhatsApp presentes no carregamento (número, mensagem e `noopener`), clique real abrindo `wa.me`, 5 âncoras do menu, FAQ por teclado (Enter/Espaço), lightbox (setas, Esc, foco devolvido), menu mobile (Esc), barra fixa, sem rolagem horizontal e CTA na 1ª tela em 320/375/390/430/768/1024/1440/1920, alvos de toque, **axe-core WCAG 2.2 AA sem violações** (390 e 1440), SEO (title, description, canonical, OG, h1 único, JSON-LD, alt).
-- **Lighthouse** (local): desktop 100 performance / 100 acessibilidade / 100 SEO, LCP 0,7 s, CLS 0. Mobile 93 performance, TBT ~70 ms, CLS 0,018, **LCP simulado 3,2 s** (4G lento + CPU 4×; o LCP medido sem limitação foi 0,18 s). O LCP simulado do celular está acima da meta de 2,5 s — ver "Próximos passos".
+- **Lighthouse** (local): desktop 100 performance / 100 acessibilidade / 100 SEO, LCP 0,7 s, CLS 0. Mobile 92 performance / 100 acessibilidade / 100 SEO, TBT ~160 ms, CLS 0,01, **LCP simulado 3,1 s** (4G lento + CPU 4×; o LCP medido sem limitação foi 0,19 s). Boas práticas 96 só porque o script do Web Analytics dá 404 fora da Vercel. O LCP simulado do celular está acima da meta de 2,5 s — ver "Próximos passos".
 - Screenshots em `qa/screens/` (dobra em 8 larguras, página inteira 390/1440, menu, lightbox, hover).
 
 Skills consultadas: Impeccable (craft floor: sem eyebrow acima de título, foco/seleção/scrollbar temáticos, contraste), Taste Skill (serviço = fotos reais lideram, fundos planos, uma ação por tela, microinterações de hover), Emil Kowalski (curvas, durações, `scale(0.97)`, nada de `ease-in`), Jakub Krehel (tipografia e alvos de toque). As skills de vídeo não foram usadas: não há peça audiovisual neste escopo.
