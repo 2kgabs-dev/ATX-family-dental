@@ -22,6 +22,11 @@ const p = (id: keyof typeof meta, alt: string, label: string): Photo => ({
 export const PHOTOS = {
   hero: p(
     "hero",
+    "Mãos sobrepostas e erguidas com unhas arredondadas em verde metalizado com reflexo cromado.",
+    "Verde metalizado",
+  ),
+  rosa: p(
+    "rosa-leitoso",
     "Mãos sobrepostas com unhas amendoadas em rosa leitoso translúcido e anéis prateados.",
     "Rosa leitoso",
   ),
@@ -43,4 +48,4 @@ export const PHOTOS = {
   ),
 } as const;
 
-export const GALLERY: Photo[] = [PHOTOS.vinho, PHOTOS.chocolate, PHOTOS.vermelho, PHOTOS.lilas];
+export const GALLERY: Photo[] = [PHOTOS.rosa, PHOTOS.vinho, PHOTOS.chocolate, PHOTOS.vermelho, PHOTOS.lilas];

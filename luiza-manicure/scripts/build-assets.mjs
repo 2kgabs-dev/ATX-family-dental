@@ -255,45 +255,57 @@ async function openAlpha(buf, r = 6) {
 }
 
 /*
- * Hero: recorte da foto rosa leitoso (fundo removido offline com
- * @imgly/background-removal-node; mãos e unhas sem retoque).
- * Os braços saem pelas laterais; a página esmaece as bordas com máscara CSS.
+ * Hero: recorte da foto verde metalizado (fundo removido offline com
+ * @imgly/background-removal-node; mãos e unhas sem retoque). Os antebraços
+ * saem pela base e pela direita: a imagem fica rente ao canto inferior direito
+ * da tela, como nas referências (mãos entrando pela borda).
  */
 {
-  const src = out("source-photos/recortes", "rosa-leitoso.png");
+  const src = out("source-photos/recortes", "verde-metalizado.png");
   // aperta a borda do recorte (~1px) para eliminar o fio do fundo original
   const rgb = await sharp(src).removeAlpha().png().toBuffer();
   const a = await sharp(src).extractChannel(3).linear(1.7, -0.7 * 255).png().toBuffer();
-  const tight = await openAlpha(await sharp(rgb).joinChannel(a).png().toBuffer());
-  let cut = await sharp(tight).trim().png().toBuffer();
-  {
-    // a calça bege aparece no vão entre os dedos: apaga só essa faixa fina (polígono manual)
-    const cm = await sharp(cut).metadata();
-    const strip = Buffer.from(
-      `<svg xmlns="http://www.w3.org/2000/svg" width="${cm.width}" height="${cm.height}"><polygon points="372,494 386,491 535,676 517,690" fill="#000"/></svg>`,
-    );
-    cut = await sharp(cut).composite([{ input: strip, blend: "dest-out" }]).png().toBuffer();
-  }
-  const resized = await sharp(cut).resize({ width: 1400, withoutEnlargement: true }).png().toBuffer();
-  const rm = await sharp(resized).metadata();
-  const sh = await softShadow(resized, 0.11, 22);
-  const canvasW = rm.width, canvasH = rm.height + sh.m;
-  // sombra deslocada para baixo, recortada à tela
+  const sm = await sharp(src).metadata();
+  // corta 1,5% da base e da direita, onde o recorte desbota na borda da foto
+  const tight = await sharp(await openAlpha(await sharp(rgb).joinChannel(a).png().toBuffer(), 3))
+    .extract({ left: 0, top: 0, width: Math.round(sm.width * 0.985), height: Math.round(sm.height * 0.985) })
+    .png()
+    .toBuffer();
+  // apara só o topo e a esquerda (a base e a direita continuam rentes à borda)
+  const tm = await sharp(tight).metadata();
+  const { data } = await sharp(tight).raw().toBuffer({ resolveWithObject: true });
+  let minX = tm.width, minY = tm.height;
+  for (let y = 0; y < tm.height; y++)
+    for (let x = 0; x < tm.width; x++)
+      if (data[(y * tm.width + x) * 4 + 3] > 8) {
+        if (x < minX) minX = x;
+        if (y < minY) minY = y;
+      }
+  const cut = await sharp(tight)
+    .extract({ left: minX, top: minY, width: tm.width - minX, height: tm.height - minY })
+    .png()
+    .toBuffer();
+  const cm = await sharp(cut).metadata();
+  const sh = await softShadow(cut, 0.14, 24);
+  // tela com margem só no topo e à esquerda (onde a sombra pode aparecer)
+  const pad = sh.m;
+  const canvasW = cm.width + pad, canvasH = cm.height + pad;
   const shadowClip = await sharp(sh.buf)
-    .extract({ left: sh.m, top: Math.max(0, sh.m - 22), width: canvasW, height: canvasH })
+    .extract({ left: 0, top: 0, width: Math.min(cm.width + 2 * sh.m, canvasW - 14), height: Math.min(cm.height + 2 * sh.m, canvasH - 20) })
     .png()
     .toBuffer();
   const heroFile = out("public/photos", "hero.png");
   const info = await sharp({ create: { width: canvasW, height: canvasH, channels: 4, background: { r: 0, g: 0, b: 0, alpha: 0 } } })
     .composite([
-      { input: shadowClip, left: 0, top: 0 },
-      { input: resized, left: 0, top: 0 },
+      { input: shadowClip, left: pad - sh.m + 14, top: pad - sh.m + 20 },
+      { input: cut, left: pad, top: pad },
     ])
     .png({ compressionLevel: 9 })
     .toFile(heroFile);
-  globalThis.__handsForOg = await sharp(heroFile).resize({ width: 470 }).png().toBuffer();
+  globalThis.__handsForOg = await sharp(heroFile).resize({ height: 560 }).png().toBuffer();
   meta["hero"] = { width: info.width, height: info.height, src: hashed(heroFile) };
 }
+meta["rosa-leitoso"] = await naturalTile("rosa-leitoso", { t: 0.2 });
 fs.writeFileSync(out("src/lib/photo-meta.json"), JSON.stringify(meta, null, 2) + "\n");
 
 /* ---------- Imagem de compartilhamento (Open Graph) 1200x630 ---------- */
@@ -314,7 +326,7 @@ fs.writeFileSync(out("src/lib/photo-meta.json"), JSON.stringify(meta, null, 2) +
     .composite([
       { input: ogLogoPng, left: Math.round((720 - logoMeta.width) / 2), top: 120 },
       { input: ogText, left: 0, top: 0 },
-      { input: hands, left: Math.round(950 - hm.width / 2), top: Math.round(400 - hm.height / 2) },
+      { input: hands, left: 1200 - hm.width, top: 630 - hm.height },
     ])
     .jpeg({ quality: 88 })
     .toFile(out("src/app/opengraph-image.jpg"));

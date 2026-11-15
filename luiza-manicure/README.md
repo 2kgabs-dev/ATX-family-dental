@@ -58,11 +58,12 @@ Símbolo botânico de três folhas redesenhado em vetor + "LUIZA" em Cormorant c
 ---
 
 ## 2. Fotografias
-Cinco fotos reais da profissional (segundo lote enviado pela cliente; o primeiro lote foi descartado).
+Fotos reais da profissional, cores sem retoque.
 
-- **Galeria:** vermelho-vinho com plantas, chocolate na prateleira de esmaltes, vermelho vivo e lilás. Fotos naturais, só enquadradas em 4:5 e comprimidas; **cores sem retoque**.
-- **Hero:** rosa leitoso. O fundo foi removido offline (`@imgly/background-removal-node`) para as mãos ficarem sobre o arco da marca; foi apagada à mão uma faixa da calça que aparecia entre os dedos. Mãos, unhas e cores sem retoque.
-- Originais em `source-photos/*.jpg`, recorte em `source-photos/recortes/rosa-leitoso.png`. `npm run assets` gera tudo em `public/photos/` com hash do conteúdo no nome (evita cache de versões antigas).
+- **Hero:** verde metalizado. O fundo foi removido offline (`@imgly/background-removal-node`) e as mãos entram pelo canto inferior direito da tela, sobre o fundo da página, como nas referências Maison Nail Atelier e Nail Concept.
+- **Galeria (fileira rolável com setas, como na The Nail Edit):** rosa leitoso, vermelho-vinho com plantas, chocolate na prateleira de esmaltes, vermelho vivo e lilás. Fotos naturais, só enquadradas em 4:5.
+- **Atendimento a domicílio:** a foto vermelho-vinho com plantas ao fundo do painel, sob um véu cacau para leitura do texto.
+- Originais em `source-photos/*.jpg`, recortes em `source-photos/recortes/`. `npm run assets` gera tudo em `public/photos/` com hash do conteúdo no nome.
 
 Nenhuma foto de unha representa depilação ou plástica dos pés: esses serviços usam ícones desenhados. Nenhuma imagem foi gerada por IA.
 

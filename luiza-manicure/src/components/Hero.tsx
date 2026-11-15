@@ -5,52 +5,24 @@ import { WhatsAppButton } from "./WhatsAppButton";
 
 const d = (i: number) => ({ "--i": i }) as React.CSSProperties;
 
-/** Composição: arco nude com as mãos reais (fundo removido) subindo da base. */
-function HeroVisual({ className = "" }: { className?: string }) {
-  const photo = PHOTOS.hero;
-  return (
-    <div className={`relative overflow-hidden ${className}`}>
-      {/* ramos atrás do arco: aparecem só pelas bordas */}
-      <Sprig className="arch-in-late pointer-events-none absolute bottom-[2%] left-[1%] h-[48%] w-auto -rotate-[16deg] text-rose sm:left-[4%]" />
-      <Sprig className="arch-in-late pointer-events-none absolute right-[1%] top-[14%] h-[34%] w-auto rotate-[168deg] -scale-x-100 text-rose/80 sm:right-[4%]" />
-      {/* arco de fundo + contorno fino */}
-      <div
-        aria-hidden="true"
-        className="hero-arch arch-in absolute bottom-0 left-1/2 h-[86%] w-[80%] max-w-[500px] -translate-x-1/2 rounded-t-full"
-      />
-      <div
-        aria-hidden="true"
-        className="arch-in-late absolute bottom-0 left-1/2 h-[calc(86%+18px)] w-[calc(80%+36px)] max-w-[536px] -translate-x-1/2 rounded-t-full border border-b-0 border-rose/45"
-      />
-      <div className="hands-in absolute inset-x-0 bottom-[6%] flex h-[78%] justify-center">
-        <Image
-          src={photo.src}
-          alt={photo.alt}
-          width={photo.width}
-          height={photo.height}
-          preload
-          fetchPriority="high"
-          sizes="(min-width: 1024px) 520px, 72vw"
-          className="hero-hands h-full w-auto max-w-none select-none"
-          draggable={false}
-        />
-      </div>
-      <p className="caps absolute bottom-5 right-3 z-10 hidden bg-blush/92 px-3.5 py-1.5 text-[0.66rem] text-cacau backdrop-blur-sm sm:block lg:bottom-8 lg:right-0">
-        Trabalho real da Luiza
-      </p>
-    </div>
-  );
-}
-
+/**
+ * Hero no estilo das referências (Maison Nail Atelier / Nail Concept):
+ * texto à esquerda e as mãos reais entrando pelo canto inferior direito da tela,
+ * sobre o mesmo fundo da página, com luz suave de estúdio.
+ */
 export function Hero() {
+  const photo = PHOTOS.hero;
   return (
     <section
       id="inicio"
       aria-labelledby="hero-title"
-      className="relative bg-blush pt-[var(--header-h)]"
+      className="relative isolate overflow-x-clip bg-blush pt-[var(--header-h)] lg:min-h-[min(100svh,960px)]"
     >
-      <div className="shell grid lg:min-h-[calc(min(100svh,940px)-var(--header-h))] lg:grid-cols-12 lg:gap-x-8">
-        <div className="relative z-10 pb-10 pt-10 sm:pt-16 lg:col-span-6 lg:self-center lg:py-24">
+      {/* luz de estúdio atrás das mãos */}
+      <div aria-hidden="true" className="hero-glow absolute inset-0 -z-10" />
+
+      <div className="shell relative z-10 grid lg:min-h-[calc(min(100svh,960px)-var(--header-h))] lg:grid-cols-12">
+        <div className="pb-6 pt-10 sm:pt-16 lg:col-span-6 lg:self-center lg:py-24 lg:pr-6">
           <h1 id="hero-title" className="display text-cacau-soft lg:text-[clamp(3.4rem,5vw,4.9rem)]">
             <span className="enter block" style={d(0)}>
               Um toque de cuidado.
@@ -81,8 +53,27 @@ export function Hero() {
             disponibilidade pelo WhatsApp.
           </p>
         </div>
+      </div>
 
-        <HeroVisual className="-mx-[var(--gutter)] h-[min(116vw,600px)] sm:mx-0 lg:col-span-6 lg:h-auto lg:min-h-[560px]" />
+      {/* Mãos reais entrando pelo canto inferior direito */}
+      <div className="relative h-[min(124vw,560px)] overflow-hidden sm:h-[600px] lg:absolute lg:bottom-0 lg:right-0 lg:top-[var(--header-h)] lg:h-auto lg:w-[50%]">
+        <Sprig className="arch-in-late pointer-events-none absolute left-[6%] top-[10%] h-[34%] w-auto -rotate-[24deg] text-rose/70 lg:left-[8%] lg:top-[14%]" />
+        <div className="hands-in absolute bottom-0 right-0 h-[96%] lg:h-[94%]">
+          <Image
+            src={photo.src}
+            alt={photo.alt}
+            width={photo.width}
+            height={photo.height}
+            preload
+            fetchPriority="high"
+            sizes="(min-width: 1024px) 560px, 80vw"
+            className="h-full w-auto max-w-none select-none"
+            draggable={false}
+          />
+        </div>
+        <p className="caps absolute bottom-6 left-[var(--gutter)] z-10 bg-blush/92 px-3.5 py-1.5 text-[0.66rem] text-cacau backdrop-blur-sm lg:bottom-auto lg:left-auto lg:right-[calc(max(0px,(100vw_-_1280px)/2)_+_var(--gutter))] lg:top-6">
+          Trabalho real da Luiza
+        </p>
       </div>
 
       {/* Monograma em cápsula na divisa com a faixa de diferenciais */}

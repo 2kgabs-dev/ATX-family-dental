@@ -316,23 +316,22 @@ a {
   animation: monogram-in 1000ms var(--ease-out) 900ms both;
 }
 
-/* Arco da Hero: nude mais profundo com luz suave no alto, para as mãos destacarem */
-.hero-arch {
-  background:
-    radial-gradient(120% 70% at 50% 18%, rgb(255 248 243 / 0.55), transparent 62%),
-    color-mix(in oklab, var(--color-nude) 82%, var(--color-rose) 18%);
+/* Luz de estúdio da Hero: halo nude atrás das mãos */
+.hero-glow {
+  background: radial-gradient(70% 45% at 72% 88%, color-mix(in oklab, var(--color-nude) 70%, transparent), transparent 72%);
+}
+@media (min-width: 1024px) {
+  .hero-glow {
+    background: radial-gradient(38% 58% at 78% 64%, color-mix(in oklab, var(--color-nude) 72%, transparent), transparent 72%);
+  }
 }
 
-/* Mãos da Hero: os braços somem suavemente nas laterais e no alto */
-.hero-hands {
-  -webkit-mask-image:
-    linear-gradient(to right, transparent 0%, #000 16%, #000 84%, transparent 100%),
-    linear-gradient(to bottom, transparent 0%, #000 14%);
-  -webkit-mask-composite: source-in;
-  mask-image:
-    linear-gradient(to right, transparent 0%, #000 16%, #000 84%, transparent 100%),
-    linear-gradient(to bottom, transparent 0%, #000 14%);
-  mask-composite: intersect;
+/* Fileira da galeria: rolagem horizontal sem barra visível */
+.gallery-row {
+  scrollbar-width: none;
+}
+.gallery-row::-webkit-scrollbar {
+  display: none;
 }
 
 /* Quadros de foto */

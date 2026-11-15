@@ -14,6 +14,33 @@ export function PortfolioGallery() {
   const triggerRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const touchX = useRef<number | null>(null);
   const lastIndex = useRef(0);
+  const rowRef = useRef<HTMLUListElement>(null);
+  const [canPrev, setCanPrev] = useState(false);
+  const [canNext, setCanNext] = useState(true);
+
+  useEffect(() => {
+    const row = rowRef.current;
+    if (!row) return;
+    const update = () => {
+      setCanPrev(row.scrollLeft > 4);
+      setCanNext(row.scrollLeft + row.clientWidth < row.scrollWidth - 4);
+    };
+    update();
+    row.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      row.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, []);
+
+  const scrollRow = (dir: number) => {
+    const row = rowRef.current;
+    if (!row) return;
+    const item = row.querySelector("li");
+    const step = item ? item.getBoundingClientRect().width + 20 : row.clientWidth * 0.8;
+    row.scrollBy({ left: dir * step, behavior: "smooth" });
+  };
 
   const open = (i: number) => {
     lastIndex.current = i;
@@ -68,35 +95,62 @@ export function PortfolioGallery() {
           <p className="lede mx-auto mt-6">Conheça alguns dos trabalhos realizados pela LUIZA.</p>
         </Reveal>
 
-        <ul className="mt-14 grid grid-cols-2 gap-3 sm:gap-4 md:mt-20 lg:grid-cols-4 lg:gap-5">
-          {GALLERY.map((photo, i) => (
-            <li key={photo.id}>
-              <MaskReveal delay={i * 0.1}>
-                <button
-                  ref={(el) => {
-                    triggerRefs.current[i] = el;
-                  }}
-                  type="button"
-                  onClick={() => open(i)}
-                  className="photo-frame photo-zoom group relative block aspect-[4/5] w-full cursor-zoom-in rounded-[12px] text-left"
-                  aria-label={`Ampliar foto: ${photo.label}`}
-                  aria-haspopup="dialog"
-                >
-                  <Image src={photo.src} alt={photo.alt} fill sizes="(min-width: 1024px) 300px, 48vw" className="object-cover" />
-                  <span
-                    aria-hidden="true"
-                    className="absolute right-3 top-3 inline-flex size-10 items-center justify-center rounded-full bg-porcelana/90 text-cacau opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100 max-lg:opacity-100"
+        <div className="relative mt-14 md:mt-20">
+          <ul
+            ref={rowRef}
+            className="gallery-row -mx-[var(--gutter)] flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-px-[var(--gutter)] px-[var(--gutter)] pb-2 sm:gap-4 lg:mx-0 lg:scroll-px-0 lg:gap-5 lg:px-0"
+            aria-label="Fotos de trabalhos"
+          >
+            {GALLERY.map((photo, i) => (
+              <li
+                key={photo.id}
+                className="w-[72%] shrink-0 snap-start sm:w-[44%] lg:w-[calc((100%-3*1.25rem)/4)]"
+              >
+                <MaskReveal delay={Math.min(i, 3) * 0.1}>
+                  <button
+                    ref={(el) => {
+                      triggerRefs.current[i] = el;
+                    }}
+                    type="button"
+                    onClick={() => open(i)}
+                    className="photo-frame photo-zoom group relative block aspect-[4/5] w-full cursor-zoom-in rounded-[12px] text-left"
+                    aria-label={`Ampliar foto: ${photo.label}`}
+                    aria-haspopup="dialog"
                   >
-                    <IconExpand size={18} />
-                  </span>
-                  <span className="caps absolute bottom-4 left-4 text-[0.66rem] text-cacau-soft opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                    {photo.label}
-                  </span>
-                </button>
-              </MaskReveal>
-            </li>
-          ))}
-        </ul>
+                    <Image src={photo.src} alt={photo.alt} fill sizes="(min-width: 1024px) 300px, 72vw" className="object-cover" />
+                    <span
+                      aria-hidden="true"
+                      className="absolute right-3 top-3 inline-flex size-10 items-center justify-center rounded-full bg-porcelana/90 text-cacau opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100 max-lg:opacity-100"
+                    >
+                      <IconExpand size={18} />
+                    </span>
+                  </button>
+                </MaskReveal>
+              </li>
+            ))}
+          </ul>
+          {/* setas da fileira, como na referência */}
+          <div className="mt-6 flex justify-end gap-3">
+            <button
+              type="button"
+              onClick={() => scrollRow(-1)}
+              disabled={!canPrev}
+              className="inline-flex size-12 rotate-180 items-center justify-center rounded-full border border-cacau/25 text-cacau transition-[background-color,opacity] hover:bg-tile disabled:opacity-35"
+              aria-label="Ver fotos anteriores"
+            >
+              <IconChevron size={20} />
+            </button>
+            <button
+              type="button"
+              onClick={() => scrollRow(1)}
+              disabled={!canNext}
+              className="inline-flex size-12 items-center justify-center rounded-full border border-cacau/25 text-cacau transition-[background-color,opacity] hover:bg-tile disabled:opacity-35"
+              aria-label="Ver mais fotos"
+            >
+              <IconChevron size={20} />
+            </button>
+          </div>
+        </div>
       </div>
 
       <dialog

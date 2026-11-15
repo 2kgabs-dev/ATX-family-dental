@@ -20,8 +20,13 @@
     "src": "/photos/lilas.7cce9e25.jpg"
   },
   "hero": {
+    "width": 781,
+    "height": 1204,
+    "src": "/photos/hero.a7badf72.png"
+  },
+  "rosa-leitoso": {
     "width": 720,
-    "height": 830,
-    "src": "/photos/hero.d8311cbd.png"
+    "height": 900,
+    "src": "/photos/rosa-leitoso.de209b48.jpg"
   }
 }
