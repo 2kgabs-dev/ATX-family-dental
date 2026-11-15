@@ -75,7 +75,7 @@ export function Header() {
                 <a
                   href={item.href}
                   aria-current={active === item.href ? "location" : undefined}
-                  className="group relative inline-flex min-h-11 items-center px-3.5 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-cacau-soft transition-colors duration-200 hover:text-cacau aria-[current=location]:text-cacau"
+                  className="group relative inline-flex min-h-11 items-center px-3.5 text-[0.74rem] font-medium uppercase tracking-[0.2em] text-cacau-soft transition-colors duration-200 hover:text-cacau aria-[current=location]:text-cacau"
                 >
                   {item.label}
                   <span
@@ -144,7 +144,7 @@ export function Header() {
                       ref={i === 0 ? firstLinkRef : undefined}
                       href={item.href}
                       onClick={() => setOpen(false)}
-                      className="flex min-h-16 items-center justify-between font-serif text-[2.1rem] leading-none text-cacau"
+                      className="flex min-h-16 items-center justify-between font-serif text-[2.4rem] leading-none text-cacau-soft"
                     >
                       {item.label}
                     </a>

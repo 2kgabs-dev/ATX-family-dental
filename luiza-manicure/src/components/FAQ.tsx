@@ -38,10 +38,10 @@ export function FAQ() {
   const base = useId();
 
   return (
-    <section id="duvidas" aria-labelledby="faq-title" className="section bg-porcelana-deep">
+    <section id="duvidas" aria-labelledby="faq-title" className="section bg-porcelana">
       <div className="shell grid gap-12 lg:grid-cols-12 lg:gap-10">
         <Reveal className="lg:col-span-5">
-          <h2 id="faq-title" className="h2">
+          <h2 id="faq-title" className="h2 text-cacau-soft">
             Perguntas <span className="serif-italic text-rose-ink">frequentes.</span>
           </h2>
           <p className="lede mt-6">Não encontrou sua dúvida? A Luiza responde pelo WhatsApp.</p>
@@ -67,7 +67,7 @@ export function FAQ() {
                       aria-expanded={isOpen}
                       aria-controls={panelId}
                       onClick={() => setOpen(isOpen ? null : i)}
-                      className="group flex min-h-[72px] w-full items-center justify-between gap-6 py-5 text-left font-serif text-[1.4rem] font-semibold leading-snug text-cacau md:text-[1.55rem]"
+                      className="group flex min-h-[72px] w-full items-center justify-between gap-6 py-5 text-left font-serif text-[1.55rem] leading-snug text-cacau-soft md:text-[1.8rem]"
                     >
                       {item.q}
                       <span

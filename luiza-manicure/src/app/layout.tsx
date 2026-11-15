@@ -1,32 +1,22 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, Manrope } from "next/font/google";
+import { Instrument_Serif, Jost } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { MotionProvider } from "@/components/MotionProvider";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
 import { WHATSAPP_NUMBER } from "@/lib/whatsapp";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
+const instrument = Instrument_Serif({
   subsets: ["latin"],
-  weight: ["500", "600"],
-  style: ["normal"],
-  variable: "--font-cormorant",
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-instrument",
   display: "swap",
 });
 
-// Itálico: só destaques; não disputa banda com a imagem da Hero
-const cormorantItalic = Cormorant_Garamond({
+const jost = Jost({
   subsets: ["latin"],
-  weight: ["500"],
-  style: ["italic"],
-  variable: "--font-cormorant-italic",
-  display: "swap",
-  preload: false,
-});
-
-const manrope = Manrope({
-  subsets: ["latin"],
-  variable: "--font-manrope",
+  variable: "--font-jost",
   display: "swap",
 });
 
@@ -78,7 +68,7 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt-BR" className={`${cormorant.variable} ${cormorantItalic.variable} ${manrope.variable}`}>
+    <html lang="pt-BR" className={`${instrument.variable} ${jost.variable}`}>
       <body>
         <a
           href="#conteudo"

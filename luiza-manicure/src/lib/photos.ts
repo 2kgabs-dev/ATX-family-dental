@@ -11,18 +11,26 @@ export type Photo = {
 
 const p = (id: keyof typeof meta, alt: string, label: string): Photo => ({
   id,
-  src: `/photos/${id}.jpg`,
+  src: meta[id].src,
   width: meta[id].width,
   height: meta[id].height,
   alt,
   label,
 });
 
-/** Fotografias reais de trabalhos realizados pela Luiza (sem retoque de cor). */
+/**
+ * Fotografias reais de trabalhos da Luiza. O fundo de celular foi substituído
+ * pelo fundo da marca; mãos, unhas e cores não foram retocadas.
+ */
 export const PHOTOS = {
+  hero: p(
+    "hero-terracota",
+    "Duas mãos erguidas mostrando unhas curtas e arredondadas esmaltadas em terracota, com aliança e anel de brilhantes.",
+    "Terracota",
+  ),
   vinho: p(
     "vermelho-vinho",
-    "Mãos cruzadas com unhas quadradas esmaltadas em vermelho-vinho brilhante, sobre tecido marrom.",
+    "Mãos cruzadas com unhas quadradas esmaltadas em vermelho-vinho brilhante.",
     "Vermelho-vinho",
   ),
   vermelho: p(
@@ -37,9 +45,9 @@ export const PHOTOS = {
   ),
   verde: p(
     "verde-metalizado",
-    "Mãos sobrepostas com unhas arredondadas em verde metalizado com reflexo cromado, sobre fundo cinza.",
+    "Mãos sobrepostas com unhas arredondadas em verde metalizado com reflexo cromado.",
     "Verde metalizado",
   ),
 } as const;
 
-export const GALLERY: Photo[] = [PHOTOS.verde, PHOTOS.vinho, PHOTOS.terracota, PHOTOS.vermelho];
+export const GALLERY: Photo[] = [PHOTOS.vinho, PHOTOS.verde, PHOTOS.vermelho, PHOTOS.terracota];

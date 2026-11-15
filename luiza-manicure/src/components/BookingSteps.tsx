@@ -17,10 +17,10 @@ const EASE = [0.22, 0.61, 0.36, 1] as const;
 
 export function BookingSteps() {
   return (
-    <section id="agendar" aria-labelledby="agendar-title" className="section bg-porcelana">
+    <section id="agendar" aria-labelledby="agendar-title" className="section bg-blush">
       <div className="shell">
-        <Reveal as="header" className="max-w-3xl">
-          <h2 id="agendar-title" className="h2">
+        <Reveal as="header" className="mx-auto max-w-3xl text-center">
+          <h2 id="agendar-title" className="h2 text-cacau-soft">
             Seu próximo momento de autocuidado está <span className="serif-italic text-rose-ink">a poucos passos.</span>
           </h2>
         </Reveal>
@@ -45,11 +45,11 @@ export function BookingSteps() {
               variants={{ hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0 } }}
               transition={{ duration: 0.8, ease: EASE, delay: 0.25 + i * 0.35 }}
             >
-              <span className="relative z-[1] inline-flex size-14 items-center justify-center rounded-full border border-rose/60 bg-porcelana font-serif text-[1.35rem] font-semibold tabular-nums text-rose-ink">
+              <span className="relative z-[1] inline-flex size-14 items-center justify-center rounded-full border border-rose/60 bg-porcelana font-serif text-[1.5rem] tabular-nums text-rose-ink">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <div className="md:mt-9 md:pr-6">
-                <h3 className="h3">{step.title}</h3>
+                <h3 className="h3 text-cacau-soft">{step.title}.</h3>
                 <p className="mt-3 max-w-[32ch] text-cacau-soft">{step.text}</p>
               </div>
             </m.li>

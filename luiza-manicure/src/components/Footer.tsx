@@ -27,7 +27,7 @@ export function Footer() {
         </div>
 
         <nav aria-label="Rodapé" className="md:col-span-2">
-          <p className="text-[0.78rem] font-semibold uppercase tracking-[0.16em] text-nude">Navegação</p>
+          <p className="caps text-nude">Navegação</p>
           <ul className="mt-5 space-y-1">
             {NAV.map((n) => (
               <li key={n.href}>
@@ -40,7 +40,7 @@ export function Footer() {
         </nav>
 
         <div className="md:col-span-3">
-          <p className="text-[0.78rem] font-semibold uppercase tracking-[0.16em] text-nude">Serviços</p>
+          <p className="caps text-nude">Serviços</p>
           <ul className="mt-5 space-y-1">
             {SERVICES.map((s) => (
               <li key={s.key}>
@@ -60,14 +60,14 @@ export function Footer() {
         </div>
 
         <div className="md:col-span-2">
-          <p className="text-[0.78rem] font-semibold uppercase tracking-[0.16em] text-nude">Contato</p>
+          <p className="caps text-nude">Contato</p>
           <a
             href={createWhatsAppLink(MESSAGES.geral)}
             target="_blank"
             rel="noopener noreferrer"
             data-wa="geral"
             onClick={() => trackWhatsApp("footer_whatsapp_click")}
-            className="mt-5 inline-flex min-h-10 items-center font-semibold tabular-nums text-porcelana hover:underline"
+            className="mt-5 inline-flex min-h-10 items-center font-medium tabular-nums text-porcelana hover:underline"
           >
             {WHATSAPP_DISPLAY}
           </a>

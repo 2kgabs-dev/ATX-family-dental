@@ -34,8 +34,8 @@ URL=http://localhost:3000 npm run test:e2e
 Rosé tinta, Cacau suave e Oliva tinta são derivações da paleta proposta, criadas porque o rosé terroso e o oliva originais não passam no contraste mínimo para texto pequeno.
 
 ### Tipografia
-- **Cormorant Garamond** 500/600 + itálico 500 — títulos editoriais; o itálico marca a segunda metade de cada título ("Um detalhe de beleza.").
-- **Manrope** variável — interface, textos e botões.
+- **Instrument Serif** (regular + itálico) — títulos editoriais, sempre com ponto final ("Manicure."), como nas referências The Nail Edit e Maison Nail Atelier. O itálico marca a segunda metade de cada título.
+- **Jost** — textos, botões e rótulos em caixa-alta espaçada ("MANICURE · DEPILAÇÃO · PLÁSTICA DOS PÉS").
 - Títulos com `text-wrap: balance`, parágrafos com `pretty`, números tabulares no telefone e nos contadores.
 
 ### Logotipo (`public/brand/`)
@@ -58,10 +58,19 @@ Símbolo botânico de três folhas redesenhado em vetor + "LUIZA" em Cormorant c
 ---
 
 ## 2. Fotografias
-Quatro fotos reais da profissional, só com recorte, orientação e compressão — **sem alteração de cor** (`source-photos/` → `public/photos/`). A Vercel serve AVIF/WebP no tamanho de cada tela.
+Quatro fotos reais da profissional. O fundo de celular (tecido, plástico, salão) foi **removido** com `@imgly/background-removal-node` (offline) e trocado pelo fundo nude da marca, com sombra suave. **Mãos, unhas e cores não foram retocadas.** A galeria avisa isso em uma linha.
+
+- Originais: `source-photos/*.jpg` · Recortes: `source-photos/recortes/*.png`
+- `npm run assets` gera os quadros 4:5 da galeria e o recorte transparente da Hero em `public/photos/`, com hash do conteúdo no nome (evita cache de versões antigas).
 
 | Foto | Onde |
 |---|---|
+| Terracota (recorte) | Hero, sobre o arco nude |
+| Vermelho-vinho, verde metalizado, vermelho com tatuagens, terracota | Galeria |
+
+Nenhuma foto de unha representa depilação ou plástica dos pés: esses serviços usam ícones desenhados. Nenhuma imagem foi gerada por IA (o Higgsfield exige plano pago).
+
+---|---|
 | Vermelho-vinho | Hero (moldura em arco) + galeria |
 | Verde metalizado | Galeria (coluna alta, contraste de cor) |
 | Terracota | Galeria |

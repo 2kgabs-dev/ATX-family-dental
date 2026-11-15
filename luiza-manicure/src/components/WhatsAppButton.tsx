@@ -51,3 +51,29 @@ export function WhatsAppButton({
     </a>
   );
 }
+
+/** Link sem estilo próprio (cards inteiros clicáveis), com a mesma mensagem e rastreio. */
+export function WhatsAppLink({
+  message = "geral",
+  event,
+  children,
+  className = "",
+}: {
+  message?: MessageKey;
+  event: WhatsAppEvent;
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <a
+      href={createWhatsAppLink(MESSAGES[message])}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={className}
+      data-wa={message}
+      onClick={() => trackWhatsApp(event)}
+    >
+      {children}
+    </a>
+  );
+}

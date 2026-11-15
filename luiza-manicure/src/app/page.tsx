@@ -9,6 +9,7 @@ import { Hero } from "@/components/Hero";
 import { HomeService } from "@/components/HomeService";
 import { PortfolioGallery } from "@/components/PortfolioGallery";
 import { Services } from "@/components/Services";
+import { TrustBar } from "@/components/TrustBar";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <Header />
       <main id="conteudo">
         <Hero />
+        <TrustBar />
         <Services />
         <HomeService />
         <PortfolioGallery />

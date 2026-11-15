@@ -1,8 +1,8 @@
 import type { WhatsAppEvent } from "@/lib/analytics";
 import type { MessageKey } from "@/lib/whatsapp";
-import { IconFoot, IconPetal, IconPolish } from "./icons";
+import { IconArrow, IconFoot, IconPetal, IconPolish } from "./icons";
 import { Reveal, RevealItem, Stagger } from "./Reveal";
-import { WhatsAppButton } from "./WhatsAppButton";
+import { WhatsAppLink } from "./WhatsAppButton";
 
 const SERVICES: {
   title: string;
@@ -42,35 +42,35 @@ export function Services() {
   return (
     <section id="servicos" aria-labelledby="servicos-title" className="section bg-porcelana">
       <div className="shell">
-        <Reveal as="header" className="grid gap-6 md:grid-cols-12 md:items-end">
-          <h2 id="servicos-title" className="h2 md:col-span-7">
+        <Reveal as="header" className="mx-auto max-w-2xl text-center">
+          <h2 id="servicos-title" className="h2 text-cacau-soft">
             Cuidados pensados <span className="serif-italic text-rose-ink">para você.</span>
           </h2>
-          <p className="lede md:col-span-5 md:justify-self-end md:text-right">
-            Cada detalhe faz parte de um momento dedicado à sua beleza e bem-estar.
-          </p>
+          <p className="lede mx-auto mt-6">Cada detalhe faz parte de um momento dedicado à sua beleza e bem-estar.</p>
         </Reveal>
 
-        <Stagger as="ul" className="mt-14 grid border-t border-cacau/12 md:mt-20 md:grid-cols-3">
+        <Stagger as="ul" className="mt-14 grid gap-4 md:mt-20 md:grid-cols-3 md:gap-5">
           {SERVICES.map(({ title, text, cta, message, event, Icon }) => (
-            <RevealItem
-              as="li"
-              key={title}
-              className="group relative flex flex-col border-b border-cacau/12 py-10 transition-colors duration-500 md:border-b-0 md:border-l md:px-9 md:py-12 md:first:border-l-0 md:first:pl-0 lg:px-11"
-            >
-              <span className="mb-8 inline-flex size-[68px] items-center justify-center rounded-full bg-nude/40 text-rose-ink transition-[transform,background-color] duration-500 ease-[var(--ease-out)] group-hover:-translate-y-1 group-hover:bg-nude/70 md:mb-10">
-                <Icon size={32} />
-              </span>
-              <h3 className="h3">{title}</h3>
-              <p className="mt-4 max-w-[30ch] text-cacau-soft">{text}</p>
-              <div className="mt-auto pt-8">
-                <WhatsAppButton variant="link" message={message} event={event}>
+            <RevealItem as="li" key={title}>
+              <WhatsAppLink
+                message={message}
+                event={event}
+                className="group flex h-full flex-col items-center rounded-[10px] bg-tile px-8 pb-10 pt-12 text-center transition-[transform,background-color,box-shadow] duration-500 ease-[var(--ease-out)] hover:-translate-y-1 hover:bg-[#ead9ce] hover:shadow-[0_24px_40px_-30px_rgb(84_49_36/0.45)] md:px-10 md:pt-14"
+              >
+                <Icon size={30} className="text-rose-ink" />
+                <h3 className="h3 mt-7 text-cacau-soft">{title}.</h3>
+                <p className="mt-4 max-w-[26ch] text-[0.98rem] leading-relaxed text-cacau-soft">{text}</p>
+                <span className="text-link mt-auto pt-8">
                   {cta}
-                </WhatsAppButton>
-              </div>
+                  <IconArrow size={17} className="text-link-arrow" />
+                </span>
+              </WhatsAppLink>
             </RevealItem>
           ))}
         </Stagger>
+        <p className="mt-8 text-center text-[0.9rem] text-cacau-soft">
+          Consulte valores e disponibilidade pelo WhatsApp.
+        </p>
       </div>
     </section>
   );
