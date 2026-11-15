@@ -231,7 +231,6 @@ a {
     font-size: 0.76rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    white-space: nowrap;
     color: var(--color-cacau);
     text-decoration: none;
     background-image: linear-gradient(currentColor, currentColor);
@@ -239,6 +238,11 @@ a {
     background-position: 0 calc(100% - 10px);
     background-repeat: no-repeat;
     transition: background-size 380ms var(--ease-out);
+  }
+  @media (min-width: 640px) {
+    .text-link {
+      white-space: nowrap;
+    }
   }
   .text-link .text-link-arrow {
     transition: transform 260ms var(--ease-out);
