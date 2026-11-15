@@ -75,12 +75,12 @@ export function Header() {
                 <a
                   href={item.href}
                   aria-current={active === item.href ? "location" : undefined}
-                  className="group relative inline-flex min-h-11 items-center px-3.5 text-[0.74rem] font-medium uppercase tracking-[0.2em] text-cacau-soft transition-colors duration-200 hover:text-cacau aria-[current=location]:text-cacau"
+                  className="group relative inline-flex min-h-11 items-center px-2.5 text-[0.72rem] font-medium uppercase tracking-[0.16em] xl:px-3.5 xl:text-[0.74rem] xl:tracking-[0.2em] text-cacau-soft transition-colors duration-200 hover:text-cacau aria-[current=location]:text-cacau"
                 >
                   {item.label}
                   <span
                     aria-hidden="true"
-                    className="absolute inset-x-3.5 bottom-2 h-px origin-left scale-x-0 bg-rose transition-transform duration-300 ease-out group-hover:scale-x-100 group-aria-[current=location]:scale-x-100"
+                    className="absolute inset-x-2.5 bottom-2 h-px xl:inset-x-3.5 origin-left scale-x-0 bg-rose transition-transform duration-300 ease-out group-hover:scale-x-100 group-aria-[current=location]:scale-x-100"
                   />
                 </a>
               </li>
@@ -89,7 +89,7 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <WhatsAppButton event="header_whatsapp_click" variant="secondary" icon={false} className="hidden min-h-11! px-6! sm:inline-flex">
+          <WhatsAppButton event="header_whatsapp_click" variant="secondary" icon={false} className="hidden min-h-11! px-4! sm:inline-flex xl:px-6!">
             Agendar horário
           </WhatsAppButton>
           <button

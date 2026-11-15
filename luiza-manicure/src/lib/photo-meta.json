@@ -19,9 +19,9 @@
     "height": 1500,
     "src": "/photos/verde-metalizado.7c3f18e8.jpg"
   },
-  "hero-terracota": {
-    "width": 696,
-    "height": 1101,
-    "src": "/photos/hero-terracota.6421e223.png"
+  "hero": {
+    "width": 883,
+    "height": 1036,
+    "src": "/photos/hero.e244c589.png"
   }
 }

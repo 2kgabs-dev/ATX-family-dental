@@ -65,7 +65,7 @@ Quatro fotos reais da profissional. O fundo de celular (tecido, plástico, salã
 
 | Foto | Onde |
 |---|---|
-| Terracota (recorte) | Hero, sobre o arco nude |
+| Verde metalizado (recorte) | Hero, sobre o arco nude |
 | Vermelho-vinho, verde metalizado, vermelho com tatuagens, terracota | Galeria |
 
 Nenhuma foto de unha representa depilação ou plástica dos pés: esses serviços usam ícones desenhados. Nenhuma imagem foi gerada por IA (o Higgsfield exige plano pago).

@@ -35,9 +35,8 @@ function HeroVisual({ className = "" }: { className?: string }) {
           draggable={false}
         />
       </div>
-      <p className="caps absolute bottom-6 right-0 z-10 hidden items-center gap-3 text-rose-ink sm:flex lg:bottom-10">
-        Trabalho real
-        <span aria-hidden="true" className="h-px w-8 bg-rose/60" />
+      <p className="caps absolute bottom-5 right-3 z-10 hidden bg-blush/92 px-3.5 py-1.5 text-[0.66rem] text-cacau backdrop-blur-sm sm:block lg:bottom-8 lg:right-0">
+        Trabalho real da Luiza
       </p>
     </div>
   );

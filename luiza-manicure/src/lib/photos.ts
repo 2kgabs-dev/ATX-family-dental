@@ -24,9 +24,9 @@ const p = (id: keyof typeof meta, alt: string, label: string): Photo => ({
  */
 export const PHOTOS = {
   hero: p(
-    "hero-terracota",
-    "Duas mãos erguidas mostrando unhas curtas e arredondadas esmaltadas em terracota, com aliança e anel de brilhantes.",
-    "Terracota",
+    "hero",
+    "Mãos sobrepostas e erguidas com unhas arredondadas em verde metalizado com reflexo cromado.",
+    "Verde metalizado",
   ),
   vinho: p(
     "vermelho-vinho",

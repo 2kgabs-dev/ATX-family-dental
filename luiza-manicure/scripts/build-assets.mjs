@@ -290,10 +290,10 @@ meta["vermelho-tatuagens"] = await tile("vermelho-tatuagens", { crop: { l: 0, t:
 meta["terracota"] = await tile("terracota", { crop: { l: 0, t: 0, w: 1, h: 1 }, fit: "height", anchor: "bottom", scale: 1.04, overshoot: 0.08 });
 meta["verde-metalizado"] = await tile("verde-metalizado", { crop: { l: 0, t: 0, w: 1, h: 1 }, fit: "height", anchor: "bottom-right" });
 
-/* Hero: recorte transparente da foto terracota (mãos que sobem da base) */
+/* Hero: recorte transparente da foto verde metalizado (mãos que sobem da base) */
 {
-  // corta 8% da base para eliminar o degradê do recorte no pulso
-  const cut = await sharp(await cropCut("terracota", { l: 0, t: 0, w: 1, h: 0.92 })).trim().png().toBuffer();
+  // corta 16% da base: os antebraços passam a sair só pela borda inferior (rente à seção)
+  const cut = await sharp(await cropCut("verde-metalizado", { l: 0, t: 0, w: 1, h: 0.84 })).trim().png().toBuffer();
   const resized = await sharp(cut).resize({ height: 1500, withoutEnlargement: true }).png().toBuffer();
   const m = await sharp(resized).metadata();
   const sh = await softShadow(resized, 0.2, 30);
@@ -312,10 +312,10 @@ meta["verde-metalizado"] = await tile("verde-metalizado", { crop: { l: 0, t: 0, 
       { input: resized, left: pad, top: pad },
     ])
     .png({ compressionLevel: 9 })
-    .toFile(out("public/photos", "hero-terracota.png"));
-  const heroFile = out("public/photos", "hero-terracota.png");
+    .toFile(out("public/photos", "hero.png"));
+  const heroFile = out("public/photos", "hero.png");
   const handsForOg = await sharp(heroFile).resize({ height: 600 }).png().toBuffer();
-  meta["hero-terracota"] = { width: info.width, height: info.height, src: hashed(heroFile) };
+  meta["hero"] = { width: info.width, height: info.height, src: hashed(heroFile) };
   globalThis.__handsForOg = handsForOg;
 }
 fs.writeFileSync(out("src/lib/photo-meta.json"), JSON.stringify(meta, null, 2) + "\n");
