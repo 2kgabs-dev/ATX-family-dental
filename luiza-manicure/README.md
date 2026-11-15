@@ -120,10 +120,14 @@ Skills consultadas: Impeccable (craft floor: sem eyebrow acima de título, foco/
 ---
 
 ## 7. Publicação
+**No ar:** https://luiza-manicure.vercel.app (projeto Vercel `luiza-manicure`, time Gabrielmiy, commit `ecf8ec8`).
+Proteção padrão da Vercel ativa: o domínio de produção é público; as URLs geradas por deploy (`luiza-manicure-xxxx-gabrielmiy.vercel.app`) e os previews pedem login.
+
+Para republicar:
 1. Projeto na Vercel com **Root Directory = `luiza-manicure`**, framework Next.js (sem variáveis obrigatórias).
 2. Opcional: `NEXT_PUBLIC_SITE_URL=https://seudominio.com.br` ao conectar domínio próprio (canonical e OG usam essa URL; sem ela, usa o domínio de produção da Vercel).
 3. Ativar **Web Analytics** no painel do projeto.
-4. Promover a pré-visualização a produção apenas após a aprovação da cliente.
+4. Cada push no branch gera um preview; para produção, criar um deploy com target `production` (ou promover pelo painel).
 
 ## 8. Próximos passos sugeridos
 - Enviar o panfleto original para conferir o símbolo.
