@@ -22,7 +22,7 @@ function HeroVisual({ className = "" }: { className?: string }) {
         aria-hidden="true"
         className="arch-in-late absolute bottom-0 left-1/2 h-[calc(86%+18px)] w-[calc(80%+36px)] max-w-[536px] -translate-x-1/2 rounded-t-full border border-b-0 border-rose/45"
       />
-      <div className="hands-in absolute inset-x-0 bottom-0 flex h-[86%] justify-center">
+      <div className="hands-in absolute inset-x-0 bottom-[6%] flex h-[78%] justify-center">
         <Image
           src={photo.src}
           alt={photo.alt}
@@ -31,7 +31,7 @@ function HeroVisual({ className = "" }: { className?: string }) {
           preload
           fetchPriority="high"
           sizes="(min-width: 1024px) 520px, 72vw"
-          className="h-full w-auto max-w-none select-none"
+          className="hero-hands h-full w-auto max-w-none select-none"
           draggable={false}
         />
       </div>

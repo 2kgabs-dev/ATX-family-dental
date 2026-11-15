@@ -1,27 +1,27 @@
 {
-  "vermelho-vinho": {
-    "width": 1200,
-    "height": 1500,
-    "src": "/photos/vermelho-vinho.83175ce1.jpg"
+  "vinho-plantas": {
+    "width": 960,
+    "height": 1200,
+    "src": "/photos/vinho-plantas.bc62a798.jpg"
   },
-  "vermelho-tatuagens": {
-    "width": 1200,
-    "height": 1500,
-    "src": "/photos/vermelho-tatuagens.874487ec.jpg"
+  "chocolate": {
+    "width": 960,
+    "height": 1200,
+    "src": "/photos/chocolate.9420677a.jpg"
   },
-  "terracota": {
-    "width": 1200,
-    "height": 1500,
-    "src": "/photos/terracota.ebcaa736.jpg"
+  "vermelho": {
+    "width": 1024,
+    "height": 1280,
+    "src": "/photos/vermelho.e0d00736.jpg"
   },
-  "verde-metalizado": {
-    "width": 1200,
-    "height": 1500,
-    "src": "/photos/verde-metalizado.7c3f18e8.jpg"
+  "lilas": {
+    "width": 720,
+    "height": 900,
+    "src": "/photos/lilas.7cce9e25.jpg"
   },
   "hero": {
-    "width": 883,
-    "height": 1036,
-    "src": "/photos/hero.e244c589.png"
+    "width": 720,
+    "height": 830,
+    "src": "/photos/hero.d8311cbd.png"
   }
 }

@@ -58,13 +58,15 @@ Símbolo botânico de três folhas redesenhado em vetor + "LUIZA" em Cormorant c
 ---
 
 ## 2. Fotografias
-Quatro fotos reais da profissional. O fundo de celular (tecido, plástico, salão) foi **removido** com `@imgly/background-removal-node` (offline) e trocado pelo fundo nude da marca, com sombra suave. **Mãos, unhas e cores não foram retocadas.** A borda do recorte é apertada ~1px para eliminar o fio do fundo original.
+Cinco fotos reais da profissional (segundo lote enviado pela cliente; o primeiro lote foi descartado).
 
-- Originais: `source-photos/*.jpg` · Recortes: `source-photos/recortes/*.png`
-- `npm run assets` gera os quadros 4:5 da galeria e o recorte transparente da Hero em `public/photos/`, com hash do conteúdo no nome (evita cache de versões antigas).
+- **Galeria:** vermelho-vinho com plantas, chocolate na prateleira de esmaltes, vermelho vivo e lilás. Fotos naturais, só enquadradas em 4:5 e comprimidas; **cores sem retoque**.
+- **Hero:** rosa leitoso. O fundo foi removido offline (`@imgly/background-removal-node`) para as mãos ficarem sobre o arco da marca; foi apagada à mão uma faixa da calça que aparecia entre os dedos. Mãos, unhas e cores sem retoque.
+- Originais em `source-photos/*.jpg`, recorte em `source-photos/recortes/rosa-leitoso.png`. `npm run assets` gera tudo em `public/photos/` com hash do conteúdo no nome (evita cache de versões antigas).
 
-| Foto | Onde |
-|---|---|
+Nenhuma foto de unha representa depilação ou plástica dos pés: esses serviços usam ícones desenhados. Nenhuma imagem foi gerada por IA.
+
+---|---|
 | Verde metalizado (recorte) | Hero, sobre o arco nude |
 | Vermelho-vinho, verde metalizado, vermelho com tatuagens, terracota | Galeria |
 

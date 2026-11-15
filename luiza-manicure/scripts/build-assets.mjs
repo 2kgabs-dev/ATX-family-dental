@@ -175,12 +175,12 @@ function hashed(file) {
   return "/photos/" + path.basename(target);
 }
 for (const f of fs.readdirSync(out("public/photos"))) fs.unlinkSync(out("public/photos", f));
+
 const hexRgb = (h) => ({ r: parseInt(h.slice(1, 3), 16), g: parseInt(h.slice(3, 5), 16), b: parseInt(h.slice(5, 7), 16) });
 
 /**
  * Sombra suave a partir do alfa do recorte (cor cacau, desfocada).
  * A tela ganha margem antes do desfoque para a sombra não ser cortada em linha reta.
- * Retorna { buf, m } — m é a margem a descontar no posicionamento.
  */
 async function softShadow(cutBuf, opacity = 0.2, blur = 26) {
   const { width, height } = await sharp(cutBuf).metadata();
@@ -200,123 +200,99 @@ async function softShadow(cutBuf, opacity = 0.2, blur = 26) {
   return { buf, m };
 }
 
-/** Recorte de uma região do PNG (frações 0..1). */
-async function cropCut(name, crop = { l: 0, t: 0, w: 1, h: 1 }) {
-  const src = out("source-photos/recortes", `${name}.png`);
-  const m = await sharp(src).metadata();
-  // aperta a borda do recorte (~1px) para eliminar o fio claro/escuro do fundo original
-  const rgb = await sharp(src).removeAlpha().png().toBuffer();
-  const a = await sharp(src).extractChannel(3).linear(1.7, -0.7 * 255).png().toBuffer();
-  const tight = await sharp(rgb).joinChannel(a).png().toBuffer();
-  return sharp(tight)
-    .extract({
-      left: Math.round(m.width * crop.l),
-      top: Math.round(m.height * crop.t),
-      width: Math.round(m.width * crop.w),
-      height: Math.round(m.height * crop.h),
-    })
-    .png()
-    .toBuffer();
-}
-
 /**
- * Quadro 4:5 com fundo da marca. A mão entra pela borda indicada em `anchor`,
- * como em uma foto de estúdio; as cores do trabalho não são alteradas.
+ * Galeria: fotos reais da cliente, só enquadradas em 4:5 e comprimidas
+ * (sem alteração de cor). Recorte em frações da imagem original.
  */
-const TILE_W = 1200, TILE_H = 1500;
-async function tile(name, { crop, fit = "width", anchor = "top", scale = 1, overshoot = 0.03, offsetY = 0, fadeTop = 0 }) {
-  let cut = await cropCut(name, crop);
-  const m = await sharp(cut).metadata();
-  const k = (fit === "width" ? TILE_W / m.width : TILE_H / m.height) * scale;
-  const w = Math.round(m.width * k), h = Math.round(m.height * k);
-  cut = await sharp(cut).resize(w, h).png().toBuffer();
-  if (fadeTop > 0) {
-    // degradê no topo: a borda cortada da foto some suavemente no fundo
-    const fh = Math.round(h * fadeTop);
-    const mask = Buffer.from(
-      `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="${(fh / h).toFixed(3)}" stop-color="#fff" stop-opacity="1"/></linearGradient></defs><rect width="${w}" height="${h}" fill="url(#g)"/></svg>`,
-    );
-    cut = await sharp(cut).composite([{ input: mask, blend: "dest-in" }]).png().toBuffer();
-  }
-  // a borda cortada da foto (pulso/braço) sai um pouco do quadro, escondendo o degradê do recorte
-  const os = Math.round(h * overshoot);
-  let left = Math.round((TILE_W - w) / 2);
-  let top = (anchor.startsWith("bottom") ? TILE_H - h + os : -os) + Math.round(TILE_H * offsetY);
-  if (anchor.endsWith("right")) left = TILE_W - w + Math.round(w * overshoot);
-  // recorta o que excede o quadro
-  const exL = Math.max(0, -left), exT = Math.max(0, -top);
-  const ex = {
-    left: exL,
-    top: exT,
-    width: Math.min(w - exL, TILE_W - Math.max(0, left)),
-    height: Math.min(h - exT, TILE_H - Math.max(0, top)),
-  };
-  cut = await sharp(cut).extract(ex).png().toBuffer();
-  left = Math.max(0, left);
-  top = Math.max(0, top);
-  const sh = await softShadow(cut, 0.18, 24);
-  // sombra posicionada com margem e recortada ao quadro
-  const shX = left + 10 - sh.m, shY = top + 22 - sh.m;
-  const shMeta = await sharp(sh.buf).metadata();
-  const sx = Math.max(0, -shX), sy = Math.max(0, -shY);
-  const shadowClip = await sharp(sh.buf)
-    .extract({
-      left: sx,
-      top: sy,
-      width: Math.min(shMeta.width - sx, TILE_W - Math.max(0, shX)),
-      height: Math.min(shMeta.height - sy, TILE_H - Math.max(0, shY)),
-    })
-    .png()
-    .toBuffer();
-  const info = await sharp({ create: { width: TILE_W, height: TILE_H, channels: 3, background: C.tile } })
-    .composite([
-      { input: shadowClip, left: Math.max(0, shX), top: Math.max(0, shY) },
-      { input: cut, left, top },
-    ])
-    .jpeg({ quality: 88, mozjpeg: true })
-    .toFile(out("public/photos", `${name}.jpg`));
-  return { width: info.width, height: info.height, src: hashed(out("public/photos", `${name}.jpg`)) };
+async function naturalTile(name, { l = 0, t = 0, w = 1 }) {
+  const src = out("source-photos", `${name}.jpg`);
+  const m = await sharp(src).metadata();
+  const width = Math.round(m.width * w);
+  const height = Math.min(Math.round((width * 5) / 4), m.height - Math.round(m.height * t));
+  const file = out("public/photos", `${name}.jpg`);
+  const info = await sharp(src)
+    .rotate()
+    .extract({ left: Math.round(m.width * l), top: Math.round(m.height * t), width, height })
+    .resize({ width: 1200, withoutEnlargement: true })
+    .jpeg({ quality: 86, mozjpeg: true })
+    .toFile(file);
+  return { width: info.width, height: info.height, src: hashed(file) };
 }
 
 const meta = {};
-meta["vermelho-vinho"] = await tile("vermelho-vinho", {
-  crop: { l: 0, t: 0.27, w: 1, h: 0.73 },
-  anchor: "top",
-  scale: 1.3,
-  offsetY: 0.21,
-  fadeTop: 0.16,
-});
-meta["vermelho-tatuagens"] = await tile("vermelho-tatuagens", { crop: { l: 0, t: 0, w: 1, h: 1 }, anchor: "top" });
-meta["terracota"] = await tile("terracota", { crop: { l: 0, t: 0, w: 1, h: 1 }, fit: "height", anchor: "bottom", scale: 1.04, overshoot: 0.08 });
-meta["verde-metalizado"] = await tile("verde-metalizado", { crop: { l: 0, t: 0, w: 1, h: 1 }, fit: "height", anchor: "bottom-right" });
+meta["vinho-plantas"] = await naturalTile("vinho-plantas", { t: 0.06 });
+meta["chocolate"] = await naturalTile("chocolate", { t: 0.0625 });
+meta["vermelho"] = await naturalTile("vermelho", { l: 0.035, w: 0.929 });
+meta["lilas"] = await naturalTile("lilas", { t: 0.17 });
 
-/* Hero: recorte transparente da foto verde metalizado (mãos que sobem da base) */
+/**
+ * Abertura morfológica no alfa: remove fiapos finos (< 2r+1 px) colados ao recorte,
+ * como a borda de cadeira que o modelo deixou entre os dedos. Mantém as bordas suaves.
+ */
+async function openAlpha(buf, r = 6) {
+  const { data, info } = await sharp(buf).raw().toBuffer({ resolveWithObject: true });
+  const W = info.width, H = info.height;
+  let m = new Uint8Array(W * H);
+  for (let p = 0; p < W * H; p++) m[p] = data[p * 4 + 3] > 127 ? 1 : 0;
+  const pass = (src, horiz, op) => {
+    const dst = new Uint8Array(W * H);
+    for (let y = 0; y < H; y++)
+      for (let x = 0; x < W; x++) {
+        let v = op === "min" ? 1 : 0;
+        for (let k = -r; k <= r; k++) {
+          const xx = horiz ? x + k : x, yy = horiz ? y : y + k;
+          const s = xx < 0 || yy < 0 || xx >= W || yy >= H ? (op === "min" ? 1 : 0) : src[yy * W + xx];
+          if (op === "min" ? s === 0 : s === 1) { v = op === "min" ? 0 : 1; break; }
+        }
+        dst[y * W + x] = v;
+      }
+    return dst;
+  };
+  m = pass(pass(m, true, "min"), false, "min"); // erosão
+  m = pass(pass(m, true, "max"), false, "max"); // dilatação
+  for (let p = 0; p < W * H; p++) if (!m[p]) data[p * 4 + 3] = 0;
+  return sharp(data, { raw: { width: W, height: H, channels: 4 } }).png().toBuffer();
+}
+
+/*
+ * Hero: recorte da foto rosa leitoso (fundo removido offline com
+ * @imgly/background-removal-node; mãos e unhas sem retoque).
+ * Os braços saem pelas laterais; a página esmaece as bordas com máscara CSS.
+ */
 {
-  // corta 16% da base: os antebraços passam a sair só pela borda inferior (rente à seção)
-  const cut = await sharp(await cropCut("verde-metalizado", { l: 0, t: 0, w: 1, h: 0.84 })).trim().png().toBuffer();
-  const resized = await sharp(cut).resize({ height: 1500, withoutEnlargement: true }).png().toBuffer();
-  const m = await sharp(resized).metadata();
-  const sh = await softShadow(resized, 0.2, 30);
-  const pad = sh.m;
-  // tela com margem para a sombra; a base fica rente (as mãos saem pela borda inferior)
-  const canvasW = m.width + pad * 2, canvasH = m.height + pad;
-  const shTop = pad + 20 - sh.m, shLeft = pad + 14 - sh.m;
-  const shMeta = await sharp(sh.buf).metadata();
+  const src = out("source-photos/recortes", "rosa-leitoso.png");
+  // aperta a borda do recorte (~1px) para eliminar o fio do fundo original
+  const rgb = await sharp(src).removeAlpha().png().toBuffer();
+  const a = await sharp(src).extractChannel(3).linear(1.7, -0.7 * 255).png().toBuffer();
+  const tight = await openAlpha(await sharp(rgb).joinChannel(a).png().toBuffer());
+  let cut = await sharp(tight).trim().png().toBuffer();
+  {
+    // a calça bege aparece no vão entre os dedos: apaga só essa faixa fina (polígono manual)
+    const cm = await sharp(cut).metadata();
+    const strip = Buffer.from(
+      `<svg xmlns="http://www.w3.org/2000/svg" width="${cm.width}" height="${cm.height}"><polygon points="372,494 386,491 535,676 517,690" fill="#000"/></svg>`,
+    );
+    cut = await sharp(cut).composite([{ input: strip, blend: "dest-out" }]).png().toBuffer();
+  }
+  const resized = await sharp(cut).resize({ width: 1400, withoutEnlargement: true }).png().toBuffer();
+  const rm = await sharp(resized).metadata();
+  const sh = await softShadow(resized, 0.11, 22);
+  const canvasW = rm.width, canvasH = rm.height + sh.m;
+  // sombra deslocada para baixo, recortada à tela
   const shadowClip = await sharp(sh.buf)
-    .extract({ left: 0, top: 0, width: Math.min(shMeta.width, canvasW - shLeft), height: Math.min(shMeta.height, canvasH - shTop) })
+    .extract({ left: sh.m, top: Math.max(0, sh.m - 22), width: canvasW, height: canvasH })
     .png()
     .toBuffer();
+  const heroFile = out("public/photos", "hero.png");
   const info = await sharp({ create: { width: canvasW, height: canvasH, channels: 4, background: { r: 0, g: 0, b: 0, alpha: 0 } } })
     .composite([
-      { input: shadowClip, left: shLeft, top: shTop },
-      { input: resized, left: pad, top: pad },
+      { input: shadowClip, left: 0, top: 0 },
+      { input: resized, left: 0, top: 0 },
     ])
     .png({ compressionLevel: 9 })
-    .toFile(out("public/photos", "hero.png"));
-  const heroFile = out("public/photos", "hero.png");
-  const handsForOg = await sharp(heroFile).resize({ height: 600 }).png().toBuffer();
+    .toFile(heroFile);
+  globalThis.__handsForOg = await sharp(heroFile).resize({ width: 470 }).png().toBuffer();
   meta["hero"] = { width: info.width, height: info.height, src: hashed(heroFile) };
-  globalThis.__handsForOg = handsForOg;
 }
 fs.writeFileSync(out("src/lib/photo-meta.json"), JSON.stringify(meta, null, 2) + "\n");
 
@@ -338,7 +314,7 @@ fs.writeFileSync(out("src/lib/photo-meta.json"), JSON.stringify(meta, null, 2) +
     .composite([
       { input: ogLogoPng, left: Math.round((720 - logoMeta.width) / 2), top: 120 },
       { input: ogText, left: 0, top: 0 },
-      { input: hands, left: Math.round(950 - hm.width / 2), top: 630 - hm.height },
+      { input: hands, left: Math.round(950 - hm.width / 2), top: Math.round(400 - hm.height / 2) },
     ])
     .jpeg({ quality: 88 })
     .toFile(out("src/app/opengraph-image.jpg"));

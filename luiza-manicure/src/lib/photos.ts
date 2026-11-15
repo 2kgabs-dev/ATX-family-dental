@@ -18,36 +18,29 @@ const p = (id: keyof typeof meta, alt: string, label: string): Photo => ({
   label,
 });
 
-/**
- * Fotografias reais de trabalhos da Luiza. O fundo de celular foi substituído
- * pelo fundo da marca; mãos, unhas e cores não foram retocadas.
- */
+/** Fotografias reais de trabalhos da Luiza (cores originais, sem retoque). */
 export const PHOTOS = {
   hero: p(
     "hero",
-    "Mãos sobrepostas e erguidas com unhas arredondadas em verde metalizado com reflexo cromado.",
-    "Verde metalizado",
+    "Mãos sobrepostas com unhas amendoadas em rosa leitoso translúcido e anéis prateados.",
+    "Rosa leitoso",
   ),
   vinho: p(
-    "vermelho-vinho",
-    "Mãos cruzadas com unhas quadradas esmaltadas em vermelho-vinho brilhante.",
+    "vinho-plantas",
+    "Mãos com unhas quadradas esmaltadas em vermelho-vinho e aliança dourada, diante de folhas verdes.",
     "Vermelho-vinho",
   ),
-  vermelho: p(
-    "vermelho-tatuagens",
-    "Mãos sobrepostas com tatuagens finas e anéis prateados, unhas esmaltadas em vermelho vivo.",
-    "Vermelho vivo",
+  chocolate: p(
+    "chocolate",
+    "Mãos com unhas quadradas em marrom chocolate diante de uma prateleira de esmaltes.",
+    "Chocolate",
   ),
-  terracota: p(
-    "terracota",
-    "Duas mãos mostrando unhas curtas e arredondadas em tom terracota, com aliança e anel de brilhantes.",
-    "Terracota",
-  ),
-  verde: p(
-    "verde-metalizado",
-    "Mãos sobrepostas com unhas arredondadas em verde metalizado com reflexo cromado.",
-    "Verde metalizado",
+  vermelho: p("vermelho", "Mãos sobrepostas com unhas quadradas em vermelho vivo brilhante.", "Vermelho vivo"),
+  lilas: p(
+    "lilas",
+    "Mãos com unhas amendoadas em lilás claro e anel dourado, sobre mesa de madeira.",
+    "Lilás",
   ),
 } as const;
 
-export const GALLERY: Photo[] = [PHOTOS.vinho, PHOTOS.verde, PHOTOS.vermelho, PHOTOS.terracota];
+export const GALLERY: Photo[] = [PHOTOS.vinho, PHOTOS.chocolate, PHOTOS.vermelho, PHOTOS.lilas];
